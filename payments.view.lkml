@@ -283,7 +283,7 @@ view: payments {
   }
 
   dimension: yearmonth {
-    type: string
+    type: date_time
     sql: ${TABLE}.yearmonth ;;
     suggest_persist_for: "24 hours"
   }
