@@ -37,5 +37,37 @@ explore: payments {
     sql_on: ${payment_extensions.unique_payment_id} = ${payments.unique_id} ;;
     relationship: one_to_one
   }
+
+  join: users_meta {
+    type:  left_outer
+    sql_on: ${users_meta.user_id} = ${payments.user_id} ;;
+    relationship: many_to_one
+  }
+
   # sql_always_where: ${status} = 'paid' ;;
+}
+
+explore: transformed_payments {
+  always_filter: {
+    filters: [transformed_payments.yearmonth: "2020-02"]
+  }
+  join: payment_extensions {
+    type: inner
+    sql_on: ${payment_extensions.unique_payment_id} = ${transformed_payments.unique_id} ;;
+    relationship: one_to_one
+  }
+  join: users_meta {
+    type:  left_outer
+    sql_on: ${users_meta.user_id} = ${transformed_payments.user_id} ;;
+    relationship: many_to_one
+  }
+  # sql_always_where: ${status} = 'paid' ;;
+}
+
+explore: users_meta {
+  join: payments {
+    type: left_outer
+    sql_on:  ${payments.user_id} = ${users_meta.user_id};;
+    relationship: one_to_many
+  }
 }
