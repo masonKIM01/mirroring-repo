@@ -272,6 +272,12 @@ measure: total_amount {
     sql: ${TABLE}.created ;;
   }
 
+  dimension_group: date_field {
+    type: time
+    timeframes: [year, month, month_num, month_name, date, week_of_year]
+    sql: ${TABLE}.created ;;
+  }
+
   dimension_group: modified {
     type: time
     sql: ${TABLE}.modified ;;

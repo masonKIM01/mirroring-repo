@@ -277,13 +277,19 @@ view: payments {
     sql: ${TABLE}.created ;;
   }
 
+  dimension_group: date_field {
+    type: time
+    timeframes: [year, month, month_num, month_name, date, week_of_year]
+    sql: ${TABLE}.created ;;
+  }
+
   dimension_group: modified {
     type: time
     sql: ${TABLE}.modified ;;
   }
 
   dimension: yearmonth {
-    type: date_time
+    type: string
     sql: ${TABLE}.yearmonth ;;
     suggest_persist_for: "24 hours"
   }
