@@ -20,7 +20,7 @@ include: "*.view.lkml"                # include all views in the views/ folder i
 # }
 
 # datagroup: payment_rebuild {
-#   # sql_trigger: SELECT max(created_at) FROM ecomm.events ;;
+#   # sql_trigger: SELECT max(created) FROM hmscatalog.importdb.payments ;;
 #   max_cache_age: "24 hours"
 # }
 
@@ -30,7 +30,7 @@ include: "*.view.lkml"                # include all views in the views/ folder i
 
 explore: payments {
   always_filter: {
-    filters: [payments.yearmonth: "2020-01"]
+    filters: [payments.yearmonth: "2020-02"]
   }
   join: payment_extensions {
     type: inner
