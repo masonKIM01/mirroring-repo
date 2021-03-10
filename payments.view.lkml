@@ -46,7 +46,7 @@ view: payments {
     sql: ${amount_in_krw} ;;
     label: "Amount in KRW"
     # value_format_name: usd_0
-    value_format: "₩#,##0.00" #krw formatting
+    #value_format: "₩#,##0.00" #krw formatting
   }
 
   dimension: amount_in_krw {
