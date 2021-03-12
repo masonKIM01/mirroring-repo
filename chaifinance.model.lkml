@@ -30,7 +30,7 @@ include: "*.view.lkml"                # include all views in the views/ folder i
 
 explore: payments {
   always_filter: {
-    filters: [payments.yearmonth: "2021-02"]
+    filters: [payments.yearmonth: "2021-02",payments.sandbox: "0",payments.status: "'paid' or 'cancelled'"]
   }
   join: payment_extensions {
     type: inner
@@ -49,7 +49,7 @@ explore: payments {
 
 explore: transformed_payments {
   always_filter: {
-    filters: [transformed_payments.yearmonth: "2021-02"]
+    filters: [transformed_payments.yearmonth: "2021-02",transformed_payments.sandbox: "0",transformed_payments.status: "'paid' or 'cancelled'"]
   }
   join: payment_extensions {
     type: inner
