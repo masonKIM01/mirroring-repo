@@ -49,7 +49,7 @@ explore: payments {
 
 explore: transformed_payments {
   always_filter: {
-    filters: [transformed_payments.yearmonth: "2020-02"]
+    filters: [transformed_payments.yearmonth: "2021-02"]
   }
   join: payment_extensions {
     type: inner
