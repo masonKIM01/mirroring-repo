@@ -49,7 +49,7 @@ explore: payments {
 
 explore: transformed_payments {
   always_filter: {
-    filters: [transformed_payments.sandbox: "0",transformed_payments.status: "'paid' or 'cancelled'"]
+    filters: [transformed_payments.sandbox: "0",transformed_payments.status: "paid, cancelled"]
   }
   join: payment_extensions {
     type: inner

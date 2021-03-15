@@ -25,7 +25,7 @@ view: transformed_payments {
   }
 
   dimension: first_transaction {
-    type: string
+    type: yesno
     sql: ${TABLE}.first_transaction ;;
   }
 
