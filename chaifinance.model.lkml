@@ -67,6 +67,12 @@ explore: transformed_payments {
     sql_on: ${users_meta.user_id} = ${transformed_payments.user_id} ;;
     relationship: many_to_one
   }
+
+  join: users_meta_redacted {
+    type:  left_outer
+    sql_on:  ${users_meta_redacted.user_id} = ${transformed_payments.user_id};;
+    relationship:  many_to_one
+  }
   # sql_always_where: ${status} = 'paid' ;;
 }
 
