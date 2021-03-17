@@ -6,6 +6,7 @@ view: users_meta_redacted {
   }
 
   dimension: user_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.user_id ;;
   }
@@ -13,6 +14,20 @@ view: users_meta_redacted {
   dimension: company_name {
     type: string
     sql: ${TABLE}.company_name ;;
+  }
+
+
+  measure: count {
+    type: count
+    drill_fields: [detail*]
+  }
+
+
+  set: detail {
+    fields: [
+      user_id,
+      company_name
+    ]
   }
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
