@@ -42,6 +42,7 @@ view: payments {
   }
 
   measure: total_amount {
+    description: "sum of transaction amount in KRW currency"
     type: sum
     sql: ${amount_in_krw} ;;
     label: "Amount in KRW"
