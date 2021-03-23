@@ -44,9 +44,9 @@ explore: payments {
     relationship: many_to_one
   }
 
-  join: users_meta_redacted {
+  join: merchant_details {
     type:  left_outer
-    sql_on:  ${users_meta_redacted.user_id} = ${payments.user_id};;
+    sql_on:  ${merchant_details.user_id} = ${payments.user_id};;
     relationship:  many_to_one
   }
 
@@ -68,9 +68,9 @@ explore: transformed_payments {
     relationship: many_to_one
   }
 
-  join: users_meta_redacted {
+  join: merchant_details {
     type:  left_outer
-    sql_on:  ${users_meta_redacted.user_id} = ${transformed_payments.user_id};;
+    sql_on:  ${merchant_details.user_id} = ${transformed_payments.user_id};;
     relationship:  many_to_one
   }
   # sql_always_where: ${status} = 'paid' ;;
