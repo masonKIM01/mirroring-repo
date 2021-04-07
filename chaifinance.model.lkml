@@ -50,6 +50,13 @@ explore: payments {
     relationship:  many_to_one
   }
 
+  join: user_pricing {
+    type:  left_outer
+    sql_on:  ${user_pricing.user_id} = ${payments.user_id};;
+    relationship:  many_to_one
+  }
+
+
   # sql_always_where: ${status} = 'paid' ;;
 }
 
@@ -71,6 +78,12 @@ explore: transformed_payments {
   join: merchant_details {
     type:  left_outer
     sql_on:  ${merchant_details.user_id} = ${transformed_payments.user_id};;
+    relationship:  many_to_one
+  }
+
+  join: user_pricing {
+    type:  left_outer
+    sql_on:  ${user_pricing.user_id} = ${transformed_payments.user_id};;
     relationship:  many_to_one
   }
   # sql_always_where: ${status} = 'paid' ;;
