@@ -28,6 +28,20 @@ include: "*.view.lkml"                # include all views in the views/ folder i
 #   label: "Payment Information"
 # }
 
+explore: user_pricing {
+  join: merchant_details {
+    type: left_outer
+    sql_on:  ${user_pricing.user_id} = ${merchant_details.user_id} ;;
+    relationship: many_to_one
+  }
+
+  join: payments {
+    type: left_outer
+    sql_on: ${user_pricing.user_id} = ${payments.user_id} ;;
+    relationship:  one_to_many
+  }
+}
+
 explore: payments {
   always_filter: {
     filters: [payments.sandbox: "0",payments.status: "paid, cancelled"]
@@ -95,4 +109,7 @@ explore: users_meta {
     sql_on:  ${payments.user_id} = ${users_meta.user_id};;
     relationship: one_to_many
   }
+
+
+
 }
