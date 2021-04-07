@@ -24,6 +24,12 @@ view: transformed_payments {
     sql: ${TABLE}.user_id ;;
   }
 
+  dimension: first_transaction_paid {
+    type: yesno
+    sql: ${TABLE}.first_transaction_paid ;;
+  }
+
+
   dimension: first_transaction {
     type: yesno
     sql: ${TABLE}.first_transaction ;;
@@ -293,6 +299,7 @@ measure: total_amount {
       unique_id,
       id,
       user_id,
+      first_transaction_paid,
       first_transaction,
       channel,
       currency,
