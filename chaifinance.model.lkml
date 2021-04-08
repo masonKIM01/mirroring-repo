@@ -37,7 +37,8 @@ explore: user_pricing {
 
   join: payments {
     type: left_outer
-    sql_on: ${user_pricing.user_id} = ${payments.user_id} ;;
+    sql_on: ${user_pricing.user_id} = ${payments.user_id} and ${user_pricing.pg_id} = ${payments.pg_id}
+    and ${user_pricing.pay_method} = ${payments.pay_method};;
     relationship:  one_to_many
   }
 }
@@ -66,7 +67,8 @@ explore: payments {
 
   join: user_pricing {
     type:  left_outer
-    sql_on:  ${user_pricing.user_id} = ${payments.user_id};;
+    sql_on:  ${user_pricing.user_id} = ${payments.user_id} and ${user_pricing.pg_id} = ${payments.pg_id}
+    and ${user_pricing.pay_method} = ${payments.pay_method};;
     relationship:  many_to_one
   }
 
@@ -101,15 +103,4 @@ explore: transformed_payments {
     relationship:  many_to_one
   }
   # sql_always_where: ${status} = 'paid' ;;
-}
-
-explore: users_meta {
-  join: payments {
-    type: left_outer
-    sql_on:  ${payments.user_id} = ${users_meta.user_id};;
-    relationship: one_to_many
-  }
-
-
-
 }
