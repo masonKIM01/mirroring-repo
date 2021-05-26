@@ -1,4 +1,4 @@
-view: sql_runner_query {
+view: payments_druid {
   sql_table_name:  druid.tbl_iamport_payments ;;
 
   measure: count {
