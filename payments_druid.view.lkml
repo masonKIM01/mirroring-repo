@@ -247,7 +247,7 @@ view: payments_druid {
   }
 
   dimension: user_id {
-    type: string
+    type: number
     sql: ${TABLE}."user_id" ;;
   }
 
