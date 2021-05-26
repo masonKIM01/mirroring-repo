@@ -286,6 +286,14 @@ view: payments_druid {
     sql: ${TABLE}."vbank_status" ;;
   }
 
+  measure: total_amount {
+    description: "sum of transaction amount in KRW currency"
+    type: sum
+    sql: ${amount} ;;
+    label: "Amount in whatever currency"
+    # value_format_name: usd_0
+    #value_format: "₩#,##0.00" #krw formatting
+  }
   set: detail {
     fields: [
       __time_time,

@@ -294,6 +294,7 @@ measure: total_amount {
     sql: ${TABLE}.yearmonth ;;
   }
 
+
   set: detail {
     fields: [
       unique_id,
