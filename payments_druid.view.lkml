@@ -289,7 +289,7 @@ view: payments_druid {
   measure: total_amount {
     description: "sum of transaction amount in KRW currency"
     type: sum
-    sql: ${amount} ;;
+    sql: ${amount_in_krw} ;;
     label: "Amount in whatever currency"
     # value_format_name: usd_0
     #value_format: "₩#,##0.00" #krw formatting
