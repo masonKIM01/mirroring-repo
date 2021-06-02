@@ -19,5 +19,5 @@ include: "*.view.lkml"                # include all views in the views/ folder i
 #   }
 # }
 explore: payments_druid {
-  sql_always_where:  millis_to_timestamp("modified") = time_parse(LOOKUP("unique_id",'lkp_id_to_latest_modified')) ;;
+
 }
