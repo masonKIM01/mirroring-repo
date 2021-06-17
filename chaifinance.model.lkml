@@ -79,6 +79,12 @@ explore: payments {
     relationship: many_to_one
   }
 
+  join: kcb_data {
+    type:  left_outer
+    sql_on:  ${merchant_details.business_number} = ${kcb_data.business_number};;
+    relationship: one_to_one
+  }
+
 
   # sql_always_where: ${status} = 'paid' ;;
 }
