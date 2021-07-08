@@ -28,7 +28,7 @@ include: "*.view.lkml"                # include all views in the views/ folder i
 #   label: "Payment Information"
 # }
 
-
+explore: users {}
 explore: user_pricing {
   join: merchant_details {
     type: left_outer
