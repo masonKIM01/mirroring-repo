@@ -105,7 +105,7 @@ view: mart_staging_payment {
 
   measure: total_cashback_amount {
     type: sum
-    value_format: "0"
+    value_format: "0.00"
     sql: COALESCE(${boost_cashback},0) ;;
   }
 }
