@@ -108,11 +108,4 @@ view: mart_staging_payment {
     value_format: "0.####"
     sql: COALESCE(${boost_cashback},0) ;;
   }
-
-  measure: checkout_ratio {
-    type: number
-    value_format: "0.####%"
-    sql: ${total_cashback_amount} / NULLIF(${total_checkout_amount},0) ;;
-  }
-
 }
