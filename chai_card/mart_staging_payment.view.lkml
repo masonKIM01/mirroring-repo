@@ -111,7 +111,7 @@ view: mart_staging_payment {
 
   measure: checkout_ratio {
     type: number
-    value_format: "0.0000%"
+    value_format: "0.####%"
     sql: ${total_cashback_amount} / NULLIF(${total_checkout_amount},0) ;;
   }
 
