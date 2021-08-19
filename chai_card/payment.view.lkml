@@ -1,4 +1,4 @@
-view: payment {
+view: mart_staging_payment {
   sql_table_name: mart_staging.payment ;;
   drill_fields: [id]
 

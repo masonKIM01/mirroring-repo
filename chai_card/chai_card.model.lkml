@@ -7,8 +7,7 @@ include: "/chai_card/*.view.lkml"                # include all views in the view
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 #
-explore: payment {}
-explore: payment_aggregation_by_brand {}
+explore: mart_staging_payment {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
