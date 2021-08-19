@@ -1,3 +1,4 @@
+explore: payment_staging{}
 view: payment_staging {
   sql_table_name:  mart_staging.payment ;;
 
