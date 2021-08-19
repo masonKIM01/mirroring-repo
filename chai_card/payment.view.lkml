@@ -96,4 +96,20 @@ view: payment {
     type: count
     drill_fields: [id, merchant_name, brand_name]
   }
+
+  measure: total_checkout_amount {
+    type: sum
+    sql: ${checkout_amount} ;;
+  }
+
+  measure: total_cashback_amount {
+    type: sum
+    sql: ${boost_cashback} ;;
+  }
+
+  measure: checkout_ratio {
+    type: number
+    sql: ${total_cashback_amount} / ${total_checkout_amount} ;;
+  }
+
 }
