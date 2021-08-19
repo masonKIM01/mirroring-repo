@@ -99,11 +99,13 @@ view: mart_staging_payment {
 
   measure: total_checkout_amount {
     type: sum
+    value_format: "0.####"
     sql: COALESCE(${checkout_amount},0) ;;
   }
 
   measure: total_cashback_amount {
     type: sum
+    value_format: "0.####"
     sql: COALESCE(${boost_cashback},0) ;;
   }
 
