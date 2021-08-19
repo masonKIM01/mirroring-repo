@@ -109,7 +109,7 @@ view: mart_staging_payment {
 
   measure: checkout_ratio {
     type: number
-    sql: COALESCE(${total_cashback_amount} / ${total_checkout_amount},0) ;;
+    sql: ${total_cashback_amount} / NULLIF(${total_checkout_amount},0) ;;
   }
 
 }
