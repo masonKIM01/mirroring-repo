@@ -62,7 +62,7 @@ explore: payments {
 
   join: merchant_details {
     type:  left_outer
-    sql_on:  ${merchant_details.user_id} = ${payments.user_id};;
+    sql_on:  ${merchant_details.user_id} = ${payments.user_id} and ${merchant_details.user_id} not null;;
     relationship:  many_to_one
   }
 
