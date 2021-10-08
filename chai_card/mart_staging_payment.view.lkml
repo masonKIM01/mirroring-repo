@@ -108,4 +108,10 @@ view: mart_staging_payment {
     value_format: "0"
     sql: COALESCE(${boost_cashback},0) ;;
   }
+
+  measure: total_canceled_amount {
+    type: sum
+    value_format: "0"
+    sql: COALESCE(${canceled_amount},0) ;;
+  }
 }
