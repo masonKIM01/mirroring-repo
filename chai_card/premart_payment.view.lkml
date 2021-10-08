@@ -1,8 +1,6 @@
-view: sql_runner_query {
-  derived_table: {
-    sql: select * from premart_staging.payment
-      ;;
-  }
+view: premart_staging_payment {
+  sql_table_name: premart_staging.payment ;;
+  drill_fields: [id]
 
   measure: count {
     type: count
