@@ -32,6 +32,7 @@ view: premart_staging_card_approval {
   }
 
   dimension: payment_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.payment_id ;;
   }
