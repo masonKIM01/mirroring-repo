@@ -8,6 +8,7 @@ include: "/chai_card/*.view.lkml"                # include all views in the view
 # # and define the joins that connect them together.
 #
 explore: mart_staging_payment {}
+explore: premart_staging_payment {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
