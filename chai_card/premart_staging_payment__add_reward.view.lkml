@@ -9,6 +9,36 @@ view: premart_staging_payment__add_reward {
     drill_fields: [detail*]
   }
 
+  measure: total_checkout_amount {
+    type: sum
+    value_format: "0"
+    sql: COALESCE(${checkout_amount},0) ;;
+  }
+
+  measure: total_cashback_amount {
+    type: sum
+    value_format: "0"
+    sql: COALESCE(${cashback_amount},0) ;;
+  }
+
+  measure: total_canceled_amount {
+    type: sum
+    value_format: "0"
+    sql: COALESCE(${canceled_amount},0) ;;
+  }
+
+  measure: total_ad_spend {
+  type: sum
+  value_format: "0"
+  sql: COALESCE(${ad_spend},0) ;;
+}
+
+  measure: total_chai_spend {
+    type: sum
+    value_format: "0"
+    sql: COALESCE(${chai_spend},0) ;;
+  }
+
   dimension: billing_amount {
     type: number
     sql: ${TABLE}.billing_amount ;;
