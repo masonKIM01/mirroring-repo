@@ -1,6 +1,6 @@
 view: premart_staging_payment__add_reward {
   derived_table: {
-    sql: SELECT * from premart_staging.payment p
+    sql: SELECT * from premart_staging.payment p inner join premart_staging.card_payment cp on cp.payment_id = p.id
        ;;
   }
 
