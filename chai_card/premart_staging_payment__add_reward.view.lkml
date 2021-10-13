@@ -96,7 +96,7 @@ view: premart_staging_payment__add_reward {
 
   dimension_group: created_at {
     type: time
-    sql: ${TABLE}.created_at ;;
+    sql: payment.created_at ;;
   }
 
   dimension: currency {
