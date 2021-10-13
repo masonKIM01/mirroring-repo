@@ -1,6 +1,6 @@
 view: premart_staging_payment__add_reward {
   derived_table: {
-    sql: SELECT * from premart_staging.payment p inner join premart_staging.card_payment cp on cp.payment_id = p.id
+    sql: SELECT p.* from premart_staging.payment p inner join premart_staging.card_payment cp on cp.payment_id = p.id
        ;;
   }
 
@@ -96,7 +96,7 @@ view: premart_staging_payment__add_reward {
 
   dimension_group: created_at {
     type: time
-    sql: payment.created_at ;;
+    sql: ${TABLE}.created_at ;;
   }
 
   dimension: currency {
