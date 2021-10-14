@@ -10,6 +10,7 @@ include: "/chai_card/*.view.lkml"                # include all views in the view
 explore: mart_staging_payment {}
 explore: premart_staging_payment {}
 explore: premart_staging_payment__add_reward {}
+explore: premart_staging_card_approval {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
