@@ -116,6 +116,7 @@ view: premart_staging_payment__add_reward {
 
   dimension: id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.id ;;
   }
 
