@@ -1,6 +1,9 @@
 view: raw_rds_staging_payment {
-  sql_table_name: raw_rds_staging_payment ;;
-  drill_fields: [id]
+  derived_table: {
+    sql: SELECT p.* from raw_rds_staging.payment p
+          inner join raw_rds_staging.card_payment cp on cp.payment_id = p.id
+             ;;
+  }
 
   dimension: id {
     primary_key: yes
