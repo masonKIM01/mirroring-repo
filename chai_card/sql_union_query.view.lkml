@@ -24,7 +24,7 @@ view: sql_union_query {
       from premart_staging.payment p
       left join raw_rds_staging.boost b on b.payment_id = p.id
       left join raw_rds_staging.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-      where p.created_at between <= '2021-10-14 23:59:59.999'
+      where p.created_at <= '2021-10-14 23:59:59.999'
       group by 1
       order by 1
        ;;
