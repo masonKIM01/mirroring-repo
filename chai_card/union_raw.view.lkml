@@ -64,7 +64,7 @@ view: union_raw {
   measure: total_boost_tx {
     type: sum
     value_format: "0"
-    sql: case when ${TABLE}.id1 is not null then ${ad_spend} ;;
+    sql: case when ${TABLE}.id1 is not null then ${ad_spend} end ;;
   }
 
   dimension: date {
