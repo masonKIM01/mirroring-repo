@@ -21,7 +21,7 @@ view: sql_union_query {
       sum(case when b.id is not null then p.checkout_amount end) as boost_tx,
       count(case when b.id is not null then p.id end) as boost_count,
       sum(p.ad_spend) as ad_spend
-      from premart_staging.payment p
+      from premart_production.payment p
       left join raw_rds_staging.boost b on b.payment_id = p.id
       left join raw_rds_staging.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
       where p.created_at <= '2021-10-14 23:59:59.999'
