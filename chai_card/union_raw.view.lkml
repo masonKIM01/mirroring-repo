@@ -34,13 +34,13 @@ view: union_raw {
   }
 
   measure: transactions {
-    type: count
-    sql: COALESCE(${id},0) ;;
+    type: count_distinct
+    sql: ${id} ;;
   }
 
   measure: boost_transactions {
-    type: count
-    sql: COALESCE(${id1},0) ;;
+    type: count_distinct
+    sql: ${id1} ;;
   }
 
   measure: total_checkout_amount {
