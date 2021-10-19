@@ -18,9 +18,10 @@ view: union_raw {
       p.id,
       p.checkout_amount,
       b.id as id1,
-      p.ad_spend,
-      p.chai_spend
-      from premart_production.payment p
+      p2.ad_spend,
+      p2.chai_spend
+      from raw_rds_production.payment p
+      left join premart_production.payment p2 on p2.id = p.id
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
       where p.created_at <= '2021-10-14 23:59:59.999'
