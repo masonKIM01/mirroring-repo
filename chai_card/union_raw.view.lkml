@@ -2,9 +2,9 @@ view: union_raw {
   derived_table: {
     sql: select
       date(p.created_at),
-      p.id as payment_id,
+      p.id,
       p.checkout_amount,
-      b.id as boost_id,
+      b.id as id1,
       bu.ad_spend,
       bu.chai_credit as chai_spend
       from raw_rds_production.payment p
@@ -15,9 +15,9 @@ view: union_raw {
       union all
       select
       date(p.created_at),
-      p.id as payment_id,
+      p.id,
       p.checkout_amount,
-      b.id as boost_id,
+      b.id as id1,
       p.ad_spend,
       p.chai_spend
       from premart_production.payment p
