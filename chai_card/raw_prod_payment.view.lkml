@@ -156,6 +156,20 @@ view: raw_prod_payment {
     type: number
     sql: ${TABLE}.version ;;
   }
+  measure: billing_amount_sum {
+    type: sum
+    value_format: "0"
+    sql: COALESCE(${billing_amount},0) ;;
+  }
+  measure: charging_amount_sum {
+    type: sum
+    value_format: "0"
+    sql: COALESCE(${charging_amount},0) ;;
+  }
+  measure: users_cnt_distinct {
+    type: count_distinct
+    sql: ${user_id} ;;
+  }
 
   set: detail {
     fields: [
