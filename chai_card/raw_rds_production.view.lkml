@@ -48,37 +48,37 @@ view: raw_rds_production {
 
   measure: total_checkout_amount {
     type: sum
-    value_format: "0"
-    sql: ${checkout_amount} ;;
+    value_format: "0.000,\" K\""
+    sql: coalesce(${checkout_amount},0) ;;
   }
 
   measure: total_canceled_amount {
     type: sum
-    value_format: "0"
-    sql: ${canceled_amount} ;;
+    value_format: "0.000,\" K\""
+    sql: coalesce(${canceled_amount},0) ;;
   }
 
   measure: total_cashback_amount {
     type: sum
-    value_format: "0"
-    sql: ${cashback_amount} ;;
+    value_format: "0.000,\" K\""
+    sql: coalesce(${cashback_amount},0) ;;
   }
 
   measure: total_ad_spend {
     type: sum
-    value_format: "0"
-    sql: ${ad_spend} ;;
+    value_format: "0.000,\" K\""
+    sql: coalesce(${ad_spend},0) ;;
   }
 
   measure: total_chai_spend {
     type: sum
-    value_format: "0"
-    sql: ${chai_spend} ;;
+    value_format: "0.000,\" K\""
+    sql: coalesce(${chai_spend},0) ;;
   }
 
   measure: total_boost_tx {
     type: sum
-    value_format: "0"
+    value_format: "0.000,\" K\""
     sql: case when ${TABLE}.boost_id is not null then ${checkout_amount} end ;;
   }
 
