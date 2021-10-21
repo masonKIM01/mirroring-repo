@@ -9,6 +9,8 @@ include: "/chai_card/*.view.lkml"                # include all views in the view
 #
 explore: mart_staging_payment {}
 explore: premart_staging_payment {}
+explore: raw_prod_payment {}
+explore: raw_rds_production {}
 explore: premart_staging_card_approval {}
 explore: boost_budget_usage_history {}
 explore: union_raw {}
