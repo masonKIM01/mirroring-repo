@@ -12,7 +12,6 @@ explore: premart_staging_payment {}
 explore: raw_prod_payment {}
 explore: raw_rds_production {}
 explore: premart_staging_card_approval {}
-explore: boost_budget_usage_history {}
 explore: union_raw {}
 # explore: order_items {
 #   join: orders {
