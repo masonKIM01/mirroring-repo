@@ -3,9 +3,9 @@ view: raw_rds_production {
     sql: select
       p.id,
       p.status,
-      to_char(p.checkout_amount,'999,999,999') as checkout_amount,
-      to_char(p.chai_promotion_amount,'999,999,999') as chai_promotion_amount,
-      to_char(p.canceled_amount,'999,999,999') as canceled_amount,
+      p.checkout_amount,
+      p.chai_promotion_amount,
+      p.canceled_amount,
       p.created_at,
       p.is_first_transaction,
       p.is_first_transaction_merchant,
@@ -14,14 +14,14 @@ view: raw_rds_production {
       p.merchant_id,
       p.idempotency_key,
       p.customer_id,
-      to_char(p.cashback_amount,'999,999,999') as cashback_amount,
+      p.cashback_amount,
       cp.card_merchant_name,
       m.name,
       b.id as boost_id,
       bpp.sub_title,
       bpp.title,
-      to_char(case when bh.ad_spend <> p.ad_spend then bh.ad_spend else p.ad_spend end,'999,999,999') as ad_spend,
-      to_char(case when bh.chai_credit <> p.chai_credit then bh.chai_credit else p.chai_credit end,'999,999,999') as chai_spend
+      case when bh.ad_spend <> p.ad_spend then bh.ad_spend else p.ad_spend end as ad_spend,
+      case when bh.chai_credit <> p.chai_credit then bh.chai_credit else p.chai_credit end as chai_spend
       from raw_rds_production.payment p
       left join raw_rds_production.card_payment_data cp on cp.payment_id = p.id
       left join raw_rds_production.merchant m on m.id = p.merchant_id
