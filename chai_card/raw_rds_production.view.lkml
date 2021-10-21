@@ -49,31 +49,31 @@ view: raw_rds_production {
   measure: total_checkout_amount {
     type: sum
     value_format: "0"
-    sql: isnull(${checkout_amount},0) ;;
+    sql: ${checkout_amount} ;;
   }
 
   measure: total_canceled_amount {
     type: sum
     value_format: "0"
-    sql: isnull(${canceled_amount},0) ;;
+    sql: ${canceled_amount} ;;
   }
 
   measure: total_cashback_amount {
     type: sum
     value_format: "0"
-    sql: isnull(${cashback_amount},0) ;;
+    sql: ${cashback_amount} ;;
   }
 
   measure: total_ad_spend {
     type: sum
     value_format: "0"
-    sql: isnull(${ad_spend},0) ;;
+    sql: ${ad_spend} ;;
   }
 
   measure: total_chai_spend {
     type: sum
     value_format: "0"
-    sql: isnull(${chai_spend},0) ;;
+    sql: ${chai_spend} ;;
   }
 
   measure: total_boost_tx {
