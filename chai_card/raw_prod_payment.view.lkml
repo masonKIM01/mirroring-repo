@@ -52,9 +52,9 @@ view: raw_prod_payment {
     sql: ${TABLE}.merchant_id ;;
   }
 
-  dimension: user_id {
+  dimension: customer_id {
     type: string
-    sql: ${TABLE}.user_id ;;
+    sql: ${TABLE}.customer_id ;;
   }
 
   dimension: type {
@@ -166,9 +166,9 @@ view: raw_prod_payment {
     value_format: "0"
     sql: COALESCE(${charging_amount},0) ;;
   }
-  measure: users_cnt_distinct {
+  measure: customers_cnt_distinct {
     type: count_distinct
-    sql: ${user_id} ;;
+    sql: ${customer_id} ;;
   }
 
   set: detail {
@@ -182,7 +182,7 @@ view: raw_prod_payment {
       created_at_time,
       updated_at_time,
       merchant_id,
-      user_id,
+      customer_id,
       type,
       data,
       discount_amount,
