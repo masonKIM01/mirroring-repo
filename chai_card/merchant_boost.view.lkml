@@ -45,7 +45,7 @@ view: merchant_boost {
 
   dimension: Transactions {
     type: string
-    sql: ${TABLE}."판매량" ;;
+    sql: ${TABLE}.Transactions ;;
   }
 
   dimension: checkout_amount {
