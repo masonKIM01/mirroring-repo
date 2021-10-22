@@ -1,20 +1,7 @@
 view: raw_rds_production {
   derived_table: {
     sql: select
-      p.id,
-      p.status,
-      p.checkout_amount,
-      p.chai_promotion_amount,
-      p.canceled_amount,
-      p.created_at,
-      p.is_first_transaction,
-      p.is_first_transaction_merchant,
-      p.total_chai_cost,
-      p.total_promotion_amount,
-      p.merchant_id,
-      p.idempotency_key,
-      p.customer_id,
-      p.cashback_amount,
+      p.*
       cp.card_merchant_name,
       m.name,
       b.id as boost_id,
