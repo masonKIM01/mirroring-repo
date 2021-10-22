@@ -1,7 +1,7 @@
 view: raw_rds_production {
   derived_table: {
     sql: select
-      p.*
+      p.*,
       cp.card_merchant_name,
       m.name,
       b.id as boost_id,
