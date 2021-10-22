@@ -13,6 +13,7 @@ explore: raw_prod_payment {}
 explore: raw_rds_production {}
 explore: premart_staging_card_approval {}
 explore: union_raw {}
+explore: merchant_boost {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
