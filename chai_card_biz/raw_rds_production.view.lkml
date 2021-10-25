@@ -7,8 +7,8 @@ view: raw_rds_production {
       b.id as boost_id,
       bpp.sub_title,
       bpp.title,
-      case when bh.ad_spend <> p.ad_spend then bh.ad_spend else p.ad_spend end as ad_spend,
-      case when bh.chai_credit <> p.chai_credit then bh.chai_credit else p.chai_credit end as chai_spend
+      bh.ad_spend,
+      bh.chai_credit
       from raw_rds_production.payment p
       left join raw_rds_production.card_payment_data cp on cp.payment_id = p.id
       left join raw_rds_production.merchant m on m.id = p.merchant_id
