@@ -14,6 +14,8 @@ explore: premart_staging_card_approval {}
 explore: merchant_boost {}
 explore: raw_rds_production {}
 explore: brand_merchat_boost {}
+explore: card_payment {}
+explore: ewallet {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
