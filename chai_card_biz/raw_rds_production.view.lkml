@@ -8,7 +8,7 @@ view: raw_rds_production {
       bpp.sub_title,
       bpp.title,
       bh.ad_spend,
-      bh.chai_credit
+      bh.chai_spend
       from raw_rds_production.payment p
       left join raw_rds_production.card_payment_data cp on cp.payment_id = p.id
       left join raw_rds_production.merchant m on m.id = p.merchant_id
