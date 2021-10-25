@@ -29,6 +29,7 @@ include: "*.view.lkml"                # include all views in the views/ folder i
 # }
 
 explore: users {}
+explore: user_pg_appls {}
 explore: user_pricing {
   join: merchant_details {
     type: left_outer
