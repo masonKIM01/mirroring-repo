@@ -29,6 +29,14 @@ include: "*.view.lkml"                # include all views in the views/ folder i
 # }
 
 explore: users {}
+explore: user_pg_appls {
+  join: user_pg_appl_details {
+    type: full_outer
+    sql_on: ${user_pg_appl_details.id} = ${user_pg_appl_details.user_pg_appl_id} ;;
+    relationship: one_to_many
+  }
+}
+explore: user_pg_appl_details {}
 explore: user_pricing {
   join: merchant_details {
     type: left_outer
