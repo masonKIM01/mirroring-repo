@@ -16,6 +16,7 @@ explore: raw_rds_production {}
 explore: brand_merchat_boost {}
 explore: card_payment {}
 explore: ewallet {}
+explore: raw_prod_boost_budget_usage_history {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
