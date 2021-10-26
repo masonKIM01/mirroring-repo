@@ -33,11 +33,6 @@ view: card_payment {
     sql: ${boost_id} ;;
   }
 
-  measure: active_user {
-    type: count_distinct
-    sql: p.{user_id} ;;
-  }
-
   measure: total_checkout_amount {
     type: sum
     value_format: "#,##0"
