@@ -2,6 +2,7 @@ view: card_payment {
   derived_table: {
     sql: select
       p.*,
+      p.user_id,
       cp.card_merchant_name,
       m.name,
       b.id as boost_id,
@@ -26,6 +27,11 @@ view: card_payment {
   measure: transactions {
     type: count_distinct
     sql: ${id} ;;
+  }
+
+  measure: active_user {
+    type: count_distinct
+    sql: ${user_id} ;;
   }
 
   measure: boost_transactions {
@@ -80,14 +86,14 @@ view: card_payment {
     sql: ${TABLE}.status ;;
   }
 
+  dimension: user_id {
+    type: string
+    sql: ${TABLE}.user_id ;;
+  }
+
   dimension: checkout_amount {
     type: number
     sql: ${TABLE}.checkout_amount ;;
-  }
-
-  dimension: chai_promotion_amount {
-    type: number
-    sql: ${TABLE}.chai_promotion_amount ;;
   }
 
   dimension: canceled_amount {
@@ -98,16 +104,6 @@ view: card_payment {
   dimension_group: created_at {
     type: time
     sql: ${TABLE}.created_at ;;
-  }
-
-  dimension: is_first_transaction {
-    type: string
-    sql: ${TABLE}.is_first_transaction ;;
-  }
-
-  dimension: is_first_transaction_merchant {
-    type: string
-    sql: ${TABLE}.is_first_transaction_merchant ;;
   }
 
   dimension: total_chai_cost {
@@ -128,11 +124,6 @@ view: card_payment {
   dimension: idempotency_key {
     type: string
     sql: ${TABLE}.idempotency_key ;;
-  }
-
-  dimension: customer_id {
-    type: string
-    sql: ${TABLE}.customer_id ;;
   }
 
   dimension: cashback_amount {
@@ -179,17 +170,14 @@ view: card_payment {
     fields: [
       id,
       status,
+      user_id,
       checkout_amount,
-      chai_promotion_amount,
       canceled_amount,
       created_at_time,
-      is_first_transaction,
-      is_first_transaction_merchant,
       total_chai_cost,
       total_promotion_amount,
       merchant_id,
       idempotency_key,
-      customer_id,
       cashback_amount,
       card_merchant_name,
       name,
