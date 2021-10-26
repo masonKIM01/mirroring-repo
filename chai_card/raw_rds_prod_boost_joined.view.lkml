@@ -45,17 +45,17 @@ view: raw_rds_prod_boost_joined {
     sql: ${TABLE}.max_discount_amount ;;
   }
 
-  dimension: brand_name {
+  dimension: boost_brand_name {
     type: string
-    sql: ${TABLE}.brand_name ;;
+    sql: ${TABLE}.boost_brand_name ;;
   }
 
-  dimension: budget_title {
+  dimension: boost_budget_title {
     type: string
-    sql: ${TABLE}.budget_title ;;
+    sql: ${TABLE}.boost_budget_title ;;
   }
 
   set: detail {
-    fields: [id, status, max_discount_amount, brand_name, budget_title]
+    fields: [id, status, max_discount_amount, boost_brand_name, boost_budget_title]
   }
 }
