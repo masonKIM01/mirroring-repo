@@ -35,7 +35,7 @@ view: card_payment {
 
   measure: active_user {
     type: count_distinct
-    sql: ${customer_id} ;;
+    sql: p.{user_id} ;;
   }
 
   measure: total_checkout_amount {
