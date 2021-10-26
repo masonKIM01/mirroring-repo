@@ -115,6 +115,31 @@ join raw_rds_production.brand brand
     type: string
     sql: ${TABLE}.brand_name ;;
   }
+  measure: chai_credit_used_sum {
+    type: sum
+    value_format: "0"
+    sql: COALESCE(${chai_credit_used},0) ;;
+  }
+  measure: ad_spend_used_sum {
+    type: sum
+    value_format: "0"
+    sql: COALESCE(${ad_spend_used},0) ;;
+  }
+  measure: chai_credit_budget_sum {
+    type: sum
+    value_format: "0"
+    sql: COALESCE(${chai_credit_budget},0) ;;
+  }
+  measure: ad_spend_budget_sum {
+    type: sum
+    value_format: "0"
+    sql: COALESCE(${ad_spend_budget},0) ;;
+  }
+  measure: daily_cap_budget_sum {
+    type: sum
+    value_format: "0"
+    sql: COALESCE(${budget_daily_cap},0) ;;
+  }
 
   set: detail {
     fields: [
