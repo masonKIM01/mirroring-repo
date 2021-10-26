@@ -35,7 +35,7 @@ view: ewallet {
 
   measure: active_user {
     type: count_distinct
-    sql: ${user_id}} ;;
+    sql: ${user_id} ;;
   }
 
   measure: total_checkout_amount {
