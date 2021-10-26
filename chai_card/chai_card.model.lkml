@@ -18,6 +18,7 @@ explore: card_payment {}
 explore: ewallet {}
 explore: raw_prod_boost_budget_usage_history {}
 explore: boost_budget_joined_table {}
+explore: raw_rds_production_customer {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
