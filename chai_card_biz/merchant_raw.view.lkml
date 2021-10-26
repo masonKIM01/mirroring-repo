@@ -49,12 +49,12 @@ view: merchant_raw {
   }
 
   measure: tx_count {
-    type: count
+    type: count_distinct
     sql: ${idempotency_key}  ;;
   }
 
   measure: boost_count {
-    type: count
+    type: count_distinct
     sql: ${sub_title} ;;
   }
 
