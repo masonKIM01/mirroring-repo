@@ -35,7 +35,7 @@ view: ewallet {
 
   measure: active_user {
     type: count_distinct
-    sql: ${customer_id}} ;;
+    sql: ${user_id} ;;
   }
 
   measure: total_checkout_amount {
@@ -83,6 +83,11 @@ view: ewallet {
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+  }
+
+  dimension: user_id {
+    type: string
+    sql: ${TABLE}.user_id ;;
   }
 
   dimension: checkout_amount {
@@ -184,6 +189,7 @@ view: ewallet {
     fields: [
       id,
       status,
+      user_id,
       checkout_amount,
       chai_promotion_amount,
       canceled_amount,

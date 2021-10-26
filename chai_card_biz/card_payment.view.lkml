@@ -2,7 +2,6 @@ view: card_payment {
   derived_table: {
     sql: select
       p.*,
-      p.user_id,
       cp.card_merchant_name,
       m.name,
       b.id as boost_id,
