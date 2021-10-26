@@ -4,8 +4,8 @@ view: raw_rds_prod_boost_joined {
         b.id,
         b.status,
         pp.max_discount_amount,
-        brand.name as brand_name,
-        bb.title as budget_title
+        brand.name as boost_brand_name,
+        bb.title as boost_budget_title
       from raw_rds_production.boost b
       join raw_rds_production.boost_promotion_policy bpp
         on b.boost_promotion_id = bpp.id
