@@ -1,7 +1,17 @@
 view: merchant_raw {
   derived_table: {
     sql: select
-      date(p.created_at), m.name, a.merchant_name, bpp.sub_title, bpp.title, p.idempotency_key, a.card_approval_no,
+  date(p.created_at),
+  m.name, a.merchant_name, cp.card_merchant_name, bpp.sub_title, bpp.title, p.id, p.idempotency_key,
+  case when p.data like '%approvalNo%'
+      then split_part
+      (
+      split_part(p.data, 'approvalNo":', 2),
+      '"',
+      2
+      )
+      else Null
+  end as card_approval_no,
       p.checkout_amount,
       case when bpp.sub_title is null then 0 else p.checkout_amount end as boost_tx,
       p.cashback_amount,
@@ -9,11 +19,11 @@ view: merchant_raw {
       case when p.created_at <= '2021-10-14 23:59:59.999' then p2.chai_credit else bh.chai_credit end as chai_spend
       from raw_rds_production.payment p
       left join analytics_production.analytics_payment p2 on p.id = p2.id
+      left join raw_rds_production.card_payment_data cp on cp.payment_id = p.id
       left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
       left join raw_rds_production.merchant m on p.merchant_id = m.id
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-      left join raw_rds_production.approval a on a.payment_id = p.id
       where p.status = 'confirmed'
        ;;
   }
