@@ -2,6 +2,8 @@ view: brand_merchat_boost {
   derived_table: {
     sql: select
       date(p.created_at),
+      bpp.brand_id,
+      b2.name,
       bpp.sub_title,
       bpp.title,
       to_char(count(p.id),'999,999,999') as Transactions,
