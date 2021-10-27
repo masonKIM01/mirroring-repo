@@ -2,7 +2,7 @@ view: merchant_raw {
   derived_table: {
     sql: select
   date(p.created_at),
-  m.name, a.merchant_name, cp.card_merchant_name, bpp.sub_title, bpp.title, p.id, p.idempotency_key,
+  m.name, cp.card_merchant_name, bpp.sub_title, bpp.title, p.id, p.idempotency_key,
   case when p.data like '%approvalNo%'
       then split_part
       (
