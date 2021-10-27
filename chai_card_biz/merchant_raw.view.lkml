@@ -5,6 +5,7 @@ view: merchant_raw {
   case when m.name = '차이카드' then p.description else m.name end as merchant_name,
   case when m.name = '차이카드' then '카드' else '간편결제' end as "type",
   bpp.sub_title, bpp.title, p.id, p.idempotency_key,
+  b.id as boost_id,
   case when p.data like '%approvalNo%'
       then split_part
       (
@@ -62,12 +63,12 @@ view: merchant_raw {
 
   measure: tx_count {
     type: count_distinct
-    sql: ${idempotency_key}  ;;
+    sql: ${id}  ;;
   }
 
   measure: boost_count {
     type: count_distinct
-    sql: ${sub_title} ;;
+    sql: ${boost_id} ;;
   }
 
   dimension: date {
@@ -93,6 +94,16 @@ view: merchant_raw {
   dimension: title {
     type: string
     sql: ${TABLE}.title ;;
+  }
+
+  dimension: id {
+    type: string
+    sql: ${TABLE}.id ;;
+  }
+
+  dimension: boost_id {
+    type: string
+    sql: ${TABLE}.boost_id ;;
   }
 
   dimension: idempotency_key {
@@ -135,6 +146,8 @@ view: merchant_raw {
       date,
       type,
       merchant_name,
+      id,
+      boost_id,
       sub_title,
       title,
       idempotency_key,
