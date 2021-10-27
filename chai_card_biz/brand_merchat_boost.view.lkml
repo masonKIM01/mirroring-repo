@@ -18,7 +18,7 @@ view: brand_merchat_boost {
       left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
       where
       date(p.created_at) between date_trunc('month', current_date) and current_date
-      group by 1,2,3
+      group by 1,2,3,4,5
       order by 1 desc
   ;;
   }
