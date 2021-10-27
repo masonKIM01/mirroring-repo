@@ -75,9 +75,9 @@ view: merchant_raw {
     sql: ${TABLE}.date ;;
   }
 
-  dimension: name {
+  dimension: type {
     type: string
-    sql: ${TABLE}.name ;;
+    sql: ${TABLE}.type ;;
   }
 
   dimension: merchant_name {
@@ -133,7 +133,7 @@ view: merchant_raw {
   set: detail {
     fields: [
       date,
-      name,
+      type,
       merchant_name,
       sub_title,
       title,
