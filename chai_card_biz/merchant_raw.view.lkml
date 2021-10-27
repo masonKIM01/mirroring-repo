@@ -2,7 +2,9 @@ view: merchant_raw {
   derived_table: {
     sql: select
   date(p.created_at),
-  m.name, cp.card_merchant_name, bpp.sub_title, bpp.title, p.id, p.idempotency_key,
+  case when m.name = '차이카드' then p.description else m.name end as merchant_name,
+  case when m.name = '차이카드' then '카드' else '간편결제' end as "type",
+  bpp.sub_title, bpp.title, p.id, p.idempotency_key,
   case when p.data like '%approvalNo%'
       then split_part
       (
