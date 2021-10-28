@@ -12,7 +12,7 @@ view: card_weekly {
       inner join raw_rds_production.merchant m on m.id = p.merchant_id
       left join raw_rds_production.boost b on b.payment_id = p.id
       where
-      and p.status = 'confirmed'
+      p.status = 'confirmed'
       and m.name = '차이카드'
       order by 1
        ;;
