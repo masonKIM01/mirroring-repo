@@ -36,7 +36,7 @@ view: card_weekly {
 
   measure: cashback {
     type: sum
-    sql: ${TABLE}.cashback_amount
+    sql: ${TABLE}.cashback_amount;;
   }
 
   measure: transactions {
