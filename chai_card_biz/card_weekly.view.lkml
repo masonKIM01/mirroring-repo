@@ -6,7 +6,7 @@ view: card_weekly {
       p.user_id,
       p.checkout_amount,
       b.payment_id as boost_payment_id,
-      b.user_id as boosting_user
+      b.user_id as boosting_user,
       p.cashback_amount
       from raw_rds_production.payment p
       inner join raw_rds_production.merchant m on m.id = p.merchant_id
