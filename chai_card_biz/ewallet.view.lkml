@@ -13,7 +13,8 @@ view: ewallet {
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
       left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
-      where m.name <> '차이카드';;
+      where m.name <> '차이카드'
+      and p.status = 'confirmed';;
   }
 
   measure: count {
