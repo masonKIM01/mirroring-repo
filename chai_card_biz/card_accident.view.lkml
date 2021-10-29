@@ -3,7 +3,7 @@ view: card_accident {
     sql: select
       date(max(accident_enrollment_date)) as date, user_id
       from raw_rds_production.card_accident_receipt_history
-      group by 1,2
+      group by 2
        ;;
   }
 
