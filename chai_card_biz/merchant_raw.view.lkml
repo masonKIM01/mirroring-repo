@@ -2,11 +2,25 @@ view: merchant_raw {
   derived_table: {
     sql: select
   date(p.created_at),
-  case when m.name = '차이카드' then a.merchant_name else m.name end as merchant_name,
+  case when p.data like '%cardMerchantName%'
+    then split_part(
+      split_part(p.data, 'cardMerchantName":', 2),
+      '"',
+      2
+    )
+    else m.name
+  end as merchant_name,
   case when m.name = '차이카드' then '카드' else '간편결제' end as "type",
   bpp.sub_title, bpp.title, p.id, p.idempotency_key,
   b.id as boost_id,
-  a.card_approval_no,
+ case when p.data like '%approvalNo%'
+    then split_part(
+      split_part(p.data, 'approvalNo":', 2),
+      '"',
+      2
+    )
+    else Null
+  end as card_approval_no,
       p.checkout_amount,
       case when bpp.sub_title is null then 0 else p.checkout_amount end as boost_tx,
       p.cashback_amount,
@@ -19,7 +33,6 @@ view: merchant_raw {
       left join raw_rds_production.merchant m on p.merchant_id = m.id
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-      left join raw_rds_production.approval a on a.payment_id = p.id
       where p.status = 'confirmed'
        ;;
   }
