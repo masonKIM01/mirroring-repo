@@ -1,14 +1,9 @@
 view: card_accident {
   derived_table: {
     sql: select
-      date(date), count(user_id)
-      from
-      (select
-      user_id, max(accident_enrollment_date) as date
+      date(max(accident_enrollment_date)) as date, user_id
       from raw_rds_production.card_accident_receipt_history
-      group by 1)a
       group by 1
-      order by 1 desc
        ;;
   }
 
@@ -17,9 +12,19 @@ view: card_accident {
     drill_fields: [detail*]
   }
 
+  measure: count_user {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
+  dimension: user_id {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}.user_id ;;
+  }
+
   dimension: date {
     type: date
-    primary_key: yes
     sql: ${TABLE}.date ;;
   }
 
