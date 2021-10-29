@@ -2,7 +2,7 @@ view: card_weekly {
   derived_table: {
     sql: select distinct
       date(p.created_at),
-      min(date(p.created_at))over(partition by datepart(week, p.created_at))+5 as week,
+      min(date(p.created_at))over(partition by datepart(week, p.created_at))+6 as week,
       p.id,
       p.user_id,
       p.checkout_amount,
