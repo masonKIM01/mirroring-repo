@@ -22,6 +22,7 @@ explore: raw_rds_production_customer {}
 explore: raw_rds_prod_boost_joined {}
 explore: merchant_raw {}
 explore: card_weekly {}
+explore: card_accident {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
