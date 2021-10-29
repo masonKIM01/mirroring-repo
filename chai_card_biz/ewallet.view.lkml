@@ -2,7 +2,6 @@ view: ewallet {
   derived_table: {
     sql: select
       p.*,
-      cp.card_merchant_name,
       m.name,
       b.id as boost_id,
       bpp.sub_title,
