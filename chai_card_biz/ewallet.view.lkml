@@ -74,6 +74,12 @@ view: ewallet {
     sql: case when ${TABLE}.boost_id is not null then ${checkout_amount} end ;;
   }
 
+  dimension_group: date_field {
+    type: time
+    timeframes: [year, month, month_num, month_name, date, week_of_year]
+    sql: ${TABLE}.created_at ;;
+}
+
   dimension: id {
     type: string
     primary_key: yes
