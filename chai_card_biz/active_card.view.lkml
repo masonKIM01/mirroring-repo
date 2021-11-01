@@ -42,6 +42,6 @@ ORDER BY
   }
 
   set: detail {
-    fields: [created_at_month, count_user, card_issued_cumulative]
+    fields: [created_at_month, count_user]
   }
 }
