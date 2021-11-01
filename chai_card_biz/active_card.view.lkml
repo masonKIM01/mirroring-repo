@@ -8,9 +8,7 @@ view: active_card {
        )
 SELECT
     (TO_CHAR(DATE_TRUNC('month', card_accident.date ), 'YYYY-MM')) AS "created_at_month",
-    COUNT(DISTINCT card_accident.user_id ) AS "count_user",
-    sum(COUNT(DISTINCT card_accident.user_id ))over(order by (TO_CHAR(DATE_TRUNC('month', card_accident.date ), 'YYYY-MM'))
-    rows between unbounded preceding and current row) as "card_issued_cumulative"
+    COUNT(DISTINCT card_accident.user_id ) AS "count_user"
 FROM card_accident
 GROUP BY
     (DATE_TRUNC('month', card_accident.date ))
@@ -24,6 +22,10 @@ ORDER BY
     drill_fields: [detail*]
   }
 
+  measure: accumulate {
+    type: sum
+    sql: ${TABLE} COUNT(DISTINCT card_accident.user_id ))over(order by (TO_CHAR(DATE_TRUNC('month', card_accident.date ), 'YYYY-MM') ;;
+  }
   dimension: created_at_month {
     type: string
     sql: ${TABLE}.created_at_month ;;
