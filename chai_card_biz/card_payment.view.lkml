@@ -6,9 +6,10 @@ view: card_payment {
       b.id as boost_id,
       bpp.sub_title,
       bpp.title,
-      bh.ad_spend,
-      bh.chai_credit as chai_spend
+      case when p.created_at <= '2021-10-14' then ap.ad_spend else bh.ad_spend end as ad_spend,
+      case when p.created_at <= '2021-10-14' then ap.chai_credit else bh.chai_credit as chai_spend
       from raw_rds_production.payment p
+      left join analytics_production.analytics_payment ap on ap.id = p.id
       left join raw_rds_production.merchant m on m.id = p.merchant_id
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
