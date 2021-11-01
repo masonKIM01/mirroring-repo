@@ -28,12 +28,17 @@ view: card_accident {
     sql: ${TABLE}.date ;;
   }
 
+  dimension_group: created_at {
+    type: time
+    sql: ${TABLE}.date ;;
+  }
+
   dimension: count_ {
     type: number
     sql: ${TABLE}.count ;;
   }
 
   set: detail {
-    fields: [date, count_]
+    fields: [date, count_, created_at_time]
   }
 }
