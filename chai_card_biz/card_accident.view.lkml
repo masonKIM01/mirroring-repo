@@ -25,7 +25,7 @@ view: card_accident {
 
   dimension: date {
     type: date
-    sql: ${TABLE}.date ;;
+    sql: ${TABLE}.accident_enrollment_date ;;
   }
 
   dimension: count_ {
