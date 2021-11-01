@@ -25,7 +25,6 @@ view: boost_rank {
       where b.usable_from between '2021-10-18' and '2021-10-31 23:59:59.999'
       group by 1,3)a
       group by 1,2)b
-      --order by 1,2,3
        ;;
   }
 
