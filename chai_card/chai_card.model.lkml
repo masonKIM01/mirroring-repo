@@ -24,6 +24,7 @@ explore: merchant_raw {}
 explore: card_weekly {}
 explore: card_accident {}
 explore: boost_rank {}
+explore: active_card {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
