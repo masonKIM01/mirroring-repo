@@ -2,7 +2,6 @@ view: card_payment {
   derived_table: {
     sql: select
       p.*,
-      cp.card_merchant_name,
       m.name,
       b.id as boost_id,
       bpp.sub_title,
@@ -10,7 +9,6 @@ view: card_payment {
       bh.ad_spend,
       bh.chai_credit as chai_spend
       from raw_rds_production.payment p
-      left join raw_rds_production.card_payment_data cp on cp.payment_id = p.id
       left join raw_rds_production.merchant m on m.id = p.merchant_id
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
@@ -131,11 +129,6 @@ view: card_payment {
     sql: ${TABLE}.cashback_amount ;;
   }
 
-  dimension: card_merchant_name {
-    type: string
-    sql: ${TABLE}.card_merchant_name ;;
-  }
-
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
@@ -179,7 +172,6 @@ view: card_payment {
       merchant_id,
       idempotency_key,
       cashback_amount,
-      card_merchant_name,
       name,
       boost_id,
       sub_title,
