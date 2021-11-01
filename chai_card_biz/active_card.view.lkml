@@ -24,7 +24,7 @@ ORDER BY
 
   measure: accumulate {
     type: sum
-    sql: ${TABLE} COUNT(DISTINCT card_accident.user_id ))over(order by (TO_CHAR(DATE_TRUNC('month', card_accident.date ), 'YYYY-MM') ;;
+    sql: COUNT(DISTINCT card_accident.user_id ))over(order by (TO_CHAR(DATE_TRUNC('month', card_accident.date ), 'YYYY-MM') ;;
   }
   dimension: created_at_month {
     type: string
