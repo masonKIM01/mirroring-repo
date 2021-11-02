@@ -1,6 +1,6 @@
 view: raw_rds_production_bolt_history {
   derived_table: {
-    sql: select *
+    sql: select *, abs(count) as bolt
       from raw_rds_production.bolt_history bh
        ;;
   }
@@ -27,7 +27,12 @@ view: raw_rds_production_bolt_history {
 
   dimension: count_ {
     type: number
-    sql: abs(${TABLE}.count) ;;
+    sql: ${TABLE}.count ;;
+  }
+
+  dimension: bolt {
+    type: number
+    sql: ${TABLE}.bolt ;;
   }
 
   dimension: user_id {
@@ -67,6 +72,7 @@ view: raw_rds_production_bolt_history {
       count_,
       user_id,
       id,
+      bolt,
       action,
       sub_title,
       available_bolt,
