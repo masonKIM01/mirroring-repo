@@ -1,10 +1,9 @@
 view: card_accident {
   derived_table: {
     sql: select
-      date(max(accident_enrollment_date)) as date, user_id
+      max(accident_enrollment_date) as date, user_id
       from raw_rds_production.card_accident_receipt_history
       where card_accident_code = '0061'
-      group by 2
        ;;
   }
 
