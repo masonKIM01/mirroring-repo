@@ -2,7 +2,6 @@ view: raw_rds_production_bolt_history {
   derived_table: {
     sql: select *
       from raw_rds_production.bolt_history bh
-      limit 100
        ;;
   }
 
