@@ -9,11 +9,11 @@ view: active_card {
         from
       (
       select
-      date(max(accident_enrollment_date)) as date, user_id
+      date(accident_enrollment_date) as date, user_id
       from raw_rds_production.card_accident_receipt_history
       where before_accident_date is not null
-      group by 2
-       )a
+      and card_accident_code = '0061'
+        )a
       GROUP BY
       1)b
  ;;
