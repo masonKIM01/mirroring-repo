@@ -11,6 +11,11 @@ view: raw_rds_production_bolt_history {
     drill_fields: [detail*]
   }
 
+  measure: count_bolt {
+    type: count_distinct
+    sql: ${TABLE}.count ;;
+  }
+
   dimension_group: created_at {
     type: time
     sql: ${TABLE}.created_at ;;
