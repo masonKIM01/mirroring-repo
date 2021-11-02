@@ -24,6 +24,16 @@ view: active_card {
     drill_fields: [detail*]
   }
 
+  measure: user_count {
+    type: sum
+    sql: ${count_user} ;;
+  }
+
+  measure: acc_user_count {
+    type: sum
+    sql: ${TABLE}.cumulative ;;
+  }
+
   dimension: created_at_month {
     type: string
     sql: ${TABLE}.created_at_month ;;
