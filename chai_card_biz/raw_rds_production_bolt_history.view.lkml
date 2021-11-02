@@ -12,7 +12,7 @@ view: raw_rds_production_bolt_history {
   }
 
   measure: count_bolt {
-    type: count_distinct
+    type: sum
     sql: ${TABLE}.count ;;
   }
 
