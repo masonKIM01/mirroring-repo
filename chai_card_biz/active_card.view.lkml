@@ -31,7 +31,7 @@ view: active_card {
 
   measure: acc_user_count {
     type: sum
-    sql: ${TABLE}.cumulative ;;
+    sql: ${TABLE}.cumulate ;;
   }
 
   dimension: created_at_month {
