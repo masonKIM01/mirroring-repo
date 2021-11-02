@@ -27,7 +27,7 @@ view: raw_rds_production_bolt_history {
 
   dimension: count_ {
     type: number
-    sql: ${TABLE}.count ;;
+    sql: abs(${TABLE}.count) ;;
   }
 
   dimension: user_id {
