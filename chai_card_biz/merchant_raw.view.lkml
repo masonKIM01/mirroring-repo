@@ -13,7 +13,12 @@ view: merchant_raw {
   case when m.name = '차이카드' then '카드' else '간편결제' end as "type",
   bpp.sub_title, bpp.title, p.id, p.idempotency_key,
   b.id as boost_id,
- case when p.data like '%approvalNo%'
+    case when
+ split_part(split_part(p.data, 'businessCode":', 2),'"',2) in ('4076','4077','4078')
+    then '온라인'
+    else '오프라인'
+ end as business_code,
+   case when p.data like '%approvalNo%'
     then split_part(
       split_part(p.data, 'approvalNo":', 2),
       '"',
@@ -122,6 +127,11 @@ view: merchant_raw {
     sql: ${TABLE}.card_approval_no ;;
   }
 
+  dimension: business_code{
+    type: string
+    sql: ${TABLE}.business_code ;;
+  }
+
   dimension: checkout_amount {
     type: number
     sql: ${TABLE}.checkout_amount ;;
@@ -158,6 +168,7 @@ view: merchant_raw {
       title,
       idempotency_key,
       card_approval_no,
+      business_code,
       checkout_amount,
       boost_tx,
       cashback_amount,
