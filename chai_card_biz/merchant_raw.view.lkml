@@ -14,6 +14,7 @@ view: merchant_raw {
   bpp.sub_title, bpp.title, p.id, p.idempotency_key,
   b.id as boost_id,
     case when
+    m.name = '차이카드' and
  split_part(split_part(p.data, 'businessCode":', 2),'"',2) in ('4076','4077','4078')
     then '온라인'
     else '오프라인'
