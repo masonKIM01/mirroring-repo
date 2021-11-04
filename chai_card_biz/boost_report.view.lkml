@@ -6,12 +6,13 @@ view: boost_report {
       bpp.type,
       bpp.promotion_type,
       bpp.title,
-      count(distinct b.payment_id) as "boost_count",
-      count(distinct case when b.payment_id is not null then p.user_id end) as "customer_count",
-      sum(case when b.payment_id is not null then p.checkout_amount end) as "boost_Tx",
-      sum(p.cashback_amount) as cashback_amount,
-      sum(bh.ad_spend) as ad_spend,
-      sum(bh.chai_credit) as chai_credit
+      p.id,
+      b.payment_id,
+      b.user_id,
+      p.checkout_amount,
+      p.cashback_amount,
+      bh.ad_spend,
+      bh.chai_credit
       from raw_rds_production.brand b2
       left join raw_rds_production.boost_promotion_policy bpp on b2.id = bpp.brand_id
       left join raw_rds_production.boost b on bpp.id = b.boost_promotion_id
@@ -26,6 +27,36 @@ view: boost_report {
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: boost_count{
+    type: count_distinct
+    sql: ${TABLE}.payment_id ;;
+  }
+
+  measure: customer_count{
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
+  measure: boost_tx {
+    type: sum
+    sql: ${TABLE}.checkout_amount ;;
+  }
+
+  measure: total_cashback_amount {
+    type: sum
+    sql: ${cashback_amount} ;;
+  }
+
+  measure: total_ad_spend{
+    type: sum
+    sql: ${TABLE}.ad_spend ;;
+  }
+
+  measure: total_chai_credit{
+    type: sum
+    sql: ${TABLE}.chai_credit ;;
   }
 
   dimension: date {
@@ -44,6 +75,22 @@ view: boost_report {
     sql: ${TABLE}.name ;;
   }
 
+  dimension: id {
+    type: string
+    sql: ${TABLE}.id ;;
+  }
+
+  dimension: payment_id {
+    type: string
+    sql: ${TABLE}.payment_id ;;
+  }
+
+  dimension: user_id {
+    type: string
+    sql: ${TABLE}.user_id ;;
+  }
+
+
   dimension: type {
     type: string
     sql: ${TABLE}.type ;;
@@ -59,24 +106,14 @@ view: boost_report {
     sql: ${TABLE}.title ;;
   }
 
-  dimension: boost_count {
-    type: number
-    sql: ${TABLE}.boost_count ;;
-  }
-
-  dimension: customer_count {
-    type: number
-    sql: ${TABLE}.customer_count ;;
-  }
-
-  dimension: boost_tx {
-    type: number
-    sql: ${TABLE}.boost_tx ;;
-  }
-
   dimension: cashback_amount {
     type: number
     sql: ${TABLE}.cashback_amount ;;
+  }
+
+  dimension: checkout_amount {
+    type: number
+    sql: ${TABLE}.checkout_amount ;;
   }
 
   dimension: ad_spend {
@@ -96,9 +133,10 @@ view: boost_report {
       type,
       title,
       promotion_type,
-      boost_count,
-      customer_count,
-      boost_tx,
+      id,
+      payment_id,
+      user_id,
+      checkout_amount,
       cashback_amount,
       ad_spend,
       chai_credit
