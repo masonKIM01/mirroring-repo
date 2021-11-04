@@ -17,8 +17,7 @@ view: boost_report {
       left join raw_rds_production.boost b on bpp.id = b.boost_promotion_id
       left join raw_rds_production.payment p on p.id = b.payment_id
       left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
-      where p.created_at between '2021-11-01' and '2021-11-04 23:59:59.999'
-      and p.status = 'confirmed'
+      where p.status = 'confirmed'
       group by 1,2,3,4,5
       order by 2,1,3,4
        ;;
