@@ -26,6 +26,7 @@ explore: card_accident {}
 explore: boost_rank {}
 explore: active_card {}
 explore: raw_rds_production_bolt_history {}
+explore: boost_report {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
