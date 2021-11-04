@@ -19,7 +19,6 @@ view: boost_report {
       left join raw_rds_production.payment p on p.id = b.payment_id
       left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
       where p.status = 'confirmed'
-      group by 1,2,3,4,5
       order by 2,1,3,4
        ;;
   }
