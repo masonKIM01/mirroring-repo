@@ -52,7 +52,7 @@ left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.
 left join raw_rds_production.boost b on b.payment_id = p.id
 left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
 left join raw_rds_production.brand b2 on b2.id = bpp.brand_id
-and p.status = 'confirmed'
+where p.status = 'confirmed'
 and m.name <> '차이카드')a
 )b
  ;;
