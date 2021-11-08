@@ -28,6 +28,7 @@ explore: active_card {}
 explore: raw_rds_production_bolt_history {}
 explore: boost_report {}
 explore: ad_spend_trend {}
+explore: ewallet_trend {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
