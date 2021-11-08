@@ -61,6 +61,7 @@ view: boost_report {
       where p.status = 'confirmed'
       )a
       )b
+      order by 1,2
        ;;
   }
 
