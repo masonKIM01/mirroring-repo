@@ -41,6 +41,7 @@ when b2.name ='무신사' then '0.3'
   p.id,
   b.payment_id,
   p.user_id,
+  p.status,
   p.checkout_amount,
   p.cashback_amount,
   bh.chai_credit,
@@ -134,6 +135,12 @@ and m.name <> '차이카드')a
     sql: ${TABLE}.name ;;
   }
 
+  dimension: status {
+    type: string
+    sql: ${TABLE}.status ;;
+  }
+
+
   dimension: merchant_ratio {
     type: string
     sql: ${TABLE}.merchant_ratio ;;
@@ -190,6 +197,7 @@ and m.name <> '차이카드')a
       name,
       merchant_ratio,
       id,
+      status,
       payment_id,
       user_id,
       checkout_amount,
