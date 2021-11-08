@@ -115,6 +115,11 @@ join raw_rds_production.brand brand
     type: string
     sql: ${TABLE}.brand_name ;;
   }
+  measure: count_payment {
+    type: count_distinct
+    value_format: "0"
+    sql: COALESCE(${payment_id},0) ;;
+  }
   measure: chai_credit_used_sum {
     type: sum
     value_format: "0"
