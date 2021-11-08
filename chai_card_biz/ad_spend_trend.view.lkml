@@ -95,8 +95,14 @@ view: ad_spend_trend {
     sql: ${TABLE}."total_new_chai_credit" ;;
   }
 
-  dimension: date {
+  dimension: date  {
     type: date
+    sql: ${TABLE}.date ;;
+  }
+
+  dimension_group: date_field {
+    type: time
+    timeframes: [year, month, week, month_num, month_name, date, week_of_year]
     sql: ${TABLE}.date ;;
   }
 
