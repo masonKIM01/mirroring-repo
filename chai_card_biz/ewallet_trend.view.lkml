@@ -39,6 +39,7 @@ when b2.name ='카모아' then '0.5'
 when b2.name ='무신사' then '0.3'
   end as "merchant_ratio",
   p.id,
+  b.payment_id,
   p.user_id,
   p.checkout_amount,
   p.cashback_amount,
@@ -61,9 +62,19 @@ and m.name <> '차이카드')a
     drill_fields: [detail*]
   }
 
-  measure: boost_count{
-    type: count_distinct
-    sql: ${TABLE}.payment_id ;;
+  measure: TxV {
+    type: sum
+    sql: ${TABLE}.checkout_amount ;;
+  }
+
+  measure: boost_TxV {
+    type: sum
+    sql: (case when ${payment_id} is not null then ${TABLE}.checkout_amount end);;
+  }
+
+  measure: total_cashback_amount {
+    type: sum
+    sql: ${cashback_amount} ;;
   }
 
   measure: total_new_ad_spend {
@@ -76,20 +87,21 @@ and m.name <> '차이카드')a
     sql: ${TABLE}."new_chai_credit" ;;
   }
 
-  measure: customer_count{
+  measure: transactions{
     type: count_distinct
-    sql: ${TABLE}.user_id ;;
+    sql: ${TABLE}.id ;;
   }
 
-  measure: boost_tx {
-    type: sum
-    sql: ${TABLE}.checkout_amount ;;
+  measure: boost_count{
+    type: count_distinct
+    sql: ${TABLE}.payment_id ;;
   }
 
-  measure: total_cashback_amount {
-    type: sum
-    sql: ${cashback_amount} ;;
+  measure: boost_user_count{
+    type: count_distinct
+    sql: (case when ${payment_id} is not null then ${TABLE}.user_id end) ;;
   }
+
 
   measure: total_ad_spend{
     type: sum
@@ -125,6 +137,11 @@ and m.name <> '차이카드')a
   dimension: id {
     type: string
     sql: ${TABLE}.id ;;
+  }
+
+  dimension: payment_id {
+    type: string
+    sql: ${TABLE}.payment_id ;;
   }
 
   dimension: user_id {
@@ -168,6 +185,7 @@ and m.name <> '차이카드')a
       name,
       merchant_ratio,
       id,
+      payment_id,
       user_id,
       checkout_amount,
       cashback_amount,
