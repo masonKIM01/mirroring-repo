@@ -51,8 +51,7 @@ view: ad_spend_trend {
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
       left join raw_rds_production.brand b2 on b2.id = bpp.brand_id
-      where p.created_at between '2021-11-01' and '2021-11-07 23:59:59.999'
-      and bh.ad_spend > 0
+      where bh.ad_spend > 0
       and p.status = 'confirmed'
       )a
       )b
