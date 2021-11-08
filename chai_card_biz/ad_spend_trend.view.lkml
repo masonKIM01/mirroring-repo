@@ -87,12 +87,12 @@ view: ad_spend_trend {
 
   measure: total_new_ad_spend {
     type: sum
-    sql: ${TABLE}."total_new_ad_spend" ;;
+    sql: ${TABLE}."new_ad_spend" ;;
   }
 
   measure: total_new_chai_credit {
     type: sum
-    sql: ${TABLE}."total_new_chai_credit" ;;
+    sql: ${TABLE}."new_chai_credit" ;;
   }
 
   dimension: date  {
