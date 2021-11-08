@@ -3,7 +3,7 @@ view: ad_spend_trend {
     sql: select
       *, b.cashback_amount-b."new_ad_spend" as "new_chai_credit"
       from (select
-      a.date, a.name, a.id, a.checkout_amount, a.cashback_amount, cast(a.merchant_ratio as numeric(10,4)), a.ad_spend, a.chai_credit,
+      a.date, a.name, a.id, a.user_id, a.checkout_amount, a.cashback_amount, cast(a.merchant_ratio as numeric(10,4)), a.ad_spend, a.chai_credit,
       case when a.name in ('현대백화점투홈') then '5000'
       when a.name in ('설로인') then '5000'
       else cast(a.merchant_ratio as numeric(10,4)) * a.cashback_amount
