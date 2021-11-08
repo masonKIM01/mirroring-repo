@@ -92,6 +92,11 @@ and m.name <> '차이카드')a
     sql: ${TABLE}.id ;;
   }
 
+  measure: user_count{
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
   measure: boost_count{
     type: count_distinct
     sql: ${TABLE}.payment_id ;;
