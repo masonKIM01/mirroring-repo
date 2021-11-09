@@ -1,6 +1,14 @@
 view: merchant_raw {
   derived_table: {
     sql: select
+      *, b.cashback_amount-b."new_ad_spend" as "new_chai_credit"
+      from (select
+      a.*, cast(a.merchant_ratio as numeric(10,4)),
+      case when a.name in ('현대백화점투홈') then '5000'
+      when a.name in ('설로인') then '5000'
+      else cast(a.merchant_ratio as numeric(10,4)) * a.cashback_amount
+      end as "New_ad_spend"
+      (select
   date(p.created_at),
   case when p.data like '%cardMerchantName%'
     then split_part(
@@ -29,6 +37,36 @@ view: merchant_raw {
       p.checkout_amount,
       case when bpp.sub_title is null then 0 else p.checkout_amount end as boost_tx,
       p.cashback_amount,
+      case when b2.name ='현대백화점투홈' then '5000'
+        when b2.name ='설로인' then '5000'
+        when b2.name ='뮬라웨어' then '1'
+        when b2.name ='인더웨어' then '1'
+        when b2.name ='인테이크' then '1'
+        when b2.name ='아몬즈' then '1'
+        when b2.name ='크로켓' then '1'
+        when b2.name ='바잇미' then '0.7'
+        when b2.name ='얌테이블' then '0.7'
+        when b2.name ='디코드' then '0.7'
+        when b2.name ='술담화' then '0.7'
+        when b2.name ='다노샵' then '0.7'
+        when b2.name ='위메프오' then '0.6'
+        when b2.name ='아워홈' then '0.6'
+        when b2.name ='그린카' then '0.5'
+        when b2.name ='젝시믹스' then '0.5'
+        when b2.name ='펫프렌즈' then '0.5'
+        when b2.name ='어바웃펫' then '0.5'
+        when b2.name ='쿠쿠몰' then '0.5'
+        when b2.name ='아모레몰' then '0.5'
+        when b2.name ='에이블리' then '0.5'
+        when b2.name ='해피머니' then '0.5'
+        when b2.name ='프립' then '0.5'
+        when b2.name ='카모아' then '0.5'
+        when b2.name ='무신사' then '0.3'
+        when b2.name ='에릭 요한슨 사진전' then '0.5'
+        when b2.name ='티몬 스키시즌 오픈!' then '0.5'
+        when b2.name ='KKday' then '0.7'
+        when b2.name ='롭스' then '0.5'
+      end as "merchant_ratio",
       bh.ad_spend,
       bh.chai_credit as chai_spend
       from raw_rds_production.payment p
@@ -36,7 +74,8 @@ view: merchant_raw {
       left join raw_rds_production.merchant m on p.merchant_id = m.id
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-      where p.status = 'confirmed'
+      where p.status = 'confirmed')a
+      )b
        ;;
   }
 
@@ -53,6 +92,16 @@ view: merchant_raw {
   measure: total_boost_tx {
     type: sum
     sql: ${boost_tx}  ;;
+  }
+
+  measure: total_new_ad_spend {
+    type: sum
+    sql: ${TABLE}."new_ad_spend" ;;
+  }
+
+  measure: total_new_chai_credit {
+    type: sum
+    sql: ${TABLE}."new_chai_credit" ;;
   }
 
   measure: total_ad_spend {
