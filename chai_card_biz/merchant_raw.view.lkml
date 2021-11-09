@@ -95,24 +95,14 @@ view: merchant_raw {
     sql: ${boost_tx}  ;;
   }
 
-  measure: total_new_ad_spend {
+  measure: total_ad_spend {
     type: sum
     sql: ${TABLE}."new_ad_spend" ;;
   }
 
-  measure: total_new_chai_credit {
+  measure: total_chai_credit {
     type: sum
     sql: ${TABLE}."new_chai_credit" ;;
-  }
-
-  measure: total_ad_spend {
-    type: sum
-    sql: ${ad_spend}  ;;
-  }
-
-  measure: total_chai_spend {
-    type: sum
-    sql: ${chai_spend}  ;;
   }
 
   measure: total_cashback {
