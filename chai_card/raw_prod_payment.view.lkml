@@ -7,6 +7,16 @@ view: raw_prod_payment {
     drill_fields: [detail*]
   }
 
+  measure: total_cashback_amount {
+    type: sum
+    sql: ${TABLE}.cashback_amount ;;
+  }
+
+  measure: total_checkout_amount {
+    type: sum
+    sql: ${TABLE}.checkout_amount ;;
+  }
+
   dimension: id {
     type: string
     sql: ${TABLE}.id ;;
