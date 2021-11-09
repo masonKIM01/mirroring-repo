@@ -9,12 +9,7 @@ include: "/**/*.view.lkml"                 # include all views in this project
 #
 explore: mart_staging_payment {}
 explore: premart_staging_payment {}
-explore: raw_prod_payment {
-  join: table_bolt_history {
-    relationship: many_to_one
-    sql_on: ${raw_prod_payment.user_id}=${table_bolt_history.user_id} ;;
-  }
-}
+explore: raw_prod_payment {}
 explore: premart_staging_card_approval {}
 explore: merchant_boost {}
 explore: raw_rds_production {}
