@@ -1,14 +1,14 @@
 view: bolt_payment_table {
   derived_table: {
     sql: select
-      a.month,
+      a.date,
       sum(a.checkout_amount) as checkout_amount,
       sum(a.cashback_amount) as cashback_amount,
       sum(a.bolt_in) as bolt_in,
       sum(a.bolt_out) as bolt_out,
       sum(a.bolt_earned) as bolt_earned
       from (select
-      to_char(p.created_at,'yyyymm') as month,
+      date(p.created_at),
       sum(p.checkout_amount) as checkout_amount,
       sum(p.cashback_amount) as cashback_amount,
       0 as bolt_in,
@@ -18,7 +18,7 @@ view: bolt_payment_table {
       group by 1,4,5,6
       union all
       select
-      to_char(bh.created_at,'yyyymm') as month,
+      date(bh.created_at),
       0 as checkout_amount,
       0 as cashback_amount,
       sum(case when bh.action = 'accumulation' then bh.count end) as bolt_in,
@@ -36,9 +36,15 @@ view: bolt_payment_table {
     drill_fields: [detail*]
   }
 
-  dimension: month {
-    type: string
-    sql: ${TABLE}.month ;;
+  dimension: date {
+    type: date_time
+    sql: ${TABLE}.date ;;
+  }
+
+  dimension_group: date {
+    type: time
+    timeframes: [year, month, week, month_num, month_name, date, week_of_year]
+    sql: ${TABLE}.date ;;
   }
 
   dimension: checkout_amount {
@@ -68,7 +74,7 @@ view: bolt_payment_table {
 
   set: detail {
     fields: [
-      month,
+      date,
       checkout_amount,
       cashback_amount,
       bolt_in,
