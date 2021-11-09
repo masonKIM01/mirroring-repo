@@ -6,14 +6,16 @@ view: bolt_payment_table {
       sum(a.cashback_amount) as cashback_amount,
       sum(a.bolt_in) as bolt_in,
       sum(a.bolt_out) as bolt_out,
-      sum(a.bolt_earned) as bolt_earned
+      sum(a.bolt_earned) as bolt_earned,
+      sum(a.bolt_boosted) as bolt_boosted
       from (select
       date(p.created_at),
       sum(p.checkout_amount) as checkout_amount,
       sum(p.cashback_amount) as cashback_amount,
       0 as bolt_in,
       0 as bolt_out,
-      0 as bolt_earned
+      0 as bolt_earned,
+      0 as bolt_boosted
       from raw_rds_production.payment p
       where p.merchant_id = '0385e3db-4a50-4035-9285-1ced4a3e0209'
       group by 1,4,5,6
@@ -24,7 +26,8 @@ view: bolt_payment_table {
       0 as cashback_amount,
       sum(case when bh.action = 'accumulation' then bh.count end) as bolt_in,
       sum(case when bh.action = 'deduction' then bh.count end) as bolt_out,
-      sum(case when bh.type = 'payment_in' then bh.count end) as bolt_earned
+      sum(case when bh.type = 'payment_in' then bh.count end) as bolt_earned,
+      sum(case when bh.type = 'boost_out' then bh.count end) as bolt_boosted
       from raw_rds_production.bolt_history bh
       group by 1,2,3)a
       group by 1
@@ -60,6 +63,11 @@ view: bolt_payment_table {
   measure: total_bolt_earned {
     type: sum
     sql: ${bolt_earned}  ;;
+  }
+
+  measure: total_bolt_boosted {
+    type: sum
+    sql: ${bolt_boosted}  ;;
   }
 
   dimension: date {
@@ -98,6 +106,11 @@ view: bolt_payment_table {
     sql: ${TABLE}.bolt_earned ;;
   }
 
+  dimension: bolt_boosted {
+    type: number
+    sql: ${TABLE}.bolt_boosted ;;
+  }
+
   set: detail {
     fields: [
       date,
@@ -105,7 +118,8 @@ view: bolt_payment_table {
       cashback_amount,
       bolt_in,
       bolt_out,
-      bolt_earned
+      bolt_earned,
+      bolt_boosted
     ]
   }
 }
