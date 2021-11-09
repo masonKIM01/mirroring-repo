@@ -15,6 +15,7 @@ view: bolt_payment_table {
       0 as bolt_out,
       0 as bolt_earned
       from raw_rds_production.payment p
+      where p.merchant_id = '0385e3db-4a50-4035-9285-1ced4a3e0209'
       group by 1,4,5,6
       union all
       select
