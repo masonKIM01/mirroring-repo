@@ -64,6 +64,7 @@ view: raw_prod_payment {
 
   dimension: customer_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.customer_id ;;
   }
 
