@@ -30,6 +30,7 @@ explore: boost_report {}
 explore: ad_spend_trend {}
 explore: ewallet_trend {}
 explore: table_bolt_history {}
+explore: bolt_payment {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one

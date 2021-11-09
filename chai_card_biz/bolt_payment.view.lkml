@@ -199,7 +199,7 @@ view: bolt_payment {
 
   dimension: bolt_count {
     type: number
-    sql: ${count} ;;
+    sql: ${TABLE}.count ;;
   }
 
   dimension: action {
