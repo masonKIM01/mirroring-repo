@@ -2,20 +2,21 @@ view: merchant_raw {
   derived_table: {
     sql: select
       *, b.cashback_amount-b."new_ad_spend" as "new_chai_credit"
-      from (select
+      from (
+      select
       a.*, cast(a.merchant_ratio as numeric(10,4)),
-      case when a.name in ('현대백화점투홈') then '5000'
-      when a.name in ('설로인') then '5000'
+      case when a.merchant_name in ('현대백화점투홈') then '5000'
+      when a.merchant_name in ('설로인') then '5000'
       else cast(a.merchant_ratio as numeric(10,4)) * a.cashback_amount
       end as "New_ad_spend"
-      (select
+      from
+      (
+      select
   date(p.created_at),
   case when p.data like '%cardMerchantName%'
     then split_part(
       split_part(p.data, 'cardMerchantName":', 2),
-      '"',
-      2
-    )
+      '"',2)
     else m.name
   end as merchant_name,
   case when m.name = '차이카드' then '카드' else '간편결제' end as "type",
@@ -74,8 +75,8 @@ view: merchant_raw {
       left join raw_rds_production.merchant m on p.merchant_id = m.id
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-      where p.status = 'confirmed')a
-      )b
+      left join raw_rds_production.brand b2 on b2.id = bpp.brand_id
+      where p.status = 'confirmed')a )b
        ;;
   }
 
