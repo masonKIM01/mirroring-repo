@@ -36,6 +36,31 @@ view: bolt_payment_table {
     drill_fields: [detail*]
   }
 
+  measure: total_checkout_amount {
+    type: sum
+    sql: ${checkout_amount}  ;;
+  }
+
+  measure: total_cashback_amount {
+    type: sum
+    sql: ${cashback_amount}  ;;
+  }
+
+  measure: total_bolt_in {
+    type: sum
+    sql: ${bolt_in}  ;;
+  }
+
+  measure: total_bolt_out {
+    type: sum
+    sql: ${bolt_out}  ;;
+  }
+
+  measure: total_bolt_earned {
+    type: sum
+    sql: ${bolt_earned}  ;;
+  }
+
   dimension: date {
     type: date_time
     sql: ${TABLE}.date ;;
