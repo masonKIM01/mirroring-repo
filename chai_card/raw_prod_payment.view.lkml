@@ -62,10 +62,10 @@ view: raw_prod_payment {
     sql: ${TABLE}.merchant_id ;;
   }
 
-  dimension: customer_id {
+  dimension: user_id {
     type: string
     primary_key: yes
-    sql: ${TABLE}.customer_id ;;
+    sql: ${TABLE}.user_id ;;
   }
 
   dimension: type {
@@ -179,7 +179,7 @@ view: raw_prod_payment {
   }
   measure: customers_cnt_distinct {
     type: count_distinct
-    sql: ${customer_id} ;;
+    sql: ${user_id} ;;
   }
 
   set: detail {
@@ -193,7 +193,7 @@ view: raw_prod_payment {
       created_at_time,
       updated_at_time,
       merchant_id,
-      customer_id,
+      user_id,
       type,
       data,
       discount_amount,

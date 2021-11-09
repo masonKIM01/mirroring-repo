@@ -12,7 +12,7 @@ explore: premart_staging_payment {}
 explore: raw_prod_payment {
   join: table_bolt_history {
     relationship: many_to_one
-    sql_on: ${raw_prod_payment.customer_id}=${table_bolt_history.user_id} ;;
+    sql_on: ${raw_prod_payment.user_id}=${table_bolt_history.user_id} ;;
   }
 }
 explore: premart_staging_card_approval {}

@@ -20,6 +20,11 @@ view: table_bolt_history {
     sql: case when ${action} = 'deduction' then ${count_} end ;;
   }
 
+  measure: bolt_earned {
+    type: sum
+    sql: case when ${type} = 'payment_in' then ${count_} end ;;
+  }
+
   dimension_group: created_at {
     type: time
     sql: ${TABLE}.created_at ;;
