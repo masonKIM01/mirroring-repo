@@ -25,12 +25,6 @@ view: merchant_raw {
       '"',2)
     else 'null'
   end as merchant_no,
-  case when p.data like '%cardMerchantId%'
-    then split_part(
-      split_part(p.data, 'cardMerchantId":', 2),
-      '"',2)
-    else 'null'
-  end as merchant_no,
   case when m.name = '차이카드' then '카드' else '간편결제' end as "type",
   bpp.sub_title, bpp.title, p.id, p.idempotency_key,
   b.id as boost_id,
