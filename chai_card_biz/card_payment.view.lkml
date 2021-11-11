@@ -1,7 +1,7 @@
 view: card_payment {
   derived_table: {
     sql: select
-a.*, coalesce(a.cashback_amount - a.ad_spend,0) as "chai_credit"
+a.*, coalesce(a.cashback_amount - a.ad_spend,0) as "chai_spend"
 from (
 select
       p.*,
