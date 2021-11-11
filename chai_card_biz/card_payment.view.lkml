@@ -1,20 +1,66 @@
 view: card_payment {
   derived_table: {
     sql: select
+a.*, coalesce(a.cashback_amount - a.ad_spend,0) as "chai_credit"
+from (
+select
       p.*,
       m.name,
       b.id as boost_id,
       bpp.sub_title,
       bpp.title,
-      case when p.created_at <= '2021-10-14' then ap.ad_spend else bh.ad_spend end as ad_spend,
-      case when p.created_at <= '2021-10-14' then ap.chai_credit else bh.chai_credit end as chai_spend
+      case when b2.name is null then '0' else cast(b2.merchant_ratio as numeric(10,4)) end as merchant_ratio,
+      (case when p.created_at <= '2021-10-14' then coalesce(ap.ad_spend,0)
+            when b2.name = '현대백화점투홈' then '5000'
+            when b2.name = '설로인' then '5000'
+            else coalesce(p.cashback_amount * cast(b2.merchant_ratio as numeric(10,4)),0)
+      end) as ad_spend
       from raw_rds_production.payment p
       left join analytics_production.analytics_payment ap on ap.id = p.id
       left join raw_rds_production.merchant m on m.id = p.merchant_id
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
       left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
+      left join (  select *
+  from (select *
+  from (select
+        b2.name, b2.id,
+        case when b2.name ='현대백화점투홈' then '5000'
+        when b2.name ='설로인' then '5000'
+        when b2.name ='뮬라웨어' then '1'
+        when b2.name ='인더웨어' then '1'
+        when b2.name ='인테이크' then '1'
+        when b2.name ='아몬즈' then '1'
+        when b2.name ='크로켓' then '1'
+        when b2.name ='바잇미' then '0.7'
+        when b2.name ='얌테이블' then '0.7'
+        when b2.name ='디코드' then '0.7'
+        when b2.name ='술담화' then '0.7'
+        when b2.name ='다노샵' then '0.7'
+        when b2.name ='위메프오' then '0.6'
+        when b2.name ='아워홈' then '0.6'
+        when b2.name ='그린카' then '0.5'
+        when b2.name ='젝시믹스' then '0.5'
+        when b2.name ='펫프렌즈' then '0.5'
+        when b2.name ='어바웃펫' then '0.5'
+        when b2.name ='쿠쿠몰' then '0.5'
+        when b2.name ='아모레몰' then '0.5'
+        when b2.name ='에이블리' then '0.5'
+        when b2.name ='해피머니' then '0.5'
+        when b2.name ='프립' then '0.5'
+        when b2.name ='카모아' then '0.5'
+        when b2.name ='무신사' then '0.3'
+        when b2.name ='에릭 요한슨 사진전' then '0.5'
+        when b2.name ='티몬 스키시즌 오픈!' then '0.5'
+        when b2.name ='KKday' then '0.7'
+        when b2.name ='롭스' then '0.5'
+        else '0'
+      end as "merchant_ratio"
+      from raw_rds_production.brand b2
+      )bb
+      where bb.merchant_ratio > 0)b2)b2 on b2.id = bpp.brand_id
       where m.name = '차이카드'
+)a
        ;;
   }
 
