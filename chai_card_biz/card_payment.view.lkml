@@ -59,7 +59,6 @@ select
       from raw_rds_production.brand b2
       )bb
       where bb.merchant_ratio > 0)b2)b2 on b2.id = bpp.brand_id
-      where m.name = '차이카드'
 )a
        ;;
   }
