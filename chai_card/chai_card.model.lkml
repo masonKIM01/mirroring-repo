@@ -32,6 +32,7 @@ explore: ewallet_trend {}
 explore: table_bolt_history {}
 explore: bolt_payment_table {}
 explore: budget_used {}
+explore: review_cpa {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
