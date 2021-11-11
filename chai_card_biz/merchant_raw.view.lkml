@@ -19,6 +19,18 @@ view: merchant_raw {
       '"',2)
     else m.name
   end as merchant_name,
+  case when p.data like '%cardMerchantId%'
+    then split_part(
+      split_part(p.data, 'cardMerchantId":', 2),
+      '"',2)
+    else 'null'
+  end as merchant_no,
+  case when p.data like '%cardMerchantId%'
+    then split_part(
+      split_part(p.data, 'cardMerchantId":', 2),
+      '"',2)
+    else 'null'
+  end as merchant_no,
   case when m.name = '차이카드' then '카드' else '간편결제' end as "type",
   bpp.sub_title, bpp.title, p.id, p.idempotency_key,
   b.id as boost_id,
@@ -135,6 +147,11 @@ view: merchant_raw {
     sql: ${TABLE}.merchant_name ;;
   }
 
+  dimension: merchant_no {
+    type: string
+    sql: ${TABLE}.merchant_no ;;
+  }
+
   dimension: sub_title {
     type: string
     sql: ${TABLE}.sub_title ;;
@@ -200,6 +217,7 @@ view: merchant_raw {
       date,
       type,
       merchant_name,
+      merchant_no,
       id,
       boost_id,
       sub_title,
