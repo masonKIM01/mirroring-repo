@@ -13,7 +13,7 @@ view: review_cpa {
             (case when p.created_at <= '2021-10-14' then coalesce(ap.ad_spend,0)
                   when b2.name = '현대백화점투홈' then '5000'
                   when b2.name = '설로인' then '5000'
-                  when b2.name = '여기어때' then '7500'
+                  when b2.name = '여기어때' then '4500'
                   else coalesce(p.cashback_amount * cast(b2.merchant_ratio as numeric(10,4)),0)
             end) as ad_spend
             from raw_rds_production.payment p
