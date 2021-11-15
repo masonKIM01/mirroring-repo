@@ -56,8 +56,7 @@ when b2.name ='롭스' then '0.5'
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
       left join raw_rds_production.brand b2 on b2.id = bpp.brand_id
-      where bh.ad_spend > 0
-      and p.status = 'confirmed'
+      where p.status = 'confirmed'
       )a
       )b
        ;;
