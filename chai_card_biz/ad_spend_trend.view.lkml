@@ -6,6 +6,7 @@ view: ad_spend_trend {
       a.date, a.name, a.id, a.user_id, a.checkout_amount, a.cashback_amount, cast(a.merchant_ratio as numeric(10,4)), a.ad_spend, a.chai_credit,
       case when a.name in ('현대백화점투홈') then '5000'
       when a.name in ('설로인') then '5000'
+      when a.name in ('여기어때') then '4500'
       else cast(a.merchant_ratio as numeric(10,4)) * a.cashback_amount
       end as "New_ad_spend"
       from
