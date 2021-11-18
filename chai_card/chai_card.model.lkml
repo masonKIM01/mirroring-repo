@@ -34,6 +34,7 @@ explore: bolt_payment_table {}
 explore: budget_used {}
 explore: review_cpa {}
 explore: finance_active_user {}
+explore: finance_promotion {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
