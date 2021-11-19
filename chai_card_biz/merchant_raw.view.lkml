@@ -73,6 +73,7 @@ view: merchant_raw {
         when b2.name ='티몬 스키시즌 오픈!' then '0.5'
         when b2.name ='KKday' then '0.7'
         when b2.name ='롭스' then '0.5'
+        when b2.name ='SK스토아' then '0.5'
       end as "merchant_ratio",
       bh.ad_spend,
       bh.chai_credit as chai_spend
