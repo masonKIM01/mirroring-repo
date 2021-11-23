@@ -3,6 +3,7 @@ view: finance_active_user {
     sql: select
       p.created_at,
       case when m.name = '차이카드' then 'card'
+      when m.name = 'CU' then 'barcode'
       else 'pay' end as type,
       p.user_id
       from raw_rds_production.payment p
