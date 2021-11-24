@@ -82,10 +82,6 @@ view: ad_spend_trend {
     sql: ${TABLE}."checkout_amount" ;;
   }
 
-  measure: total_roas {
-    type: sum
-    sql:  ${TABLE}."checkout_amount"/ ${TABLE}."new_ad_spend"  ;;
-  }
 
   measure: total_cashback_amount {
     type: sum
