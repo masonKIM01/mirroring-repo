@@ -3,7 +3,7 @@ view: ad_spend_trend {
     sql: select
       *, b.cashback_amount-b."new_ad_spend" as "new_chai_credit"
       from (select
-      a.date, a.name, a.id, a.user_id, a.checkout_amount, a.cashback_amount, cast(a.merchant_ratio as numeric(10,4)), a.ad_spend, a.chai_credit,
+      a.date, a.name, a.id, a.boost_payment_id, a.user_id, a.checkout_amount, a.cashback_amount, cast(a.merchant_ratio as numeric(10,4)), a.ad_spend, a.chai_credit,
       case when a.name in ('현대백화점투홈') then '5000'
       when a.name in ('설로인') then '5000'
       when a.name in ('여기어때') then '4500'
@@ -40,11 +40,12 @@ view: ad_spend_trend {
       when b2.name ='카모아' then '0.5'
       when b2.name ='무신사' then '0.3'
       when b2.name ='에릭 요한슨 사진전' then '0.5'
-when b2.name ='티몬 스키시즌 오픈!' then '0.5'
-when b2.name ='KKday' then '0.7'
-when b2.name ='롭스' then '0.5'
+      when b2.name ='티몬 스키시즌 오픈!' then '0.5'
+      when b2.name ='KKday' then '0.7'
+      when b2.name ='롭스' then '0.5'
         end as "merchant_ratio",
         p.id,
+        b.payment_id as boost_payment_id,
         p.user_id,
         p.checkout_amount,
         p.cashback_amount,
@@ -67,7 +68,6 @@ when b2.name ='롭스' then '0.5'
     drill_fields: [detail*]
   }
 
-
   measure: users {
     type: count_distinct
     sql: ${TABLE}.user_id ;;
@@ -81,6 +81,21 @@ when b2.name ='롭스' then '0.5'
   measure: total_checkout_amount {
     type: sum
     sql: ${TABLE}."checkout_amount" ;;
+  }
+
+  measure: total_roas {
+    type: sum
+    sql: ${TABLE}."new_ad_spend" / ${TABLE}."checkout_amount"  ;;
+  }
+
+  measure: boost_roas {
+    type: sum
+    sql: ${TABLE}."new_ad_spend" / case when ${TABLE}.boost_payment_id is not null then ${TABLE}.checkout_amount end  ;;
+  }
+
+  measure: total_boost_amount {
+    type: sum
+    sql: case when ${TABLE}.boost_payment_id is not null then ${TABLE}.checkout_amount end ;;
   }
 
   measure: total_cashback_amount {
@@ -117,6 +132,11 @@ when b2.name ='롭스' then '0.5'
   dimension: id {
     type: string
     sql: ${TABLE}.id ;;
+  }
+
+  dimension: boost_payment_id {
+    type: string
+    sql: ${TABLE}.boost_payment_id ;;
   }
 
   dimension: user_id {
@@ -164,6 +184,7 @@ when b2.name ='롭스' then '0.5'
       date,
       name,
       id,
+      boost_payment_id,
       user_id,
       checkout_amount,
       cashback_amount,
