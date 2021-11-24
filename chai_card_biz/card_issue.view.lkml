@@ -1,7 +1,7 @@
 view: card_issue {
   derived_table: {
     sql: select
-      case when a.date >= '2021-11-18 16:04:42.514' then 'master' else 'red' end as card_type,
+      case when a.date >= '2021-11-18 16:04:42.514' then 'master' else 'red' end as cardtype,
       case when a.date = a.first_issued_date then 'first_issue'
       else 'reissue'
       end as type
@@ -21,12 +21,7 @@ view: card_issue {
 
   measure: user_count {
     type: count_distinct
-    sql: ${TABLE}.user_id
-  }
-
-  dimension: card_type {
-    type: string
-    sql: ${TABLE}.card_type ;;
+    sql: ${TABLE}.user_id ;;
   }
 
   dimension: type {
