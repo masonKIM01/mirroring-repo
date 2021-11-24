@@ -14,7 +14,7 @@ view: card_accident {
 
   measure: count_user {
     type: count_distinct
-    sql: ${TABLE}.user_id ;;
+    sql: ${TABLE}.user_id;;
   }
 
   dimension: user_id {
