@@ -82,7 +82,6 @@ view: ad_spend_trend {
     sql: ${TABLE}."checkout_amount" ;;
   }
 
-
   measure: total_cashback_amount {
     type: sum
     sql: ${TABLE}."cashback_amount" ;;
