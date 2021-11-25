@@ -54,6 +54,7 @@ select
         when b2.name ='티몬 스키시즌 오픈!' then '0.5'
         when b2.name ='KKday' then '0.7'
         when b2.name ='롭스' then '0.5'
+        when b2.name ='SK스토아' then '0.5'
         else '0'
       end as "merchant_ratio"
       from raw_rds_production.brand b2
