@@ -7,6 +7,8 @@ view: merchant_raw {
       a.*, cast(a.merchant_ratio as numeric(10,4)),
       case when a.merchant_name in ('현대백화점투홈') then '5000'
       when a.merchant_name in ('설로인') then '5000'
+      when a.merchant_name in ('여기어때') then '4500'
+      when a.merchant_name in ('네파') then '10000'
       else cast(a.merchant_ratio as numeric(10,4)) * a.cashback_amount
       end as "New_ad_spend"
       from

@@ -14,6 +14,7 @@ view: review_cpa {
                   when b2.name = '현대백화점투홈' then '5000'
                   when b2.name = '설로인' then '5000'
                   when b2.name = '여기어때' then '4500'
+                  when b2.name = '네파' then '10000'
                   else coalesce(p.cashback_amount * cast(b2.merchant_ratio as numeric(10,4)),0)
             end) as ad_spend
             from raw_rds_production.payment p
@@ -55,7 +56,9 @@ view: review_cpa {
               when b2.name ='티몬 스키시즌 오픈!' then '0.5'
               when b2.name ='KKday' then '0.7'
               when b2.name ='롭스' then '0.5'
+              when b2.name ='SK스토아' then '0.5'
               when b2.name = '여기어때' then '15000'
+              when b2.name = '네파' then '10000'
               else '0'
             end as "merchant_ratio"
             from raw_rds_production.brand b2
