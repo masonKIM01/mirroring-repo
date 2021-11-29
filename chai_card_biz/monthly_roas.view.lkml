@@ -156,7 +156,7 @@ view: monthly_roas {
             select date('2021-11-01') as "month",'아몬즈' as "sub_title", '1' as "merchant_ratio" union all
             select date('2021-11-01') as "month",'해피머니' as "sub_title", '0.5' as "merchant_ratio" union all
             select date('2021-11-01') as "month",'크로켓' as "sub_title", '1' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'롯데월드' as "sub_title", '0.5' as "merchant_ratio" union all
+            select date('2021-11-01') as "month",'롯데월드' as "sub_title", '0.5' as "merchant_ratio"
             )x on x.sub_title = bpp.sub_title and to_char(x.month,'yyyymm') = to_char(p.created_at,'yyyymm')
       group by 1,2,3
       )z
