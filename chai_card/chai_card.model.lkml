@@ -36,6 +36,8 @@ explore: review_cpa {}
 explore: finance_active_user {}
 explore: finance_promotion {}
 explore: card_issue {}
+explore: ad_spend_CPX {}
+explore: ad_spend_months {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
