@@ -5,7 +5,10 @@ view: monthly_roas {
       z.sub_title,
       z.merchant_ratio,
       sum(z.cashback) as cashback,
-      sum(case when merchant_ratio is not null then z.merchant_ratio * z.cashback
+      sum(
+      case when z.sub_title in ('현대백화점투홈') then '5000'
+      when z.name in ('설로인') then '5000'
+      merchant_ratio is not null then z.merchant_ratio * z.cashback
       else z.ad_spend end) as ad_spend
       from
       (select
