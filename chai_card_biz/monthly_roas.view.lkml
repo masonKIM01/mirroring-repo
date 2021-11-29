@@ -6,15 +6,18 @@ view: monthly_roas {
       z.merchant_ratio,
       sum(z.cashback) as cashback,
       sum(
-      case when z.sub_title in ('현대백화점투홈') then '5000'
-      when z.name in ('설로인') then '5000'
-      merchant_ratio is not null then z.merchant_ratio * z.cashback
+      case when z.sub_title in ('현대백화점투홈')
+      when z.sub_title in ('설로인') then '5000'
+      when (z.merchant_ratio is not null and z.sub_title <> ('현대백화점투홈', '설로인')) then z.merchant_ratio * z.cashback
       else z.ad_spend end) as ad_spend
       from
       (select
         p.created_at,
         bpp.sub_title,
-        cast(x.merchant_ratio as numeric(10,4)) as merchant_ratio,
+        case
+        when bpp.sub_title in ('현대백화점투홈') then '5000'
+        when bpp.sub_title in ('설로인') then '5000'
+        else cast(x.merchant_ratio as numeric(10,4)) as merchant_ratio,
         sum(p.cashback_amount) as cashback,
         sum(case when p.created_at <= '2021-10-14' then ap.ad_spend else 0 end) as ad_spend
       from  raw_rds_production.payment p
@@ -142,20 +145,34 @@ view: monthly_roas {
               '카모아' as "sub_title",
               '0.5' as "merchant_ratio"
             union all
-            select date('2021-11-01') as "month",'뮬라웨어' as "sub_title", '1' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'젝시믹스' as "sub_title", '0.5' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'펫프렌즈' as "sub_title", '0.5' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'인더웨어' as "sub_title", '1' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'인테이크' as "sub_title", '1' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'어바웃펫' as "sub_title", '0.5' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'쿠쿠몰' as "sub_title", '0.5' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'바잇미' as "sub_title", '0.7' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'얌테이블' as "sub_title", '0.7' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'디코드' as "sub_title", '0.7' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'아워홈' as "sub_title", '0.6' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'아몬즈' as "sub_title", '1' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'해피머니' as "sub_title", '0.5' as "merchant_ratio" union all
-            select date('2021-11-01') as "month",'크로켓' as "sub_title", '1' as "merchant_ratio" union all
+            select date('2021-11-01') as "month",'뮬라웨어' as "sub_title", '1' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'젝시믹스' as "sub_title", '0.5' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'펫프렌즈' as "sub_title", '0.5' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'인더웨어' as "sub_title", '1' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'인테이크' as "sub_title", '1' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'어바웃펫' as "sub_title", '0.5' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'쿠쿠몰' as "sub_title", '0.5' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'바잇미' as "sub_title", '0.7' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'얌테이블' as "sub_title", '0.7' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'디코드' as "sub_title", '0.7' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'아워홈' as "sub_title", '0.6' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'아몬즈' as "sub_title", '1' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'해피머니' as "sub_title", '0.5' as "merchant_ratio"
+            union all
+            select date('2021-11-01') as "month",'크로켓' as "sub_title", '1' as "merchant_ratio"
+            union all
             select date('2021-11-01') as "month",'롯데월드' as "sub_title", '0.5' as "merchant_ratio"
             )x on x.sub_title = bpp.sub_title and to_char(x.month,'yyyymm') = to_char(p.created_at,'yyyymm')
       group by 1,2,3
