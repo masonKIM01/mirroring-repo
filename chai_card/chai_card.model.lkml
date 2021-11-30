@@ -37,6 +37,7 @@ explore: finance_active_user {}
 explore: finance_promotion {}
 explore: card_issue {}
 explore: monthly_roas {}
+explore: contribution_margin {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
