@@ -135,6 +135,11 @@ view: contribution_margin {
     sql: ${TABLE}.name ;;
   }
 
+  dimension: type {
+    type: string
+    sql: ${TABLE}.type ;;
+  }
+
   dimension: id {
     type: string
     sql: ${TABLE}.id ;;
@@ -189,6 +194,7 @@ view: contribution_margin {
     fields: [
       date,
       name,
+      type,
       id,
       user_id,
       checkout_amount,
