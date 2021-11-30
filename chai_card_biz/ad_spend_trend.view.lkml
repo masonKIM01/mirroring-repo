@@ -49,8 +49,8 @@ view: ad_spend_trend {
       when b2.name ='롭스' then '0.5'
       when b2.name ='SK스토아' then '0.5'
       when b2.name = '네파' then '10000'
-      when b2.name like ('캐시비') then '2000'
-      when b2.name like ('브랜드닭') then '5000'
+      when b2.name = '캐시비' then '2000'
+      when b2.name = '브랜드닭' then '5000'
               end as "merchant_ratio",
         p.id,
         p.user_id,
