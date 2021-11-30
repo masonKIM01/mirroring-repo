@@ -1,9 +1,20 @@
 view: ad_spend_trend {
   derived_table: {
     sql: select
-      *, b.cashback_amount-b."new_ad_spend" as "new_chai_credit"
+      b.date
+      , case when b.name is null then b.sub_title else b.name end as name
+      , b.id
+      , b.user_id
+      , b.checkout_amount
+      , b.cashback_amount
+      , b.merchant_ratio
+      , b.ad_spend
+      , b.chai_credit
+      , b.New_ad_spend
+      , b.cashback_amount-b."new_ad_spend" as "new_chai_credit"
       from (select
-      a.date, a.name, a.id, a.user_id, a.checkout_amount, a.cashback_amount, cast(a.merchant_ratio as numeric(10,4)), a.ad_spend, a.chai_credit,
+      a.date, a.name, a.sub_title, a.id, a.user_id, a.checkout_amount, a.cashback_amount, cast(a.merchant_ratio as numeric(10,4)) as merchant_ratio
+      , a.ad_spend, a.chai_credit,
       case when a.name in ('현대백화점투홈') then '5000'
       when a.name in ('설로인') then '5000'
       when a.name in ('여기어때') then '4500'
