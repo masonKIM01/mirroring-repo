@@ -8,9 +8,9 @@ view: ad_spend_trend {
       when a.name in ('설로인') then '5000'
       when a.name in ('여기어때') then '4500'
       when a.name in ('네파') then '10000'
-      when a.name like ('%캐시비%') then '2000'
-      when a.name like ('%브랜드닭%') then '5000'
-      when a.name like ('%캐치패션%') then '3500'
+      when a.sub_title = '캐시비' then '2000'
+      when a.sub_title = '브랜드닭' then '5000'
+      when a.sub_title = '캐치패션' then '3500'
       else cast(a.merchant_ratio as numeric(10,4)) * a.cashback_amount
       end as "New_ad_spend"
       from
@@ -18,6 +18,7 @@ view: ad_spend_trend {
       select
         date(p.created_at),
         b2.name,
+        bpp.sub_title,
         case when b2.name ='현대백화점투홈' then '5000'
       when b2.name ='설로인' then '5000'
       when b2.name ='뮬라웨어' then '1'
@@ -49,8 +50,8 @@ view: ad_spend_trend {
       when b2.name ='롭스' then '0.5'
       when b2.name ='SK스토아' then '0.5'
       when b2.name = '네파' then '10000'
-      when b2.name = '캐시비' then '2000'
-      when b2.name = '브랜드닭' then '5000'
+      when bpp.sub_title = '캐시비' then '2000'
+      when bpp.sub_title = '브랜드닭' then '5000'
               end as "merchant_ratio",
         p.id,
         p.user_id,
