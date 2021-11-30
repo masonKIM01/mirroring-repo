@@ -5,10 +5,13 @@ view: merchant_raw {
       from (
       select
       a.*, cast(a.merchant_ratio as numeric(10,4)),
-      case when a.merchant_name in ('현대백화점투홈') then '5000'
-      when a.merchant_name in ('설로인') then '5000'
-      when a.merchant_name in ('여기어때') then '4500'
-      when a.merchant_name in ('네파') then '10000'
+      case when a.merchant_name like ('%현대백화점투홈%') then '5000'
+      when a.merchant_name like ('%설로인%') then '5000'
+      when a.merchant_name like ('%여기어때%') then '4500'
+      when a.merchant_name like ('%네파%') then '10000'
+      when a.merchant_name like ('%캐시비%') then '2000'
+      when a.merchant_name like ('%브랜드닭%') then '5000'
+      when a.merchant_name like ('%캐치패션%') then '3500'
       else cast(a.merchant_ratio as numeric(10,4)) * a.cashback_amount
       end as "New_ad_spend"
       from
@@ -48,6 +51,9 @@ view: merchant_raw {
       p.cashback_amount,
       case when b2.name ='현대백화점투홈' then '5000'
         when b2.name ='설로인' then '5000'
+        when b2.name ='캐시비' then '2000'
+        when b2.name ='브랜드닭' then '5000'
+        when b2.name ='캐치패션' then '10000'
         when b2.name ='뮬라웨어' then '1'
         when b2.name ='인더웨어' then '1'
         when b2.name ='인테이크' then '1'
