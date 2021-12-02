@@ -84,6 +84,16 @@ view: ad_merchant__roas_cpx {
     sql: ${TABLE}.checkout_amount ;;
   }
 
+  measure: sum_card_checkout_amount {
+    type: sum_distinct
+    sql: ${TABLE}.card_checkout ;;
+  }
+
+  measure: sum_card_cashback_amount {
+    type: sum_distinct
+    sql: ${TABLE}.card_cashback ;;
+  }
+
   dimension_group: created_at {
     type: time
     sql: ${TABLE}.date ;;
