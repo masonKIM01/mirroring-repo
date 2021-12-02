@@ -212,7 +212,7 @@ view: merchant_raw {
 
   dimension: chai_spend {
     type: number
-    sql: ${TABLE}.new_chai_spend ;;
+    sql: ${TABLE}.new_chai_credit ;;
   }
 
   set: detail {
