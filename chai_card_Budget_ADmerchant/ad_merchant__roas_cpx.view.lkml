@@ -75,12 +75,12 @@ view: ad_merchant__roas_cpx {
   }
 
   measure: sum_cashback_amount {
-    type: sum
+    type: max
     sql: ${TABLE}.cashback_amount ;;
   }
 
   measure: sum_checkout_amount {
-    type: sum
+    type: max
     sql: ${TABLE}.checkout_amount ;;
   }
 
