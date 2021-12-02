@@ -69,6 +69,21 @@ view: ad_merchant__roas_cpx {
     drill_fields: [detail*]
   }
 
+  measure: sum_ad_spend {
+    type: sum
+    sql: ${TABLE}.ad_spend ;;
+  }
+
+  measure: sum_cashback_amount {
+    type: sum
+    sql: ${TABLE}.cashback_amount ;;
+  }
+
+  measure: sum_checkout_amount {
+    type: sum
+    sql: ${TABLE}.checkout_amount ;;
+  }
+
   dimension_group: created_at {
     type: time
     sql: ${TABLE}.date ;;
