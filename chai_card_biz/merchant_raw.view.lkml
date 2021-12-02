@@ -207,12 +207,12 @@ view: merchant_raw {
 
   dimension: ad_spend {
     type: number
-    sql: ${TABLE}.ad_spend ;;
+    sql: ${TABLE}.new_ad_spend ;;
   }
 
   dimension: chai_spend {
     type: number
-    sql: ${TABLE}.chai_spend ;;
+    sql: ${TABLE}.new_chai_spend ;;
   }
 
   set: detail {
