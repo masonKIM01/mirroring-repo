@@ -8,6 +8,18 @@ view: ad_merchant__roas_cpx {
       p.card_cashback
       from
       (select
+      date(p.created_at),
+      sum(p.checkout_amount) as checkout_amount,
+      sum(p.cashback_amount) as cashback_amount,
+      sum(case when m.name = '차이카드' then p.checkout_amount end) as card_checkout,
+      sum(case when m.name = '차이카드' then p.cashback_amount end) as card_cashback
+      from raw_rds_production.payment p
+      left join raw_rds_production.merchant m on m.id = p.merchant_id
+      where p.status = 'confirmed'
+      group by 1
+      )p
+      left join
+      (select
       a.date , a.id, a.name,
       case when a.type = 'ROAS' then a.cashback_amount * cast(a.contract as numeric(10,4))
            else a.p_count * a.contract
@@ -48,18 +60,7 @@ view: ad_merchant__roas_cpx {
         where ap.ad_spend > 0
         and ap.created_at between '2021-01-01' and '2021-10-14'
         group by 1,2,3)x
-      left join
-      (select
-      date(p.created_at),
-      sum(p.checkout_amount) as checkout_amount,
-      sum(p.cashback_amount) as cashback_amount,
-      sum(case when m.name = '차이카드' then p.checkout_amount end) as card_checkout,
-      sum(case when m.name = '차이카드' then p.cashback_amount end) as card_cashback
-      from raw_rds_production.payment p
-      left join raw_rds_production.merchant m on m.id = p.merchant_id
-      where p.status = 'confirmed'
-      group by 1
-      )p on p.date = x.date
+        on p.date = x.date
       order by 1,2,3,4
        ;;
   }
