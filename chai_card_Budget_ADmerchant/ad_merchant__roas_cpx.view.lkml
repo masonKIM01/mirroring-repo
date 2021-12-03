@@ -1,7 +1,7 @@
 view: ad_merchant__roas_cpx {
   derived_table: {
     sql: select
-      p.date as created_at
+      p.date as created_at,
       x.*,
       p.checkout_amount,
       p.cashback_amount,
