@@ -1,6 +1,7 @@
 view: ad_merchant__roas_cpx {
   derived_table: {
     sql: select
+      p.date as created_at
       x.*,
       p.checkout_amount,
       p.cashback_amount,
@@ -97,13 +98,13 @@ view: ad_merchant__roas_cpx {
 
   dimension_group: created_at {
     type: time
-    sql: ${TABLE}.date ;;
+    sql: ${TABLE}.created_at ;;
   }
 
   dimension: date {
     type: date
     primary_key: yes
-    sql: ${TABLE}.date ;;
+    sql: ${TABLE}.created_at ;;
   }
 
   dimension: id {
