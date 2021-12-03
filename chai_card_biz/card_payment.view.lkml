@@ -21,10 +21,13 @@ select
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
       left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
-      left join (  select *
-  from (select *
-  from (select
-        b2.name, b2.id,
+      left join
+       (select *
+        from
+          (select *
+          from
+            (select
+              b2.name, b2.id,
         case when b2.name ='현대백화점투홈' then '5000'
         when b2.name ='설로인' then '5000'
         when b2.name ='뮬라웨어' then '1'
@@ -58,8 +61,11 @@ select
         else '0'
       end as "merchant_ratio"
       from raw_rds_production.brand b2
-      )bb
-      where bb.merchant_ratio > 0)b2)b2 on b2.id = bpp.brand_id
+             )bb
+      where bb.merchant_ratio > 0
+        )b2
+      )b2 on b2.id = bpp.brand_id
+    where p.status = 'confirmed'
 )a
        ;;
   }
