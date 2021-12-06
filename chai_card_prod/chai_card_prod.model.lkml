@@ -10,3 +10,4 @@ include: "/**/*.view.lkml"
 #
 explore: chai_card_offline_stats {}
 explore: table_redshift_payment {}
+explore: table_redshift_user {}
