@@ -2,7 +2,7 @@ view: table_redshift_payment {
   derived_table: {
     sql: select
       *
-      from chai_card_chai_prod_public.payment
+      from raw_rds_production.payment
  ;;
   }
 
