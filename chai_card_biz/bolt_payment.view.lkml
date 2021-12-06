@@ -1,6 +1,17 @@
-view: raw_prod_payment {
-  sql_table_name: raw_rds_production.payment ;;
-  drill_fields: [id]
+view: bolt_payment {
+  derived_table: {
+    sql: select
+      p.*,
+      bh.created_at as bolt_created_at,
+      bh.type as bolt_type,
+      bh.count,
+      bh.action,
+      bh.sub_title,
+      bh.available_bolt
+      from raw_rds_production.payment p
+      left join raw_rds_production.bolt_history bh on bh.user_id = p.user_id
+       ;;
+  }
 
   measure: count {
     type: count
@@ -12,11 +23,20 @@ view: raw_prod_payment {
     sql: ${TABLE}.cashback_amount ;;
   }
 
-  measure: total_checkout_amount {
+  measure: bolt_in {
     type: sum
-    sql: ${TABLE}.checkout_amount ;;
+    sql: case when ${action} = 'accumulation' then ${bolt_count} end ;;
   }
 
+  measure: bolt_out {
+    type: sum
+    sql: case when ${action} = 'deduction' then ${bolt_count} end ;;
+  }
+
+  measure: bolt_earned {
+    type: sum
+    sql: case when ${type} = 'payment_in' then ${bolt_count} end ;;
+  }
   dimension: id {
     type: string
     sql: ${TABLE}.id ;;
@@ -64,7 +84,6 @@ view: raw_prod_payment {
 
   dimension: user_id {
     type: string
-    primary_key: yes
     sql: ${TABLE}.user_id ;;
   }
 
@@ -167,19 +186,35 @@ view: raw_prod_payment {
     type: number
     sql: ${TABLE}.version ;;
   }
-  measure: billing_amount_sum {
-    type: sum
-    value_format: "0"
-    sql: COALESCE(${billing_amount},0) ;;
+
+  dimension_group: bolt_created_at {
+    type: time
+    sql: ${TABLE}.bolt_created_at ;;
   }
-  measure: charging_amount_sum {
-    type: sum
-    value_format: "0"
-    sql: COALESCE(${charging_amount},0) ;;
+
+  dimension: bolt_type {
+    type: string
+    sql: ${TABLE}.bolt_type ;;
   }
-  measure: customers_cnt_distinct {
-    type: count_distinct
-    sql: ${user_id} ;;
+
+  dimension: bolt_count {
+    type: number
+    sql: ${TABLE}.count ;;
+  }
+
+  dimension: action {
+    type: string
+    sql: ${TABLE}.action ;;
+  }
+
+  dimension: sub_title {
+    type: string
+    sql: ${TABLE}.sub_title ;;
+  }
+
+  dimension: available_bolt {
+    type: number
+    sql: ${TABLE}.available_bolt ;;
   }
 
   set: detail {
@@ -213,7 +248,13 @@ view: raw_prod_payment {
       canceled_point_amount,
       canceled_cash_amount,
       merchant_cashback_amount,
-      version
+      version,
+      bolt_created_at_time,
+      bolt_type,
+      bolt_count,
+      action,
+      sub_title,
+      available_bolt
     ]
   }
 }

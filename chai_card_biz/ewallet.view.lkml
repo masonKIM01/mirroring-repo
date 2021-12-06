@@ -2,7 +2,6 @@ view: ewallet {
   derived_table: {
     sql: select
       p.*,
-      cp.card_merchant_name,
       m.name,
       b.id as boost_id,
       bpp.sub_title,
@@ -10,12 +9,12 @@ view: ewallet {
       bh.ad_spend,
       bh.chai_credit as chai_spend
       from raw_rds_production.payment p
-      left join raw_rds_production.card_payment_data cp on cp.payment_id = p.id
-      left join raw_rds_production.merchant m on m.id = p.merchant_id
+      inner join raw_rds_production.merchant m on m.id = p.merchant_id
       left join raw_rds_production.boost b on b.payment_id = p.id
       left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
       left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
-      where cp.payment_id is null ;;
+      where m.name <> '차이카드'
+      and p.status = 'confirmed';;
   }
 
   measure: count {
@@ -73,6 +72,12 @@ view: ewallet {
     value_format: "#,##0"
     sql: case when ${TABLE}.boost_id is not null then ${checkout_amount} end ;;
   }
+
+  dimension_group: date_field {
+    type: time
+    timeframes: [year, month, month_num, month_name, date, week_of_year]
+    sql: ${TABLE}.created_at ;;
+}
 
   dimension: id {
     type: string

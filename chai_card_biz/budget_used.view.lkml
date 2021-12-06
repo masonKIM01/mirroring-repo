@@ -1,6 +1,43 @@
-view: raw_rds_prod_boost_budget_joined {
+view: budget_used {
   derived_table: {
-    sql: select
+    sql:       select
+      a.*,
+      case when a.brand_name in ('현대백화점투홈') then '5000'
+      when a.brand_name in ('설로인') then '5000'
+      else cast(a.merchant_ratio as numeric(10,4)) * a.ad_spend_used
+      end as "New_ad_spend_used"
+      from
+      (select
+        case when b2.name ='현대백화점투홈' then '5000'
+        when b2.name ='설로인' then '5000'
+        when b2.name ='뮬라웨어' then '1'
+        when b2.name ='인더웨어' then '1'
+        when b2.name ='인테이크' then '1'
+        when b2.name ='아몬즈' then '1'
+        when b2.name ='크로켓' then '1'
+        when b2.name ='바잇미' then '0.7'
+        when b2.name ='얌테이블' then '0.7'
+        when b2.name ='디코드' then '0.7'
+        when b2.name ='술담화' then '0.7'
+        when b2.name ='다노샵' then '0.7'
+        when b2.name ='위메프오' then '0.6'
+        when b2.name ='아워홈' then '0.6'
+        when b2.name ='그린카' then '0.5'
+        when b2.name ='젝시믹스' then '0.5'
+        when b2.name ='펫프렌즈' then '0.5'
+        when b2.name ='어바웃펫' then '0.5'
+        when b2.name ='쿠쿠몰' then '0.5'
+        when b2.name ='아모레몰' then '0.5'
+        when b2.name ='에이블리' then '0.5'
+        when b2.name ='해피머니' then '0.5'
+        when b2.name ='프립' then '0.5'
+        when b2.name ='카모아' then '0.5'
+        when b2.name ='무신사' then '0.3'
+        when b2.name ='에릭 요한슨 사진전' then '0.5'
+        when b2.name ='티몬 스키시즌 오픈!' then '0.5'
+        when b2.name ='KKday' then '0.7'
+        when b2.name ='롭스' then '0.5'
+        end as "merchant_ratio",
         bbuh.ad_spend ad_spend_used,
         bbuh.boost_budget_id boost_budget_id,
         bbuh.boost_campaign_id boost_campaign_id,
@@ -17,12 +54,12 @@ view: raw_rds_prod_boost_budget_joined {
         bb.chai_credit chai_credit_budget,
         bb.daily_cap budget_daily_cap,
         bb.status budget_status,
-        brand.name brand_name
+        b2.name brand_name
 from raw_rds_production.boost_budget_usage_history bbuh
-join raw_rds_production.boost_budget bb
-  on bbuh.boost_budget_id = bb.id
-join raw_rds_production.brand brand
-  on bb.brand_id = brand.id
+inner join raw_rds_production.boost_budget bb on bbuh.boost_budget_id = bb.id
+inner join raw_rds_production.brand b2 on bb.brand_id = b2.id
+where bbuh.ad_spend > 0
+)a
  ;;
   }
 
@@ -33,7 +70,7 @@ join raw_rds_production.brand brand
 
   dimension: ad_spend_used {
     type: number
-    sql: ${TABLE}.ad_spend_used ;;
+    sql: ${TABLE}.new_ad_spend_used ;;
   }
 
   dimension: boost_budget_id {
