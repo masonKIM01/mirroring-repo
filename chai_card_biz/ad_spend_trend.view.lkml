@@ -18,7 +18,9 @@ view: ad_spend_trend {
       case when a.name in ('현대백화점투홈') then '5000'
       when a.name in ('설로인') then '5000'
       when a.name in ('여기어때') then '4500'
+      when a.name in ('마켓컬리') then '4000'
       when a.name in ('네파') then '10000'
+      when a.name in ('롯데월드') then '5000'
       when a.name = '화해' then '3000'
       when a.name in ('위메프오') then '1500'
       when a.sub_title = '캐시비' then '2000'
@@ -34,6 +36,7 @@ view: ad_spend_trend {
         bpp.sub_title,
         case when b2.name ='현대백화점투홈' then '5000'
       when b2.name ='설로인' then '5000'
+      when b2.name = '롯데월드' then '5000'
       when b2.name ='뮬라웨어' then '1'
       when b2.name ='인더웨어' then '1'
       when b2.name ='인테이크' then '1'

@@ -15,6 +15,8 @@ view: review_cpa {
                   when b2.name = '설로인' then '5000'
                   when b2.name = '여기어때' then '4500'
                   when b2.name = '네파' then '10000'
+                  when b2.name = '마켓컬리' then '4000'
+                  when b2.name = '롯데월드' then '5000'
                   else coalesce(p.cashback_amount * cast(b2.merchant_ratio as numeric(10,4)),0)
             end) as ad_spend
             from raw_rds_production.payment p
