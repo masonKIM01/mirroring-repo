@@ -2,7 +2,6 @@ view: table_redshift_user {
   derived_table: {
     sql: select *
       from chai_card_chai_prod_public.user u
-      limit 10
        ;;
   }
 
