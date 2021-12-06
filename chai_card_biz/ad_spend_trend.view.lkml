@@ -78,12 +78,12 @@ view: ad_spend_trend {
         p.cashback_amount,
         bh.chai_credit,
         bh.ad_spend
-      from chai_card_chai_prod_public.payment p
-      left join chai_card_chai_prod_public.merchant m on p.merchant_id = m.id
-      left join chai_card_chai_prod_public.boost_budget_usage_history bh on bh.payment_id = p.id
-      left join chai_card_chai_prod_public.boost b on b.payment_id = p.id
-      left join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-      left join chai_card_chai_prod_public.brand b2 on b2.id = bpp.brand_id
+      from raw_rds_production.payment p
+      left join raw_rds_production.merchant m on p.merchant_id = m.id
+      left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
+      left join raw_rds_production.boost b on b.payment_id = p.id
+      left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
+      left join raw_rds_production.brand b2 on b2.id = bpp.brand_id
       where p.status = 'confirmed'
       )a
       )b
