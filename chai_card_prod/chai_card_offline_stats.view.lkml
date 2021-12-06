@@ -6,7 +6,8 @@ view: chai_card_offline_stats {
         p.created_at,
         user_id,
         p.billing_amount,
-        p.charging_amount
+        p.charging_amount,
+        m.name
       from chai_card_chai_prod_public.payment p
       join chai_card_chai_prod_public.merchant m
         on p.merchant_id = m.id
