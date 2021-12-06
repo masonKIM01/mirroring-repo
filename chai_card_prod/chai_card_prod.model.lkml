@@ -1,4 +1,4 @@
-connection: "iamport_druid"
+connection: "chai_redshift_production"
 
 include: "/chai_card_prod/*.view.lkml"                # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
