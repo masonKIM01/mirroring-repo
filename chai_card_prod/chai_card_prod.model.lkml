@@ -1,4 +1,4 @@
-connection: "chai_redshift_production"
+connection: "chaicard_redshift"
 
 include: "/chai_card_prod/*.view.lkml"                # include all views in the views/ folder in this project
 include: "/**/*.view.lkml"
