@@ -21,7 +21,6 @@ explore: raw_rds_prod_boost_budget_joined {}
 explore: raw_rds_production_customer {}
 explore: raw_rds_prod_boost_joined {}
 explore: merchant_raw {}
-explore: chai_card_offline_stats {}
 explore: card_weekly {}
 explore: card_accident {}
 explore: boost_rank {}
