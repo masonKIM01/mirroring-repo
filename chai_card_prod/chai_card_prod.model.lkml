@@ -1,6 +1,7 @@
 connection: "chai_redshift_production"
 
 include: "/chai_card_prod/*.view.lkml"                # include all views in the views/ folder in this project
+include: "/**/*.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
@@ -8,3 +9,4 @@ include: "/chai_card_prod/*.view.lkml"                # include all views in the
 # # and define the joins that connect them together.
 #
 explore: chai_card_offline_stats {}
+explore: ad_spend_trend {}
