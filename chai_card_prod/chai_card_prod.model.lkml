@@ -9,3 +9,4 @@ include: "/**/*.view.lkml"
 # # and define the joins that connect them together.
 #
 explore: chai_card_offline_stats {}
+explore: table_redshift_payment {}
