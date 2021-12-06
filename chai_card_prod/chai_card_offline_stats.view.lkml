@@ -7,7 +7,7 @@ view: chai_card_offline_stats {
         user_id,
         p.billing_amount,
         p.charging_amount,
-        m.name
+        m.name as merchant_name
       from chai_card_chai_prod_public.payment p
       join chai_card_chai_prod_public.merchant m
         on p.merchant_id = m.id
@@ -49,6 +49,10 @@ view: chai_card_offline_stats {
   dimension: charging_amount {
     type: number
     sql: ${TABLE}.charging_amount ;;
+  }
+  dimension: merchant_name {
+    type: string
+    sql: ${TABLE}.merchant_name ;;
   }
   measure: charging_amount_sum {
     type:  sum
