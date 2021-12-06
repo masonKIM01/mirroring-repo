@@ -39,6 +39,7 @@ explore: card_issue {}
 explore: monthly_roas {}
 explore: contribution_margin {}
 explore: ad_merchant__roas_cpx {}
+explore: bd_member_tracking {}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one
