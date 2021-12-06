@@ -19,6 +19,8 @@ view: ad_spend_trend {
       when a.name in ('설로인') then '5000'
       when a.name in ('여기어때') then '4500'
       when a.name in ('네파') then '10000'
+      when a.name like ('%화해%') then '3000'
+      when a.name in ('위메프오') then '1500'
       when a.sub_title = '캐시비' then '2000'
       when a.sub_title = '브랜드닭' then '5000'
       when a.sub_title = '캐치패션' then '3500'
@@ -42,7 +44,7 @@ view: ad_spend_trend {
       when b2.name ='디코드' then '0.7'
       when b2.name ='술담화' then '0.7'
       when b2.name ='다노샵' then '0.7'
-      when b2.name ='위메프오' then '0.6'
+      when b2.name ='위메프오' then '1500'
       when b2.name ='아워홈' then '0.6'
       when b2.name ='그린카' then '0.5'
       when b2.name ='젝시믹스' then '0.5'
@@ -63,6 +65,9 @@ view: ad_spend_trend {
       when b2.name = '네파' then '10000'
       when bpp.sub_title = '캐시비' then '2000'
       when bpp.sub_title = '브랜드닭' then '5000'
+      when b2.name = '이니스프리' then '0.4'
+      when b2.name like ('%화해%') then '3000'
+      when b2.name = 'AJ전시몰' then '0.5'
               end as "merchant_ratio",
         p.id,
         p.user_id,
