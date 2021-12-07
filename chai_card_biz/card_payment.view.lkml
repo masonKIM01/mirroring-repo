@@ -15,12 +15,12 @@ select
             when b2.name = '설로인' then '5000'
             else coalesce(p.cashback_amount * cast(b2.merchant_ratio as numeric(10,4)),0)
       end) as ad_spend
-      from raw_rds_production.payment p
+      from chai_card_chai_prod_public.payment p
       left join analytics_production.analytics_payment ap on ap.id = p.id
-      left join raw_rds_production.merchant m on m.id = p.merchant_id
-      left join raw_rds_production.boost b on b.payment_id = p.id
-      left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-      left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
+      left join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
+      left join chai_card_chai_prod_public.boost b on b.payment_id = p.id
+      left join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
+      left join chai_card_chai_prod_public.boost_budget_usage_history bh on bh.payment_id = p.id
       left join
        (select *
         from
@@ -60,7 +60,7 @@ select
         when b2.name ='SK스토아' then '0.5'
         else '0'
       end as "merchant_ratio"
-      from raw_rds_production.brand b2
+      from chai_card_chai_prod_public.brand b2
              )bb
       where bb.merchant_ratio > 0
         )b2

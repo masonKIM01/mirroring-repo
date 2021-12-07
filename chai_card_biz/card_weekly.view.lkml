@@ -9,9 +9,9 @@ view: card_weekly {
       b.payment_id as boost_payment_id,
       b.user_id as boosting_user,
       p.cashback_amount
-      from raw_rds_production.payment p
-      inner join raw_rds_production.merchant m on m.id = p.merchant_id
-      left join raw_rds_production.boost b on b.payment_id = p.id
+      from chai_card_chai_prod_public.payment p
+      inner join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
+      left join chai_card_chai_prod_public.boost b on b.payment_id = p.id
       where
       p.status = 'confirmed'
       and m.name = '차이카드'

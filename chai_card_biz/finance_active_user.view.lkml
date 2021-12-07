@@ -6,8 +6,8 @@ view: finance_active_user {
       when m.name = 'CU' then 'barcode'
       else 'pay' end as type,
       p.user_id
-      from raw_rds_production.payment p
-      left join raw_rds_production.merchant m on m.id = p.merchant_id
+      from chai_card_chai_prod_public.payment p
+      left join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
       where p.status = 'confirmed'
        ;;
   }

@@ -1,7 +1,7 @@
 view: raw_rds_production_bolt_history {
   derived_table: {
     sql: select *, abs(count) as bolt
-      from raw_rds_production.bolt_history bh
+      from chai_card_chai_prod_public.bolt_history bh
        ;;
   }
 

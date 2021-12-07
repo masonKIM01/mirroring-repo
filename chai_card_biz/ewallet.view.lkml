@@ -8,11 +8,11 @@ view: ewallet {
       bpp.title,
       bh.ad_spend,
       bh.chai_credit as chai_spend
-      from raw_rds_production.payment p
-      inner join raw_rds_production.merchant m on m.id = p.merchant_id
-      left join raw_rds_production.boost b on b.payment_id = p.id
-      left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-      left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
+      from chai_card_chai_prod_public.payment p
+      inner join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
+      left join chai_card_chai_prod_public.boost b on b.payment_id = p.id
+      left join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
+      left join chai_card_chai_prod_public.boost_budget_usage_history bh on bh.payment_id = p.id
       where m.name <> '차이카드'
       and p.status = 'confirmed';;
   }

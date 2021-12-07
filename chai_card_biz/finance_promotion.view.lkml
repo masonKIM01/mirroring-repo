@@ -5,10 +5,10 @@ view: finance_promotion {
       p.cashback_amount,
       case when date(p.created_at) <= '2021-10-14' then ap.ad_spend else bh.ad_spend end as ad_spend,
       case when date(p.created_at) <= '2021-10-14' then ap.ad_spend else bh.ad_spend end as chai_credit
-      from raw_rds_production.payment p
-      left join raw_rds_production.boost b on b.payment_id = p.id
+      from chai_card_chai_prod_public.payment p
+      left join chai_card_chai_prod_public.boost b on b.payment_id = p.id
       left join analytics_production.analytics_payment ap on ap.id = p.id and ap.status = 'confirmed'
-      left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
+      left join chai_card_chai_prod_public.boost_budget_usage_history bh on bh.payment_id = p.id
       where p.status = 'confirmed'
        ;;
   }

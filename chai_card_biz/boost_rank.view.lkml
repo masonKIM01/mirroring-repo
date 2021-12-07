@@ -18,10 +18,10 @@ view: boost_rank {
       count(b.payment_id) as "payment",
       sum(p.checkout_amount) as "boost_tx",
       sum(p.cashback_amount) as "boost_cashback_amt"
-      from raw_rds_production.boost b
-      inner join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-      inner join raw_rds_production.brand b2 on b2.id = bpp.brand_id
-      left join raw_rds_production.payment p on p.id = b.payment_id
+      from chai_card_chai_prod_public.boost b
+      inner join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
+      inner join chai_card_chai_prod_public.brand b2 on b2.id = bpp.brand_id
+      left join chai_card_chai_prod_public.payment p on p.id = b.payment_id
       where b.usable_from between '2021-10-18' and '2021-10-31 23:59:59.999'
       group by 1,3)a
       group by 1,2)b

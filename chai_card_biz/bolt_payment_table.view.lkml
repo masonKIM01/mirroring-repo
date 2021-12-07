@@ -16,7 +16,7 @@ view: bolt_payment_table {
       0 as bolt_out,
       0 as bolt_earned,
       0 as bolt_boosted
-      from raw_rds_production.payment p
+      from chai_card_chai_prod_public.payment p
       where p.merchant_id = '0385e3db-4a50-4035-9285-1ced4a3e0209'
       group by 1,4,5,6
       union all
@@ -28,7 +28,7 @@ view: bolt_payment_table {
       sum(case when bh.action = 'deduction' then bh.count end) as bolt_out,
       sum(case when bh.type = 'payment_in' then bh.count end) as bolt_earned,
       sum(case when bh.type = 'boost_out' then bh.count end) as bolt_boosted
-      from raw_rds_production.bolt_history bh
+      from chai_card_chai_prod_public.bolt_history bh
       group by 1,2,3)a
       group by 1
       order by 1

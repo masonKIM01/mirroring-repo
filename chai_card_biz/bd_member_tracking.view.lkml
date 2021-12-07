@@ -14,8 +14,8 @@ view: bd_member_tracking {
       sum(p.cashback_amount) as cashback_amount,
       sum(case when m.name = '차이카드' then p.checkout_amount end) as card_checkout,
       sum(case when m.name = '차이카드' then p.cashback_amount end) as card_cashback
-      from raw_rds_production.payment p
-      left join raw_rds_production.merchant m on m.id = p.merchant_id
+      from chai_card_chai_prod_public.payment p
+      left join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
       where p.status = 'confirmed'
       group by 1
       )p
@@ -57,19 +57,19 @@ view: bd_member_tracking {
             end as "contract",
             sum(bh.ad_spend) as cashback_amount,
             count(bh.payment_id) as p_count
-            from raw_rds_production.boost_budget_usage_history bh
-            inner join raw_rds_production.boost b on b.payment_id = bh.payment_id
-            inner join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-            inner join raw_rds_production.brand b2 on b2.id = bpp.brand_id
+            from chai_card_chai_prod_public.boost_budget_usage_history bh
+            inner join chai_card_chai_prod_public.boost b on b.payment_id = bh.payment_id
+            inner join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
+            inner join chai_card_chai_prod_public.brand b2 on b2.id = bpp.brand_id
             where bh.ad_spend > 0
             group by 1,2,3,4)a
       union all
         select date(ap.created_at), b2.id, b2.name,
         sum(ap.ad_spend) as ad_spend
         from analytics_production.analytics_payment ap
-        inner join raw_rds_production.boost b on b.payment_id = ap.id
-        inner join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-        inner join raw_rds_production.brand b2 on b2.id = bpp.brand_id
+        inner join chai_card_chai_prod_public.boost b on b.payment_id = ap.id
+        inner join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
+        inner join chai_card_chai_prod_public.brand b2 on b2.id = bpp.brand_id
         where ap.ad_spend > 0
         and ap.created_at between '2021-01-01' and '2021-10-14'
         group by 1,2,3)x

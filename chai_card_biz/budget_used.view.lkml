@@ -55,9 +55,9 @@ view: budget_used {
         bb.daily_cap budget_daily_cap,
         bb.status budget_status,
         b2.name brand_name
-from raw_rds_production.boost_budget_usage_history bbuh
-inner join raw_rds_production.boost_budget bb on bbuh.boost_budget_id = bb.id
-inner join raw_rds_production.brand b2 on bb.brand_id = b2.id
+from chai_card_chai_prod_public.boost_budget_usage_history bbuh
+inner join chai_card_chai_prod_public.boost_budget bb on bbuh.boost_budget_id = bb.id
+inner join chai_card_chai_prod_public.brand b2 on bb.brand_id = b2.id
 where bbuh.ad_spend > 0
 )a
  ;;

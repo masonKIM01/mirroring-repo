@@ -2,7 +2,7 @@ view: card_accident {
   derived_table: {
     sql: select
       date(accident_enrollment_date) as date, user_id
-      from raw_rds_production.card_accident_receipt_history
+      from chai_card_chai_prod_public.card_accident_receipt_history
       where card_accident_code = '0061'
        ;;
   }

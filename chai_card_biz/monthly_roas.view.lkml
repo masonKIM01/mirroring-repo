@@ -20,10 +20,10 @@ view: monthly_roas {
         else cast(x.merchant_ratio as numeric(10,4)) as merchant_ratio,
         sum(p.cashback_amount) as cashback,
         sum(case when p.created_at <= '2021-10-14' then ap.ad_spend else 0 end) as ad_spend
-      from  raw_rds_production.payment p
+      from  chai_card_chai_prod_public.payment p
       left join analytics_production.analytics_payment ap on ap.id = p.id
-      left join raw_rds_production.boost b on b.payment_id = p.id
-      left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
+      left join chai_card_chai_prod_public.boost b on b.payment_id = p.id
+      left join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
       left join
       (select
               date('2021-10-01') as "month",

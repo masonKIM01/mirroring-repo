@@ -53,11 +53,11 @@ view: boost_report {
       end as "merchant_ratio",
       bh.ad_spend,
       bh.chai_credit
-      from raw_rds_production.brand b2
-      left join raw_rds_production.boost_promotion_policy bpp on b2.id = bpp.brand_id
-      left join raw_rds_production.boost b on bpp.id = b.boost_promotion_id
-      left join raw_rds_production.payment p on p.id = b.payment_id
-      left join raw_rds_production.boost_budget_usage_history bh on bh.payment_id = p.id
+      from chai_card_chai_prod_public.brand b2
+      left join chai_card_chai_prod_public.boost_promotion_policy bpp on b2.id = bpp.brand_id
+      left join chai_card_chai_prod_public.boost b on bpp.id = b.boost_promotion_id
+      left join chai_card_chai_prod_public.payment p on p.id = b.payment_id
+      left join chai_card_chai_prod_public.boost_budget_usage_history bh on bh.payment_id = p.id
       where p.status = 'confirmed'
       )a
       )b

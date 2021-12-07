@@ -8,8 +8,8 @@ view: bolt_payment {
       bh.action,
       bh.sub_title,
       bh.available_bolt
-      from raw_rds_production.payment p
-      left join raw_rds_production.bolt_history bh on bh.user_id = p.user_id
+      from chai_card_chai_prod_public.payment p
+      left join chai_card_chai_prod_public.bolt_history bh on bh.user_id = p.user_id
        ;;
   }
 
