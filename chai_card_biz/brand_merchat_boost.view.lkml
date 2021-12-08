@@ -11,7 +11,7 @@ view: brand_merchat_boost {
       to_char(sum(case when date(p.created_at) <= '2021-10-14' then p1.ad_spend else bh.ad_spend end),'999,999,999') as ad_spend,
       to_char(sum(case when date(p.created_at) <= '2021-10-14' then p1.chai_credit else bh.chai_credit end),'999,999,999') as chai_spend
       from chai_card_chai_prod_public.payment p
-      left join analytics_production.analytics_payment p1 on p.id = p1.id
+      left join analytics_deprecated.analytics_payment p1 on p.id = p1.id
       inner join chai_card_chai_prod_public.boost b on p.id = b.payment_id
       inner join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
       left join chai_card_chai_prod_public.brand b2 on b2.id = bpp.brand_id
