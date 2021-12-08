@@ -16,7 +16,7 @@ select
             else coalesce(p.cashback_amount * cast(b2.merchant_ratio as numeric(10,4)),0)
       end) as ad_spend
       from chai_card_chai_prod_public.payment p
-      left join analytics_deprecated.analytics_payment ap on ap.id = p.id
+      left join analytics_deprecated.payment ap on ap.id = p.id
       left join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
       left join chai_card_chai_prod_public.boost b on b.payment_id = p.id
       left join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id

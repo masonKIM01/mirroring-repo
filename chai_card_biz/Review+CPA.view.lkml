@@ -20,7 +20,7 @@ view: review_cpa {
                   else coalesce(p.cashback_amount * cast(b2.merchant_ratio as numeric(10,4)),0)
             end) as ad_spend
             from raw_rds_production.payment p
-            left join analytics_deprecated.analytics_payment ap on ap.id = p.id
+            left join analytics_deprecated.payment ap on ap.id = p.id
             left join raw_rds_production.merchant m on m.id = p.merchant_id
             left join raw_rds_production.boost b on b.payment_id = p.id
             left join raw_rds_production.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
