@@ -8,7 +8,7 @@ view: card_issue {
       , a.user_id
       , a.date
       from (select ca.user_id, date(ca.accident_enrollment_date), min(date(ca.accident_enrollment_date))over(partition by ca.user_id) as first_issued_date
-      from chai_card_chai_prod_public.card_accident_receipt_history ca
+      from chai_card_chai_card_prod_public.card_accident_receipt_history ca
       where ca.card_accident_code = '0069'
       group by 1,2)a
        ;;
