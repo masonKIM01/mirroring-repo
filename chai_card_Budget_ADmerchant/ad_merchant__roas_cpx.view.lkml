@@ -54,7 +54,7 @@ view: ad_merchant__roas_cpx {
       union all
         select date(ap.created_at), b2.id, b2.name,
         sum(ap.ad_spend) as ad_spend
-        from analytics_production.analytics_payment ap
+        from analytics_deprecated.payment ap
         inner join chai_card_chai_prod_public.boost b on b.payment_id = ap.id
         inner join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
         inner join chai_card_chai_prod_public.brand b2 on b2.id = bpp.brand_id
