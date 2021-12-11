@@ -11,6 +11,16 @@ view: table_redshift_payment {
     drill_fields: [detail*]
   }
 
+  measure: total_checkout_amount {
+    type: sum
+    sql: ${checkout_amount} ;;
+  }
+
+  measure: total_cashback_amount {
+    type: sum
+    sql: ${cashback_amount}} ;;
+  }
+
   dimension: id {
     type: string
     primary_key: yes
