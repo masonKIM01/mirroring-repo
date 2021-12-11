@@ -37,20 +37,20 @@ explore: user_pg_appls {
   }
 }
 explore: user_pg_appl_details {}
-explore: user_pricing {
-  join: merchant_details {
-    type: left_outer
-    sql_on:  ${user_pricing.user_id} = ${merchant_details.user_id} ;;
-    relationship: many_to_one
-  }
+#explore: user_pricing {
+#  join: merchant_details {
+#    type: left_outer
+#    sql_on:  ${user_pricing.user_id} = ${merchant_details.user_id} ;;
+#    relationship: many_to_one
+#  }
 
-  join: payments {
-    type: left_outer
-    sql_on: ${user_pricing.user_id} = ${payments.user_id} and ${user_pricing.pg_id} = ${payments.pg_id}
-    and ${user_pricing.pay_method} = ${payments.pay_method};;
-    relationship:  one_to_many
-  }
-}
+#  join: payments {
+#    type: left_outer
+#    sql_on: ${user_pricing.user_id} = ${payments.user_id} and ${user_pricing.pg_id} = ${payments.pg_id}
+#    and ${user_pricing.pay_method} = ${payments.pay_method};;
+#    relationship:  one_to_many
+#  }
+#}
 
 explore: payments {
   always_filter: {
@@ -68,11 +68,11 @@ explore: payments {
     relationship: many_to_one
   }
 
-  join: merchant_details {
-    type:  left_outer
-    sql_on:  ${merchant_details.user_id} = ${payments.user_id};;
-    relationship:  many_to_one
-  }
+#  join: merchant_details {
+#    type:  left_outer
+#    sql_on:  ${merchant_details.user_id} = ${payments.user_id};;
+#    relationship:  many_to_one
+#  }
 
   join: user_pricing {
     type:  left_outer
@@ -87,11 +87,11 @@ explore: payments {
     relationship: many_to_one
   }
 
-  join: kcb_data {
-    type:  left_outer
-    sql_on:  ${merchant_details.business_number} = ${kcb_data.business_number};;
-    relationship: one_to_one
-  }
+#  join: kcb_data {
+#    type:  left_outer
+#    sql_on:  ${merchant_details.business_number} = ${kcb_data.business_number};;https://chaifinance.cloud.looker.com/projects/chaifinance/files/chaifinance.model.lkml?line=71
+#    relationship: one_to_one
+#  }
 
 
   # sql_always_where: ${status} = 'paid' ;;
@@ -112,11 +112,11 @@ explore: transformed_payments {
     relationship: many_to_one
   }
 
-  join: merchant_details {
-    type:  left_outer
-    sql_on:  ${merchant_details.user_id} = ${transformed_payments.user_id};;
-    relationship:  many_to_one
-  }
+#  join: merchant_details {
+#    type:  left_outer
+#    sql_on:  ${merchant_details.user_id} = ${transformed_payments.user_id};;
+#    relationship:  many_to_one
+#  }
 
   join: user_pricing {
     type:  left_outer

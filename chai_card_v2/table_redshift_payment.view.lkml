@@ -1,7 +1,7 @@
 view: table_redshift_payment {
   derived_table: {
     sql: select
-      *
+      to_char(created_at,'yyyy-mm-01') as months, *
       from chai_card_chai_prod_public.payment
  ;;
   }
@@ -15,6 +15,11 @@ view: table_redshift_payment {
     type: string
     primary_key: yes
     sql: ${TABLE}.id ;;
+  }
+
+  dimension: months {
+    type: string
+    sql: ${TABLE}.months ;;
   }
 
   dimension: status {
@@ -199,7 +204,8 @@ view: table_redshift_payment {
       version,
       data,
       year,
-      month
+      month,
+      months
     ]
   }
 }
