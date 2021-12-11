@@ -18,7 +18,7 @@ view: table_redshift_payment {
 
   measure: total_cashback_amount {
     type: sum
-    sql: ${cashback_amount}} ;;
+    sql: ${cashback_amount} ;;
   }
 
   dimension: id {
