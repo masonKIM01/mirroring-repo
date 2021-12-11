@@ -130,12 +130,12 @@ view: merchant_ratio_v2 {
   }
 
   dimension: cpx_contract {
-    type: string
+    type: number
     sql: ${TABLE}.cpx_contract ;;
   }
 
   dimension: cpa_done {
-    type: string
+    type: number
     sql: ${TABLE}.cpa_done ;;
   }
 
