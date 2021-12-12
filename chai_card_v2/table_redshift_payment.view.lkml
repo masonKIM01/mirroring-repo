@@ -11,6 +11,11 @@ view: table_redshift_payment {
     drill_fields: [detail*]
   }
 
+  measure: count_user {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
   measure: total_checkout_amount {
     type: sum
     sql: ${checkout_amount} ;;
