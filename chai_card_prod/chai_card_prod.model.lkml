@@ -31,4 +31,10 @@ explore: table_redshift_payment {
       and ${merchant_ratio_v2.merchant} = ${table_redshift_boost_promotion_policy.sub_title};;
     relationship: many_to_one
   }
+
+  join: table_redshift_merchant {
+    type: inner
+    sql_on: ${table_redshift_payment.merchant_id} = ${table_redshift_merchant.id} ;;
+    relationship: many_to_one
+  }
 }
