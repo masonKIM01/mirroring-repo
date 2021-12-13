@@ -1,11 +1,11 @@
 view: table_payment_union_analytics {
   derived_table: {
     sql: select
-      to_char(created_at, 'yyyy-mm-01') as months, id, status, checkout_amount, canceled_amount, created_at, cashback_amount, ad_spend, chai_credit, merchant_id, idempotency_key, customer_id
+      to_char(created_at, 'yyyy-mm-01') as months, id, status, checkout_amount, canceled_amount, created_at, cashback_amount, ad_spend, chai_credit, merchant_id, idempotency_key, customer_id as user_id
       from analytics_deprecated.payment
       union all
       select
-      to_char(created_at, 'yyyy-mm-01') as months, id, status, checkout_amount, canceled_amount, created_at, cashback_amount, 0 as ad_spend, 0 as chai_credit, merchant_id, idempotency_key, user_id as customer_id
+      to_char(created_at, 'yyyy-mm-01') as months, id, status, checkout_amount, canceled_amount, created_at, cashback_amount, 0 as ad_spend, 0 as chai_credit, merchant_id, idempotency_key, user_id
       from chai_card_chai_prod_public.payment
       limit 10
        ;;
@@ -101,9 +101,9 @@ view: table_payment_union_analytics {
     sql: ${TABLE}.idempotency_key ;;
   }
 
-  dimension: customer_id {
+  dimension: user_id {
     type: string
-    sql: ${TABLE}.customer_id ;;
+    sql: ${TABLE}.user_id ;;
   }
 
   set: detail {
@@ -119,7 +119,7 @@ view: table_payment_union_analytics {
       chai_credit,
       merchant_id,
       idempotency_key,
-      customer_id
+      user_id
     ]
   }
 }
