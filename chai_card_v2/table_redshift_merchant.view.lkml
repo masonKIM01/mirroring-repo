@@ -1,6 +1,6 @@
 view: table_redshift_merchant {
   derived_table: {
-    sql: select *
+    sql: select *, case when name = '차이카드' then 'card' else 'ewallet' end as type
       from chai_card_chai_prod_public.merchant
        ;;
   }
@@ -29,6 +29,11 @@ view: table_redshift_merchant {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
+  }
+
+  dimension: type {
+    type: string
+    sql: ${TABLE}.type ;;
   }
 
   dimension: status {
@@ -192,6 +197,7 @@ view: table_redshift_merchant {
       public_api_key,
       private_api_key,
       name,
+      type,
       status,
       updated_at_time,
       created_at_time,
