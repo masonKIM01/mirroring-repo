@@ -44,8 +44,8 @@ view: table_adspend_dec {
       select '2021-12-01' as month, '카모아' as merchant, 'ROAS' as type, '0.5'* 1.0 as merchant_ratio, '0' as CPX_contract union all
       select '2021-12-01' as month, '펫프렌즈' as merchant, 'ROAS' as type, '0'* 1.0 as merchant_ratio, '1500' as CPX_contract union all
       select '2021-12-01' as month, '한섬EQL' as merchant, 'ROAS' as type, '0.5'* 1.0 as merchant_ratio, '0' as CPX_contract union all
-      select '2021-12-01' as month, '화해' as merchant, 'CPS' as type, '0'* 1.0 as merchant_ratio, '3000' as CPX_contract union all
-      --select '2021-12-01' as month, '리틀버드' as merchant, 'ROAS' as type, '0'* 1.0 as merchant_ratio, '20000' as CPX_contract
+      select '2021-12-01' as month, '화해' as merchant, 'CPS' as type, '0'* 1.0 as merchant_ratio, '3000' as CPX_contract
+      --union all select '2021-12-01' as month, '리틀버드' as merchant, 'ROAS' as type, '0'* 1.0 as merchant_ratio, '20000' as CPX_contract
        ;;
   }
 
