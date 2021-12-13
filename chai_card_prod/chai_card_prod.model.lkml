@@ -19,22 +19,35 @@ explore: table_redshift_payment {
     relationship: many_to_one
   }
 
+  join: table_redshift_merchant {
+    type: inner
+    sql_on: ${table_redshift_payment.merchant_id} = ${table_redshift_merchant.id} ;;
+    relationship: many_to_one
+  }
+
   join: table_redshift_boost_promotion_policy {
     type: left_outer
     sql_on: ${table_redshift_boost_promotion_policy.id} = ${table_redshift_boost.boost_promotion_id} ;;
     relationship: many_to_one
   }
 
-  join: merchant_ratio_v2 {
+  join: table_redshift_brand {
     type: left_outer
-    sql_on: ${merchant_ratio_v2.month} = ${table_redshift_payment.months}
-      and ${merchant_ratio_v2.merchant} = ${table_redshift_boost_promotion_policy.sub_title};;
+    sql_on: ${table_redshift_boost.payment_id} = ${table_redshift_payment.id} ;;
     relationship: many_to_one
   }
 
-  join: table_redshift_merchant {
-    type: inner
-    sql_on: ${table_redshift_payment.merchant_id} = ${table_redshift_merchant.id} ;;
+  join: table_ad_spend {
+    type: left_outer
+    sql_on: ${table_ad_spend.brand_name} = ${table_redshift_brand.name}
+    and ${table_redshift_payment.months} = ${table_ad_spend.month};;
+    relationship: many_to_one
+  }
+
+  join: table_adspend_dec {
+    type: left_outer
+    sql_on: ${table_adspend_dec.merchant} = ${table_redshift_brand.name}
+    and ${table_redshift_payment.months} = ${table_adspend_dec.month};;
     relationship: many_to_one
   }
 }
