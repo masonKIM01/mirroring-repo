@@ -66,6 +66,7 @@ view: table_adspend_dec {
 
   dimension: merchant {
     type: string
+    primary_key: yes
     sql: ${TABLE}.merchant ;;
   }
 

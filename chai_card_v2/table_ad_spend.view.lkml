@@ -75,6 +75,7 @@ view: table_ad_spend {
 
   dimension: brand_name {
     type: string
+    primary_key: yes
     sql: ${TABLE}.brand_name ;;
   }
 
