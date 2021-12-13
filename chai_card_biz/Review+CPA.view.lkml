@@ -11,33 +11,9 @@ view: review_cpa {
             bpp.title,
             case when b2.name is null then '0' else cast(b2.merchant_ratio as numeric(10,4)) end as merchant_ratio,
             (case when p.created_at <= '2021-10-14' then coalesce(ap.ad_spend,0)
-                  when b2.name = '위메프' then '1500'
-                  when b2.name = '캐시비' then '2000'
-                  when b2.name = '무신사' then '2400'
-                  when b2.name = '해피머니' then '2500'
-                  when b2.name = '에이블리' then '3000'
-                  when b2.name = '텐바이텐' then '3000'
-                  when b2.name = 'aj전시몰' then '5000'
-                  when b2.name = '동원몰' then '5000'
-                  when b2.name = '롯데월드' then '5000'
-when b2.name = '브랜드닭' then '5000'
-when b2.name = '현대백화점투홈' then '5000'
-when b2.name = '바잇미' then '7000'
-when b2.name = '보고플레이' then '7000'
-when b2.name = '아몬즈' then '7000'
-when b2.name = '크로켓' then '7000'
-when b2.name = '네파' then '10000'
-when b2.name = '캐치패션' then '10000'
-when b2.name = '쿠쿠몰' then '10000'
-when b2.name = '여기어때' then '15000'
-when b2.name = '데일리호텔' then '17000'
-when b2.name = '마켓컬리' then '20000'
-when b2.name = 'W컨셉' then '0'
-when b2.name = '모던하우스' then '0'
-when b2.name = '설로인' then '0'
-when b2.name = '얌테이블' then '0'
-when b2.name = '화해' then '5000'
-                  else coalesce(p.cashback_amount * cast(b2.merchant_ratio as numeric(10,4)),0)
+                  when b2.name = '여기어때' then '3000'
+                  when b2.name = '마켓컬리' then '4000'
+            else coalesce(p.cashback_amount * cast(b2.merchant_ratio as numeric(10,4)),0)
             end) as ad_spend
             from chai_card_chai_prod_public.payment p
             left join analytics_deprecated.payment ap on ap.id = p.id
@@ -87,9 +63,7 @@ when b2.name = '크로켓' then '7000'
 when b2.name = '네파' then '10000'
 when b2.name = '캐치패션' then '10000'
 when b2.name = '쿠쿠몰' then '10000'
-when b2.name = '여기어때' then '15000'
 when b2.name = '데일리호텔' then '17000'
-when b2.name = '마켓컬리' then '20000'
 when b2.name = 'W컨셉' then '0'
 when b2.name = '모던하우스' then '0'
 when b2.name = '설로인' then '0'
