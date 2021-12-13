@@ -11,7 +11,8 @@ include: "/**/*.view.lkml"
 explore: chai_card_offline_stats {}
 explore: table_redshift_user {}
 explore: table_bolt_history {}
-
+explore: table_ad_spend {}
+explore: table_adspend_dec {}
 explore: table_redshift_payment {
   join: table_redshift_boost {
     type: left_outer
