@@ -13,6 +13,7 @@ explore: table_redshift_user {}
 explore: table_bolt_history {}
 explore: table_ad_spend {}
 explore: table_adspend_dec {}
+explore: table_payment_union_analytics {}
 explore: table_redshift_payment {
   join: table_redshift_boost {
     type: left_outer
