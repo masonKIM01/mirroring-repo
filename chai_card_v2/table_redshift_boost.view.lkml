@@ -11,6 +11,11 @@ view: table_redshift_boost {
     drill_fields: [detail*]
   }
 
+  measure: count_boost_id {
+    type: count_distinct
+    sql: ${TABLE}.payment_id ;;
+  }
+
   dimension: id {
     type: number
     sql: ${TABLE}.id ;;
