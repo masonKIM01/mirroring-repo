@@ -54,6 +54,11 @@ view: table_adspend_dec {
     drill_fields: [detail*]
   }
 
+  measure: total_ad_spend_dec {
+    type: sum
+    sql: ${TABLE}.ad_spend ;;
+  }
+
   dimension: month {
     type: string
     sql: ${TABLE}.month ;;
