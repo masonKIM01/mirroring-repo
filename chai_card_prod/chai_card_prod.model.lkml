@@ -29,13 +29,13 @@ explore: table_redshift_payment {
 
   join: table_redshift_boost_promotion_policy {
     type: left_outer
-    sql_on: ${table_redshift_boost_promotion_policy.id} = ${table_redshift_boost.boost_promotion_id} ;;
+    sql_on:  ${table_redshift_boost_promotion_policy.id} = ${table_redshift_boost.boost_promotion_id} ;;
     relationship: many_to_one
   }
 
   join: table_redshift_brand {
     type: left_outer
-    sql_on: ${table_redshift_boost.payment_id} = ${table_redshift_payment.id} ;;
+    sql_on: ${table_redshift_brand.id} = ${table_redshift_boost_promotion_policy.brand_id} ;;
     relationship: many_to_one
   }
 
