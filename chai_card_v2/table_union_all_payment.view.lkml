@@ -186,7 +186,6 @@ view: table_union_all_payment {
       )x
       where x.ad_spend > 0
       and x.created_at >= '2021-11-01'
-      limit 100
        ;;
   }
 
