@@ -3,10 +3,12 @@ view: table_payment_union_analytics {
     sql: select
       to_char(created_at, 'yyyy-mm-01') as months, id, status, checkout_amount, canceled_amount, created_at, cashback_amount, ad_spend, chai_credit, merchant_id, idempotency_key, customer_id as user_id
       from analytics_deprecated.payment
+      where created_at <= '2021-10-14 23:59:59.999'
       union all
       select
       to_char(created_at, 'yyyy-mm-01') as months, id, status, checkout_amount, canceled_amount, created_at, cashback_amount, 0 as ad_spend, 0 as chai_credit, merchant_id, idempotency_key, user_id
       from chai_card_chai_prod_public.payment
+      where created_at > '2021-10-15'
        ;;
   }
 
