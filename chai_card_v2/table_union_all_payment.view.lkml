@@ -225,7 +225,7 @@ view: table_union_all_payment {
   }
 
   measure: total_cpa_done {
-    type: average
+    type: sum_distinct
     sql: ${TABLE}.cpa_done  ;;
   }
 
