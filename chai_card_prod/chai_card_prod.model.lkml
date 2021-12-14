@@ -14,7 +14,7 @@ explore: table_bolt_history {}
 explore: table_ad_spend {}
 explore: table_adspend_dec {}
 explore: table_merchant_adspend {}
-
+explore: table_union_all_payment {}
 explore: table_payment_union_analytics {
 
   join: table_redshift_boost {
