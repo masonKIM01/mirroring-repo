@@ -225,7 +225,7 @@ view: table_union_all_payment {
   }
 
   measure: total_cpa_done {
-    type: average
+    type: max
     sql: (${TABLE}.cpa_done)over(partiton by ${TABLE}.name)  ;;
   }
 
