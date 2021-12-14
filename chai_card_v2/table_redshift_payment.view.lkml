@@ -18,12 +18,12 @@ view: table_redshift_payment {
 
   measure: total_checkout_amount {
     type: sum
-    sql: ${checkout_amount} ;;
+    sql: coalesce(${checkout_amount},0) ;;
   }
 
   measure: total_cashback_amount {
     type: sum
-    sql: ${cashback_amount} ;;
+    sql: coalesce(${cashback_amount},0) ;;
   }
 
   dimension: id {
