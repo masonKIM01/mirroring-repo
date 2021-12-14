@@ -3,7 +3,8 @@ view: table_union_all_payment {
     sql: select *
       from
              (select
-              to_char(ap.created_at, 'yyyy-mm-01') as months, ap.id, ap.status, ap.checkout_amount, ap.canceled_amount, ap.created_at, ap.cashback_amount, ap.ad_spend, ap.chai_credit, ap.merchant_id, ap.idempotency_key, ap.customer_id as user_id,
+              to_char(ap.created_at, 'yyyy-mm-01') as months, ap.id, ap.status, ap.checkout_amount, ap.canceled_amount, ap.created_at, ap.cashback_amount,
+              0 as cpa_done, ap.ad_spend, ap.chai_credit, ap.merchant_id, ap.idempotency_key, ap.customer_id as user_id,
               am.name, b.id as boost_id, bpp.sub_title, bpp.title, b2.name as brand_name
               from analytics_deprecated.payment ap
               left join chai_card_chai_prod_public.merchant am on am.id = ap.merchant_id
@@ -14,9 +15,10 @@ view: table_union_all_payment {
       union all
             select
               to_char(p.created_at, 'yyyy-mm-01') as months, p.id, p.status, p.checkout_amount, p.canceled_amount, p.created_at, p.cashback_amount
-              , case when ad.CPA_done > 0 then ad.CPA_done::numeric
-                     when ad.type = 'ROAS' then ad.merchant_ratio * p.cashback_amount
-                     when ad.CPA_done = 0 and ad.type in ('CPA', 'CPS') then ad.contract::numeric
+              , case when ad.CPA_done > 0 then ad.CPA_done::numeric end as cpa_done
+              , case when ad.type = 'ROAS' then ad.merchant_ratio * p.cashback_amount
+                     when ad.CPA_done = 0 and ad.type in ('CPA') then 0.2*ad.contract::numeric
+                     when ad.CPA_done = 0 and ad.type in ('CPS') then ad.contract::numeric
                 end as ad_spend
               , 0 as chai_credit
               , p.merchant_id
@@ -222,6 +224,11 @@ view: table_union_all_payment {
     sql: ${TABLE}.chai_credit ;;
   }
 
+  measure: total_cpa_done {
+    type: average
+    sql: (${TABLE}.cpa_done)over(partiton by ${TABLE}.name)  ;;
+  }
+
   dimension: months {
     type: string
     sql: ${TABLE}.months ;;
@@ -235,6 +242,11 @@ view: table_union_all_payment {
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+  }
+
+  dimension: cpa_done {
+    type: number
+    sql: ${TABLE}.cpa_done ;;
   }
 
   dimension: checkout_amount {
@@ -316,6 +328,7 @@ view: table_union_all_payment {
       canceled_amount,
       created_at_time,
       cashback_amount,
+      cpa_done,
       ad_spend,
       chai_credit,
       merchant_id,
