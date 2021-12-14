@@ -184,8 +184,6 @@ view: table_union_all_payment {
                 and ad.title = bpp.title
             where p.created_at > '2021-10-15'
       )x
-      where x.ad_spend > 0
-      and x.created_at >= '2021-11-01'
        ;;
   }
 
