@@ -13,7 +13,40 @@ explore: table_redshift_user {}
 explore: table_bolt_history {}
 explore: table_ad_spend {}
 explore: table_adspend_dec {}
-explore: table_payment_union_analytics {}
+explore: table_merchant_adspend {}
+
+explore: table_payment_union_analytics {
+
+  join: table_redshift_boost {
+
+    type: left_outer
+    sql_on: ${table_payment_union_analytics.id} = ${table_redshift_boost.payment_id} ;;
+    relationship: many_to_one
+  }
+
+  join: table_redshift_boost_promotion_policy {
+    type: left_outer
+    sql_on: ${table_redshift_boost.boost_promotion_id} = ${table_redshift_boost_promotion_policy.id} ;;
+    relationship: many_to_one
+  }
+
+  join: table_redshift_brand {
+    type: left_outer
+    sql_on: ${table_redshift_brand.id} = ${table_redshift_boost_promotion_policy.brand_id} ;;
+    relationship: many_to_one
+  }
+
+  join: table_merchant_adspend {
+    type: left_outer
+    sql_on: ${table_redshift_brand.name} = ${table_merchant_adspend.merchant_name}
+    and ${table_redshift_boost_promotion_policy.title} = ${table_merchant_adspend.title}
+    and to_char(${table_payment_union_analytics.months}) = to_char(${table_merchant_adspend.months})
+    ;;
+    relationship: many_to_one
+  }
+}
+
+
 explore: table_redshift_payment {
   join: table_redshift_boost {
     type: left_outer
