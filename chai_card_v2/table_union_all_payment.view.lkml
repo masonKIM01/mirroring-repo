@@ -225,8 +225,8 @@ view: table_union_all_payment {
   }
 
   measure: total_cpa_done {
-    type: max
-    sql: (${TABLE}.cpa_done)over(partiton by ${TABLE}.name)  ;;
+    type: average
+    sql: ${TABLE}.cpa_done)over(partiton by ${TABLE}.months, ${TABLE}.name  ;;
   }
 
   dimension: months {
