@@ -72,17 +72,12 @@ explore: table_redshift_payment {
     relationship: many_to_one
   }
 
-  join: table_ad_spend {
+  join: table_merchant_adspend {
     type: left_outer
-    sql_on: ${table_ad_spend.brand_name} = ${table_redshift_brand.name}
-    and ${table_redshift_payment.months} = ${table_ad_spend.month};;
-    relationship: many_to_one
-  }
-
-  join: table_adspend_dec {
-    type: left_outer
-    sql_on: ${table_adspend_dec.merchant} = ${table_redshift_brand.name}
-    and ${table_redshift_payment.months} = ${table_adspend_dec.month};;
+    sql_on: ${table_redshift_brand.name} = ${table_merchant_adspend.merchant_name}
+          and ${table_redshift_boost_promotion_policy.title} = ${table_merchant_adspend.title}
+          and to_char(${table_redshift_payment.months}) = to_char(${table_merchant_adspend.months})
+          ;;
     relationship: many_to_one
   }
 }
