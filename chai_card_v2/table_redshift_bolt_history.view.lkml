@@ -2,13 +2,17 @@ view: table_redshift_bolt_history {
   derived_table: {
     sql: select *
         from chai_card_chai_prod_public.bolt_history bh
-        limit 100
        ;;
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: count_bolt {
+    type: sum
+    sql: ${TABLE}.count ;;
   }
 
   dimension_group: created_at {
