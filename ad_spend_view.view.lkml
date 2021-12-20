@@ -176,7 +176,33 @@ select '2021-12-01' as months, 'AJ전시몰' as merchant_name, '15,000원 캐시
 select '2021-12-01' as months, 'W컨셉' as merchant_name, '3,000원 캐시백' as title, 'ROAS' as type, '0' as merchant_ratio, '0' as contract, '0' as CPA_done union all
 select '2021-12-01' as months, 'W컨셉' as merchant_name, '5,000원 캐시백' as title, 'ROAS' as type, '0' as merchant_ratio, '0' as contract, '0' as CPA_done union all
 select '2021-12-01' as months, '이삭토스트' as merchant_name, '30% 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '0' as contract, '0' as CPA_done union all
-select '2021-12-01' as months, '그린카' as merchant_name, '80% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '4000' as contract, '0' as CPA_done
+select '2021-12-01' as months, '그린카' as merchant_name, '80% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '4000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '프립' as merchant_name, '10,000원 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '0' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '화해' as merchant_name, '30% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '3000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '설로인' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '설로인' as merchant_name, '11,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '설로인' as merchant_name, '15,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '8000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '설로인' as merchant_name, '16,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '8000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '설로인' as merchant_name, '20,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '10000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '술담화' as merchant_name, '10% 캐시백' as title, 'ROAS' as type, '0.7' as merchant_ratio, '0' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '위메프' as merchant_name, '2,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '위메프' as merchant_name, '3,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '위메프' as merchant_name, '35% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '위메프' as merchant_name, '4,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '위메프' as merchant_name, '5,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '위메프' as merchant_name, '8,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '카모아' as merchant_name, '7,000원 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '0' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '리틀버드' as merchant_name, '20,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '20000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '뮬라웨어' as merchant_name, '20% 캐시백' as title, 'ROAS' as type, '1' as merchant_ratio, '0' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '얌테이블' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '얌테이블' as merchant_name, '7,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '인더웨어' as merchant_name, '5,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '인테이크' as merchant_name, '2,000원 캐시백' as title, 'ROAS' as type, '1' as merchant_ratio, '0' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '젝시믹스' as merchant_name, '20% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '2500' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '보고플레이' as merchant_name, '90% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '7000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '한섬EQL' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '7000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '한섬EQL' as merchant_name, '20,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '15000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '한섬EQL' as merchant_name, '30,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '17000' as contract, '0' as CPA_done
              )
       SELECT * FROM (
       SELECT
