@@ -173,8 +173,8 @@ select '2021-12-01' as months, '데일리호텔' as merchant_name, '5,000원 캐
 select '2021-12-01' as months, '이니스프리' as merchant_name, '40% 캐시백' as title, 'ROAS' as type, '0.4' as merchant_ratio, '0' as contract, '0' as CPA_done union all
 select '2021-12-01' as months, 'AJ전시몰' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done union all
 select '2021-12-01' as months, 'AJ전시몰' as merchant_name, '15,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done union all
-select '2021-12-01' as months, 'W컨셉' as merchant_name, '3,000원 캐시백' as title, '' as type, '' as merchant_ratio, '' as contract, '0' as CPA_done union all
-select '2021-12-01' as months, 'W컨셉' as merchant_name, '5,000원 캐시백' as title, '' as type, '' as merchant_ratio, '' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, 'W컨셉' as merchant_name, '3,000원 캐시백' as title, 'ROAS' as type, '0' as merchant_ratio, '0' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, 'W컨셉' as merchant_name, '5,000원 캐시백' as title, 'ROAS' as type, '0' as merchant_ratio, '0' as contract, '0' as CPA_done union all
 select '2021-12-01' as months, '이삭토스트' as merchant_name, '30% 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '0' as contract, '0' as CPA_done
              )
       SELECT * FROM (
