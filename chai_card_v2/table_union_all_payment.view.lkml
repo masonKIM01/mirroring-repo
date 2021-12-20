@@ -220,7 +220,7 @@ select '2021-12-01' as months, '한섬EQL' as merchant_name, '30,000원 캐시�
             )ad on ad.months = to_char(p.created_at, 'yyyy-mm-01')
                 and ad.merchant_name = b2.name
                 and ad.title = bpp.title
-            where p.created_at > '2021-10-15'
+            where p.created_at >= '2021-10-15'
       )x
        ;;
   }
