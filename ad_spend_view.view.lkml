@@ -207,7 +207,7 @@ view: ad_spend_view {
     type: sum
     sql: case when ${table_merchant_adspend_type} = 'CPA' then ${table_merchant_adspend_contract} * ${table_redshift_boost_count_boost_id} * 0.2
               when ${table_merchant_adspend_merchant_ratio} > 0 then ${table_merchant_adspend_merchant_ratio} * ${table_redshift_payment_total_cashback_amount}
-              else ${table_merchant_adspend_contract} * ${table_redshift_payment_total_cashback_amount} end;;
+              else ${table_merchant_adspend_contract} * ${table_redshift_boost_count_boost_id} end;;
   }
   dimension_group: table_redshift_payment_created_at {
     type: time
