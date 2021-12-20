@@ -170,7 +170,7 @@ view: ad_spend_view {
              )
       SELECT * FROM (
       SELECT
-          (TO_CHAR(DATE_TRUNC('week', table_redshift_payment.created_at ), 'YYYY-MM-DD')) AS "table_redshift_payment.created_at_week",
+          date(table_redshift_payment.created_at) AS "table_redshift_payment.created_at",
           table_redshift_brand.name  AS "table_redshift_brand.name",
           table_merchant_adspend.contract  AS "table_merchant_adspend.contract",
           table_merchant_adspend.cpa_done  AS "table_merchant_adspend.cpa_done",
@@ -186,10 +186,9 @@ view: ad_spend_view {
       LEFT JOIN table_merchant_adspend ON table_redshift_brand.name = table_merchant_adspend.merchant_name
                 and table_redshift_boost_promotion_policy.title = table_merchant_adspend.title
                 and (table_redshift_payment.months) = (table_merchant_adspend.months)
-
       WHERE (table_redshift_payment.status ) = 'confirmed' AND ((( table_redshift_payment.created_at  ) >= ((DATEADD(week,-2, DATE_TRUNC('week', DATE_TRUNC('day',GETDATE())) ))) AND ( table_redshift_payment.created_at  ) < ((DATEADD(week,3, DATEADD(week,-2, DATE_TRUNC('week', DATE_TRUNC('day',GETDATE())) ) ))))) AND (table_redshift_payment.year ) = 2021 AND (table_redshift_payment.month ) IN (11, 12) AND (table_merchant_adspend.type ) IS NOT NULL
       GROUP BY
-          (DATE_TRUNC('week', table_redshift_payment.created_at )),
+          1,
           2,
           3,
           4,
@@ -204,13 +203,21 @@ view: ad_spend_view {
     drill_fields: [detail*]
   }
 
-  dimension: table_redshift_payment_created_at_week {
-    type: string
-    sql: ${TABLE}."table_redshift_payment.created_at_week" ;;
+  measure: sum_adspend{
+    type: sum
+    sql: case when ${table_merchant_adspend_type} = 'CPA' then ${table_merchant_adspend_contract} * ${table_redshift_boost_count_boost_id} * 0.2
+              when ${table_merchant_adspend_merchant_ratio} > 0 then ${table_merchant_adspend_merchant_ratio} * ${table_redshift_payment_total_cashback_amount}
+              else ${table_merchant_adspend_contract} * ${table_redshift_payment_total_cashback_amount} end;;
+  }
+  dimension_group: table_redshift_payment_created_at {
+    type: time
+    timeframes: [date, week, month]
+    sql: ${TABLE}."table_redshift_payment.created_at" ;;
   }
 
   dimension: table_redshift_brand_name {
     type: string
+    primary_key: yes
     sql: ${TABLE}."table_redshift_brand.name" ;;
   }
 
@@ -251,7 +258,7 @@ view: ad_spend_view {
 
   set: detail {
     fields: [
-      table_redshift_payment_created_at_week,
+      table_redshift_payment_created_at_date,
       table_redshift_brand_name,
       table_merchant_adspend_contract,
       table_merchant_adspend_cpa_done,
