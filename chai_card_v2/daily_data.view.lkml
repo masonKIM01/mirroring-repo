@@ -304,7 +304,7 @@ view: daily_data {
 
   dimension_group: date {
     type: time
-    sql: ${TABLE}.month ;;
+    sql: ${TABLE}.date ;;
   }
 
   dimension: type {
