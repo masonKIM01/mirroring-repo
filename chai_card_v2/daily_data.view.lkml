@@ -1,7 +1,7 @@
 view: daily_data {
   derived_table: {
     sql: select
-        to_char(b.date,'yyyy-mm-dd') as date,
+        b.date as date,
         case when b.merchant_id = '0385e3db-4a50-4035-9285-1ced4a3e0209' then 'card' else 'ewallet' end as type,
         count(b.payment_id) as transactions,
         count(distinct b.user_id) as users,
@@ -258,7 +258,7 @@ view: daily_data {
       group by 1,2
       union all
       select
-      to_char(p.created_at, 'yyyy-mm-dd') as date,
+      p.created_at as date,
       case when p.merchant_id = '0385e3db-4a50-4035-9285-1ced4a3e0209' then 'card' else 'ewallet' end as type,
         count(p.id) as transactions,
         count(distinct p.customer_id) as users,
