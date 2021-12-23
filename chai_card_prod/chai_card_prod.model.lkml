@@ -16,6 +16,7 @@ explore: table_adspend_dec {}
 explore: table_merchant_adspend {}
 explore: table_union_all_payment {}
 explore: ad_spend_view {}
+explore: monthly_data {}
 explore: active_card {}
 explore: table_payment_union_analytics {
 
