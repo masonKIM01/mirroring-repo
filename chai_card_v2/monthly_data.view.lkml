@@ -267,6 +267,7 @@ view: monthly_data {
         sum(p.ad_spend) as ad_spend
       from analytics_deprecated.payment p
       where p.created_at < '2021-10-15'
+      and p.status = 'confirmed'
       group by 1,2
        ;;
   }
