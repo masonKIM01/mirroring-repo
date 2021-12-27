@@ -217,8 +217,10 @@ select '2021-12-01' as months, '젝시믹스' as merchant_name, '20% 캐시백' 
 select '2021-12-01' as months, '보고플레이' as merchant_name, '90% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '7000' as contract, '0' as CPA_done union all
 select '2021-12-01' as months, '한섬EQL' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '7000' as contract, '0' as CPA_done union all
 select '2021-12-01' as months, '한섬EQL' as merchant_name, '20,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '15000' as contract, '0' as CPA_done union all
-select '2021-12-01' as months, '한섬EQL' as merchant_name, '30,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '17000' as contract, '0' as CPA_done
-            )ad on ad.months = to_char(p.created_at, 'yyyy-mm-01')
+select '2021-12-01' as months, '한섬EQL' as merchant_name, '30,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '17000' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '쏘카' as merchant_name, '80% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '3500' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, '쏘카' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '3500' as contract, '0' as CPA_done union all
+select '2021-12-01' as months, 'SK스토아' as merchant_name, '7,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '3500' as contract, '0' as CPA_done             )ad on ad.months = to_char(p.created_at, 'yyyy-mm-01')
                 and ad.merchant_name = b2.name
                 and ad.title = bpp.title
             where p.created_at >= '2021-10-15'
