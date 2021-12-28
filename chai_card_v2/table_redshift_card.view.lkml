@@ -13,6 +13,11 @@ view: table_redshift_card {
     drill_fields: [detail*]
   }
 
+  measure: users {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
   dimension: id {
     type: number
     sql: ${TABLE}.id ;;
@@ -27,7 +32,6 @@ view: table_redshift_card {
     type: string
     sql: ${TABLE}.card_type ;;
   }
-
 
   dimension: issue_type {
     type: string
