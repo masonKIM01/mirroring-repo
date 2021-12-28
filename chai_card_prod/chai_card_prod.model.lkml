@@ -18,6 +18,7 @@ explore: table_union_all_payment {}
 explore: ad_spend_view {}
 explore: monthly_data {}
 explore: daily_data {}
+explore: table_redshift_card {}
 explore: active_card {}
 explore: table_payment_union_analytics {
 
