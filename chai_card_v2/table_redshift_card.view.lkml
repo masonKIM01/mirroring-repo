@@ -2,8 +2,8 @@ view: table_redshift_card {
   derived_table: {
     sql: select
           *,
-          case when c.created_at >= '2021-11-18 16:04:42.514' then 'master card' else 'red card' end as "card_type",
-          case when c.is_reissue = 'false' then 'first_issue' else 're_issue' end as "issue_type"
+          case when created_at >= '2021-11-18 16:04:42.514' then 'master card' else 'red card' end as "card_type",
+          case when is_reissue = 'false' then 'first_issue' else 're_issue' end as "issue_type"
         from chai_card_chai_prod_public.card
        ;;
   }
