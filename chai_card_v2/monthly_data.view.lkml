@@ -268,7 +268,7 @@ view: monthly_data {
         count(distinct p.customer_id) as users,
         sum(p.checkout_amount) as checkout_amount,
         sum(p.cashback_amount) as cashback_amount,
-        sum(p.ad_spend) as ad_spend
+        sum(case when p.merchant_id = '0385e3db-4a50-4035-9285-1ced4a3e0209' then p.ad_spend end) as ad_spend
       from analytics_deprecated.payment p
       where p.created_at < '2021-10-15'
       and p.status = 'confirmed'
