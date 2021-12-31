@@ -16,6 +16,7 @@ explore: table_adspend_dec {}
 explore: table_merchant_adspend {}
 explore: table_union_all_payment {}
 explore: ad_spend_view {}
+explore: bolt_draw_report {}
 explore: monthly_data {}
 explore: monthly_data_wocpa {}
 explore: daily_data {}
