@@ -285,9 +285,9 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
 
   measure: sum_adspend{
     type: sum
-    sql: case when ${table_merchant_adspend_type} = 'CPA' then ${table_merchant_adspend_contract} * ${table_redshift_boost_count_boost_id} * 0.2
-              when ${table_merchant_adspend_merchant_ratio} > 0 then ${table_merchant_adspend_merchant_ratio} * ${table_redshift_payment_total_cashback_amount}
-              else ${table_merchant_adspend_contract} * ${table_redshift_boost_count_boost_id} end;;
+    sql: case when ${table_merchant_adspend_type} = 'CPA' then ${table_merchant_adspend_contract}::numeric * ${table_redshift_boost_count_boost_id} * 0.2
+              when ${table_merchant_adspend_merchant_ratio} > 0 then ${table_merchant_adspend_merchant_ratio}::numeric * ${table_redshift_payment_total_cashback_amount}
+              else ${table_merchant_adspend_contract}::numeric * ${table_redshift_boost_count_boost_id} end;;
   }
   dimension_group: table_redshift_payment_created_at {
     type: time
