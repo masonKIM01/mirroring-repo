@@ -262,7 +262,7 @@ select '2022-01-01' as months, '그린카' as merchant_name, '80% 캐시백' as 
       LEFT JOIN table_merchant_adspend ON table_redshift_brand.name = table_merchant_adspend.merchant_name
                 and table_redshift_boost_promotion_policy.title = table_merchant_adspend.title
                 and (table_redshift_payment.months) = (table_merchant_adspend.months)
-      WHERE (table_redshift_payment.status ) = 'confirmed' AND ((( table_redshift_payment.created_at  ) >= ((DATEADD(week,-2, DATE_TRUNC('week', DATE_TRUNC('day',GETDATE())) ))) AND ( table_redshift_payment.created_at  ) < ((DATEADD(week,3, DATEADD(week,-2, DATE_TRUNC('week', DATE_TRUNC('day',GETDATE())) ) ))))) AND (table_redshift_payment.year ) = 2021 AND (table_redshift_payment.month ) IN (11, 12) AND (table_merchant_adspend.type ) IS NOT NULL
+      WHERE (table_redshift_payment.status ) = 'confirmed' AND ((( table_redshift_payment.created_at  ) >= ((DATEADD(week,-2, DATE_TRUNC('week', DATE_TRUNC('day',GETDATE())) ))) AND ( table_redshift_payment.created_at  ) < ((DATEADD(week,3, DATEADD(week,-2, DATE_TRUNC('week', DATE_TRUNC('day',GETDATE())) ) ))))) AND (table_redshift_payment.year ) in ('2021','2022') AND (table_redshift_payment.month ) IN (12,1) AND (table_merchant_adspend.type ) IS NOT NULL
       GROUP BY
           1,
           2,
