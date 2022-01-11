@@ -29,8 +29,8 @@ view: bd_owner {
         select '2022-01-01' as months, '젝시믹스' as merchant_name, '20% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '2500' as contract, '0' as CPA_done , 'Kevin' as owner union all
         select '2022-01-01' as months, '인테이크' as merchant_name, '2,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '2000' as contract, '0' as CPA_done , 'Kevin' as owner union all
         select '2022-01-01' as months, '인더웨어' as merchant_name, '5,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done , 'Kevin' as owner union all
-        select '2022-01-01' as months, '위메프' as merchant_name, '30% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1200' as contract, '0' as CPA_done , 'cloe' as owner union all
-        select '2022-01-01' as months, '위메프' as merchant_name, '3,500원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1200' as contract, '0' as CPA_done , 'cloe' as owner union all
+        select '2022-01-01' as months, '위메프' as merchant_name, '30% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1200' as contract, '0' as CPA_done , 'Cloe' as owner union all
+        select '2022-01-01' as months, '위메프' as merchant_name, '3,500원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1200' as contract, '0' as CPA_done , 'Cloe' as owner union all
         select '2022-01-01' as months, '원데이즈유' as merchant_name, '8,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '6500' as contract, '0' as CPA_done , 'Cloe' as owner union all
         select '2022-01-01' as months, '여기어때' as merchant_name, '7,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '15000' as contract, '0' as CPA_done , 'Cloe' as owner union all
         select '2022-01-01' as months, '에이블리' as merchant_name, '6,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '3000' as contract, '0' as CPA_done , 'Kevin' as owner union all
@@ -50,7 +50,8 @@ view: bd_owner {
         select '2022-01-01' as months, '데일리호텔' as merchant_name, '5,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '17000' as contract, '0' as CPA_done , 'Cloe' as owner union all
         select '2022-01-01' as months, '데일리호텔' as merchant_name, '40% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '17000' as contract, '0' as CPA_done , 'Cloe' as owner union all
         select '2022-01-01' as months, '그린카' as merchant_name, '80% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '4000' as contract, '0' as CPA_done , 'Kevin' as owner union all
-        select '2022-01-01' as months, 'W컨셉' as merchant_name, '5,000원 캐시백' as title, '' as type, '0' as merchant_ratio, '0' as contract, '0' as CPA_done , 'Gatsby' as owner
+        select '2022-01-01' as months, 'W컨셉' as merchant_name, '5,000원 캐시백' as title, '' as type, '0' as merchant_ratio, '0' as contract, '0' as CPA_done , 'Gatsby' as owner union all
+        select '2022-01-01' as months, '카카오헤어샵' as merchant_name, '5,000원 캐시백' as title, '' as type, '0' as merchant_ratio, '0' as contract, '0' as CPA_done , 'Gatsby' as owner
       )ad on ad.merchant_name = b2.name and to_char(p.created_at, 'yyyy-mm-01') = ad.months
       where p.year = '2022'
       and p.status = 'confirmed'
