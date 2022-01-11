@@ -53,6 +53,7 @@ view: bd_owner {
         select '2022-01-01' as months, 'W컨셉' as merchant_name, '5,000원 캐시백' as title, '' as type, '0' as merchant_ratio, '0' as contract, '0' as CPA_done , 'Gatsby' as owner
       )ad on ad.merchant_name = b2.name and to_char(p.created_at, 'yyyy-mm-01') = ad.months
       where p.year = '2022'
+      and p.status = 'confirmed'
       group by 1,2,3,4,5
       order by 1,2,3)X
        ;;
