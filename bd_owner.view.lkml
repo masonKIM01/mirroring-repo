@@ -14,7 +14,7 @@ view: bd_owner {
       inner join chai_card_chai_prod_public.brand b2 on b2.id = bpp.brand_id
       inner join
       (
-          select '2022-01-01' as months, '한섬EQL' as merchant_name, '20,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '15000' as contract, '0' as CPA_done , 'Cloe' as owner union all
+        select '2022-01-01' as months, '한섬EQL' as merchant_name, '20,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '15000' as contract, '0' as CPA_done , 'Cloe' as owner union all
         select '2022-01-01' as months, '프립' as merchant_name, '10,000원 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '10000' as contract, '0' as CPA_done , 'Kevin' as owner union all
         select '2022-01-01' as months, '프립' as merchant_name, '10,000원 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '0' as contract, '0' as CPA_done , 'Kevin' as owner union all
         select '2022-01-01' as months, '펫프렌즈' as merchant_name, '50% 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '1500' as contract, '0' as CPA_done , 'Kevin' as owner union all
@@ -54,7 +54,7 @@ view: bd_owner {
         select '2022-01-01' as months, '카카오헤어샵' as merchant_name, '5,000원 캐시백' as title, '' as type, '0' as merchant_ratio, '0' as contract, '0' as CPA_done , 'Gatsby' as owner union all
         select '2022-01-01' as months, '카카오헤어샵' as merchant_name, '30% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '3000' as contract, '0' as CPA_done, 'MJ' as owner union all
         select '2022-01-01' as months, '카카오헤어샵' as merchant_name, '30% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '3000' as contract, '0' as CPA_done, 'MJ' as owner
-      )ad on ad.merchant_name = b2.name and to_char(p.created_at, 'yyyy-mm-01') = ad.months
+      )ad on ad.merchant_name = b2.name and to_char(p.created_at, 'yyyy-mm-01') = ad.months and ad.title = bpp.title
       where p.year = '2022'
       and p.status = 'confirmed'
       group by 1,2,3,4,5
