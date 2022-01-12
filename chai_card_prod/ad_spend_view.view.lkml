@@ -261,6 +261,7 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
           table_merchant_adspend.merchant_ratio  AS "table_merchant_adspend.merchant_ratio",
           table_merchant_adspend.type  AS "table_merchant_adspend.type",
           table_redshift_boost_promotion_policy.sub_title  AS "table_redshift_boost_promotion_policy.sub_title",
+          COALESCE(SUM(coalesce( table_redshift_payment.checkout_amount  ,0) ), 0) AS "table_redshift_payment.total_checkout_amount",
           COALESCE(SUM(coalesce( table_redshift_payment.cashback_amount  ,0) ), 0) AS "table_redshift_payment.total_cashback_amount",
           COUNT(DISTINCT table_redshift_boost.payment_id ) AS "table_redshift_boost.count_boost_id"
       FROM table_redshift_payment
@@ -299,6 +300,11 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
   measure: sum_cashback{
     type: sum
     sql: ${table_redshift_payment_total_cashback_amount};;
+  }
+
+  measure: sum_checkout{
+    type: sum
+    sql: ${table_redshift_payment_total_checkout_amount}  ;;
   }
 
   dimension_group: table_redshift_payment_created_at {
@@ -346,6 +352,11 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
   dimension: table_redshift_payment_total_cashback_amount {
     type: number
     sql: ${TABLE}."table_redshift_payment.total_cashback_amount" ;;
+  }
+
+  dimension: table_redshift_payment_total_checkout_amount {
+    type: number
+    sql: ${TABLE}."table_redshift_payment.total_checkout_amount" ;;
   }
 
   dimension: table_redshift_boost_count_boost_id {
