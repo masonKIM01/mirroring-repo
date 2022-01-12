@@ -256,7 +256,7 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
           date(table_redshift_payment.created_at) AS "table_redshift_payment.created_at",
           table_redshift_brand.name  AS "table_redshift_brand.name",
           table_merchant_adspend.contract  AS "table_merchant_adspend.contract",
-          table_redshift_merchant.name AS "table_redshift_merchant.name",
+          case when table_redshift_merchant.name = '차이카드' then '카드' else '간편결제' end AS "table_redshift_merchant.payment_type",
           table_merchant_adspend.cpa_done  AS "table_merchant_adspend.cpa_done",
           table_merchant_adspend.merchant_ratio  AS "table_merchant_adspend.merchant_ratio",
           table_merchant_adspend.type  AS "table_merchant_adspend.type",
@@ -307,9 +307,9 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
     sql: ${TABLE}."table_redshift_brand.name" ;;
   }
 
-  dimension: table_redshift_merchant_name {
+  dimension: table_redshift_merchant_type {
     type: string
-    sql: ${TABLE}."table_redshift_merchant.name" ;;
+    sql: ${TABLE}."table_redshift_merchant.payment_type" ;;
   }
 
   dimension: table_merchant_adspend_contract {
@@ -351,7 +351,7 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
     fields: [
       table_redshift_payment_created_at_date,
       table_redshift_brand_name,
-      table_redshift_merchant_name,
+      table_redshift_merchant_type,
       table_merchant_adspend_contract,
       table_merchant_adspend_cpa_done,
       table_merchant_adspend_merchant_ratio,
