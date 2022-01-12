@@ -9,10 +9,6 @@ view: ad_spend_view {
             *
             from chai_card_chai_prod_public.boost b
              )
-        ,  table_redshift_merchant AS (select
-            *
-            from chai_card_chai_prod_public.merchant m
-             )
         ,  table_redshift_boost_promotion_policy AS (select *
             from chai_card_chai_prod_public.boost_promotion_policy bpp
              )
@@ -255,7 +251,6 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
       SELECT
           date(table_redshift_payment.created_at) AS "table_redshift_payment.created_at",
           table_redshift_brand.name  AS "table_redshift_brand.name",
-          table_redshift_merchant.name AS "merchant_name",
           table_merchant_adspend.contract  AS "table_merchant_adspend.contract",
           table_merchant_adspend.cpa_done  AS "table_merchant_adspend.cpa_done",
           table_merchant_adspend.merchant_ratio  AS "table_merchant_adspend.merchant_ratio",
@@ -327,11 +322,6 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
     sql: ${TABLE}."table_merchant_adspend.type" ;;
   }
 
-  dimension: merchant_name {
-    type: string
-    sql: ${TABLE}."merchant_name" ;;
-  }
-
   dimension: table_redshift_boost_promotion_policy_sub_title {
     type: string
     sql: ${TABLE}."table_redshift_boost_promotion_policy.sub_title" ;;
@@ -355,7 +345,6 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
       table_merchant_adspend_cpa_done,
       table_merchant_adspend_merchant_ratio,
       table_merchant_adspend_type,
-      merchant_name,
       table_redshift_boost_promotion_policy_sub_title,
       table_redshift_payment_total_cashback_amount,
       table_redshift_boost_count_boost_id
