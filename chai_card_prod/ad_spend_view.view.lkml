@@ -9,6 +9,10 @@ view: ad_spend_view {
             *
             from chai_card_chai_prod_public.boost b
              )
+        ,  table_redshift_merchant AS (select
+            *
+            from chai_card_chai_prod_public.merchant m
+             )
         ,  table_redshift_boost_promotion_policy AS (select *
             from chai_card_chai_prod_public.boost_promotion_policy bpp
              )
