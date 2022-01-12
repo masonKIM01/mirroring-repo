@@ -1,8 +1,6 @@
 view: ad_spend_view {
   derived_table: {
-    sql: -- raw sql results do not include filled-in values for 'table_redshift_payment.created_at_week'
-
-
+    sql:
       WITH table_redshift_payment AS (select
             to_char(created_at,'yyyy-mm-01') as months, *
             from chai_card_chai_prod_public.payment
@@ -277,7 +275,8 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
           4,
           5,
           6,
-          7) ww
+          7,
+          8) ww
        ;;
   }
 
