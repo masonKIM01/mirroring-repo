@@ -16,6 +16,10 @@ view: ad_spend_view {
             *
             from chai_card_chai_prod_public.brand
              )
+        ,  table_redshift_merchant AS (select
+            *
+            from chai_card_chai_prod_public.merchant m
+             )
         ,  table_merchant_adspend AS (select '2021-10-01' as months, '무신사' as merchant_name, '10,000원 캐시백' as title, 'CPA' as type, '0' as merchant_ratio, '0' as contract, '11509000' as CPA_done union all
             select '2021-10-01' as months, '여기어때' as merchant_name, '10,000원 캐시백' as title, 'CPA' as type, '0' as merchant_ratio, '0' as contract, '2205000' as CPA_done union all
             select '2021-10-01' as months, '동원몰' as merchant_name, '50% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done union all
@@ -252,6 +256,7 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
           date(table_redshift_payment.created_at) AS "table_redshift_payment.created_at",
           table_redshift_brand.name  AS "table_redshift_brand.name",
           table_merchant_adspend.contract  AS "table_merchant_adspend.contract",
+          table_redshift_merchant.name AS "table_redshift_merchant.name",
           table_merchant_adspend.cpa_done  AS "table_merchant_adspend.cpa_done",
           table_merchant_adspend.merchant_ratio  AS "table_merchant_adspend.merchant_ratio",
           table_merchant_adspend.type  AS "table_merchant_adspend.type",
@@ -302,6 +307,11 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
     sql: ${TABLE}."table_redshift_brand.name" ;;
   }
 
+  dimension: table_redshift_merchant_name {
+    type: string
+    sql: ${TABLE}."table_redshift_merchant.name" ;;
+  }
+
   dimension: table_merchant_adspend_contract {
     type: string
     sql: ${TABLE}."table_merchant_adspend.contract" ;;
@@ -341,6 +351,7 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
     fields: [
       table_redshift_payment_created_at_date,
       table_redshift_brand_name,
+      table_redshift_merchant_name,
       table_merchant_adspend_contract,
       table_merchant_adspend_cpa_done,
       table_merchant_adspend_merchant_ratio,
