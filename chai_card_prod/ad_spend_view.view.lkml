@@ -253,6 +253,7 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
       SELECT
           date(table_redshift_payment.created_at) AS "table_redshift_payment.created_at",
           table_redshift_brand.name  AS "table_redshift_brand.name",
+          table_redshift_merchant.name AS "merchant_name",
           table_merchant_adspend.contract  AS "table_merchant_adspend.contract",
           table_merchant_adspend.cpa_done  AS "table_merchant_adspend.cpa_done",
           table_merchant_adspend.merchant_ratio  AS "table_merchant_adspend.merchant_ratio",
@@ -264,6 +265,7 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
       LEFT JOIN table_redshift_boost ON table_redshift_boost.payment_id = table_redshift_payment.id
       LEFT JOIN table_redshift_boost_promotion_policy ON table_redshift_boost_promotion_policy.id = table_redshift_boost.boost_promotion_id
       LEFT JOIN table_redshift_brand ON table_redshift_brand.id = table_redshift_boost_promotion_policy.brand_id
+      LEFT JOIN table_redshift_merchant ON table_redshift_merchant.id = table_redshift_payment.merchant_id
       LEFT JOIN table_merchant_adspend ON table_redshift_brand.name = table_merchant_adspend.merchant_name
                 and table_redshift_boost_promotion_policy.title = table_merchant_adspend.title
                 and (table_redshift_payment.months) = (table_merchant_adspend.months)
@@ -322,6 +324,11 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
     sql: ${TABLE}."table_merchant_adspend.type" ;;
   }
 
+  dimension: merchant_name {
+    type: string
+    sql: ${TABLE}."merchant_name" ;;
+  }
+
   dimension: table_redshift_boost_promotion_policy_sub_title {
     type: string
     sql: ${TABLE}."table_redshift_boost_promotion_policy.sub_title" ;;
@@ -345,6 +352,7 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
       table_merchant_adspend_cpa_done,
       table_merchant_adspend_merchant_ratio,
       table_merchant_adspend_type,
+      merchant_name,
       table_redshift_boost_promotion_policy_sub_title,
       table_redshift_payment_total_cashback_amount,
       table_redshift_boost_count_boost_id
