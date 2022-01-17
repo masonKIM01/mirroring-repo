@@ -7,6 +7,7 @@ view: merchant_boost {
       bpp.title,
       to_char(count(p.id),'999,999,999') as Transactions,
       to_char(sum(p.checkout_amount),'999,999,999') as checkout_amount,
+      sum(p.cashback_amount) as cashback_amount,
       to_char(sum(case when date(p.created_at) <= '2021-10-14' then p1.ad_spend else bh.ad_spend end),'999,999,999') as ad_spend,
       to_char(sum(case when date(p.created_at) <= '2021-10-14' then p1.chai_credit else bh.chai_credit end),'999,999,999') as chai_spend
       from chai_card_chai_prod_public.payment p
@@ -53,6 +54,11 @@ view: merchant_boost {
     sql: ${TABLE}.checkout_amount ;;
   }
 
+  dimension: cashback_amount {
+    type: string
+    sql: ${TABLE}.cashback_amount ;;
+  }
+
   dimension: canceled_amount {
     type: string
     sql: ${TABLE}.canceled_amount ;;
@@ -74,6 +80,7 @@ view: merchant_boost {
       sub_title,
       title,
       checkout_amount,
+      cashback_amount,
       canceled_amount,
       ad_spend,
       chai_spend
