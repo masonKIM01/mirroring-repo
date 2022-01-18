@@ -277,7 +277,7 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
       LEFT JOIN table_merchant_adspend ON table_redshift_brand.name = table_merchant_adspend.merchant_name
                 and table_redshift_boost_promotion_policy.title = table_merchant_adspend.title
                 and (table_redshift_payment.months) = (table_merchant_adspend.months)
-      WHERE (table_redshift_payment.status ) = 'confirmed' AND ((( table_redshift_payment.created_at  ) >= ((DATEADD(week,-2, DATE_TRUNC('week', DATE_TRUNC('day',GETDATE())) ))) AND ( table_redshift_payment.created_at  ) < ((DATEADD(week,3, DATEADD(week,-2, DATE_TRUNC('week', DATE_TRUNC('day',GETDATE())) ) ))))) AND (table_redshift_payment.year ) in ('2021','2022') AND (table_redshift_payment.month ) IN (12,1)
+      WHERE (table_redshift_payment.status ) = 'confirmed' and (table_redshift_payment.year ) in ('2021','2022') AND (table_redshift_payment.month ) IN (12,1)
       GROUP BY
           1,
           2,
