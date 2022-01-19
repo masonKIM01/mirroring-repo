@@ -26,11 +26,11 @@ view: cashback_map {
       when b.cashback_rate >= 0.2 then '20~'
       end as cashback_rate,
       case
-      when b.checkout = 0 then '0'
-      when b.checkout < 10000 then '10,000'
-      when b.checkout between 10000 and 29999 then '30,000'
-      when b.checkout between 30000 and 49999 then '50,000'
-      when b.checkout between 50000 and 69999 then '70,000'
+      when b.checkout = 0 then 0
+      when b.checkout < 10000 then 10000
+      when b.checkout between 10000 and 29999 then 30000
+      when b.checkout between 30000 and 49999 then 50000
+      when b.checkout between 50000 and 69999 then 70000
       when b.checkout between 70000 and 99999 then '100,000'
       when b.checkout between 100000 and 149999 then '150,000'
       when b.checkout between 150000 and 199999 then '200,000'
