@@ -88,8 +88,8 @@ view: cashback_map {
   }
 
   dimension: checkout {
-    type: string
-    sql: ${TABLE}.checkout ;;
+    type: number
+    sql: ${TABLE}.checkout::numeric ;;
   }
 
   dimension: count_ {
