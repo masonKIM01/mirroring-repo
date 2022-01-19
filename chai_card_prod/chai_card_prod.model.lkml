@@ -23,6 +23,7 @@ explore: monthly_data_wocpa {}
 explore: daily_data {}
 explore: table_redshift_card {}
 explore: active_card {}
+explore: cashback_map {}
 explore: table_payment_union_analytics {
 
   join: table_redshift_boost {
