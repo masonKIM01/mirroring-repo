@@ -2,28 +2,28 @@ view: cashback_map {
   derived_table: {
     sql: select
       case
-      when b.cashback_rate = 0 then '0'
-      when b.cashback_rate < 0.01 then '1'
-      when b.cashback_rate between 0.01 and 0.019999 then '2'
-      when b.cashback_rate between 0.02 and 0.029999 then '3'
-      when b.cashback_rate between 0.03 and 0.039999 then '4'
-      when b.cashback_rate between 0.04 and 0.049999 then '5'
-      when b.cashback_rate between 0.05 and 0.059999 then '6'
-      when b.cashback_rate between 0.06 and 0.069999 then '7'
-      when b.cashback_rate between 0.07 and 0.079999 then '8'
-      when b.cashback_rate between 0.08 and 0.089999 then '9'
-      when b.cashback_rate between 0.09 and 0.099999 then '1'
-      when b.cashback_rate between 0.1 and 0.109999 then '10'
-      when b.cashback_rate between 0.11 and 0.119999 then '11'
-      when b.cashback_rate between 0.12 and 0.129999 then '12'
-      when b.cashback_rate between 0.13 and 0.139999 then '13'
-      when b.cashback_rate between 0.14 and 0.149999 then '14'
-      when b.cashback_rate between 0.15 and 0.159999 then '15'
-      when b.cashback_rate between 0.16 and 0.169999 then '16'
-      when b.cashback_rate between 0.17 and 0.179999 then '17'
-      when b.cashback_rate between 0.18 and 0.189999 then '18'
-      when b.cashback_rate between 0.19 and 0.199999 then '19'
-      when b.cashback_rate >= 0.2 then '20'
+      when b.cashback_rate = 0 then 0
+      when b.cashback_rate < 0.01 then 01
+      when b.cashback_rate between 0.01 and 0.019999 then 02
+      when b.cashback_rate between 0.02 and 0.029999 then 03
+      when b.cashback_rate between 0.03 and 0.039999 then 04
+      when b.cashback_rate between 0.04 and 0.049999 then 05
+      when b.cashback_rate between 0.05 and 0.059999 then 06
+      when b.cashback_rate between 0.06 and 0.069999 then 07
+      when b.cashback_rate between 0.07 and 0.079999 then 08
+      when b.cashback_rate between 0.08 and 0.089999 then 09
+      when b.cashback_rate between 0.09 and 0.099999 then 10
+      when b.cashback_rate between 0.1 and 0.109999 then 11
+      when b.cashback_rate between 0.11 and 0.119999 then 12
+      when b.cashback_rate between 0.12 and 0.129999 then 13
+      when b.cashback_rate between 0.13 and 0.139999 then 14
+      when b.cashback_rate between 0.14 and 0.149999 then 15
+      when b.cashback_rate between 0.15 and 0.159999 then 16
+      when b.cashback_rate between 0.16 and 0.169999 then 17
+      when b.cashback_rate between 0.17 and 0.179999 then 18
+      when b.cashback_rate between 0.18 and 0.189999 then 19
+      when b.cashback_rate between 0.19 and 0.199999 then 20
+      when b.cashback_rate >= 0.2 then '20~'
       end as cashback_rate,
       case
       when b.checkout = 0 then '0'
