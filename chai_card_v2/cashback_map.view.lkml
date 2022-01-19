@@ -43,7 +43,7 @@ view: cashback_map {
       when b.checkout between 1500000 and 1999999 then '1,500,000~2,000,000'
       when b.checkout >= 2000000 then '2,000,000~'
       end as checkout,
-      count(b.user_id)
+      b.user_id
       from
       (
       select
@@ -64,8 +64,6 @@ view: cashback_map {
         group by 1
         )a
       )b
-      group by 1,2
-      order by 1,2
        ;;
   }
 
@@ -74,9 +72,19 @@ view: cashback_map {
     drill_fields: [detail*]
   }
 
+  measure: users {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
   dimension: cashback_rate {
     type: string
     sql: ${TABLE}.cashback_rate ;;
+  }
+
+  dimension: user_id {
+    type: string
+    sql: ${TABLE}.user_id ;;
   }
 
   dimension: checkout {
@@ -90,6 +98,6 @@ view: cashback_map {
   }
 
   set: detail {
-    fields: [cashback_rate, checkout, count_]
+    fields: [user_id, cashback_rate, checkout, count_]
   }
 }
