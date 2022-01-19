@@ -26,22 +26,22 @@ view: cashback_map {
       when b.cashback_rate >= 0.2 then '20~'
       end as cashback_rate,
       case
-      when b.checkout = 0 then '0'::numeric
-      when b.checkout < 10000 then '10000'::numeric
-      when b.checkout between 10000 and 29999 then '30000'::numeric
-      when b.checkout between 30000 and 49999 then '50000'::numeric
-      when b.checkout between 50000 and 69999 then '70000'::numeric
-      when b.checkout between 70000 and 99999 then '100000'::numeric
-      when b.checkout between 100000 and 149999 then '150000'::numeric
-      when b.checkout between 150000 and 199999 then '200000'::numeric
-      when b.checkout between 200000 and 249999 then '250000'::numeric
-      when b.checkout between 250000 and 299999 then '300000'::numeric
-      when b.checkout between 300000 and 499999 then '500000'::numeric
-      when b.checkout between 500000 and 699999 then '700000'::numeric
-      when b.checkout between 700000 and 999999 then '1000000'::numeric
-      when b.checkout between 1000000 and 1499999 then '1500000'::numeric
-      when b.checkout between 1500000 and 1999999 then '2000000'::numeric
-      when b.checkout >= 2000000 then '2000001'::numeric
+      when b.checkout = 0 then '0'
+      when b.checkout < 10000 then '0.010000'
+      when b.checkout between 10000 and 29999 then '0.030000'
+      when b.checkout between 30000 and 49999 then '0.050000'
+      when b.checkout between 50000 and 69999 then '0.070000'
+      when b.checkout between 70000 and 99999 then '0.100000'
+      when b.checkout between 100000 and 149999 then '0.150000'
+      when b.checkout between 150000 and 199999 then '0.200000'
+      when b.checkout between 200000 and 249999 then '0.250000'
+      when b.checkout between 250000 and 299999 then '0.300000'
+      when b.checkout between 300000 and 499999 then '0.500000'
+      when b.checkout between 500000 and 699999 then '0.700000'
+      when b.checkout between 700000 and 999999 then '1000000'
+      when b.checkout between 1000000 and 1499999 then '1500000'
+      when b.checkout between 1500000 and 1999999 then '2000000'
+      when b.checkout >= 2000000 then '2000001'
       end as checkout,
       b.user_id
       from
