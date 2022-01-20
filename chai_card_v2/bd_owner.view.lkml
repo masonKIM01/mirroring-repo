@@ -56,6 +56,7 @@ view: bd_owner {
         select '2022-01-01' as months, '카카오헤어샵' as merchant_name, '8,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '3000' as contract, '0' as CPA_done, 'MJ' as owner union all
         select '2022-01-01' as months, '쏘카' as merchant_name, '70% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '3500' as contract, '0' as CPA_done, 'Kevin' as owner union all
         select '2022-01-01' as months, '윙잇' as merchant_name, '10,000원 캐시백' as title, 'CPA' as type, '0' as merchant_ratio, '14000' as contract, '0' as CPA_done, 'Kevin' as owner union all
+        select '2022-01-01' as months, '윙잇' as merchant_name, '15,000원 캐시백' as title, 'CPA' as type, '0' as merchant_ratio, '14000' as contract, '0' as CPA_done, 'Kevin' as owner union all
         select '2022-01-01' as months, '데일리샷' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done, 'Groot' as owner union all
         select '2022-01-01' as months, '마미' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done, 'Cloe' as owner union all
         select '2022-01-01' as months, '티몬' as merchant_name, '10% 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '0' as contract, '0' as CPA_done, 'Groot' as owner union all
