@@ -16,6 +16,7 @@ view: bd_owner {
       inner join
       (
         select '2022-01-01' as months, '한섬EQL' as merchant_name, '20,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '10000' as contract, '0' as CPA_done , 'Cloe' as owner union all
+        select '2022-01-01' as months, '한섬EQL' as merchant_name, '15,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '7000' as contract, '0' as CPA_done , 'Cloe' as owner union all
         select '2022-01-01' as months, '프립' as merchant_name, '10,000원 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '10000' as contract, '0' as CPA_done , 'Kevin' as owner union all
         select '2022-01-01' as months, '펫프렌즈' as merchant_name, '50% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1500' as contract, '0' as CPA_done , 'Kevin' as owner union all
         select '2022-01-01' as months, '크로켓' as merchant_name, '7,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '7000' as contract, '0' as CPA_done , 'Cloe' as owner union all
@@ -58,6 +59,8 @@ view: bd_owner {
         select '2022-01-01' as months, '데일리샷' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done, 'Groot' as owner union all
         select '2022-01-01' as months, '마미' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done, 'Cloe' as owner union all
         select '2022-01-01' as months, '티몬' as merchant_name, '10% 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '0' as contract, '0' as CPA_done, 'Groot' as owner
+        select '2022-01-01' as months, 'GS프레시몰' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done, 'Cloe' as owner union all
+        select '2022-01-01' as months, '위메프' as merchant_name, '4,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1600' as contract, '0' as CPA_done, 'Cloe' as owener
       )ad on ad.merchant_name = b2.name and to_char(p.created_at, 'yyyy-mm-01') = ad.months and ad.title = bpp.title
       where p.year = '2022'
       and p.status = 'confirmed'
