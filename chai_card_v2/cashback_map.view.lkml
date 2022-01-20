@@ -60,7 +60,7 @@ view: cashback_map {
         where p.status = 'confirmed'
         and p.year = '2022'
         and p.month = '1'
-        and m.name = '차이카드'
+        and m.name = '차이 체크카드'
         group by 1
         )a
       )b
