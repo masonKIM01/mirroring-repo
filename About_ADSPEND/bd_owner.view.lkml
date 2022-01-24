@@ -64,7 +64,7 @@ view: bd_owner {
         select '2022-01-01' as months, 'GS프레시몰' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done, 'Cloe' as owner union all
         select '2022-01-01' as months, '위메프' as merchant_name, '4,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1600' as contract, '0' as CPA_done, 'Cloe' as owner union all
         select '2022-01-01' as months, '더반찬' as merchant_name, '12,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '6000' as contract, '0' as CPA_done, 'Cloe' as owner union all
-        select '2022-01-01' as months, '티몬' as merchant_name, '15% 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '0' as contract, '0' as CPA_done, 'Groot' as owner union all
+        select '2022-01-01' as months, '티몬' as merchant_name, '15% 캐시백' as title, 'ROAS' as type, '0.33' as merchant_ratio, '0' as contract, '0' as CPA_done, 'Groot' as owner union all
         select '2022-01-01' as months, '아이엠택시' as merchant_name, '50% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '8000' as contract, '0' as CPA_done, 'Gatsby' as owner union all
   select '2022-01-01' as months, '롯데슈퍼' as merchant_name, '15,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '7000' as contract, '0' as CPA_done, 'MJ' as owner
       )ad on ad.merchant_name = b2.name and to_char(p.created_at, 'yyyy-mm-01') = ad.months and ad.title = bpp.title
