@@ -240,7 +240,8 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
   select '2022-01-01' as months, 'GS프레시몰' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '5000' as contract, '0' as CPA_done union all
   select '2022-01-01' as months, '위메프' as merchant_name, '4,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '1600' as contract, '0' as CPA_done union all
   select '2022-01-01' as months, '더반찬' as merchant_name, '12,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '6000' as contract, '0' as CPA_done union all
-  select '2022-01-01' as months, '티몬' as merchant_name, '15% 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '0' as contract, '0' as CPA_done
+  select '2022-01-01' as months, '티몬' as merchant_name, '15% 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '0' as contract, '0' as CPA_done union all
+  select '2022-01-01' as months, '아이엠택시' as merchant_name, '40% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '8000' as contract, '0' as CPA_done
   ;;
   }
 
