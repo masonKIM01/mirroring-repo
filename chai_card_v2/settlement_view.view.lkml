@@ -18,6 +18,16 @@ view: settlement_view {
     drill_fields: [detail*]
   }
 
+  measure: count_item {
+    type: count_distinct
+    sql: case when ${TABLE}.event_type = 'view_boost_item' then ${TABLE}.count end ;;
+  }
+
+  measure: count_detail {
+    type: count_distinct
+    sql: case when ${TABLE}.event_type = 'view_boost_detail' then ${TABLE}.count end ;;
+  }
+
   dimension: event_type {
     type: string
     sql: ${TABLE}.event_type ;;
