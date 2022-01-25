@@ -49,11 +49,6 @@ view: settlement_v2 {
     sql: ${TABLE}.boosttxvolume ;;
   }
 
-  measure: sum_ad_spend {
-    type: sum
-    sql: ${TABLE}.boosttxvolume;;
-  }
-
   measure: sum_cashback {
     type: sum
     sql: ${TABLE}.cashback;;
