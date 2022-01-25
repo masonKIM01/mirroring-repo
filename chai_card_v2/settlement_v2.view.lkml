@@ -34,6 +34,11 @@ view: settlement_v2 {
     drill_fields: [detail*]
   }
 
+  measure: count_boost {
+    type: count_distinct
+    sql: ${TABLE}.boostscheme ;;
+  }
+
   measure: sum_checkout_amount {
     type: sum
     sql: ${TABLE}.txvolume ;;
