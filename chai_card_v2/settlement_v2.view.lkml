@@ -44,6 +44,11 @@ view: settlement_v2 {
     sql: ${TABLE}.txvolume ;;
   }
 
+  measure: sum_boostTx {
+    type: sum
+    sql: ${TABLE}.boosttxvolume ;;
+  }
+
   measure: sum_ad_spend {
     type: sum
     sql: ${TABLE}.boosttxvolume;;
