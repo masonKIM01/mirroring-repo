@@ -34,8 +34,28 @@ view: settlement_v2 {
     drill_fields: [detail*]
   }
 
-  dimension: date {
-    type: date
+  measure: sum_checkout_amount {
+    type: sum
+    sql: ${TABLE}.txvolume ;;
+  }
+
+  measure: sum_ad_spend {
+    type: sum
+    sql: ${TABLE}.boosttxvolume;;
+  }
+
+  measure: sum_cashback {
+    type: sum
+    sql: ${TABLE}.cashback;;
+  }
+
+  measure: sum_adspend {
+    type: sum
+    sql: ${TABLE}.adspend;;
+  }
+
+  dimension_group: date {
+    type: time
     sql: ${TABLE}.date ;;
   }
 
@@ -121,7 +141,7 @@ view: settlement_v2 {
 
   set: detail {
     fields: [
-      date,
+      date_date,
       type,
       boostname,
       boostscheme,
