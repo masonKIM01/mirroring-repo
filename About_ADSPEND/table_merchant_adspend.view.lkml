@@ -211,7 +211,7 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
   select '2022-01-01' as months, '원데이즈유' as merchant_name, '26,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '20000' as contract, '0' as CPA_done union all
   select '2022-01-01' as months, '여기어때' as merchant_name, '7,000원 캐시백' as title, 'CPA' as type, '0' as merchant_ratio, '15000' as contract, '0' as CPA_done union all
   select '2022-01-01' as months, '에이블리' as merchant_name, '6,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '3000' as contract, '0' as CPA_done union all
-  select '2022-01-01' as months, '어바웃펫' as merchant_name, '10,000원 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '5000' as contract, '0' as CPA_done union all
+  select '2022-01-01' as months, '어바웃펫' as merchant_name, '10,000원 캐시백' as title, 'ROAS' as type, '0.5' as merchant_ratio, '6500' as contract, '0' as CPA_done union all
   select '2022-01-01' as months, '아이니유' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '6500' as contract, '0' as CPA_done union all
   select '2022-01-01' as months, '아워홈' as merchant_name, '60% 캐시백' as title, 'ROAS' as type, '0.4' as merchant_ratio, '0' as contract, '0' as CPA_done union all
   select '2022-01-01' as months, '아워홈' as merchant_name, '6,000원 캐시백' as title, 'ROAS' as type, '0.4' as merchant_ratio, '0' as contract, '0' as CPA_done union all
