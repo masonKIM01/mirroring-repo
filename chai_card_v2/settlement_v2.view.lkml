@@ -17,6 +17,7 @@ view: settlement_v2 {
       case when m.name like '%카드%' then split_part(split_part(p.data, 'cardMerchantName":', 2),'"',2) else m.name end as merchantName,
       p.id as payment_id,
       m.id as merchant_id,
+      b.id as boost_id,
       p.user_id
       from chai_card_chai_prod_public.payment p
       inner join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
@@ -36,7 +37,7 @@ view: settlement_v2 {
 
   measure: count_boost {
     type: count_distinct
-    sql: ${TABLE}.boostscheme ;;
+    sql: ${TABLE}.boost_id ;;
   }
 
   measure: sum_checkout_amount {
@@ -131,6 +132,7 @@ view: settlement_v2 {
 
   dimension: payment_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.payment_id ;;
   }
 
@@ -142,6 +144,11 @@ view: settlement_v2 {
   dimension: user_id {
     type: string
     sql: ${TABLE}.user_id ;;
+  }
+
+  dimension: boost_id {
+    type: string
+    sql: ${TABLE}.boost_id ;;
   }
 
   set: detail {
@@ -162,7 +169,8 @@ view: settlement_v2 {
       merchantname,
       payment_id,
       merchant_id,
-      user_id
+      user_id,
+      boost_id
     ]
   }
 }
