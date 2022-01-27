@@ -263,8 +263,8 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
   select '2022-01-01' as months, '더반찬' as merchant_name, '12,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '6000' as contract, '0' as CPA_done union all
   select '2022-01-01' as months, '티몬' as merchant_name, '15% 캐시백' as title, 'ROAS' as type, '0.33' as merchant_ratio, '0' as contract, '0' as CPA_done union all
   select '2022-01-01' as months, '아이엠택시' as merchant_name, '50% 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '8000' as contract, '0' as CPA_done union all
-  select '2022-01-01' as months, '롯데슈퍼' as merchant_name, '15,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '7000' as contract, '0' as CPA_done
-  )
+  select '2022-01-01' as months, '롯데슈퍼' as merchant_name, '15,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '7000' as contract, '0' as CPA_done union all
+  select '2022-01-01' as months, '아이디어스' as merchant_name, '10,000원 캐시백' as title, 'CPS' as type, '0' as merchant_ratio, '3500' as contract, '0' as CPA_done)
       SELECT * FROM (
       SELECT
           date(table_redshift_payment.created_at) AS "table_redshift_payment.created_at",
