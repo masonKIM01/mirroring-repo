@@ -18,6 +18,11 @@ view: settlement_view {
     drill_fields: [detail*]
   }
 
+  measure: view {
+    type: sum
+    sql: ${TABLE}.count ;;
+  }
+
   measure: count_item {
     type: count_distinct
     sql: case when ${TABLE}.event_type = 'view_boost_item' then ${TABLE}.count end ;;
@@ -40,6 +45,7 @@ view: settlement_view {
 
   dimension: name {
     type: string
+    primary_key: yes
     sql: ${TABLE}.name ;;
   }
 
