@@ -118,9 +118,9 @@ explore: table_payment {
     relationship: many_to_one
   }
 
-  join: table_boost_campaign_ad_spend {
+  join: table_ad_spend_v2{
     type: left_outer
-    sql_on: ${table_boost_campaign_ad_spend.boost_campaign_id} = ${table_redshift_boost.boost_campaign_id} ;;
+    sql_on: ${table_ad_spend_v2.id} = ${table_payment.id} ;;
     relationship: many_to_one
  }
 }
