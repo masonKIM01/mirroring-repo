@@ -97,7 +97,7 @@ explore: table_payment {
   join: table_redshift_boost {
     type: left_outer
     sql_on:  ${table_redshift_boost.payment_id} = ${table_payment.id} ;;
-    relationship: many_to_one
+    relationship: one_to_many
   }
 
   join: table_redshift_merchant {
@@ -121,6 +121,6 @@ explore: table_payment {
   join: table_ad_spend_v2{
     type: left_outer
     sql_on: ${table_ad_spend_v2.id} = ${table_payment.id} ;;
-    relationship: many_to_one
+    relationship: one_to_many
  }
 }
