@@ -4,6 +4,7 @@ view: table_ad_spend_v2 {
       b.payment_id,
       case when ad.type = 'cps' then ad.unit_price when ad.type = 'ratio' then ad.ratio * 0.01 * p.cashback_amount end as ad_spend
       from chai_card_chai_prod_public.boost b
+      inner join chai_card_chai_prod_public.payment p on p.id = b.payment_id
       inner join chai_card_chai_prod_public.boost_campaign_ad_spend ad on ad.boost_campaign_id = b.boost_campaign_id
  ;;
   }
