@@ -1,10 +1,9 @@
 view: table_ad_spend_v2 {
   derived_table: {
     sql: select distinct
-      p.id,
+      b.payment_id,
       case when ad.type = 'cps' then ad.unit_price when ad.type = 'ratio' then ad.ratio * 0.01 * p.cashback_amount end as ad_spend
-      from chai_card_chai_prod_public.payment p
-      inner join chai_card_chai_prod_public.boost b on b.payment_id = p.id
+      from chai_card_chai_prod_public.boost b
       inner join chai_card_chai_prod_public.boost_campaign_ad_spend ad on ad.boost_campaign_id = b.boost_campaign_id
  ;;
   }
@@ -19,7 +18,7 @@ view: table_ad_spend_v2 {
     sql: ${TABLE}.ad_spend ;;
   }
 
-  dimension: id {
+  dimension: payment_id {
     type: string
     primary_key: yes
     sql: ${TABLE}.id ;;
@@ -31,6 +30,6 @@ view: table_ad_spend_v2 {
   }
 
   set: detail {
-    fields: [id, ad_spend]
+    fields: [payment_id, ad_spend]
   }
 }

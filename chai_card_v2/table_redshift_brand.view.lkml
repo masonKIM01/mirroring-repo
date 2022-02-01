@@ -13,6 +13,7 @@ view: table_redshift_brand {
 
   dimension: id {
     type: number
+    primary_key: yes
     sql: ${TABLE}.id ;;
   }
 
