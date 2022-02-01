@@ -22,7 +22,7 @@ view: table_ad_spend_v2 {
   dimension: payment_id {
     type: string
     primary_key: yes
-    sql: ${TABLE}.id ;;
+    sql: ${TABLE}.payment_id ;;
   }
 
   dimension: ad_spend {
