@@ -10,6 +10,21 @@ view: table_payment {
     drill_fields: [detail*]
   }
 
+  measure: count_user {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
+  measure: total_checkout_amount {
+    type: sum
+    sql: coalesce(${checkout_amount},0) ;;
+  }
+
+  measure: total_cashback_amount {
+    type: sum
+    sql: coalesce(${cashback_amount},0) ;;
+  }
+
   dimension: id {
     type: string
     primary_key: yes
