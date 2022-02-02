@@ -3,7 +3,7 @@ view: table_adspend_owner {
     sql: select '주붕샵' as merchant_name, 'Groot' as owner union all
       select '아이니유' as merchant_name, 'Groot' as owner union all
       select '그린카' as merchant_name, 'Kevin' as owner union all
-      select '위메프오' as merchant_name, 'cloe' as owner union all
+      select '위메프오' as merchant_name, 'Cloe' as owner union all
       select '뮬라웨어' as merchant_name, 'Cloe' as owner union all
       select '젝시믹스' as merchant_name, 'Kevin' as owner union all
       select '펫프렌즈' as merchant_name, 'Kevin' as owner union all
@@ -29,7 +29,7 @@ view: table_adspend_owner {
       select '마켓컬리' as merchant_name, 'Cloe' as owner union all
       select '텐바이텐' as merchant_name, 'Kevin' as owner union all
       select '캐치패션' as merchant_name, 'Cloe' as owner union all
-      select '카모아' as merchant_name, 'Owen' as owner union all
+      select '카모아' as merchant_name, 'NULL' as owner union all
       select 'aj전시몰' as merchant_name, 'Cloe' as owner union all
       select '프립' as merchant_name, 'Kevin' as owner union all
       select '지니' as merchant_name, 'Kevin' as owner union all
@@ -65,7 +65,8 @@ view: table_adspend_owner {
       select '룩핀' as merchant_name, 'Cloe' as owner union all
       select '크로켓' as merchant_name, 'Cloe' as owner union all
       select '스타일씨' as merchant_name, 'Cloe' as owner union all
-      select '라스트오더' as merchant_name, 'Gatsby' as owner
+      select '라스트오더' as merchant_name, 'Gatsby' as owner union all
+      select '요기요' as merchant_name, 'NULL' as owner
        ;;
   }
 
