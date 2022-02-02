@@ -123,4 +123,10 @@ explore: table_payment {
     sql_on: ${table_ad_spend_v2.payment_id} = ${table_payment.id} ;;
     relationship: one_to_one
  }
+
+  join: table_adspend_owner {
+    type: left_outer
+    sql_on: ${table_redshift_brand.name} = ${table_adspend_owner.merchant_name} ;;
+    relationship: many_to_one
+  }
 }
