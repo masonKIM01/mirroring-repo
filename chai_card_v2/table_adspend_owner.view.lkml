@@ -30,7 +30,7 @@ view: table_adspend_owner {
       select '텐바이텐' as merchant_name, 'Kevin' as owner union all
       select '캐치패션' as merchant_name, 'Cloe' as owner union all
       select '카모아' as merchant_name, 'Owen' as owner union all
-      select 'AJ전시몰' as merchant_name, 'Cloe' as owner union all
+      select 'aj전시몰' as merchant_name, 'Cloe' as owner union all
       select '프립' as merchant_name, 'Kevin' as owner union all
       select '지니' as merchant_name, 'Kevin' as owner union all
       select '술담화' as merchant_name, 'Kevin' as owner union all
@@ -61,7 +61,7 @@ view: table_adspend_owner {
       select '슬림나인' as merchant_name, 'Groot' as owner union all
       select '아로마티카' as merchant_name, 'Groot' as owner union all
       select '핑크테이블' as merchant_name, 'Groot' as owner union all
-      select '무신사솔드아웃' as merchant_name, 'Cloe' as owner union all
+      select '솔드아웃' as merchant_name, 'Cloe' as owner union all
       select '룩핀' as merchant_name, 'Cloe' as owner union all
       select '크로켓' as merchant_name, 'Cloe' as owner union all
       select '스타일씨' as merchant_name, 'Cloe' as owner union all
