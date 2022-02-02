@@ -4,7 +4,7 @@ view: bd_owner {
       x.*,
       case when x.type ='CPS' then x.contract * x.boost
       when x.type ='CPA' then 0.2 * x.contract * x.boost
-      when x.type = 'ROAS' then x.merchant_ratio::decimal(2,1) * cashback_amount
+      when x.type = 'ROAS' then x.merchant_ratio::decimal(2,2) * cashback_amount
       end as ad_spend
       from
       (select
