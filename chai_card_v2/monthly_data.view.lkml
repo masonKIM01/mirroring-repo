@@ -243,7 +243,7 @@ view: monthly_data {
                 and table_redshift_boost_promotion_policy.title = table_merchant_adspend.title
                 and (table_redshift_payment.months) = (table_merchant_adspend.months)
 
-      WHERE (table_redshift_payment.status ) = 'confirmed' AND (table_redshift_payment.year) = 2021
+      WHERE (table_redshift_payment.status ) = 'confirmed' AND (table_redshift_payment.year) in (2021,2022)
       AND (table_redshift_payment.created_at) >= '2021-10-15'
       GROUP BY
           1,
