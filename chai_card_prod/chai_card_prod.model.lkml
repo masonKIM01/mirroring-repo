@@ -21,6 +21,7 @@ explore: bolt_draw_report {}
 explore: monthly_data {}
 explore: monthly_data_wocpa {}
 explore: daily_data {}
+explore: plcc_first_time_payment {}
 explore: table_redshift_card {}
 explore: active_card {}
 explore: settlement_v2 {}
