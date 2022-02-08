@@ -1,6 +1,11 @@
 view: table_redshift_merchant {
   derived_table: {
-    sql: select *, case when name = '차이 체크카드' then 'card' else 'ewallet' end as type
+    sql:
+      select
+      *,
+      case when name = '차이 체크카드' then 'check_card'
+      when name = '차이 신용카드' then 'credit_card'
+      else 'ewallet' end as type
       from chai_card_chai_prod_public.merchant
        ;;
   }
