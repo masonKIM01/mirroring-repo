@@ -20,6 +20,17 @@ view: table_user {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: age_group {
+    type: string
+    sql:
+    case when ${table_user.birthday}>= 2023 then "10대"
+    when ${table_user.birthday} < 2023 AND ${table_user.birthday} >= 1993 then "20대"
+    when ${table_user.birthday}< 1993 AND ${table_user.birthday} >= 1983 then "30대"
+    when ${table_user.birthday}<1983 AND ${table_user.birthday}>=1973 then "40대"
+    else "50대이상"
+    end ;;
+  }
+
   dimension_group: updated_at {
     type: time
     sql: ${TABLE}.updated_at ;;
@@ -87,6 +98,7 @@ view: table_user {
       created_at_time,
       status,
       gender,
+      age_group,
       deleted_at_time,
       required_actions,
       data,
