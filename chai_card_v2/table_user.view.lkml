@@ -10,6 +10,11 @@ view: table_user {
     drill_fields: [detail*]
   }
 
+  measure: count_user {
+    type: count_distinct
+    sql: ${TABLE}.id ;;
+  }
+
   dimension: id {
     type: string
     sql: ${TABLE}.id ;;
