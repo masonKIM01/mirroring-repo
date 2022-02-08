@@ -119,6 +119,12 @@ explore: table_payment {
     relationship: many_to_one
   }
 
+  join: table_user {
+    type: left_outer
+    sql_on: ${table_user.id} = ${table_payment.user_id} ;;
+    relationship: many_to_one
+  }
+
   join: table_ad_spend_v2{
     type: left_outer
     sql_on: ${table_ad_spend_v2.payment_id} = ${table_payment.id} ;;
