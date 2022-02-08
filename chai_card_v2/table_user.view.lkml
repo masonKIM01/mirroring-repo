@@ -27,7 +27,7 @@ view: table_user {
     when ${table_user.birthday} < 2023 AND ${table_user.birthday} >= 1993 then '20대'
     when ${table_user.birthday}< 1993 AND ${table_user.birthday} >= 1983 then '30대'
     when ${table_user.birthday}<1983 AND ${table_user.birthday}>=1973 then '40대'
-    else "50대이상"
+    else '50대이상'
     end ;;
   }
 
