@@ -66,7 +66,9 @@ view: table_adspend_owner {
       select '크로켓' as merchant_name, 'Cloe' as owner union all
       select '스타일씨' as merchant_name, 'Cloe' as owner union all
       select '라스트오더' as merchant_name, 'Gatsby' as owner union all
-      select '요기요' as merchant_name, 'NULL' as owner
+      select '요기요' as merchant_name, 'NULL' as owner union all
+      select '더반찬' as merchant_name, 'Cloe' as owner union all
+      select '하트노트' as merchant_name, 'NULL' as owner
        ;;
   }
 
