@@ -66,7 +66,7 @@ view: table_user {
   }
 
   dimension: birthday {
-    type: string
+    type: number
     sql: ${TABLE}.birthday ;;
   }
 
