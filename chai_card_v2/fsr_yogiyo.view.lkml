@@ -26,7 +26,7 @@ view: fsr_yogiyo {
       inner join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
       inner join chai_card_chai_prod_public.boost b on b.payment_id = p.id
       inner join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-      innwe join chai_card_chai_prod_puplic.brand b2 on b2.id = bpp.brand_id
+      inner join chai_card_chai_prod_puplic.brand b2 on b2.id = bpp.brand_id
       inner join chai_card_chai_prod_public.boost_campaign_ad_spend ad on ad.boost_campaign_id = b.boost_campaign_id
       where p.year = '2022'
       and b2.name = '요기요'
