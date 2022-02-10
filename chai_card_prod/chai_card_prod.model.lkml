@@ -16,6 +16,7 @@ explore: table_adspend_dec {}
 explore: table_merchant_adspend {}
 explore: table_union_all_payment {}
 explore: bd_owner {}
+explore: fsr_yogiyo {}
 explore: ad_spend_view {}
 explore: bolt_draw_report {}
 explore: monthly_data {}
