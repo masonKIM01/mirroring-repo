@@ -28,7 +28,6 @@ view: fsr_yogiyo {
       left join chai_card_chai_prod_public.boost_campaign_ad_spend ad on ad.boost_campaign_id = b.boost_campaign_id
       where p.year = '2022'
       and bpp.sub_title like '%요기%'
-      and date(p.created_at) = date(current_date-1)
        ;;
   }
 
