@@ -28,6 +28,7 @@ explore: active_card {}
 explore: settlement_v2 {}
 explore: settlement_view {}
 explore: cashback_map {}
+explore: cashback_map_credit {}
 explore: table_payment_union_analytics {
 
   join: table_redshift_boost {
