@@ -53,10 +53,11 @@ view: cashback_map_credit {
       from
         (select
           p.user_id,
-          sum(p.cashback_amount) as cashback,
+          sum(ch.cashback_delta) as cashback,
           sum(p.checkout_amount) as checkout
         from chai_card_chai_prod_public.payment p
         inner join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
+        left join chai_card_chai_prod_public.delayed_cashback_history ch on ch.payment_id = p.id
         where p.status = 'confirmed'
         and p.year = '2022'
         and p.month = '2'
