@@ -49,7 +49,7 @@ view: cashback_map_credit {
       select
         a.user_id,
         a.checkout,
-        trunc(1.0* a.cashback / a.checkout,3) as cashback_rate
+        coalesce(trunc(1.0* a.cashback / a.checkout,3),0) as cashback_rate
       from
         (select
           p.user_id,
