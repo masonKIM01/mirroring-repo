@@ -99,6 +99,12 @@ explore: table_redshift_payment {
     sql_on: ${table_redshift_payment.id} = ${table_delayed_cashback.payment_id} ;;
     relationship: many_to_one
   }
+
+  join: table_ad_spend_v2{
+    type: left_outer
+    sql_on: ${table_ad_spend_v2.payment_id} = ${table_redshift_payment.id} ;;
+    relationship: one_to_one
+  }
 }
 
 explore: table_payment {
