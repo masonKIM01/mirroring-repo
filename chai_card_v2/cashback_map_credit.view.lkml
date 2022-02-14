@@ -75,7 +75,7 @@ view: cashback_map_credit {
 
   measure: users {
     type: count_distinct
-    sql: ${TABLE}.user_id ;;
+    sql: coalesce(${TABLE}.user_id,0) ;;
   }
 
   dimension: cashback_rate {
