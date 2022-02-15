@@ -56,7 +56,7 @@ view: table_adspend_owner {
       select '롯데슈퍼' as merchant_name, 'MJ' as owner union all
       select '아로마트러플' as merchant_name, 'Cloe' as owner union all
       select '아이디어스' as merchant_name, 'Cloe' as owner union all
-      select '배스킨라빈스' as merchant_name, 'Gatsby' as owner union all
+      select 'Flow 도곡/위례점' as merchant_name, 'Gatsby' as owner union all
       select '오아' as merchant_name, 'Gatsby' as owner union all
       select '슬림나인' as merchant_name, 'Groot' as owner union all
       select '아로마티카' as merchant_name, 'Groot' as owner union all
