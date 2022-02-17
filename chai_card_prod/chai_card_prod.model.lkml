@@ -173,7 +173,7 @@ explore: table_plcc {
 
   join: table_user {
     type: left_outer
-    sql_on: ${table_card_user.id} = ${table_korea_spec.user_id} ;;
+    sql_on: ${table_user.id} = ${table_korea_spec.user_id} ;;
     relationship: many_to_one
   }
 }
