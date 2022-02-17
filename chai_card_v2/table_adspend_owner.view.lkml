@@ -70,8 +70,8 @@ view: table_adspend_owner {
       select '더반찬' as merchant_name, 'Cloe' as owner union all
       select '하트노트' as merchant_name, 'NULL' as owner union all
       select '그리팅몰' as merchant_name, 'MJ' as owner union all
-      select '집꾸미기' as merchant_name, 'MJ' as owner
-       ;;
+      select '집꾸미기' as merchant_name, 'MJ' as owner union all
+      select '현대백화점투홈' as merchant_name, 'Cloe' as owner;;
   }
 
   measure: count {
