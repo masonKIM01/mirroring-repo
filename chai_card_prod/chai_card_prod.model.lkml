@@ -27,7 +27,6 @@ explore: table_redshift_card {}
 explore: active_card {}
 explore: settlement_v2 {}
 explore: settlement_view {}
-explore: table_plcc {}
 explore: cashback_map {}
 explore: cashback_map_credit {}
 explore: table_payment_union_analytics {
@@ -156,5 +155,25 @@ explore: table_payment {
     type: left_outer
     sql_on: ${table_payment.id} = ${table_delayed_cashback.payment_id} ;;
     relationship: one_to_one
+  }
+}
+
+explore: table_plcc {
+  join: table_card_user {
+    type: left_outer
+    sql_on: ${table_plcc.user_id} = ${table_card_user.id} ;;
+    relationship: many_to_one
+  }
+
+  join: table_korea_spec {
+    type: left_outer
+    sql_on: ${table_korea_spec.ci}= ${table_card_user.ci} ;;
+    relationship: many_to_one
+  }
+
+  join: table_user {
+    type: left_outer
+    sql_on: ${table_card_user.id} = ${table_korea_spec.user_id} ;;
+    relationship: many_to_one
   }
 }
