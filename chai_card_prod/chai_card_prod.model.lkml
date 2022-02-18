@@ -157,6 +157,12 @@ explore: table_payment {
     sql_on: ${table_payment.id} = ${table_delayed_cashback.payment_id} ;;
     relationship: one_to_one
   }
+
+  join: table_plcc_user {
+    type: left_outer
+    sql_on: ${table_payment.user_id} = ${table_plcc_user.user_id} ;;
+    relationship: one_to_one
+  }
 }
 
 explore: table_plcc {
