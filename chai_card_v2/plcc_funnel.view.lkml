@@ -22,17 +22,17 @@ view: plcc_funnel {
     drill_fields: [detail*]
   }
 
-  measure: apply_users {
+  measure: apply {
     type: sum
     sql: ${TABLE}.apply_user ;;
   }
 
-  measure: confirmed_users {
+  measure: confirmed {
     type: sum
     sql: ${TABLE}.confirmed_user ;;
   }
 
-  measure: payment_users {
+  measure: payment {
     type: sum
     sql: ${TABLE}.payment_user ;;
   }
