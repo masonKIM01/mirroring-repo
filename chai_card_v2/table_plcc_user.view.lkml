@@ -13,6 +13,11 @@ view: table_plcc_user {
     drill_fields: [detail*]
   }
 
+  measure: count_user {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
   dimension: user_id {
     type: string
     sql: ${TABLE}.user_id ;;
