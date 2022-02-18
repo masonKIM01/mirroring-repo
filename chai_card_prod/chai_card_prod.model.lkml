@@ -183,4 +183,59 @@ explore: table_plcc {
     sql_on: ${table_user.id} = ${table_korea_spec.user_id} ;;
     relationship: many_to_one
   }
+
+  join: table_payment {
+    type: left_outer
+    sql_on: ${table_payment.user_id} = ${table_user.id} ;;
+    relationship: many_to_one
+  }
+
+  join: table_redshift_merchant {
+    type: inner
+    sql_on: ${table_payment.merchant_id} = ${table_redshift_merchant.id} ;;
+    relationship: many_to_one
+  }
+
+  join: table_redshift_boost {
+    type: left_outer
+    sql_on:  ${table_redshift_boost.payment_id} = ${table_payment.id} ;;
+    relationship: many_to_one
+  }
+
+  join: table_redshift_boost_promotion_policy {
+    type: left_outer
+    sql_on:  ${table_redshift_boost_promotion_policy.id} = ${table_redshift_boost.boost_promotion_id} ;;
+    relationship: many_to_one
+  }
+
+  join: table_redshift_brand {
+    type: left_outer
+    sql_on: ${table_redshift_brand.id} = ${table_redshift_boost_promotion_policy.brand_id} ;;
+    relationship: many_to_one
+  }
+
+
+  join: table_ad_spend_v2{
+    type: left_outer
+    sql_on: ${table_ad_spend_v2.payment_id} = ${table_payment.id} ;;
+    relationship: one_to_one
+  }
+
+  join: table_adspend_owner {
+    type: left_outer
+    sql_on: ${table_redshift_brand.name} = ${table_adspend_owner.merchant_name} ;;
+    relationship: many_to_one
+  }
+
+  join: table_delayed_cashback {
+    type: left_outer
+    sql_on: ${table_payment.id} = ${table_delayed_cashback.payment_id} ;;
+    relationship: one_to_one
+  }
+
+  join: table_plcc_user {
+    type: left_outer
+    sql_on: ${table_payment.user_id} = ${table_plcc_user.user_id} ;;
+    relationship: one_to_one
+  }
 }
