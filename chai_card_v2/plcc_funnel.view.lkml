@@ -2,8 +2,8 @@ view: plcc_funnel {
   derived_table: {
     sql: select
         a.users as apply_user,
-        case when a.status = 'confirmed' then a.users as confirmed_user,
-        case when a.status = 'confirmed' then a.payment_user as payment_user
+        case when a.status = 'confirmed' then a.users end as confirmed_user,
+        case when a.status = 'confirmed' then a.payment_user end as payment_user
       from
       (select
             ca.status, count(distinct ca.user_id) as users, count(distinct case when p.status = 'confirmed' and m.name ='차이 신용카드' then p.user_id end) as payment_user
@@ -29,12 +29,12 @@ view: plcc_funnel {
 
   measure: confirmed_users {
     type: sum
-    sql: (${TABLE}.confirmed_user ;;
+    sql: ${TABLE}.confirmed_user ;;
   }
 
   measure: payment_users {
     type: sum
-    sql: (${TABLE}.payment_user ;;
+    sql: ${TABLE}.payment_user ;;
   }
 
   dimension: apply_user {
