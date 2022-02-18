@@ -1,7 +1,7 @@
 view: table_plcc_user {
   derived_table: {
     sql: select
-      ks.user_id, ca.created_at, ca.user_id as card_user_id, ca.year, ca.month
+      ks.user_id, ca.created_at, ca.status, ca.user_id as card_user_id, ca.year, ca.month
       from chai_card_chai_prod_public.korea_spec ks
       inner join chai_card_chai_prod_public.card_user cu on cu.ci = ks.ci
       inner join chai_card_plcc_public.card_application ca on ca.user_id = cu.id
@@ -28,6 +28,11 @@ view: table_plcc_user {
     sql: ${TABLE}.card_user_id ;;
   }
 
+  dimension: status {
+    type: string
+    sql: ${TABLE}.status ;;
+  }
+
   dimension: year {
     type: number
     sql: ${TABLE}.year ;;
@@ -39,6 +44,6 @@ view: table_plcc_user {
   }
 
   set: detail {
-    fields: [user_id, created_at_time, card_user_id, year, month]
+    fields: [user_id, created_at_time, card_user_id, status, year, month]
   }
 }
