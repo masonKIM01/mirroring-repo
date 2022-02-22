@@ -16,7 +16,8 @@ view: querylibrary {
       as merchantName,
       b2.name as boostName,
       case when bpp.type = 'standard' then '일반'
-      else '선착순' end as boost_type,
+      when bpp.type = 'fcfs' then '선착순'
+      else '' end as boost_type,
       bpp.title,
       p.idempotency_key,
       split_part(split_part(p.data,'approvalNo":',2),'"',2) as cardApporovalNo,
