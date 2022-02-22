@@ -144,7 +144,7 @@ explore: table_payment {
   join: table_ad_spend_v2{
     type: left_outer
     sql_on: ${table_ad_spend_v2.payment_id} = ${table_payment.id} ;;
-    relationship: one_to_one
+    relationship: many_to_one
  }
 
   join: table_adspend_owner {
