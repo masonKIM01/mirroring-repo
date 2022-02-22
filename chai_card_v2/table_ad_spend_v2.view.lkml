@@ -9,6 +9,9 @@ view: table_ad_spend_v2 {
       from chai_card_chai_prod_public.boost b
       inner join chai_card_chai_prod_public.payment p on p.id = b.payment_id
       inner join chai_card_chai_prod_public.boost_campaign_ad_spend ad on ad.boost_campaign_id = b.boost_campaign_id
+      and (
+  case when ad.end_at is not null then b.created_at between ad.start_at and ad.end_at
+  when ad.end_at is null then ad.start_at <= b.created_at end)
  ;;
   }
 
