@@ -19,7 +19,7 @@ view: table_ad_spend_v2 {
 
   measure: sum_ad_spend {
     type: sum
-    sql: ${TABLE}.ad_spend ;;
+    sql: coalesce(${TABLE}.ad_spend,0) ;;
   }
 
   dimension: payment_id {
