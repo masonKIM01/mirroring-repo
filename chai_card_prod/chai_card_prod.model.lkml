@@ -118,7 +118,7 @@ explore: table_payment {
   }
 
   join: table_redshift_merchant {
-    type: inner
+    type: left_outer
     sql_on: ${table_payment.merchant_id} = ${table_redshift_merchant.id} ;;
     relationship: many_to_one
   }
