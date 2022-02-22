@@ -74,7 +74,7 @@ view: querylibrary {
 
   measure: total_chai_credit {
     type: sum
-    sql: ${TABLE}.chai_credit ;;
+    sql: ${TABLE}.chaiCredit ;;
   }
 
   measure: users {
