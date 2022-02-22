@@ -82,7 +82,11 @@ view: querylibrary {
     sql: ${TABLE}.user_id  ;;
   }
 
-  measure: boost {}
+  measure: boost {
+    type: count_distinct
+    sql: ${TABLE}.boost_id ;;
+  }
+
   dimension: payment_type {
     type: string
     sql: ${TABLE}.payment_type ;;
