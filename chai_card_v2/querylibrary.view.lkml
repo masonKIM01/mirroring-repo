@@ -17,6 +17,7 @@ view: querylibrary {
       b2.name as boostName,
       case when bpp.type = 'standard' then '일반'
       else '선착순' end as boost_type,
+      bpp.title,
       p.idempotency_key,
       split_part(split_part(p.data,'approvalNo":',2),'"',2) as cardApporovalNo,
       coalesce(case when ad.type = 'cps' then ad.unit_price
@@ -131,6 +132,11 @@ view: querylibrary {
     sql: ${TABLE}.boostname ;;
   }
 
+  dimension: boost_title {
+    type: string
+    sql: ${TABLE}.title ;;
+  }
+
   dimension: boost_type {
     type: string
     sql: ${TABLE}.boost_type ;;
@@ -184,6 +190,7 @@ view: querylibrary {
       merchantname,
       boostname,
       boost_type,
+      boost_title,
       idempotency_key,
       cardapporovalno,
       adspend,
