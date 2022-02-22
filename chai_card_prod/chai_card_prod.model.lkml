@@ -150,7 +150,7 @@ explore: table_payment {
 
   join: table_adspend_owner {
     type: left_outer
-    sql_on: case when ${table_adspend_owner.merchant_name} = '맘스터치' then ${table_redshift_boost_promotion_policy.sub_title} = ${table_adspend_owner.merchant_name}
+    sql_on: case when ${table_adspend_owner.merchant_name} = '맘스터치 앱 주문 전용' then ${table_redshift_boost_promotion_policy.sub_title} = ${table_adspend_owner.merchant_name}
     else ${table_redshift_brand.name} = ${table_adspend_owner.merchant_name} end  ;;
     relationship: many_to_one
   }

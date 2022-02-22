@@ -72,7 +72,7 @@ view: table_adspend_owner {
       select '그리팅몰' as merchant_name, 'MJ' as owner union all
       select '집꾸미기' as merchant_name, 'MJ' as owner union all
       select '현대백화점투홈' as merchant_name, 'Cloe' as owner union all
-      select '맘스터치' as merchant_name, 'Gatsby' as owner;;
+      select '맘스터치 앱 주문 전용' as merchant_name, 'Gatsby' as owner;;
   }
 
   measure: count {
