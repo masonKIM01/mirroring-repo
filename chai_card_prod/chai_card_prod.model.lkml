@@ -28,6 +28,7 @@ explore: active_card {}
 explore: settlement_v2 {}
 explore: settlement_view {}
 explore: querylibrary {}
+explore: query_lib {}
 explore: cashback_map {}
 explore: cashback_map_credit {}
 explore: checkout_selectivity {}
