@@ -12,7 +12,7 @@ view: table_redshift_user {
 
   measure: count_user {
     type: count_distinct
-    sql: ${TABLE}.user_id ;;
+    sql: ${TABLE}.id ;;
   }
 
   dimension: id {
