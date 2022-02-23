@@ -8,7 +8,7 @@ view: plcc_funnel {
       from
       (select
             ca.status,
-            count(distinct eb.user_id) as early_birds,
+            count(distinct eb.user_id) as early_bird,
             count(distinct ca.user_id) as users,
             count(distinct case when p.status = 'confirmed' and m.name ='차이 신용카드' then p.user_id end) as payment_user
             from chai_card_chai_prod_public.card_early_bird eb
