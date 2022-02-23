@@ -148,7 +148,6 @@ view: query_lib {
               when ad.end_at is null then ad.start_at <= b.created_at end)
             where p.status = 'confirmed'
             and p.year = 2022)a
-             ;
        ;;
   }
 
