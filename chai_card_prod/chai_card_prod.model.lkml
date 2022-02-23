@@ -150,7 +150,7 @@ explore: table_payment {
 
   join: table_adspend_owner {
     type: left_outer
-    sql_on: ${table_redshift_brand.name} = ${table_adspend_owner.merchant_name} end  ;;
+    sql_on: ${table_redshift_brand.name} = ${table_adspend_owner.merchant_name} ;;
     relationship: many_to_one
   }
 
