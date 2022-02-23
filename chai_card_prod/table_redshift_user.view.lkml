@@ -10,6 +10,11 @@ view: table_redshift_user {
     drill_fields: [detail*]
   }
 
+  measure: count_user {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
   dimension: id {
     type: string
     primary_key: yes
