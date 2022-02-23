@@ -9,7 +9,7 @@ view: plcc_funnel {
       (select
             ca.status,
             count(distinct eb.user_id) as early_bird,
-            count(distinct case when ca.status <> 'prepare' ca.user_id end) as users,
+            count(distinct case when ca.status <> 'prepare' then ca.user_id end) as users,
             count(distinct case when p.status = 'confirmed' and m.name ='차이 신용카드' then p.user_id end) as payment_user
             from chai_card_chai_prod_public.card_early_bird eb
             left join chai_card_chai_prod_public.korea_spec ks on ks.user_id = eb.user_id
