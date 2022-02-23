@@ -43,7 +43,7 @@ view: querylibrary {
         and (case when ad.end_at is not null then b.created_at between ad.start_at and ad.end_at
         when ad.end_at is null then ad.start_at <= b.created_at end)
       where p.status = 'confirmed'
-      and p.year = 2022
+      and p.year in (2021,2022)
        ;;
   }
 
