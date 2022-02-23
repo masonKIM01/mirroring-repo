@@ -68,6 +68,6 @@ view: plcc_funnel {
   }
 
   set: detail {
-    fields: [early_birds, apply_user, confirmed_user, payment_user]
+    fields: [early_bird, apply_user, confirmed_user, payment_user]
   }
 }
