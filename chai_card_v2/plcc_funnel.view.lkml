@@ -13,8 +13,8 @@ view: plcc_funnel {
             count(distinct case when p.status = 'confirmed' and m.name ='차이 신용카드' then p.user_id end) as payment_user
             from chai_card_chai_prod_public.card_early_bird eb
             left join chai_card_chai_prod_public.korea_spec ks on ks.user_id = eb.user_id
-            inner join chai_card_chai_prod_public.card_user cu on cu.ci = ks.ci
-            inner join chai_card_plcc_public.card_application ca on ca.user_id = cu.id
+            left join chai_card_chai_prod_public.card_user cu on cu.ci = ks.ci
+            left join chai_card_plcc_public.card_application ca on ca.user_id = cu.id
             left join chai_card_chai_prod_public.payment p on p.user_id = ks.user_id
             left join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
             group by 1)a
