@@ -7,7 +7,7 @@ view: querylibrary {
       p.year,
       p.month,
       p.status,
-      to_char(p.created_at,'yyyy-mm-dd HH24:MM:SS')::date as date,
+      p.created_at as date,
       p.id as payment_id,
       b.payment_id as boost_id,
       p.user_id,
@@ -107,8 +107,8 @@ view: querylibrary {
     sql: ${TABLE}.status ;;
   }
 
-  dimension: date {
-    type: date
+  dimension_group: date {
+    type: time
     sql: ${TABLE}.date ;;
   }
 
@@ -188,7 +188,7 @@ view: querylibrary {
       year,
       month,
       status,
-      date,
+      date_date,
       payment_id,
       boost_id,
       user_id,
