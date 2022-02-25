@@ -32,6 +32,7 @@ explore: cashback_map {}
 explore: cashback_map_credit {}
 explore: checkout_selectivity {}
 explore: plcc_funnel {}
+explore: table_amplitude {}
 explore: table_payment_union_analytics {
 
   join: table_redshift_boost {
