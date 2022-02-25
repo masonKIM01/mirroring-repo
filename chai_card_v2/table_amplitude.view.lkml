@@ -130,8 +130,8 @@ view: table_amplitude {
     sql: ${TABLE}.event_properties ;;
   }
 
-  dimension: event_time {
-    type: string
+  dimension_group: event_time {
+    type: time
     sql: ${TABLE}.event_time ;;
   }
 
@@ -305,7 +305,7 @@ view: table_amplitude {
       dma,
       event_id,
       event_properties,
-      event_time,
+      event_time_time,
       event_type,
       idfa,
       ip_address,
