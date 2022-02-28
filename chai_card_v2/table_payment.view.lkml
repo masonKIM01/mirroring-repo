@@ -6,8 +6,13 @@ view: table_payment {
   }
 
   measure: count {
-    type: count_distinct
+    type: count
     drill_fields: [detail*]
+  }
+
+  measure: count_id {
+    type: count_distinct
+    sql: ${TABLE}.id ;;
   }
 
   measure: count_user {
