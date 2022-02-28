@@ -5,12 +5,12 @@ view: table_payment {
        ;;
   }
 
-  measure: count {
+  measure: count_all {
     type: count
     drill_fields: [detail*]
   }
 
-  measure: count_id {
+  measure: count {
     type: count_distinct
     sql: ${TABLE}.id ;;
   }
