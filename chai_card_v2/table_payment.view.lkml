@@ -6,7 +6,7 @@ view: table_payment {
   }
 
   measure: count {
-    type: count
+    type: count_distinct
     drill_fields: [detail*]
   }
 
