@@ -166,6 +166,12 @@ explore: table_payment {
     sql_on: ${table_payment.user_id} = ${table_plcc_user.user_id} ;;
     relationship: many_to_one
   }
+
+  join: table_boost_campaign_target_type {
+    type: left_outer
+    sql_on: ${table_boost_campaign_target_type.boost_campaign_id} = ${table_redshift_boost.boost_campaign_id} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: table_plcc {
