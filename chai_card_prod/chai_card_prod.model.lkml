@@ -170,7 +170,7 @@ explore: table_payment {
   join: table_boost_campaign_target_type {
     type: left_outer
     sql_on: ${table_boost_campaign_target_type.boost_campaign_id} = ${table_redshift_boost.boost_campaign_id} ;;
-    relationship: many_to_one
+    relationship: one_to_one
   }
 }
 

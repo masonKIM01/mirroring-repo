@@ -1,6 +1,6 @@
 view: table_boost_campaign_target_type {
   derived_table: {
-    sql: select *
+    sql: select distinct *
       from chai_card_chai_prod_public.boost_campaign_target_type
        ;;
   }

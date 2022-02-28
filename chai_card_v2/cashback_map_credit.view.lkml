@@ -58,10 +58,12 @@ view: cashback_map_credit {
         from chai_card_chai_prod_public.payment p
         inner join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
         left join chai_card_chai_prod_public.delayed_cashback_history ch on ch.payment_id = p.id
+        inner join chai_card_chai_prod_public.korea_spec kc on kc.user_id = p.user_id
+        inner join chai_card_chai_prod_public.card_user cu on cu.ci = kc.ci
+        inner join chai_card_plcc_public.card_application ca on ca.user_id = cu.id and ca.status = 'confirmed'
         where p.status = 'confirmed'
         and p.year = '2022'
         and p.month = '2'
-        and m.name = '차이 신용카드'
         group by 1
         )a
       )b
