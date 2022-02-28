@@ -14,6 +14,7 @@ view: querylibrary {
       case when m.name not like ('%카드%') then m.name
       else split_part(split_part(p.data,'cardMerchantName":',2),'"',2) end
       as merchantName,
+      split_part(split_part(p.data,'cardMerchantName":',2),'"',2) as merchantId,
       b2.name as boostName,
       case when bpp.type = 'standard' then '일반'
       when bpp.type = 'fcfs' then '선착순'
@@ -132,6 +133,11 @@ view: querylibrary {
     sql: ${TABLE}.merchantname ;;
   }
 
+  dimension: merchantId {
+    type: string
+    sql: ${TABLE}.merchantId ;;
+  }
+
   dimension: boostname {
     type: string
     sql: ${TABLE}.boostname ;;
@@ -193,6 +199,7 @@ view: querylibrary {
       boost_id,
       user_id,
       merchantname,
+      merchantId,
       boostname,
       boost_type,
       boost_title,
