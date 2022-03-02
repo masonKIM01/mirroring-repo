@@ -49,11 +49,12 @@ view: cashback_map_credit {
       select
         a.user_id,
         a.checkout,
-        coalesce(trunc(1.0* a.cashback / a.checkout,3),0) as cashback_rate
+        coalesce(trunc(1.0* (a.cashback + a.cashback2) / a.checkout,3),0) as cashback_rate
       from
         (select
           p.user_id,
           sum(ch.cashback_delta) as cashback,
+          sum(p.cashback_amount) as cashback2,
           sum(p.checkout_amount) as checkout
         from chai_card_chai_prod_public.payment p
         inner join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
