@@ -59,7 +59,7 @@ view: cashback_map {
         inner join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
         where p.status = 'confirmed'
         and p.year = '2022'
-        and p.month = '2'
+        and p.month = '3'
         and m.name = '차이 체크카드'
         group by 1
         )a

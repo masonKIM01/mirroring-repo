@@ -64,7 +64,7 @@ view: cashback_map_credit {
         inner join chai_card_plcc_public.card_application ca on ca.user_id = cu.id and ca.status = 'confirmed'
         where p.status = 'confirmed'
         and p.year = '2022'
-        and p.month = '2'
+        and p.month = '3'
         group by 1
         )a
       )b
