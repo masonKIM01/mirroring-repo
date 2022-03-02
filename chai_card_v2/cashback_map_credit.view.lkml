@@ -53,7 +53,7 @@ view: cashback_map_credit {
       from
         (select
           p.user_id,
-          sum(ch.cashback_delta) as cashback,
+          sum(coalesce(ch.cashback_delta,0)) as cashback,
           sum(p.cashback_amount) as cashback2,
           sum(p.checkout_amount) as checkout
         from chai_card_chai_prod_public.payment p
