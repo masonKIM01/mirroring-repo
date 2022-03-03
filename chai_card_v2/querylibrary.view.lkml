@@ -19,6 +19,7 @@ view: querylibrary {
       case when bpp.type = 'standard' then '일반'
       when bpp.type = 'fcfs' then '선착순'
       else '' end as boost_type,
+      bpp.sub_title,
       bpp.title,
       p.idempotency_key,
       split_part(split_part(p.data,'approvalNo":',2),'"',2) as cardApporovalNo,
@@ -148,6 +149,11 @@ view: querylibrary {
     sql: ${TABLE}.title ;;
   }
 
+  dimension: boost_sub_title {
+    type: string
+    sql: ${TABLE}.sub_title ;;
+  }
+
   dimension: boost_type {
     type: string
     sql: ${TABLE}.boost_type ;;
@@ -202,6 +208,7 @@ view: querylibrary {
       merchantId,
       boostname,
       boost_type,
+      boost_sub_title,
       boost_title,
       idempotency_key,
       cardapporovalno,
