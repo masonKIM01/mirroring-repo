@@ -21,6 +21,7 @@ view: querylibrary {
       else '' end as boost_type,
       bpp.sub_title,
       bpp.title,
+      ad.type,
       p.idempotency_key,
       split_part(split_part(p.data,'approvalNo":',2),'"',2) as cardApporovalNo,
       coalesce(case when ad.type = 'cps' then ad.unit_price
@@ -159,6 +160,11 @@ view: querylibrary {
     sql: ${TABLE}.boost_type ;;
   }
 
+  dimension: ad_type {
+    type: string
+    sql: ${TABLE}.type ;;
+  }
+
   dimension: idempotency_key {
     type: string
     sql: ${TABLE}.idempotency_key ;;
@@ -210,6 +216,7 @@ view: querylibrary {
       boost_type,
       boost_sub_title,
       boost_title,
+      ad_type,
       idempotency_key,
       cardapporovalno,
       adspend,
