@@ -30,6 +30,7 @@ explore: settlement_view {}
 explore: querylibrary {}
 explore: cashback_map {}
 explore: cashback_map_credit {}
+explore: cashback_map_vol {}
 explore: checkout_selectivity {}
 explore: plcc_funnel {}
 explore: table_amplitude {}
