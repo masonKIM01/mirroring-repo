@@ -12,7 +12,7 @@ view: table_delayed_cashback {
 
   measure: cashback {
     type: sum
-    sql: ${TABLE}.cashback_delta ;;
+    sql: coalesce(${TABLE}.cashback_delta,0) ;;
   }
 
   dimension: id {
