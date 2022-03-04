@@ -72,7 +72,8 @@ view: table_adspend_owner {
       select '그리팅몰' as merchant_name, 'MJ' as owner union all
       select '현대백화점투홈' as merchant_name, 'Cloe' as owner union all
       select '맘스터치' as merchant_name, 'Gatsby' as owner union all
-      select '영풍문고' as merchant_name, 'MJ' as owner;;
+      select '영풍문고' as merchant_name, 'MJ' as owner union all
+      select '브리지테일' as merchant_name, 'Groot' as owner;;
   }
 
   measure: count {
