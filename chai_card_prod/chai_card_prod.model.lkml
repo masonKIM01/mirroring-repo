@@ -234,7 +234,7 @@ explore: table_plcc {
   join: table_adspend_owner {
     type: left_outer
     sql_on: ${table_redshift_brand.name} = ${table_adspend_owner.merchant_name} ;;
-    relationship: many_to_one
+    relationship: one_to_one
   }
 
   join: table_delayed_cashback {
