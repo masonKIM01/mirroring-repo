@@ -240,7 +240,7 @@ explore: table_plcc {
   join: table_delayed_cashback {
     type: left_outer
     sql_on: ${table_payment.id} = ${table_delayed_cashback.payment_id} ;;
-    relationship: one_to_one
+    relationship: many_to_one
   }
 
   join: table_plcc_user {
