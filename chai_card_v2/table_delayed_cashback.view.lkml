@@ -71,6 +71,7 @@ view: table_delayed_cashback {
   }
 
   dimension: payment_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.payment_id ;;
   }
