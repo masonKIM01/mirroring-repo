@@ -2,6 +2,7 @@ view: table_delayed_cashback {
   derived_table: {
     sql: select *
       from chai_card_chai_prod_public.delayed_cashback_history
+      where action_type = 'payment_confirm'
        ;;
   }
 
