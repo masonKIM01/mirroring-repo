@@ -1,8 +1,13 @@
 view: table_delayed_cashback {
   derived_table: {
     sql: select *
-      from chai_card_chai_prod_public.delayed_cashback_history
-      where action_type = 'payment_confirm'
+        from
+        (select
+          *, count(action_type)over(partition by payment_id)
+        from chai_card_chai_prod_public.delayed_cashback_history dc
+        group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
+        )x
+        where x.count = 1
        ;;
   }
 
