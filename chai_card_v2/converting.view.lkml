@@ -9,7 +9,7 @@ view: converting {
           p.user_id
           ,p.id
           ,bpp.on_off_line_status
-          ,p.created_at - b.created_at as "boostpayment"
+          ,cast(p.created_at as timestamp(0)) - cast(b.created_at as timestamp(0)) as "boostpayment"
         from chai_card_chai_prod_public.payment p
         inner join chai_card_chai_prod_public.card c on c.user_id = p.user_id
         inner join chai_card_chai_prod_public.boost b on b.payment_id = p.id
