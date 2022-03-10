@@ -1,6 +1,6 @@
 view: table_delayed_cashback {
   derived_table: {
-    sql: select *
+    sql: select distinct year, month, created_at, payment_id, sum(cashback_delta) as cashback_delta
         from
         (select
           *, count(action_type)over(partition by payment_id)
@@ -8,6 +8,7 @@ view: table_delayed_cashback {
         group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
         )x
         where x.count = 1
+        group by 1,2,3,4
        ;;
   }
 
@@ -23,7 +24,7 @@ view: table_delayed_cashback {
 
   dimension: id {
     type: number
-    sql: ${TABLE}.id ;;
+    sql: ${TABLE}.payment_id ;;
   }
 
   dimension_group: created_at {
@@ -36,62 +37,15 @@ view: table_delayed_cashback {
     sql: ${TABLE}.updated_at ;;
   }
 
-  dimension: status {
-    type: string
-    sql: ${TABLE}.status ;;
-  }
-
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension_group: target_date {
-    type: time
-    sql: ${TABLE}.target_date ;;
-  }
-
   dimension: cashback_delta {
     type: number
     sql: ${TABLE}.cashback_delta ;;
   }
-
-  dimension: is_public_transportation {
-    type: string
-    sql: ${TABLE}.is_public_transportation ;;
-  }
-
-  dimension: user_id {
-    type: string
-    sql: ${TABLE}.user_id ;;
-  }
-
-  dimension: user_ci {
-    type: string
-    sql: ${TABLE}.user_ci ;;
-  }
-
-  dimension: boost_id {
-    type: number
-    sql: ${TABLE}.boost_id ;;
-  }
-
-  dimension: payment_id {
+dimension: payment_id {
     primary_key: yes
     type: string
     sql: ${TABLE}.payment_id ;;
   }
-
-  dimension: promotion_id {
-    type: string
-    sql: ${TABLE}.promotion_id ;;
-  }
-
-  dimension: billing_delta {
-    type: number
-    sql: ${TABLE}.billing_delta ;;
-  }
-
   dimension: year {
     type: number
     sql: ${TABLE}.year ;;
@@ -107,17 +61,7 @@ view: table_delayed_cashback {
       id,
       created_at_time,
       updated_at_time,
-      status,
-      action_type,
-      target_date_time,
       cashback_delta,
-      is_public_transportation,
-      user_id,
-      user_ci,
-      boost_id,
-      payment_id,
-      promotion_id,
-      billing_delta,
       year,
       month
     ]
