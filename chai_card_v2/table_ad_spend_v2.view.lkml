@@ -8,10 +8,35 @@ view: table_ad_spend_v2 {
       end as ad_spend
       from chai_card_chai_prod_public.boost b
       inner join chai_card_chai_prod_public.payment p on p.id = b.payment_id
-      inner join chai_card_chai_prod_public.boost_campaign_ad_spend ad on ad.boost_campaign_id = b.boost_campaign_id
-      and (
-  case when ad.end_at is not null then b.created_at between ad.start_at and ad.end_at
-  when ad.end_at is null then ad.start_at <= b.created_at end)
+      inner join
+        (select distinct
+          t.boost_campaign_id,
+          case when ttype = 2 then null
+          else t.start_at end as start_at,
+          case when ttype = 2 then null
+          else t.end_at end as end_at,
+          t.type,
+          t.unit_price,
+          t.ratio,
+          t.year,
+          t.ttype
+        from
+          (select *,
+            case when count >= 2 and avg(unit_price)over(partition by boost_campaign_id) <> unit_price then 1
+            else 2
+            end as ttype
+          from
+            (select
+              *,
+              count(ad.unit_price)over(partition by boost_campaign_id)
+            from chai_card_chai_prod_public.boost_campaign_ad_spend ad
+            group by 1,2,3,4,5,6,7,8,9,10,11,12,13
+            )x
+          )t
+        )ad on ad.boost_campaign_id = b.boost_campaign_id
+            and
+              ((case when ad.ttype = 1 then b.created_at between start_at and end_at end)
+            or (case when ad.ttype = 2 then b.created_at is not null end))
  ;;
   }
 
