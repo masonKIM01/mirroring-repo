@@ -2,32 +2,32 @@ view: table_adspend_owner {
   derived_table: {
     sql: select '주붕샵' as merchant_name, 'Groot' as owner union all
       select '아이니유' as merchant_name, 'Groot' as owner union all
-      select '그린카' as merchant_name, 'Kevin' as owner union all
+      select '그린카' as merchant_name, 'MJ' as owner union all
       select '위메프오' as merchant_name, 'Groot' as owner union all
       select '뮬라웨어' as merchant_name, 'Gatsby' as owner union all
-      select '젝시믹스' as merchant_name, 'Kevin' as owner union all
-      select '펫프렌즈' as merchant_name, 'Kevin' as owner union all
+      select '젝시믹스' as merchant_name, 'MJ' as owner union all
+      select '펫프렌즈' as merchant_name, 'Groot' as owner union all
       select '인더웨어' as merchant_name, 'Kevin' as owner union all
-      select '어바웃펫' as merchant_name, 'Kevin' as owner union all
-      select '쿠쿠몰' as merchant_name, 'Kevin' as owner union all
-      select '바잇미' as merchant_name, 'Kevin' as owner union all
+      select '어바웃펫' as merchant_name, 'Groot' as owner union all
+      select '쿠쿠몰' as merchant_name, 'MJ' as owner union all
+      select '바잇미' as merchant_name, 'Groot' as owner union all
       select '여기어때' as merchant_name, 'Groot' as owner union all
       select '얌테이블' as merchant_name, 'Groot' as owner union all
       select '디코드' as merchant_name, 'Kevin' as owner union all
       select '아워홈' as merchant_name, 'Gatsby' as owner union all
       select '아몬즈' as merchant_name, 'Groot' as owner union all
       select '크로켓' as merchant_name, 'Cloe' as owner union all
-      select '무신사' as merchant_name, 'Kevin' as owner union all
-      select '캐시비' as merchant_name, 'Kevin' as owner union all
+      select '무신사' as merchant_name, 'MJ' as owner union all
+      select '캐시비' as merchant_name, 'Groot' as owner union all
       select '현대식품관' as merchant_name, 'Kevin' as owner union all
       select '설로인' as merchant_name, 'Gatsby' as owner union all
       select '화해' as merchant_name, 'Groot' as owner union all
       select '보고플레이' as merchant_name, 'Groot' as owner union all
-      select '브랜드닭' as merchant_name, 'Kevin' as owner union all
-      select '에이블리' as merchant_name, 'Kevin' as owner union all
+      select '브랜드닭' as merchant_name, 'Groot' as owner union all
+      select '에이블리' as merchant_name, 'Groot' as owner union all
       select '한섬EQL' as merchant_name, 'Gatsby' as owner union all
       select '마켓컬리' as merchant_name, 'Gatsby' as owner union all
-      select '텐바이텐' as merchant_name, 'Kevin' as owner union all
+      select '텐바이텐' as merchant_name, 'Groot' as owner union all
       select '캐치패션' as merchant_name, 'MJ' as owner union all
       select '카모아' as merchant_name, 'NULL' as owner union all
       select 'aj전시몰' as merchant_name, 'Kevin' as owner union all
@@ -50,7 +50,7 @@ view: table_adspend_owner {
       select '오뚜기몰' as merchant_name, 'Groot' as owner union all
       select '애니멀고' as merchant_name, 'Groot' as owner union all
       select 'UT' as merchant_name, 'Gatsby' as owner union all
-      select '쏘카' as merchant_name, 'Kevin' as owner union all
+      select '쏘카' as merchant_name, 'Gatsby' as owner union all
       select '데일리샷' as merchant_name, 'Groot' as owner union all
       select '마미' as merchant_name, 'MJ' as owner union all
       select '롯데슈퍼' as merchant_name, 'MJ' as owner union all
@@ -61,7 +61,7 @@ view: table_adspend_owner {
       select '슬림나인' as merchant_name, 'Groot' as owner union all
       select '아로마티카' as merchant_name, 'Groot' as owner union all
       select '핑크테이블' as merchant_name, 'Groot' as owner union all
-      select '솔드아웃' as merchant_name, 'Kevin' as owner union all
+      select '솔드아웃' as merchant_name, 'MJ' as owner union all
       select '룩핀' as merchant_name, 'Groot' as owner union all
       select '크로켓' as merchant_name, 'Groot' as owner union all
       select '스타일씨' as merchant_name, 'Groot' as owner union all
