@@ -51,6 +51,7 @@ view: table_ad_spend_v2 {
   }
 
   dimension: payment_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.payment_id ;;
   }
