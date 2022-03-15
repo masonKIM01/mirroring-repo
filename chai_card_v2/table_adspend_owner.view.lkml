@@ -31,7 +31,7 @@ view: table_adspend_owner {
       select '캐치패션' as merchant_name, 'MJ' as owner union all
       select '카모아' as merchant_name, 'NULL' as owner union all
       select 'aj전시몰' as merchant_name, 'Kevin' as owner union all
-      select '프립' as merchant_name, 'Kevin' as owner union all
+      select '프립' as merchant_name, 'Groot' as owner union all
       select '지니' as merchant_name, 'Kevin' as owner union all
       select '술담화' as merchant_name, 'Kevin' as owner union all
       select '원데이즈유' as merchant_name, 'MJ' as owner union all
@@ -43,7 +43,7 @@ view: table_adspend_owner {
       select '하이버' as merchant_name, 'MJ' as owner union all
       select '페스룸' as merchant_name, 'Kevin' as owner union all
       select '아이엠택시' as merchant_name, 'Gatsby' as owner union all
-      select 'GS프레시몰' as merchant_name, 'Kevin' as owner union all
+      select 'GS프레시몰' as merchant_name, 'Gatsby' as owner union all
       select '먹깨비' as merchant_name, 'Groot' as owner union all
       select '데카트론' as merchant_name, 'Groot' as owner union all
       select '모두의주차장' as merchant_name, 'Groot' as owner union all
