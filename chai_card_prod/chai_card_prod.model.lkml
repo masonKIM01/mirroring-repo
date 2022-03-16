@@ -11,11 +11,8 @@ include: "/**/*.view.lkml"
 explore: chai_card_offline_stats {}
 explore: table_redshift_user {}
 explore: table_redshift_bolt_history {}
-explore: table_ad_spend {}
-explore: table_adspend_dec {}
 explore: table_merchant_adspend {}
 explore: table_union_all_payment {}
-explore: bd_owner {}
 explore: fsr_yogiyo {}
 explore: ad_spend_view {}
 explore: bolt_draw_report {}
@@ -25,9 +22,6 @@ explore: daily_data {}
 explore: converting {}
 explore: plcc_first_time_payment {}
 explore: table_redshift_card {}
-explore: active_card {}
-explore: settlement_v2 {}
-explore: settlement_view {}
 explore: querylibrary {}
 explore: cashback_map {}
 explore: cashback_map_credit {}
