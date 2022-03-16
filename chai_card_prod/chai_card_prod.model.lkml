@@ -8,7 +8,6 @@ include: "/**/*.view.lkml"
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 #
-explore: chai_card_offline_stats {}
 explore: table_redshift_user {}
 explore: table_redshift_bolt_history {}
 explore: table_merchant_adspend {}
