@@ -2,16 +2,18 @@ view: table_adspend_owner {
   derived_table: {
     sql: select '주붕샵' as merchant_name, 'Groot' as owner union all
       select '아이니유' as merchant_name, 'Groot' as owner union all
-      select '그린카' as merchant_name, 'Kevin' as owner union all
+      select '그린카' as merchant_name, 'MJ' as owner union all
       select '위메프오' as merchant_name, 'Groot' as owner union all
-      select '젝시믹스' as merchant_name, 'Kevin' as owner union all
+      select '젝시믹스' as merchant_name, 'MJ' as owner union all
       select '펫프렌즈' as merchant_name, 'Kevin' as owner union all
       select '어바웃펫' as merchant_name, 'Kevin' as owner union all
       select '바잇미' as merchant_name, 'Kevin' as owner union all
       select '여기어때' as merchant_name, 'Groot' as owner union all
       select '아몬즈' as merchant_name, 'Groot' as owner union all
       select '캐시비' as merchant_name, 'Kevin' as owner union all
-      select '현대식품관' as merchant_name, 'Kevin' as owner union all
+      select '현대식품관' as merchant_name, 'MJ' as owner union all
+      select '현대백화점투홈' as merchant_name, 'MJ' as owner union all
+      select '젤리크루' as merchant_name, 'MJ' as owner union all
       select '설로인' as merchant_name, 'Gatsby' as owner union all
       select '화해' as merchant_name, 'Groot' as owner union all
       select '보고플레이' as merchant_name, 'Groot' as owner union all
@@ -39,12 +41,13 @@ view: table_adspend_owner {
       select '쏘카' as merchant_name, 'Kevin' as owner union all
       select '데일리샷' as merchant_name, 'Groot' as owner union all
       select '마미' as merchant_name, 'MJ' as owner union all
+      select '무신사' as merchant_name, 'MJ' as owner union all
       select '롯데슈퍼' as merchant_name, 'MJ' as owner union all
       select '아이디어스' as merchant_name, 'Gatsby' as owner union all
       select '배스킨라빈스' as merchant_name, 'Gatsby' as owner union all
       select '슬림나인' as merchant_name, 'Groot' as owner union all
       select '핑크테이블' as merchant_name, 'Groot' as owner union all
-      select '무신사솔드아웃' as merchant_name, 'Kevin' as owner union all
+      select '솔드아웃' as merchant_name, 'MJ' as owner union all
       select '룩핀' as merchant_name, 'Cloe' as owner union all
       select '크로켓' as merchant_name, 'Groot' as owner union all
       select '더반찬' as merchant_name, 'MJ' as owner union all
