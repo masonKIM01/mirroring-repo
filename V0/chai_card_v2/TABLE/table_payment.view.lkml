@@ -5,11 +5,6 @@ view: table_payment {
        ;;
   }
 
-  measure: min_date {
-    type: min
-    sql: ${TABLE}.created_at ;;
-  }
-
   measure: count_all {
     type: count
     drill_fields: [detail*]
