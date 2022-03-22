@@ -9,6 +9,7 @@ include: "/**/*.view.lkml"
 # # and define the joins that connect them together.
 #
 explore: table_redshift_user {}
+explore: payments {}
 explore: table_redshift_bolt_history {}
 explore: table_merchant_adspend {}
 explore: table_union_all_payment {}

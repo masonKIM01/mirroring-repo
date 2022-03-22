@@ -50,13 +50,6 @@ view: payments {
     #value_format: "₩#,##0.00" #krw formatting
   }
 
-  measure: total_revenue {
-    description: "payment amount * import take rate"
-    type: sum
-    sql: (${amount_in_krw} * ${user_pricing.import_take_rate})/100  ;;
-    label: "Revenue Amount in KRW"
-  }
-
   dimension: amount_in_krw {
     type: number
     sql: ${TABLE}.amount_in_krw ;;
