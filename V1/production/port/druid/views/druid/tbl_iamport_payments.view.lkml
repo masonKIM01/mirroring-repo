@@ -1,13 +1,24 @@
-view: payments_druid {
-  sql_table_name:  druid.tbl_iamport_payments ;;
+view: druid_tbl_iamport_payments {
+  sql_table_name: druid.tbl_iamport_payments ;;
+  drill_fields: [id]
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
+  dimension: id {
+    primary_key: yes
+    type: number
+    sql: ${TABLE}."id" ;;
   }
 
   dimension_group: __time {
     type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}."__time" ;;
   }
 
@@ -26,9 +37,9 @@ view: payments_druid {
     sql: ${TABLE}."app_name" ;;
   }
 
-  dimension: app_schema {
+  dimension: app_scheme {
     type: string
-    sql: ${TABLE}."app_schema" ;;
+    sql: ${TABLE}."app_scheme" ;;
   }
 
   dimension: app_version {
@@ -36,18 +47,33 @@ view: payments_druid {
     sql: ${TABLE}."app_version" ;;
   }
 
-  dimension: apply_num {
-    type: number
-    sql: ${TABLE}."apply_num" ;;
-  }
-
   dimension: browser {
     type: string
     sql: ${TABLE}."browser" ;;
   }
 
-  dimension: cancel_amount {
+  dimension: buyer_email_hashed {
     type: string
+    sql: ${TABLE}."buyer_email_hashed" ;;
+  }
+
+  dimension: buyer_email_name_hashed {
+    type: string
+    sql: ${TABLE}."buyer_email_name_hashed" ;;
+  }
+
+  dimension: buyer_email_name_tel_hashed {
+    type: string
+    sql: ${TABLE}."buyer_email_name_tel_hashed" ;;
+  }
+
+  dimension: buyer_email_tel_hashed {
+    type: string
+    sql: ${TABLE}."buyer_email_tel_hashed" ;;
+  }
+
+  dimension: cancel_amount {
+    type: number
     sql: ${TABLE}."cancel_amount" ;;
   }
 
@@ -57,7 +83,7 @@ view: payments_druid {
   }
 
   dimension: cancelled_at {
-    type: string
+    type: number
     sql: ${TABLE}."cancelled_at" ;;
   }
 
@@ -96,6 +122,11 @@ view: payments_druid {
     sql: ${TABLE}."confirm_url" ;;
   }
 
+  dimension: created {
+    type: number
+    sql: ${TABLE}."created" ;;
+  }
+
   dimension: currency {
     type: string
     sql: ${TABLE}."currency" ;;
@@ -127,18 +158,8 @@ view: payments_druid {
   }
 
   dimension: failed_at {
-    type: string
-    sql: ${TABLE}."failed_at" ;;
-  }
-
-  dimension: id {
     type: number
-    sql: ${TABLE}."id" ;;
-  }
-
-  dimension: imp_uid {
-    type: string
-    sql: ${TABLE}."imp_uid" ;;
+    sql: ${TABLE}."failed_at" ;;
   }
 
   dimension: is_escrow {
@@ -171,11 +192,6 @@ view: payments_druid {
     sql: ${TABLE}."notification_url" ;;
   }
 
-  dimension: operation {
-    type: string
-    sql: ${TABLE}."operation" ;;
-  }
-
   dimension: origin {
     type: string
     sql: ${TABLE}."origin" ;;
@@ -192,7 +208,7 @@ view: payments_druid {
   }
 
   dimension: paid_at {
-    type: string
+    type: number
     sql: ${TABLE}."paid_at" ;;
   }
 
@@ -221,11 +237,6 @@ view: payments_druid {
     sql: ${TABLE}."pg_provider" ;;
   }
 
-  dimension: pg_tid {
-    type: string
-    sql: ${TABLE}."pg_tid" ;;
-  }
-
   dimension: sandbox {
     type: number
     sql: ${TABLE}."sandbox" ;;
@@ -252,7 +263,7 @@ view: payments_druid {
   }
 
   dimension: vat {
-    type: string
+    type: number
     sql: ${TABLE}."vat" ;;
   }
 
@@ -267,7 +278,7 @@ view: payments_druid {
   }
 
   dimension: vbank_date {
-    type: string
+    type: number
     sql: ${TABLE}."vbank_date" ;;
   }
 
@@ -286,72 +297,8 @@ view: payments_druid {
     sql: ${TABLE}."vbank_status" ;;
   }
 
-  measure: total_amount {
-    description: "sum of transaction amount in KRW currency"
-    type: sum
-    sql: ${amount_in_krw} ;;
-    label: "Amount in whatever currency"
-    # value_format_name: usd_0
-    #value_format: "₩#,##0.00" #krw formatting
-  }
-  set: detail {
-    fields: [
-      __time_time,
-      amount,
-      amount_in_krw,
-      app_name,
-      app_schema,
-      app_version,
-      apply_num,
-      browser,
-      cancel_amount,
-      cancel_reason,
-      cancelled_at,
-      card_code,
-      card_code_std,
-      card_installment_type,
-      card_quota,
-      channel,
-      confirm_response,
-      confirm_url,
-      currency,
-      custom_data,
-      device,
-      device_brand,
-      device_type,
-      fail_reason,
-      failed_at,
-      id,
-      imp_uid,
-      is_escrow,
-      m_redirect_url,
-      merchant_uid,
-      modified,
-      name,
-      notification_url,
-      operation,
-      origin,
-      os_name,
-      os_version,
-      paid_at,
-      pay_method,
-      pg_ext_key,
-      pg_ext_priv,
-      pg_id,
-      pg_provider,
-      pg_tid,
-      sandbox,
-      status,
-      unique_id,
-      user_agent,
-      user_id,
-      vat,
-      vbank_code,
-      vbank_code_std,
-      vbank_date,
-      vbank_holder,
-      vbank_num,
-      vbank_status
-    ]
+  measure: count {
+    type: count
+    drill_fields: [id, app_name, name, os_name]
   }
 }
