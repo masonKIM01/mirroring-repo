@@ -2,12 +2,12 @@ view: join_adspend {
   derived_table: {
     sql: select   '2022-01-01'  as month,   '간편결제'  as payment_type,  '83505301.42'  as ad_spend  union all
       select   '2022-01-01'  as month,   '카드'  as payment_type,  '180501771.1'  as ad_spend  union all
-      select   '2022-12-01'  as month,   '간편결제'  as payment_type,  '38717982.6'  as ad_spend  union all
-      select   '2022-12-01'  as month,   '카드'  as payment_type,  '149858116.7'  as ad_spend  union all
-      select   '2022-11-01'  as month,   '간편결제'  as payment_type,  '12094711.5'  as ad_spend  union all
-      select   '2022-11-01'  as month,   '카드'  as payment_type,  '134672438.7'  as ad_spend  union all
-      select   '2022-10-01'  as month,   '간편결제'  as payment_type,  '10072486.8'  as ad_spend  union all
-      select   '2022-10-01'  as month,   '카드'  as payment_type,  '85447498'  as ad_spend  union all
+      select   '2021-12-01'  as month,   '간편결제'  as payment_type,  '38717982.6'  as ad_spend  union all
+      select   '2021-12-01'  as month,   '카드'  as payment_type,  '149858116.7'  as ad_spend  union all
+      select   '2021-11-01'  as month,   '간편결제'  as payment_type,  '12094711.5'  as ad_spend  union all
+      select   '2021-11-01'  as month,   '카드'  as payment_type,  '134672438.7'  as ad_spend  union all
+      select   '2021-10-01'  as month,   '간편결제'  as payment_type,  '10072486.8'  as ad_spend  union all
+      select   '2021-10-01'  as month,   '카드'  as payment_type,  '85447498'  as ad_spend  union all
       select
       to_char(p.created_at,'yyyy-mm-01') as month,
       case when m.name = '차이 신용카드' then '신용카드'
