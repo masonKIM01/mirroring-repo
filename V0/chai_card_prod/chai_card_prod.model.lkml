@@ -27,6 +27,7 @@ explore: cashback_map_credit {}
 explore: cashback_map_vol {}
 explore: checkout_selectivity {}
 explore: plcc_funnel {}
+explore: join_adspend {}
 explore: min_created_at {}
 explore: table_amplitude {}
 explore: table_payment_union_analytics {
