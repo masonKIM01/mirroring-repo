@@ -299,6 +299,5 @@ view: chai_card_chai_prod_public_boost_promotion_policy {
 
   measure: count {
     type: count
-    drill_fields: [id, name, brand.id, brand.name, boost_target_condition.id]
   }
 }

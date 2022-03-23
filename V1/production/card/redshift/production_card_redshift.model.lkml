@@ -8,6 +8,7 @@ datagroup: hourly_datagroup {
   description: "cache data for max 2 hours and refersh it every 1 hour"
 }
 
+explore: chai_card_chai_prod_public_boost {}
 explore: prejoined_payment {
   description: "payment table joined with multiple tables"
   persist_with: hourly_datagroup

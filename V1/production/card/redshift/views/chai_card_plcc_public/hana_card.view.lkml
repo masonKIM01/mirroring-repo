@@ -96,6 +96,5 @@ view: chai_card_plcc_public_hana_card {
 
   measure: count {
     type: count
-    drill_fields: [id, product_name]
   }
 }

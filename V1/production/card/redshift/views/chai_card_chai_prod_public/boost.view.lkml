@@ -114,23 +114,5 @@ view: chai_card_chai_prod_public_boost {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
-  }
-
-  # ----- Sets of fields for drilling ------
-  set: detail {
-    fields: [
-      id,
-      payment.id,
-      user.id,
-      boost_campaign.id,
-      bolt.count,
-      boost_feedback.count,
-      boost_gov_support_history.count,
-      boost_report.count,
-      boost_up.count,
-      delayed_cashback_history.count,
-      sub_boost.count
-    ]
   }
 }

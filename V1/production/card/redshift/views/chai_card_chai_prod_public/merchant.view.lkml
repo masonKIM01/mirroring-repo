@@ -1,18 +1,16 @@
 view: chai_card_chai_prod_public_merchant {
   derived_table: {
     sql:
-      select
-      *,
-      case when name = '차이 체크카드' then 'check_card'
-      when name = '차이 신용카드' then 'credit_card'
-      else 'ewallet' end as type
-      from chai_card_chai_prod_public.merchant
-       ;;
+      SELECT
+        *,
+      CASE WHEN name = '차이 체크카드' then 'check_card'
+      WHEN name = '차이 신용카드' then 'credit_card'
+      ELSE 'ewallet' END AS TYPE
+      FROM chai_card_chai_prod_public.merchant ;;
   }
 
   measure: count {
     type: count
-    drill_fields: [detail*]
   }
 
   dimension: id {
@@ -194,46 +192,5 @@ view: chai_card_chai_prod_public_merchant {
   dimension: month {
     type: number
     sql: ${TABLE}.month ;;
-  }
-
-  set: detail {
-    fields: [
-      id,
-      public_api_key,
-      private_api_key,
-      name,
-      type,
-      status,
-      updated_at_time,
-      created_at_time,
-      vertical,
-      website,
-      country_code,
-      business_number,
-      address,
-      representative_name,
-      customer_service_phone,
-      logo_url,
-      ios_scheme,
-      android_scheme,
-      pg_merchant_code,
-      link_method,
-      display_name,
-      global_name,
-      restricted_pid,
-      data,
-      reserve_amount,
-      business_category,
-      business_type,
-      settlement_email,
-      settlement_sub_email,
-      payment_limits,
-      contract_status,
-      funnel,
-      bank_code,
-      group_name,
-      year,
-      month
-    ]
   }
 }

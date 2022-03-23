@@ -63,6 +63,5 @@ view: chai_card_plcc_public_card_application {
 
   measure: count {
     type: count
-    drill_fields: [id]
   }
 }

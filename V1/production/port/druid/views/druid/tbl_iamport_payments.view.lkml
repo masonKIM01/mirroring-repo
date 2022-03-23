@@ -299,6 +299,5 @@ view: druid_tbl_iamport_payments {
 
   measure: count {
     type: count
-    drill_fields: [id, app_name, name, os_name]
   }
 }

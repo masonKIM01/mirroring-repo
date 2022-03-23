@@ -115,6 +115,5 @@ view: chai_card_chai_prod_public_delayed_cashback_history {
 
   measure: count {
     type: count
-    drill_fields: [id, user.id, boost.id, payment.id]
   }
 }

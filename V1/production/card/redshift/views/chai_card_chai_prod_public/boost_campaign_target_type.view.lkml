@@ -21,6 +21,5 @@ view: chai_card_chai_prod_public_boost_campaign_target_type {
 
   measure: count {
     type: count
-    drill_fields: [id, boost_campaign.id]
   }
 }

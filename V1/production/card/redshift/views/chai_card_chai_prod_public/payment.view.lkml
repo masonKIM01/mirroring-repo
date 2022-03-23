@@ -186,40 +186,5 @@ view: chai_card_chai_prod_public_payment {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
-  }
-
-  # ----- Sets of fields for drilling ------
-  set: detail {
-    fields: [
-      id,
-      merchant.id,
-      merchant.name,
-      merchant.representative_name,
-      merchant.display_name,
-      merchant.global_name,
-      merchant.group_name,
-      user.id,
-      sub_merchant.id,
-      sub_merchant.name,
-      boost.count,
-      boost_budget_usage_history.count,
-      boost_feedback.count,
-      boost_gov_support_history.count,
-      boost_report.count,
-      burning.count,
-      card_payment_data.count,
-      delayed_cashback_history.count,
-      lucky.count,
-      network_cancel.count,
-      nice.count,
-      payment_cashbacks_promotion_policy.count,
-      payment_data.count,
-      payment_link.count,
-      payment_subscription_mapping.count,
-      payment_tag_payment_mapping.count,
-      promotion_coupon.count,
-      settlement_payments_payment.count
-    ]
   }
 }

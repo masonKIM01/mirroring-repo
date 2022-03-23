@@ -106,47 +106,5 @@ view: chai_card_chai_prod_public_user {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
-  }
-
-  # ----- Sets of fields for drilling ------
-  set: detail {
-    fields: [
-      id,
-      acp_event.count,
-      acp_holding_history.count,
-      activity.count,
-      b2b_user.count,
-      bolt.count,
-      bolt_airdrop.count,
-      bolt_draw.count,
-      bolt_history.count,
-      boost.count,
-      boost_feedback.count,
-      boost_gov_support_history.count,
-      boost_mission_history.count,
-      boost_refresh_history.count,
-      boost_tutorial_history.count,
-      boost_up.count,
-      brand_favorite.count,
-      burning.count,
-      card.count,
-      card_early_bird.count,
-      card_pre_application.count,
-      contact_friend.count,
-      delayed_cashback_history.count,
-      korea_spec.count,
-      krt_account.count,
-      ledger.count,
-      lucky.count,
-      mission_reward_boost_campaign.count,
-      payment.count,
-      payment_subscription.count,
-      promotion_coupon.count,
-      sub_boost.count,
-      topup.count,
-      unprocessed_tx.count,
-      user_invitation_counter.count
-    ]
   }
 }

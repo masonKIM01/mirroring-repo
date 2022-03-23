@@ -50,19 +50,5 @@ view: chai_card_chai_prod_public_brand {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
-  }
-
-  # ----- Sets of fields for drilling ------
-  set: detail {
-    fields: [
-      id,
-      name,
-      boost_budget.count,
-      boost_campaign.count,
-      boost_promotion_policy.count,
-      brand_content.count,
-      brand_favorite.count
-    ]
   }
 }
