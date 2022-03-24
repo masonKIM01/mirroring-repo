@@ -384,6 +384,7 @@ select '2021-12-01' as months, '원데이즈유' as merchant_name, '10,000원 �
       table_redshift_payment_created_at_date,
       table_redshift_brand_name,
       table_redshift_merchant_type,
+      table_redshift_merchant.payment_type,
       table_merchant_adspend_contract,
       table_merchant_adspend_cpa_done,
       table_merchant_adspend_merchant_ratio,
