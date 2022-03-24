@@ -27,6 +27,8 @@ explore: cashback_map_credit {}
 explore: cashback_map_vol {}
 explore: checkout_selectivity {}
 explore: plcc_funnel {}
+explore: plcc_payment_type {}
+explore: join_adspend {}
 explore: min_created_at {}
 explore: table_amplitude {}
 explore: table_payment_union_analytics {
@@ -136,6 +138,12 @@ explore: table_payment {
   join: table_user {
     type: left_outer
     sql_on: ${table_user.id} = ${table_payment.user_id} ;;
+    relationship: many_to_one
+  }
+
+  join: table_redshift_card {
+    type: left_outer
+    sql_on: ${table_payment.user_id} = ${table_redshift_card.user_id} ;;
     relationship: many_to_one
   }
 
