@@ -1,5 +1,9 @@
-connection: "chai_redshift_production"
+# There is same connection defined in V0/chai_card_prod/chai_card_prod.model.lkml
+# And it cause below error. we need to fix this after migration
+# There are some issues with this LookML code that will cause aspects of your data model to behave unexpectedly. These should be repaired to ensure your data model works as intended.
+# This "connection" is overridden by a "connection" declared in a file included below
 
+connection: "chai_redshift_production"
 include: "views/**/*.view.lkml"
 
 datagroup: hourly_datagroup {
@@ -9,50 +13,4 @@ datagroup: hourly_datagroup {
 }
 
 explore: chai_card_chai_prod_public_boost {}
-explore: prejoined_payment {
-  description: "payment table joined with multiple tables"
-  persist_with: hourly_datagroup
-  from: chai_card_chai_prod_public_payment
-  join: chai_card_chai_prod_public_boost {
-    type: left_outer
-    sql_on: ${prejoined_payment.id} = ${chai_card_chai_prod_public_boost.payment_id} ;;
-    relationship: many_to_one
-  }
-
-  join: chai_card_chai_prod_public_merchant {
-    type: left_outer
-    sql_on: ${prejoined_payment.merchant_id} = ${chai_card_chai_prod_public_merchant.id} ;;
-    relationship: many_to_one
-  }
-
-  join: chai_card_chai_prod_public_boost_promotion_policy {
-    type: left_outer
-    sql_on: ${chai_card_chai_prod_public_boost.boost_promotion_id} = ${chai_card_chai_prod_public_boost_promotion_policy.id} ;;
-    relationship: many_to_one
-  }
-
-  join: chai_card_chai_prod_public_brand {
-    type: left_outer
-    sql_on: ${chai_card_chai_prod_public_boost_promotion_policy.brand_id} = ${chai_card_chai_prod_public_brand.id} ;;
-    relationship: many_to_one
-  }
-
-  join: chai_card_chai_prod_public_user {
-    type: left_outer
-    sql_on: ${prejoined_payment.user_id} = ${chai_card_chai_prod_public_user.id} ;;
-    relationship: many_to_one
-  }
-
-  join: chai_card_chai_prod_public_delayed_cashback_history {
-    type: left_outer
-    sql_on: ${prejoined_payment.id} = ${chai_card_chai_prod_public_delayed_cashback_history.payment_id} ;;
-    relationship: one_to_one
-  }
-
-  join: chai_card_chai_prod_public_boost_campaign_target_type {
-    type: left_outer
-    sql_on: ${chai_card_chai_prod_public_boost.boost_campaign_id} = ${chai_card_chai_prod_public_boost_campaign_target_type.boost_campaign_id} ;;
-    relationship: one_to_one
-  }
-
-}
+explore: prejoined_payment_pdt{}
