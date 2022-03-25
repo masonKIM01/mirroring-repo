@@ -91,9 +91,9 @@ explore: table_redshift_payment {
   join: table_merchant_adspend {
     type: left_outer
     sql_on: ${table_redshift_brand.name} = ${table_merchant_adspend.merchant_name}
-          and ${table_redshift_boost_promotion_policy.title} = ${table_merchant_adspend.title}
-          and (${table_redshift_payment.months}) = (${table_merchant_adspend.months})
-          ;;
+        and ${table_redshift_boost_promotion_policy.title} = ${table_merchant_adspend.title}
+        and (${table_redshift_payment.months}) = (${table_merchant_adspend.months})
+        ;;
     relationship: many_to_one
   }
 
@@ -151,7 +151,7 @@ explore: table_payment {
     type: left_outer
     sql_on: ${table_ad_spend_v2.payment_id} = ${table_payment.id} ;;
     relationship: one_to_one
-}
+ }
 
   join: table_adspend_owner {
     type: left_outer
