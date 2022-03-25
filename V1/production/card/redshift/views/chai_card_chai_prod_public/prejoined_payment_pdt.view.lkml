@@ -2,8 +2,8 @@ include: "../../explore_for_pdt/**.**.lkml"
 
 view: prejoined_payment_pdt {
   derived_table: {
-    datagroup_trigger: hourly_datagroup
-    distribution_style: all
+    # datagroup_trigger: hourly_datagroup
+    # distribution_style: all
     explore_source: prejoined_payment {
       column: checkout_amount {}
       column: charging_amount {}
