@@ -10,6 +10,11 @@ view: chai_card_chai_prod_public_boost {
     drill_fields: [detail*]
   }
 
+  measure: users {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
   dimension: id {
     type: number
     sql: ${TABLE}.id ;;
