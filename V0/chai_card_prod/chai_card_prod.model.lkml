@@ -12,6 +12,7 @@ explore: table_redshift_user {}
 explore: table_redshift_bolt_history {}
 explore: table_merchant_adspend {}
 explore: table_union_all_payment {}
+explore: chai_card_chai_prod_public_boost {}
 explore: fsr_yogiyo {}
 explore: ad_spend_view {}
 explore: bolt_draw_report {}
