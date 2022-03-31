@@ -6,9 +6,9 @@
 connection: "chai_redshift_production"
 include: "views/**/*.view.lkml"
 
-datagroup: hourly_datagroup {
+datagroup: daily_datagroup {
   max_cache_age: "2 hours"
-  sql_trigger: "SELECT EXTRACT(HOUR FROM NOW())" ;;
+  sql_trigger: "SELECT EXTRACT(DAY FROM NOW())" ;;
   description: "cache data for max 2 hours and refersh it every 1 hour"
 }
 

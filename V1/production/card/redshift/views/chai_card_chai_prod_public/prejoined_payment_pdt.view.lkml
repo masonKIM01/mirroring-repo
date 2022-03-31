@@ -2,64 +2,68 @@ include: "../../explore_for_pdt/**.**.lkml"
 
 view: prejoined_payment_pdt {
   derived_table: {
-    # datagroup_trigger: hourly_datagroup
-    # distribution_style: all
+    datagroup_trigger: daily_datagroup
+    distribution_style: all
+    increment_key: "payment_created_date"
+    increment_offset:  7
     explore_source: prejoined_payment {
-      column: checkout_amount {}
-      column: charging_amount {}
-      column: cashback_amount {}
-      column: billing_amount {}
-      column: canceled_amount {}
-      column: created_date { field: prejoined_payment.created_date }
-      column: data { field: prejoined_payment.data }
-      column: discount_amount {}
+      column: payment_checkout_amount { field: prejoined_payment.checkout_amount }
+      column: payment_charging_amount { field: prejoined_payment.charging_amount }
+      column: payment_cashback_amount { field: prejoined_payment.cashback_amount }
+      column: payment_billing_amount { field: prejoined_payment.billing_amount }
+      column: payment_canceled_amount { field: prejoined_payment.canceled_amount }
+      column: payment_created_date { field: prejoined_payment.created_date }
+      column: payment_created { field: prejoined_payment.created_raw }
+      column: payment_data { field: prejoined_payment.data }
+      column: payment_discount_amount { field: prejoined_payment.discount_amount }
       column: merchant_cashback_amount {}
       column: merchant_discount_amount {}
-      column: user_id { field: chai_card_chai_prod_public_user.id }
-      column: user_birthday { field: chai_card_chai_prod_public_user.birthday }
-      column: user_gender { field: chai_card_chai_prod_public_user.gender }
-      column: user_data { field: chai_card_chai_prod_public_user.data }
       column: merchant_data { field: chai_card_chai_prod_public_merchant.data }
       column: merchant_name { field: chai_card_chai_prod_public_merchant.name }
       column: merchant_status { field: chai_card_chai_prod_public_merchant.status }
       column: merchant_type { field: chai_card_chai_prod_public_merchant.type }
-      column: delayed_cashback_history_is_public_transportation { field: chai_card_chai_prod_public_delayed_cashback_history.is_public_transportation }
-      column: delayed_cashback_history_status { field: chai_card_chai_prod_public_delayed_cashback_history.status }
-      column: delayed_cashback_history_action_type { field: chai_card_chai_prod_public_delayed_cashback_history.action_type }
       column: brand_name { field: chai_card_chai_prod_public_brand.name }
       column: boost_promotion_policy_description { field: chai_card_chai_prod_public_boost_promotion_policy.description }
-      column: boost_promotion_policy_usable_from_date { field: chai_card_chai_prod_public_boost_promotion_policy.usable_from_date }
-      column: boost_promotion_policy_usable_to_date { field: chai_card_chai_prod_public_boost_promotion_policy.usable_to_date }
+      column: boost_promotion_policy_usable_from { field: chai_card_chai_prod_public_boost_promotion_policy.usable_from_raw }
+      column: boost_promotion_policy_usable_to { field: chai_card_chai_prod_public_boost_promotion_policy.usable_to_raw }
       column: boost_promotion_policy_type { field: chai_card_chai_prod_public_boost_promotion_policy.type }
       column: boost_promotion_policy_status { field: chai_card_chai_prod_public_boost_promotion_policy.status }
       column: boost_promotion_policy_count_cap { field: chai_card_chai_prod_public_boost_promotion_policy.count_cap }
       column: boost_promotion_policy_count_cap_per_user { field: chai_card_chai_prod_public_boost_promotion_policy.count_cap_per_user }
       column: boost_promotion_policy_brand_id { field: chai_card_chai_prod_public_boost_promotion_policy.brand_id }
       column: boost_promotion_policy_promotion_id { field: chai_card_chai_prod_public_boost_promotion_policy.promotion_id }
-      column: boost_campaign_id { field: chai_card_chai_prod_public_boost_campaign_target_type.boost_campaign_id }
       column: boost_id { field: chai_card_chai_prod_public_boost.id }
-      column: boost_usable_from_date { field: chai_card_chai_prod_public_boost.usable_from_date }
-      column: boost_usable_to_date { field: chai_card_chai_prod_public_boost.usable_to_date }
+      column: boost_usable_from { field: chai_card_chai_prod_public_boost.usable_from_raw }
+      column: boost_usable_to { field: chai_card_chai_prod_public_boost.usable_to_raw }
       column: boost_status { field: chai_card_chai_prod_public_boost.status }
     }
   }
-  dimension: checkout_amount {
+  dimension: payment_checkout_amount {
     type: number
   }
-  dimension: charging_amount {
+  dimension: payment_charging_amount {
     type: number
   }
-  dimension: cashback_amount {
+  dimension: payment_cashback_amount {
     type: number
   }
-  dimension: billing_amount {
+  dimension: payment_billing_amount {
     type: number
   }
-  dimension: canceled_amount {
+  dimension: payment_canceled_amount {
     type: number
   }
   dimension: payment_created_date {
     type: date
+  }
+  dimension_group: payment_created {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      week,
+      month
+    ]
   }
   dimension: payment_data {}
   dimension: discount_amount {
@@ -71,10 +75,6 @@ view: prejoined_payment_pdt {
   dimension: merchant_discount_amount {
     type: number
   }
-  dimension: user_id {}
-  dimension: user_birthday {}
-  dimension: user_gender {}
-  dimension: user_data {}
   dimension: merchant_data {}
   dimension: merchant_name {}
   dimension: merchant_status {}
@@ -83,15 +83,27 @@ view: prejoined_payment_pdt {
     label: "Chai Card Chai Prod Public Delayed Cashback History Is Public Transportation (Yes / No)"
     type: yesno
   }
-  dimension: delayed_cashback_history_status {}
-  dimension: delayed_cashback_history_action_type {}
   dimension: brand_name {}
   dimension: boost_promotion_policy_description {}
-  dimension: boost_promotion_policy_usable_from_date {
-    type: date
+  dimension_group: boost_promotion_policy_usable_from {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month
+    ]
   }
-  dimension: boost_promotion_policy_usable_to_date {
-    type: date
+  dimension_group: boost_promotion_policy_usable_to {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month
+    ]
   }
   dimension: boost_promotion_policy_type {}
   dimension: boost_promotion_policy_status {}
@@ -108,11 +120,25 @@ view: prejoined_payment_pdt {
   dimension: boost_id {
     type: number
   }
-  dimension: boost_usable_from_date {
-    type: date
+  dimension_group: boost_usable_from {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month
+    ]
   }
-  dimension: boost_usable_to_date {
-    type: date
+  dimension_group: boost_usable_to {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month
+    ]
   }
   dimension: boost_status {}
   dimension: brand_id {
