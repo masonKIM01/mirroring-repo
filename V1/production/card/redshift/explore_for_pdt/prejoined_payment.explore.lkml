@@ -4,7 +4,7 @@ explore: prejoined_payment {
   hidden: yes
   from: chai_card_chai_prod_public_payment
   always_filter: {
-    filters: [chai_card_chai_prod_public_boost.created_date: "2 months"]
+    filters: [chai_card_chai_prod_public_boost.created_date: "6 months"]
   }
   join: chai_card_chai_prod_public_boost {
     type: left_outer
