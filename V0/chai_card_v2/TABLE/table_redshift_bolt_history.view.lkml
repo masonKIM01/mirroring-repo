@@ -10,6 +10,11 @@ view: table_redshift_bolt_history {
     drill_fields: [detail*]
   }
 
+  measure: users {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
   measure: count_bolt {
     type: sum
     sql: ${TABLE}.count ;;
