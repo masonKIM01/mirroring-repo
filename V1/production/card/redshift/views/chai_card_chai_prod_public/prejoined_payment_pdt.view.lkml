@@ -110,9 +110,6 @@ view: prejoined_payment_pdt {
     type: number
   }
   dimension: boost_promotion_policy_promotion_id {}
-  dimension: boost_campaign_id {
-    type: number
-  }
   dimension: boost_id {
     type: number
   }
