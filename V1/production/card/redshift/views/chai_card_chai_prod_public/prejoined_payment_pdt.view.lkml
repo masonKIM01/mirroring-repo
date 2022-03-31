@@ -66,7 +66,7 @@ view: prejoined_payment_pdt {
     ]
   }
   dimension: payment_data {}
-  dimension: discount_amount {
+  dimension: payment_discount_amount {
     type: number
   }
   dimension: merchant_cashback_amount {
@@ -79,10 +79,6 @@ view: prejoined_payment_pdt {
   dimension: merchant_name {}
   dimension: merchant_status {}
   dimension: merchant_type {}
-  dimension: delayed_cashback_history_is_public_transportation {
-    label: "Chai Card Chai Prod Public Delayed Cashback History Is Public Transportation (Yes / No)"
-    type: yesno
-  }
   dimension: brand_name {}
   dimension: boost_promotion_policy_description {}
   dimension_group: boost_promotion_policy_usable_from {
@@ -141,7 +137,4 @@ view: prejoined_payment_pdt {
     ]
   }
   dimension: boost_status {}
-  dimension: brand_id {
-    type: number
-  }
 }
