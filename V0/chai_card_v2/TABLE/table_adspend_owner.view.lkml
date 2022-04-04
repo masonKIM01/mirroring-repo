@@ -65,6 +65,7 @@ view: table_adspend_owner {
       select '빽돈' as merchant_name, 'Groot' as owner union all
       select '다노샵' as merchant_name, 'MJ' as owner union all
       select '이랜드몰' as merchant_name, 'MJ' as owner union all
+      select '삼삼해물' as merchant_name, 'MJ' as owner union all
       select '비포락토' as merchant_name, 'Groot' as owner
        ;;
   }
