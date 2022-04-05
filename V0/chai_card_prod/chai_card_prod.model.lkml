@@ -11,6 +11,7 @@ include: "/**/*.view.lkml"
 explore: table_redshift_user {}
 explore: table_redshift_bolt_history {}
 explore: table_merchant_adspend {}
+explore: table_redshift_merchant {}
 explore: table_union_all_payment {}
 explore: chai_card_chai_prod_public_boost {
   join: table_payment {
