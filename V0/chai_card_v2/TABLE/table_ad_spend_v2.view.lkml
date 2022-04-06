@@ -35,7 +35,7 @@ view: table_ad_spend_v2 {
           )t
         )ad on ad.boost_campaign_id = b.boost_campaign_id
             and
-              ((case when ad.ttype = 1 then b.created_at between start_at and end_at end)
+              ((case when ad.ttype = 1 then b.created_at between start_at and isnull(end_at, start_at +100) end)
             or (case when ad.ttype = 2 then b.created_at is not null end))
  ;;
   }
