@@ -30,6 +30,16 @@ view: table_payment {
     sql: coalesce(${cashback_amount},0) ;;
   }
 
+  measure: total_billing_amount {
+    type: sum
+    sql: coalesce(${billing_amount},0) ;;
+  }
+
+  measure: total_charging_amount {
+    type: sum
+    sql: coalesce(${charging_amount},0) ;;
+  }
+
   dimension: id {
     type: string
     primary_key: yes

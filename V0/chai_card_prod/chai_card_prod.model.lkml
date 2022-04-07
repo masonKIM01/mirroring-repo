@@ -11,7 +11,15 @@ include: "/**/*.view.lkml"
 explore: table_redshift_user {}
 explore: table_redshift_bolt_history {}
 explore: table_merchant_adspend {}
+explore: table_redshift_merchant {}
 explore: table_union_all_payment {}
+explore: chai_card_chai_prod_public_boost {
+  join: table_payment {
+    type: left_outer
+    sql_on: ${chai_card_chai_prod_public_boost.payment_id}= ${table_payment.id} ;;
+    relationship: many_to_one
+  }
+}
 explore: fsr_yogiyo {}
 explore: ad_spend_view {}
 explore: bolt_draw_report {}
