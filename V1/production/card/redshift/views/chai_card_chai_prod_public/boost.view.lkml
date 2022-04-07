@@ -1,5 +1,5 @@
-view: chai_card_chai_prod_public_delayed_cashback_history {
-  sql_table_name: chai_card_chai_prod_public.delayed_cashback_history ;;
+view: chai_card_chai_prod_public_boost {
+  sql_table_name: chai_card_chai_prod_public.boost ;;
   drill_fields: [id]
 
   dimension: id {
@@ -8,25 +8,15 @@ view: chai_card_chai_prod_public_delayed_cashback_history {
     sql: ${TABLE}.id ;;
   }
 
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension: billing_delta {
-    type: number
-    sql: ${TABLE}.billing_delta ;;
-  }
-
-  dimension: boost_id {
+  dimension: boost_campaign_id {
     type: number
     # hidden: yes
-    sql: ${TABLE}.boost_id ;;
+    sql: ${TABLE}.boost_campaign_id ;;
   }
 
-  dimension: cashback_delta {
+  dimension: boost_promotion_id {
     type: number
-    sql: ${TABLE}.cashback_delta ;;
+    sql: ${TABLE}.boost_promotion_id ;;
   }
 
   dimension_group: created {
@@ -43,11 +33,6 @@ view: chai_card_chai_prod_public_delayed_cashback_history {
     sql: ${TABLE}.created_at ;;
   }
 
-  dimension: is_public_transportation {
-    type: yesno
-    sql: ${TABLE}.is_public_transportation ;;
-  }
-
   dimension: month {
     type: number
     sql: ${TABLE}.month ;;
@@ -59,28 +44,9 @@ view: chai_card_chai_prod_public_delayed_cashback_history {
     sql: ${TABLE}.payment_id ;;
   }
 
-  dimension: promotion_id {
-    type: string
-    sql: ${TABLE}.promotion_id ;;
-  }
-
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
-  }
-
-  dimension_group: target {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.target_date ;;
   }
 
   dimension_group: updated {
@@ -97,9 +63,42 @@ view: chai_card_chai_prod_public_delayed_cashback_history {
     sql: ${TABLE}.updated_at ;;
   }
 
-  dimension: user_ci {
+  dimension_group: usable_from {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.usable_from ;;
+  }
+
+  dimension_group: usable_to {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.usable_to ;;
+  }
+
+  dimension: usage_id {
     type: string
-    sql: ${TABLE}.user_ci ;;
+    sql: ${TABLE}.usage_id ;;
+  }
+
+  dimension: usage_type {
+    type: string
+    sql: ${TABLE}.usage_type ;;
   }
 
   dimension: user_id {
