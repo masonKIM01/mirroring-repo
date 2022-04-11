@@ -70,6 +70,5 @@ view: chai_card_chai_prod_public_korea_spec {
 
   measure: count {
     type: count
-    drill_fields: [id, user.id, third_party_provide.count]
   }
 }

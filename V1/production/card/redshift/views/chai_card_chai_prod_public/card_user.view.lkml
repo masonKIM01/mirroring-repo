@@ -15,6 +15,5 @@ view: chai_card_chai_prod_public_card_user {
 
   measure: count {
     type: count
-    drill_fields: [id, atm.count]
   }
 }

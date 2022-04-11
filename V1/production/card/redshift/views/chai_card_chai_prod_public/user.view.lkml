@@ -1,11 +1,16 @@
-view: chai_card_plcc_public_hana_card {
-  sql_table_name: chai_card_plcc_public.hana_card ;;
+view: chai_card_chai_prod_public_user {
+  sql_table_name: chai_card_chai_prod_public."user" ;;
   drill_fields: [id]
 
   dimension: id {
     primary_key: yes
-    type: number
+    type: string
     sql: ${TABLE}.id ;;
+  }
+
+  dimension: birthday {
+    type: string
+    sql: ${TABLE}.birthday ;;
   }
 
   dimension_group: created {
@@ -22,21 +27,12 @@ view: chai_card_plcc_public_hana_card {
     sql: ${TABLE}.created_at ;;
   }
 
-  dimension_group: expire {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.expire_date ;;
+  dimension: data {
+    type: string
+    sql: ${TABLE}.data ;;
   }
 
-  dimension_group: issue {
+  dimension_group: deleted {
     type: time
     timeframes: [
       raw,
@@ -47,7 +43,26 @@ view: chai_card_plcc_public_hana_card {
       quarter,
       year
     ]
-    sql: ${TABLE}.issue_date ;;
+    sql: ${TABLE}.deleted_at ;;
+  }
+
+  dimension: gender {
+    type: string
+    sql: ${TABLE}.gender ;;
+  }
+
+  dimension_group: last_login {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.last_login_at ;;
   }
 
   dimension: month {
@@ -55,14 +70,14 @@ view: chai_card_plcc_public_hana_card {
     sql: ${TABLE}.month ;;
   }
 
-  dimension: product_code {
+  dimension: purchased_merchants {
     type: string
-    sql: ${TABLE}.product_code ;;
+    sql: ${TABLE}.purchased_merchants ;;
   }
 
-  dimension: product_name {
+  dimension: required_actions {
     type: string
-    sql: ${TABLE}.product_name ;;
+    sql: ${TABLE}.required_actions ;;
   }
 
   dimension: status {
@@ -82,11 +97,6 @@ view: chai_card_plcc_public_hana_card {
       year
     ]
     sql: ${TABLE}.updated_at ;;
-  }
-
-  dimension: user_id {
-    type: string
-    sql: ${TABLE}.user_id ;;
   }
 
   dimension: year {

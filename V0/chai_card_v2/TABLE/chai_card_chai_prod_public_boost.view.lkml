@@ -1,4 +1,4 @@
-view: chai_card_chai_prod_public_boost {
+view: table_boost {
   derived_table: {
     sql: select *
       from chai_card_chai_prod_public.boost b
