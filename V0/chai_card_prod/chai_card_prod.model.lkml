@@ -29,7 +29,6 @@ explore: querylibrary {}
 explore: checkout_selectivity {}
 explore: plcc_funnel {}
 explore: plcc_payment_type {}
-explore: min_created_at {}
 explore: table_amplitude {}
 
 
