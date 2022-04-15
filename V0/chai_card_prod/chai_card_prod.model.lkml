@@ -22,52 +22,15 @@ explore: table_boost {
 explore: fsr_yogiyo {}
 explore: ad_spend_view {}
 explore: bolt_draw_report {}
-explore: monthly_data {}
-explore: monthly_data_wocpa {}
-explore: daily_data {}
-explore: converting {}
 explore: plcc_first_time_payment {}
 explore: table_redshift_card {}
 explore: querylibrary {}
-explore: cashback_map {}
-explore: cashback_map_credit {}
-explore: cashback_map_vol {}
 explore: checkout_selectivity {}
 explore: plcc_funnel {}
 explore: plcc_payment_type {}
 explore: join_adspend {}
 explore: min_created_at {}
 explore: table_amplitude {}
-explore: table_payment_union_analytics {
-
-  join: table_redshift_boost {
-
-    type: left_outer
-    sql_on: ${table_payment_union_analytics.id} = ${table_redshift_boost.payment_id} ;;
-    relationship: many_to_one
-  }
-
-  join: table_redshift_boost_promotion_policy {
-    type: left_outer
-    sql_on: ${table_redshift_boost.boost_promotion_id} = ${table_redshift_boost_promotion_policy.id} ;;
-    relationship: many_to_one
-  }
-
-  join: table_redshift_brand {
-    type: left_outer
-    sql_on: ${table_redshift_brand.id} = ${table_redshift_boost_promotion_policy.brand_id} ;;
-    relationship: many_to_one
-  }
-
-  join: table_merchant_adspend {
-    type: left_outer
-    sql_on: ${table_redshift_brand.name} = ${table_merchant_adspend.merchant_name}
-    and ${table_redshift_boost_promotion_policy.title} = ${table_merchant_adspend.title}
-    and (${table_payment_union_analytics.months}) = (${table_merchant_adspend.months})
-    ;;
-    relationship: many_to_one
-  }
-}
 
 
 explore: table_redshift_payment {
