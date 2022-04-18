@@ -8,3 +8,7 @@ datagroup: daily_datagroup {
 
 explore: chai_card_chai_prod_public_boost {}
 explore: prejoined_payment_pdt{}
+explore: chai_card_chai_prod_public_user {}
+explore: chai_card_chai_prod_public_bolt_history {}
+explore: chai_card_chai_prod_public_boost_up {}
+explore: chai_card_chai_prod_public_merchant {}
