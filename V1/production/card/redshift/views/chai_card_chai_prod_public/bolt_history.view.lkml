@@ -1,4 +1,4 @@
-view: bolt_history {
+view: chai_card_chai_prod_public_bolt_history {
   sql_table_name: chai_card_chai_prod_public.bolt_history ;;
   drill_fields: [id]
 
@@ -71,5 +71,20 @@ view: bolt_history {
   measure: count {
     type: count
     drill_fields: [id, user.id]
+  }
+
+  measure: users {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
+  measure: count_bolt {
+    type: sum
+    sql: ${TABLE}.count ;;
+  }
+
+  dimension_group: created_at {
+    type: time
+    sql: ${TABLE}.created_at ;;
   }
 }
