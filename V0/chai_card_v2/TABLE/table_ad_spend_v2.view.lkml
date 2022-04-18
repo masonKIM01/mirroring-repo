@@ -24,15 +24,20 @@ view: table_ad_spend_v2 {
           (select *,
             case when count >= 2 and avg(unit_price)over(partition by boost_campaign_id) <> unit_price then 1
             else 2
-            end as ttype
+            end as ttype, sum(x.p)over(partition by boost_campaign_id) * x.p as yn
           from
             (select
               *,
+              case when ad.type = 'cpa' then -1
+              else 2
+              end as p,
               count(ad.unit_price)over(partition by boost_campaign_id)
             from chai_card_chai_prod_public.boost_campaign_ad_spend ad
-            group by 1,2,3,4,5,6,7,8,9,10,11,12,13
+            group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14
             )x
+            group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
           )t
+          where t.yn > 0
         )ad on ad.boost_campaign_id = b.boost_campaign_id
             and
               ((case when ad.ttype = 1 then b.created_at between start_at and isnull(end_at, start_at +100) end)
