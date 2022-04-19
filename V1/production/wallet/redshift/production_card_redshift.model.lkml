@@ -1,5 +1,7 @@
 connection: "chai_redshift_production"
-include: "views/**/*.view.lkml"
+include: "/V1/production/wallet/redshift/views/**/*.view.lkml"
+# include V0 views that will be deprecated
+include: "/V0(will_be_deprecated)/**/*.view.lkml"
 
 datagroup: daily_datagroup {
   sql_trigger: "SELECT EXTRACT(DAY FROM NOW())" ;;
