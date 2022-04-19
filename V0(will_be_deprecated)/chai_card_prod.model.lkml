@@ -25,53 +25,6 @@ explore: join_adspend {}
 explore: min_created_at {}
 
 
-explore: table_redshift_payment {
-  join: table_redshift_boost {
-    type: left_outer
-    sql_on:  ${table_redshift_boost.payment_id} = ${table_redshift_payment.id} ;;
-    relationship: many_to_one
-  }
-
-  join: table_redshift_merchant {
-    type: inner
-    sql_on: ${table_redshift_payment.merchant_id} = ${table_redshift_merchant.id} ;;
-    relationship: many_to_one
-  }
-
-  join: table_redshift_boost_promotion_policy {
-    type: left_outer
-    sql_on:  ${table_redshift_boost_promotion_policy.id} = ${table_redshift_boost.boost_promotion_id} ;;
-    relationship: many_to_one
-  }
-
-  join: table_redshift_brand {
-    type: left_outer
-    sql_on: ${table_redshift_brand.id} = ${table_redshift_boost_promotion_policy.brand_id} ;;
-    relationship: many_to_one
-  }
-
-  join: table_merchant_adspend {
-    type: left_outer
-    sql_on: ${table_redshift_brand.name} = ${table_merchant_adspend.merchant_name}
-          and ${table_redshift_boost_promotion_policy.title} = ${table_merchant_adspend.title}
-          and (${table_redshift_payment.months}) = (${table_merchant_adspend.months})
-          ;;
-    relationship: many_to_one
-  }
-
-  join: table_delayed_cashback {
-    type: left_outer
-    sql_on: ${table_redshift_payment.id} = ${table_delayed_cashback.payment_id} ;;
-    relationship: many_to_one
-  }
-
-  join: table_ad_spend_v2{
-    type: left_outer
-    sql_on: ${table_ad_spend_v2.payment_id} = ${table_redshift_payment.id} ;;
-    relationship: many_to_one
-  }
-}
-
 explore: table_payment {
   join: table_redshift_boost {
     type: left_outer
@@ -137,6 +90,15 @@ explore: table_payment {
     type: left_outer
     sql_on: ${table_boost_campaign_target_type.boost_campaign_id} = ${table_redshift_boost.boost_campaign_id} ;;
     relationship: one_to_one
+  }
+
+  join: table_merchant_adspend {
+    type: left_outer
+    sql_on: ${table_redshift_brand.name} = ${table_merchant_adspend.merchant_name}
+      and ${table_redshift_boost_promotion_policy.title} = ${table_merchant_adspend.title}
+      and (${table_payment.months}) = (${table_merchant_adspend.months})
+      ;;
+    relationship: many_to_one
   }
 }
 

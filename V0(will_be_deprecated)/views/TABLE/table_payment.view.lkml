@@ -40,6 +40,11 @@ view: table_payment {
     sql: coalesce(${charging_amount},0) ;;
   }
 
+  dimension: months {
+    type: string
+    sql: to_char(${TABLE}.created_at,'yyyy-mm-01') ;;
+  }
+
   dimension: id {
     type: string
     primary_key: yes
