@@ -18,7 +18,7 @@ explore: amplitude_raw_events {}
 explore: joined_payment_pdt{
   from: full_outer_joined_payment_boost
   always_filter: {
-    filters: [joined_payment_pdt.boost_id: "NOT NULL"]
+    filters: [joined_payment_pdt.payment_id: "NOT NULL"]
   }
 }
 explore: joined_boost_pdt {
