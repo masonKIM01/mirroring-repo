@@ -12,3 +12,4 @@ explore: chai_card_chai_prod_public_user {}
 explore: chai_card_chai_prod_public_bolt_history {}
 explore: chai_card_chai_prod_public_boost_up {}
 explore: chai_card_chai_prod_public_merchant {}
+explore: amplitude_amplitude_raw_events {}

@@ -27,7 +27,6 @@ explore: plcc_funnel {}
 explore: plcc_payment_type {}
 explore: join_adspend {}
 explore: min_created_at {}
-explore: table_amplitude {}
 
 
 explore: table_redshift_payment {
