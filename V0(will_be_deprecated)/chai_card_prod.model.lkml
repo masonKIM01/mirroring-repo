@@ -1,18 +1,11 @@
 connection: "chai_redshift_production"
 
 include: "/**/*.view.lkml"
-# include: "/**/*.view.lkml"                 # include all views in this project
-# include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
-explore: table_redshift_user {}
-explore: table_redshift_bolt_history {}
+
+# views will be deprecated
 explore: table_merchant_adspend {}
-explore: table_redshift_merchant {}
 explore: table_union_all_payment {}
-explore: chai_card_chai_prod_public_boost_up {}
 explore: table_boost {
   join: table_payment {
     type: left_outer
@@ -24,14 +17,12 @@ explore: fsr_yogiyo {}
 explore: ad_spend_view {}
 explore: bolt_draw_report {}
 explore: plcc_first_time_payment {}
-explore: table_redshift_card {}
 explore: querylibrary {}
 explore: checkout_selectivity {}
 explore: plcc_funnel {}
 explore: plcc_payment_type {}
 explore: join_adspend {}
 explore: min_created_at {}
-explore: table_amplitude {}
 
 
 explore: table_redshift_payment {

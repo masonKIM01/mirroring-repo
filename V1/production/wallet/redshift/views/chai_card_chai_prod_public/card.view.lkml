@@ -1,5 +1,5 @@
-view: bolt_history {
-  sql_table_name: chai_card_chai_prod_public.bolt_history ;;
+view: chai_card {
+  sql_table_name: chai_card_chai_prod_public.card ;;
   drill_fields: [id]
 
   dimension: id {
@@ -8,22 +8,12 @@ view: bolt_history {
     sql: ${TABLE}.id ;;
   }
 
-  dimension: action {
-    type: string
-    sql: ${TABLE}.action ;;
-  }
-
-  dimension: available_bolt {
+  dimension: card_product_id {
     type: number
-    sql: ${TABLE}.available_bolt ;;
+    sql: ${TABLE}.card_product_id ;;
   }
 
-  dimension: count_bolt_history {
-    type: number
-    sql: ${TABLE}.count ;;
-  }
-
-  dimension_group: created {
+  dimension_group: created_at {
     type: time
     timeframes: [
       raw,
@@ -37,9 +27,9 @@ view: bolt_history {
     sql: ${TABLE}.created_at ;;
   }
 
-  dimension: from_id {
-    type: string
-    sql: ${TABLE}.from_id ;;
+  dimension: is_reissue {
+    type: yesno
+    sql: ${TABLE}.is_reissue ;;
   }
 
   dimension: month {
@@ -47,14 +37,23 @@ view: bolt_history {
     sql: ${TABLE}.month ;;
   }
 
-  dimension: subtitle {
+  dimension: status {
     type: string
-    sql: ${TABLE}.subtitle ;;
+    sql: ${TABLE}.status ;;
   }
 
-  dimension: type {
-    type: string
-    sql: ${TABLE}.type ;;
+  dimension_group: updated_at {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.updated_at ;;
   }
 
   dimension: user_id {
@@ -71,5 +70,10 @@ view: bolt_history {
   measure: count {
     type: count
     drill_fields: [id, user.id]
+  }
+
+  measure: users {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
   }
 }

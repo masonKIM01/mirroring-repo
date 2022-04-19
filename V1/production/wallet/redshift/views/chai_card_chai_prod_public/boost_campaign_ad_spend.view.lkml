@@ -1,16 +1,22 @@
-view: chai_card_chai_prod_public_user {
-  sql_table_name: chai_card_chai_prod_public."user" ;;
+view: chai_boost_campaign_ad_spend {
+  sql_table_name: chai_card_chai_prod_public.boost_campaign_ad_spend ;;
   drill_fields: [id]
 
   dimension: id {
     primary_key: yes
-    type: string
+    type: number
     sql: ${TABLE}.id ;;
   }
 
-  dimension: birthday {
+  dimension: billing_type {
     type: string
-    sql: ${TABLE}.birthday ;;
+    sql: ${TABLE}.billing_type ;;
+  }
+
+  dimension: boost_campaign_id {
+    type: number
+    # hidden: yes
+    sql: ${TABLE}.boost_campaign_id ;;
   }
 
   dimension_group: created {
@@ -32,7 +38,7 @@ view: chai_card_chai_prod_public_user {
     sql: ${TABLE}.data ;;
   }
 
-  dimension_group: deleted {
+  dimension_group: end {
     type: time
     timeframes: [
       raw,
@@ -43,26 +49,7 @@ view: chai_card_chai_prod_public_user {
       quarter,
       year
     ]
-    sql: ${TABLE}.deleted_at ;;
-  }
-
-  dimension: gender {
-    type: string
-    sql: ${TABLE}.gender ;;
-  }
-
-  dimension_group: last_login {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.last_login_at ;;
+    sql: ${TABLE}.end_at ;;
   }
 
   dimension: month {
@@ -70,19 +57,33 @@ view: chai_card_chai_prod_public_user {
     sql: ${TABLE}.month ;;
   }
 
-  dimension: purchased_merchants {
-    type: string
-    sql: ${TABLE}.purchased_merchants ;;
+  dimension: ratio {
+    type: number
+    sql: ${TABLE}.ratio ;;
   }
 
-  dimension: required_actions {
-    type: string
-    sql: ${TABLE}.required_actions ;;
+  dimension_group: start {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.start_at ;;
   }
 
-  dimension: status {
+  dimension: type {
     type: string
-    sql: ${TABLE}.status ;;
+    sql: ${TABLE}.type ;;
+  }
+
+  dimension: unit_price {
+    type: number
+    sql: ${TABLE}.unit_price ;;
   }
 
   dimension_group: updated {
@@ -106,5 +107,6 @@ view: chai_card_chai_prod_public_user {
 
   measure: count {
     type: count
+    drill_fields: [id, boost_campaign.id]
   }
 }

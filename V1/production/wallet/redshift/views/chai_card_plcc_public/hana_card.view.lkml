@@ -1,4 +1,4 @@
-view: chai_card_plcc_public_hana_card {
+view: plcc_hana_card {
   sql_table_name: chai_card_plcc_public.hana_card ;;
   drill_fields: [id]
 

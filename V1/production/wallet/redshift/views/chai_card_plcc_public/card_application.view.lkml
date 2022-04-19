@@ -1,4 +1,4 @@
-view: chai_card_plcc_public_card_application {
+view: plcc_card_application {
   sql_table_name: chai_card_plcc_public.card_application ;;
   drill_fields: [id]
 

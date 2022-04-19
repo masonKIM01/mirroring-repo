@@ -6,5 +6,11 @@ datagroup: daily_datagroup {
   description: "trigger query daily"
 }
 
-explore: chai_card_chai_prod_public_boost {}
+explore: chai_boost {}
 explore: prejoined_payment_pdt{}
+explore: chai_user {}
+explore: chai_bolt_history {}
+explore: chai_boost_up {}
+explore: chai_merchant {}
+explore: chai_card {}
+explore: amplitude_raw_events {}
