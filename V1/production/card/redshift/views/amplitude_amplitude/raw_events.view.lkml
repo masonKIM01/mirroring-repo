@@ -112,6 +112,20 @@ view: amplitude_amplitude_raw_events {
     sql: ${TABLE}.event_time ;;
   }
 
+  dimension_group: event_time {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.updated_at ;;
+  }
+
   dimension: event_type {
     type: string
     sql: ${TABLE}.event_type ;;
@@ -270,5 +284,10 @@ view: amplitude_amplitude_raw_events {
   measure: count {
     type: count
     drill_fields: [os_name, version_name]
+  }
+
+  measure: users {
+    type: count_distinct
+    sql: ${TABLE}.amplitude_id ;;
   }
 }
