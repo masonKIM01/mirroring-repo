@@ -1,4 +1,4 @@
-view: chai_card_chai_prod_public_boost_campaign_ad_spend {
+view: chai_boost_campaign_ad_spend {
   sql_table_name: chai_card_chai_prod_public.boost_campaign_ad_spend ;;
   drill_fields: [id]
 

@@ -1,4 +1,4 @@
-view: chai_card_chai_prod_public_merchant {
+view: chai_merchant {
   derived_table: {
     sql:
       SELECT

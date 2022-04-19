@@ -1,4 +1,4 @@
-view: chai_card_chai_prod_public_korea_spec {
+view: chai_korea_spec {
   sql_table_name: chai_card_chai_prod_public.korea_spec ;;
   drill_fields: [id]
 

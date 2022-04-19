@@ -1,4 +1,4 @@
-view: amplitude_amplitude_raw_events {
+view: amplitude_raw_events {
   sql_table_name: amplitude_amplitude.raw_events ;;
 
   dimension: adid {

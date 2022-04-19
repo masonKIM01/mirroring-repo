@@ -1,14 +1,19 @@
-view: chai_card_plcc_public_card_application {
-  sql_table_name: chai_card_plcc_public.card_application ;;
+view: chai_card {
+  sql_table_name: chai_card_chai_prod_public.card ;;
   drill_fields: [id]
 
   dimension: id {
     primary_key: yes
-    type: string
+    type: number
     sql: ${TABLE}.id ;;
   }
 
-  dimension_group: created {
+  dimension: card_product_id {
+    type: number
+    sql: ${TABLE}.card_product_id ;;
+  }
+
+  dimension_group: created_at {
     type: time
     timeframes: [
       raw,
@@ -22,6 +27,11 @@ view: chai_card_plcc_public_card_application {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension: is_reissue {
+    type: yesno
+    sql: ${TABLE}.is_reissue ;;
+  }
+
   dimension: month {
     type: number
     sql: ${TABLE}.month ;;
@@ -32,12 +42,7 @@ view: chai_card_plcc_public_card_application {
     sql: ${TABLE}.status ;;
   }
 
-  dimension: token {
-    type: string
-    sql: ${TABLE}.token ;;
-  }
-
-  dimension_group: updated {
+  dimension_group: updated_at {
     type: time
     timeframes: [
       raw,
@@ -53,6 +58,7 @@ view: chai_card_plcc_public_card_application {
 
   dimension: user_id {
     type: string
+    # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 
@@ -63,5 +69,11 @@ view: chai_card_plcc_public_card_application {
 
   measure: count {
     type: count
+    drill_fields: [id, user.id]
+  }
+
+  measure: users {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
   }
 }

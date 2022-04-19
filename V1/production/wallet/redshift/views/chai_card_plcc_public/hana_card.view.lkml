@@ -1,5 +1,5 @@
-view: chai_card_chai_prod_public_card {
-  sql_table_name: chai_card_chai_prod_public.card ;;
+view: plcc_hana_card {
+  sql_table_name: chai_card_plcc_public.hana_card ;;
   drill_fields: [id]
 
   dimension: id {
@@ -8,12 +8,7 @@ view: chai_card_chai_prod_public_card {
     sql: ${TABLE}.id ;;
   }
 
-  dimension: card_product_id {
-    type: number
-    sql: ${TABLE}.card_product_id ;;
-  }
-
-  dimension_group: created_at {
+  dimension_group: created {
     type: time
     timeframes: [
       raw,
@@ -27,9 +22,32 @@ view: chai_card_chai_prod_public_card {
     sql: ${TABLE}.created_at ;;
   }
 
-  dimension: is_reissue {
-    type: yesno
-    sql: ${TABLE}.is_reissue ;;
+  dimension_group: expire {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.expire_date ;;
+  }
+
+  dimension_group: issue {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.issue_date ;;
   }
 
   dimension: month {
@@ -37,12 +55,22 @@ view: chai_card_chai_prod_public_card {
     sql: ${TABLE}.month ;;
   }
 
+  dimension: product_code {
+    type: string
+    sql: ${TABLE}.product_code ;;
+  }
+
+  dimension: product_name {
+    type: string
+    sql: ${TABLE}.product_name ;;
+  }
+
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
   }
 
-  dimension_group: updated_at {
+  dimension_group: updated {
     type: time
     timeframes: [
       raw,
@@ -58,7 +86,6 @@ view: chai_card_chai_prod_public_card {
 
   dimension: user_id {
     type: string
-    # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 
@@ -69,11 +96,5 @@ view: chai_card_chai_prod_public_card {
 
   measure: count {
     type: count
-    drill_fields: [id, user.id]
-  }
-
-  measure: users {
-    type: count_distinct
-    sql: ${TABLE}.user_id ;;
   }
 }

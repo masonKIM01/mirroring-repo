@@ -1,4 +1,4 @@
-view: chai_card_chai_prod_public_delayed_cashback_history {
+view: chai_delayed_cashback_history {
   sql_table_name: chai_card_chai_prod_public.delayed_cashback_history ;;
   drill_fields: [id]
 

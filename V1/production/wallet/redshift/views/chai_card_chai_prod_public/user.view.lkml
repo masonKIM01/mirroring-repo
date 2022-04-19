@@ -1,4 +1,4 @@
-view: chai_card_chai_prod_public_user {
+view: chai_user {
   sql_table_name: chai_card_chai_prod_public."user" ;;
   drill_fields: [id]
 

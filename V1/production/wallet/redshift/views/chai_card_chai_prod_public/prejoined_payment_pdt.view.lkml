@@ -18,24 +18,24 @@ view: prejoined_payment_pdt {
       column: payment_discount_amount { field: prejoined_payment.discount_amount }
       column: merchant_cashback_amount {}
       column: merchant_discount_amount {}
-      column: merchant_data { field: chai_card_chai_prod_public_merchant.data }
-      column: merchant_name { field: chai_card_chai_prod_public_merchant.name }
-      column: merchant_status { field: chai_card_chai_prod_public_merchant.status }
-      column: merchant_type { field: chai_card_chai_prod_public_merchant.type }
-      column: brand_name { field: chai_card_chai_prod_public_brand.name }
-      column: boost_promotion_policy_description { field: chai_card_chai_prod_public_boost_promotion_policy.description }
-      column: boost_promotion_policy_usable_from { field: chai_card_chai_prod_public_boost_promotion_policy.usable_from_raw }
-      column: boost_promotion_policy_usable_to { field: chai_card_chai_prod_public_boost_promotion_policy.usable_to_raw }
-      column: boost_promotion_policy_type { field: chai_card_chai_prod_public_boost_promotion_policy.type }
-      column: boost_promotion_policy_status { field: chai_card_chai_prod_public_boost_promotion_policy.status }
-      column: boost_promotion_policy_count_cap { field: chai_card_chai_prod_public_boost_promotion_policy.count_cap }
-      column: boost_promotion_policy_count_cap_per_user { field: chai_card_chai_prod_public_boost_promotion_policy.count_cap_per_user }
-      column: boost_promotion_policy_brand_id { field: chai_card_chai_prod_public_boost_promotion_policy.brand_id }
-      column: boost_promotion_policy_promotion_id { field: chai_card_chai_prod_public_boost_promotion_policy.promotion_id }
-      column: boost_id { field: chai_card_chai_prod_public_boost.id }
-      column: boost_usable_from { field: chai_card_chai_prod_public_boost.usable_from_raw }
-      column: boost_usable_to { field: chai_card_chai_prod_public_boost.usable_to_raw }
-      column: boost_status { field: chai_card_chai_prod_public_boost.status }
+      column: merchant_data { field: chai_merchant.data }
+      column: merchant_name { field: chai_merchant.name }
+      column: merchant_status { field: chai_merchant.status }
+      column: merchant_type { field: chai_merchant.type }
+      column: brand_name { field: chai_brand.name }
+      column: boost_promotion_policy_description { field: chai_boost_promotion_policy.description }
+      column: boost_promotion_policy_usable_from { field: chai_boost_promotion_policy.usable_from_raw }
+      column: boost_promotion_policy_usable_to { field: chai_boost_promotion_policy.usable_to_raw }
+      column: boost_promotion_policy_type { field: chai_boost_promotion_policy.type }
+      column: boost_promotion_policy_status { field: chai_boost_promotion_policy.status }
+      column: boost_promotion_policy_count_cap { field: chai_boost_promotion_policy.count_cap }
+      column: boost_promotion_policy_count_cap_per_user { field: chai_boost_promotion_policy.count_cap_per_user }
+      column: boost_promotion_policy_brand_id { field: chai_boost_promotion_policy.brand_id }
+      column: boost_promotion_policy_promotion_id { field: chai_boost_promotion_policy.promotion_id }
+      column: boost_id { field: chai_boost.id }
+      column: boost_usable_from { field: chai_boost.usable_from_raw }
+      column: boost_usable_to { field: chai_boost.usable_to_raw }
+      column: boost_status { field: chai_boost.status }
     }
   }
   dimension: payment_checkout_amount {
