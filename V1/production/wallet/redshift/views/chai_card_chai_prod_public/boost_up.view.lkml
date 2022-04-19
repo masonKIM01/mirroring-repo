@@ -1,4 +1,4 @@
-view: chai_card_chai_prod_public_boost_up {
+view: chai_boost_up {
   sql_table_name: chai_card_chai_prod_public.boost_up;;
 
   measure: count {

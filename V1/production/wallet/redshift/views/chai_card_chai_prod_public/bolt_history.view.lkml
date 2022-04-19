@@ -1,4 +1,4 @@
-view: chai_card_chai_prod_public_bolt_history {
+view: chai_bolt_history {
   sql_table_name: chai_card_chai_prod_public.bolt_history ;;
   drill_fields: [id]
 

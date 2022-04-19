@@ -1,4 +1,4 @@
-view: chai_card_chai_prod_public_payment {
+view: chai_payment {
   sql_table_name: chai_card_chai_prod_public.payment ;;
   drill_fields: [id]
 
