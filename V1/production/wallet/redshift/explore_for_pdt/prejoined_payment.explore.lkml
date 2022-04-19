@@ -1,20 +1,21 @@
 include: "../views/**/*.view.lkml"
-explore: prejoined_payment {
+explore: full_outer_joined_payment_boost {
   description: "payment table joined with multiple tables"
   hidden: yes
   from: chai_payment
   always_filter: {
+    filters: [full_outer_joined_payment_boost.created_date: "6 months"]
     filters: [chai_boost.created_date: "6 months"]
   }
   join: chai_boost {
-    type: left_outer
-    sql_on: ${prejoined_payment.id} = ${chai_boost.payment_id} ;;
-    relationship: many_to_one
+    type: full_outer
+    sql_on: ${full_outer_joined_payment_boost.id} = ${chai_boost.payment_id} ;;
+    relationship: many_to_many
   }
 
   join: chai_merchant {
     type: left_outer
-    sql_on: ${prejoined_payment.merchant_id} = ${chai_merchant.id} ;;
+    sql_on: ${full_outer_joined_payment_boost.merchant_id} = ${chai_merchant.id} ;;
     relationship: many_to_one
   }
 

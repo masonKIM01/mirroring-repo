@@ -9,10 +9,21 @@ datagroup: daily_datagroup {
 }
 
 explore: chai_boost {}
-explore: prejoined_payment_pdt{}
 explore: chai_user {}
 explore: chai_bolt_history {}
 explore: chai_boost_up {}
 explore: chai_merchant {}
 explore: chai_card {}
 explore: amplitude_raw_events {}
+explore: joined_payment_pdt{
+  from: full_outer_joined_payment_boost
+  always_filter: {
+    filters: [joined_payment_pdt.boost_id: "NOT NULL"]
+  }
+}
+explore: joined_boost_pdt {
+  from: full_outer_joined_payment_boost
+  always_filter: {
+    filters: [joined_boost_pdt.boost_id: "NOT NULL"]
+  }
+}
