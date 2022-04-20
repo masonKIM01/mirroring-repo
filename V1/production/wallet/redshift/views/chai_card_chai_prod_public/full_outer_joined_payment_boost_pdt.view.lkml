@@ -7,6 +7,7 @@ view: prejoined_payment_pdt {
     increment_key: "payment_created_date"
     increment_offset:  7
     explore_source: prejoined_payment {
+      column: payment_id { field: prejoined_payment.id }
       column: payment_checkout_amount { field: prejoined_payment.checkout_amount }
       column: payment_charging_amount { field: prejoined_payment.charging_amount }
       column: payment_cashback_amount { field: prejoined_payment.cashback_amount }
@@ -37,6 +38,9 @@ view: prejoined_payment_pdt {
       column: boost_usable_to { field: chai_boost.usable_to_raw }
       column: boost_status { field: chai_boost.status }
     }
+  }
+  dimension: payment_id {
+    type: number
   }
   dimension: payment_checkout_amount {
     type: number

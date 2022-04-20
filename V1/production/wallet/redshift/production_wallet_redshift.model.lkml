@@ -9,10 +9,18 @@ datagroup: daily_datagroup {
 }
 
 explore: chai_boost {}
-explore: prejoined_payment_pdt{}
 explore: chai_user {}
 explore: chai_bolt_history {}
 explore: chai_boost_up {}
 explore: chai_merchant {}
 explore: chai_card {}
 explore: amplitude_raw_events {}
+explore: prejoined_payment_pdt {}
+explore: prejoined_boost {
+  from: table_boost
+  join: chai_payment {
+    type: left_outer
+    sql_on: ${prejoined_boost.payment_id}= ${chai_payment.id} ;;
+    relationship: many_to_one
+  }
+}

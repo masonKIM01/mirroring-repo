@@ -187,4 +187,29 @@ view: chai_payment {
   measure: count {
     type: count
   }
+
+  measure: count_user {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
+  measure: total_checkout_amount {
+    type: sum
+    sql: coalesce(${checkout_amount},0) ;;
+  }
+
+  measure: total_cashback_amount {
+    type: sum
+    sql: coalesce(${cashback_amount},0) ;;
+  }
+
+  measure: total_billing_amount {
+    type: sum
+    sql: coalesce(${billing_amount},0) ;;
+  }
+
+  measure: total_charging_amount {
+    type: sum
+    sql: coalesce(${charging_amount},0) ;;
+  }
 }
