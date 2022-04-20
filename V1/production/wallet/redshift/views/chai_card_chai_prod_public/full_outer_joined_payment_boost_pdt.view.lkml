@@ -1,22 +1,22 @@
 include: "../../explore_for_pdt/**.**.lkml"
 
-view: full_outer_joined_payment_boost {
+view: prejoined_payment_pdt {
   derived_table: {
     datagroup_trigger: daily_datagroup
     distribution_style: all
     increment_key: "payment_created_date"
     increment_offset:  7
-    explore_source: full_outer_joined_payment_boost {
-      column: payment_id { field: full_outer_joined_payment_boost.id }
-      column: payment_checkout_amount { field: full_outer_joined_payment_boost.checkout_amount }
-      column: payment_charging_amount { field: full_outer_joined_payment_boost.charging_amount }
-      column: payment_cashback_amount { field: full_outer_joined_payment_boost.cashback_amount }
-      column: payment_billing_amount { field: full_outer_joined_payment_boost.billing_amount }
-      column: payment_canceled_amount { field: full_outer_joined_payment_boost.canceled_amount }
-      column: payment_created_date { field: full_outer_joined_payment_boost.created_date }
-      column: payment_created { field: full_outer_joined_payment_boost.created_raw }
-      column: payment_data { field: full_outer_joined_payment_boost.data }
-      column: payment_discount_amount { field: full_outer_joined_payment_boost.discount_amount }
+    explore_source: prejoined_payment {
+      column: payment_id { field: prejoined_payment.id }
+      column: payment_checkout_amount { field: prejoined_payment.checkout_amount }
+      column: payment_charging_amount { field: prejoined_payment.charging_amount }
+      column: payment_cashback_amount { field: prejoined_payment.cashback_amount }
+      column: payment_billing_amount { field: prejoined_payment.billing_amount }
+      column: payment_canceled_amount { field: prejoined_payment.canceled_amount }
+      column: payment_created_date { field: prejoined_payment.created_date }
+      column: payment_created { field: prejoined_payment.created_raw }
+      column: payment_data { field: prejoined_payment.data }
+      column: payment_discount_amount { field: prejoined_payment.discount_amount }
       column: merchant_cashback_amount {}
       column: merchant_discount_amount {}
       column: merchant_data { field: chai_merchant.data }

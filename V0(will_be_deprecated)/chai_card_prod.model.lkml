@@ -6,13 +6,6 @@ include: "/**/*.view.lkml"
 # views will be deprecated
 explore: table_merchant_adspend {}
 explore: table_union_all_payment {}
-explore: table_boost {
-  join: table_payment {
-    type: left_outer
-    sql_on: ${table_boost.payment_id}= ${table_payment.id} ;;
-    relationship: many_to_one
-  }
-}
 explore: fsr_yogiyo {}
 explore: ad_spend_view {}
 explore: bolt_draw_report {}

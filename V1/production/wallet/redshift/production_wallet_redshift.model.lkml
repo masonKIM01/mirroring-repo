@@ -15,15 +15,12 @@ explore: chai_boost_up {}
 explore: chai_merchant {}
 explore: chai_card {}
 explore: amplitude_raw_events {}
-explore: joined_payment_pdt{
-  from: full_outer_joined_payment_boost
-  always_filter: {
-    filters: [joined_payment_pdt.payment_id: "NOT NULL"]
-  }
-}
-explore: joined_boost_pdt {
-  from: full_outer_joined_payment_boost
-  always_filter: {
-    filters: [joined_boost_pdt.boost_id: "NOT NULL"]
+explore: prejoined_payment_pdt {}
+explore: prejoined_boost {
+  from: table_boost
+  join: chai_payment {
+    type: left_outer
+    sql_on: ${prejoined_boost.payment_id}= ${chai_payment.id} ;;
+    relationship: many_to_one
   }
 }
