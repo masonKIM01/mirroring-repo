@@ -34,7 +34,10 @@ view: prejoined_payment_pdt {
       column: boost_promotion_policy_count_cap_per_user { field: chai_boost_promotion_policy.count_cap_per_user }
       column: boost_promotion_policy_brand_id { field: chai_boost_promotion_policy.brand_id }
       column: boost_promotion_policy_promotion_id { field: chai_boost_promotion_policy.promotion_id }
+      column: boost_promotion_policy_title { field: chai_boost_promotion_policy.title }
       column: boost_id { field: chai_boost.id }
+      column: boost_campagin_id { field: chai_boost.boost_campaign_id }
+      column: boost_promotion_id { field: chai_boost.boost_promotion_id }
       column: boost_usable_from { field: chai_boost.usable_from_raw }
       column: boost_usable_to { field: chai_boost.usable_to_raw }
       column: boost_status { field: chai_boost.status }
@@ -118,7 +121,14 @@ view: prejoined_payment_pdt {
     type: number
   }
   dimension: boost_promotion_policy_promotion_id {}
+  dimension: boost_promotion_policy_title {}
   dimension: boost_id {
+    type: number
+  }
+  dimension: boost_campaign_id {
+    type: number
+  }
+  dimension: boost_promotion_id {
     type: number
   }
   dimension_group: boost_usable_from {
