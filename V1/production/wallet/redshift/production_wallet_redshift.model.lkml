@@ -24,3 +24,47 @@ explore: prejoined_boost {
     relationship: many_to_one
   }
 }
+explore: prejoined_plcc_card_application {
+  from: plcc_card_application
+  join: chai_card_user {
+    type: left_outer
+    sql_on: ${prejoined_plcc_card_application.user_id} = ${chai_card_user.id} ;;
+    relationship: many_to_one
+  }
+  join: chai_korea_spec {
+    type: left_outer
+    sql_on: ${chai_korea_spec.ci}= ${chai_card_user.ci} ;;
+    relationship: many_to_one
+  }
+  join: chai_user {
+    type: left_outer
+    sql_on: ${chai_user.id} = ${chai_korea_spec.user_id} ;;
+    relationship: many_to_one
+  }
+  join: prejoined_payment_pdt {
+    type: left_outer
+    sql_on: ${prejoined_payment_pdt.payment_user_id} = ${chai_user.id} ;;
+    relationship: many_to_one
+  }
+  join: table_ad_spend_v2{
+    type: left_outer
+    sql_on: ${table_ad_spend_v2.payment_id} = ${prejoined_payment_pdt.payment_id} ;;
+    relationship: one_to_one
+  }
+
+  join: table_adspend_owner {
+    type: left_outer
+    sql_on: ${prejoined_payment_pdt.brand_name} = ${table_adspend_owner.merchant_name} ;;
+    relationship: one_to_one
+  }
+  join: table_delayed_cashback {
+    type: left_outer
+    sql_on: ${prejoined_payment_pdt.payment_id} = ${table_delayed_cashback.payment_id} ;;
+    relationship: one_to_one
+  }
+  join: table_plcc_user {
+    type: left_outer
+    sql_on: ${prejoined_payment_pdt.payment_user_id} = ${table_plcc_user.user_id} ;;
+    relationship: one_to_one
+  }
+}

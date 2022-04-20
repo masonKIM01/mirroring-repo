@@ -8,6 +8,7 @@ view: prejoined_payment_pdt {
     increment_offset:  7
     explore_source: prejoined_payment {
       column: payment_id { field: prejoined_payment.id }
+      column: payment_user_id { field: prejoined_payment.user_id }
       column: payment_checkout_amount { field: prejoined_payment.checkout_amount }
       column: payment_charging_amount { field: prejoined_payment.charging_amount }
       column: payment_cashback_amount { field: prejoined_payment.cashback_amount }
@@ -41,6 +42,9 @@ view: prejoined_payment_pdt {
   }
   dimension: payment_id {
     type: number
+  }
+  dimension: payment_user_id {
+    type: string
   }
   dimension: payment_checkout_amount {
     type: number
@@ -138,4 +142,33 @@ view: prejoined_payment_pdt {
     ]
   }
   dimension: boost_status {}
+
+  measure: count {
+    type: count
+  }
+
+  measure: payment_users {
+    type: count_distinct
+    sql: ${payment_user_id} ;;
+  }
+
+  measure: payment_total_checkout_amount {
+    type: sum
+    sql: coalesce(${payment_checkout_amount},0) ;;
+  }
+
+  measure: payment_total_cashback_amount {
+    type: sum
+    sql: coalesce(${payment_cashback_amount},0) ;;
+  }
+
+  measure: payment_total_billing_amount {
+    type: sum
+    sql: coalesce(${payment_billing_amount},0) ;;
+  }
+
+  measure: payment_total_charging_amount {
+    type: sum
+    sql: coalesce(${payment_charging_amount},0) ;;
+  }
 }
