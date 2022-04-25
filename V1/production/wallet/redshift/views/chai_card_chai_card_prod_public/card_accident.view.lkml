@@ -4,6 +4,7 @@ view: card_card_accident_receipt_history {
 
   measure: cards {
     type: count_distinct
+    description: "# of unique card"
     sql: ${TABLE}.card_seq ;;
   }
 

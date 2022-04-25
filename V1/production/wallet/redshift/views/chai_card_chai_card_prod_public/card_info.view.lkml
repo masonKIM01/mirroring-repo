@@ -3,6 +3,7 @@ view: card_card_info {
   drill_fields: [card_seq]
 
   measure: cards {
+    description: "# of unique card"
     type: count_distinct
     sql: ${card_seq} ;;
   }
