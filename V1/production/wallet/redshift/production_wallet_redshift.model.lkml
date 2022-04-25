@@ -5,8 +5,8 @@ include: "/V0(will_be_deprecated)/**/*.view.lkml"
 
 # https://docs.looker.com/reference/view-params/sql_trigger_value#examples
 datagroup: daily_datagroup {
-  sql_trigger: "SELECT FLOOR((EXTRACT(epoch from GETDATE()) - 60*60*4)/(60*60*24))" ;;
-  description: "Trigger query daily at 4AM. Replace the “4” with the hour of day you would like the regeneration to occur"
+  sql_trigger: "SELECT FLOOR((EXTRACT(epoch from GETDATE()) - 60*60*19)/(60*60*24))" ;;
+  description: "Trigger query daily at 7PM UTC. Replace the “19” with the hour of day you would like the regeneration to occur"
 }
 
 explore: chai_boost {}
