@@ -1,4 +1,4 @@
-view: chai_card_accident_receipt_history {
+view: card_card_accident_receipt_history {
   sql_table_name: chai_card_chai_card_prod_public.card_accident_receipt_history ;;
   drill_fields: [card_seq]
 
