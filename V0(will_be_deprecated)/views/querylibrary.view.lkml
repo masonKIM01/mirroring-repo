@@ -25,7 +25,8 @@ view: querylibrary {
       p.idempotency_key,
       split_part(split_part(p.data,'approvalNo":',2),'"',2) as cardApporovalNo,
       coalesce(case when ad.type = 'cps' then ad.unit_price
-            when ad.type = 'ratio' then ad.ratio * 0.01 * p.cashback_amount
+            when ad.type = 'ratio' and ad.ratio > 1 then ad.ratio * 0.01 * p.cashback_amount
+            when ad.type = 'ratio' and ad.ratio < 1 then ad.ratio * p.cashback_amount
             when ad.type = 'cpa' then ad.unit_price * 0.5
             end,0) as adSpend,
       p.cashback_amount + coalesce(ch.cashback_delta,0) as cashback_amount,
