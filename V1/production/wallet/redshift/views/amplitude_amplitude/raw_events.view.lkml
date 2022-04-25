@@ -123,7 +123,7 @@ view: amplitude_raw_events {
       quarter,
       year
     ]
-    sql: ${TABLE}.updated_at ;;
+    sql: ${TABLE}.event_time ;;
   }
 
   dimension: event_type {
