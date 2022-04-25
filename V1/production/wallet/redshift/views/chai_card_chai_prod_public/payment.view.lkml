@@ -184,16 +184,6 @@ view: chai_payment {
     sql: ${TABLE}.year ;;
   }
 
-  dimension: cardMerchantName {
-    type: string
-    sql: split_part(split_part(${data},'cardMerchantName":',2),'"',2) ;;
-  }
-
-  dimension: approvalNo {
-    type: string
-    sql: split_part(split_part(${data},'approvalNo":',2),'"',2) ;;
-  }
-
   measure: count {
     type: count
   }

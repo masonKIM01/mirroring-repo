@@ -40,6 +40,16 @@ view: table_payment {
     sql: coalesce(${charging_amount},0) ;;
   }
 
+  dimension: cardMerchantName {
+    type: string
+    sql: split_part(split_part(${data},'cardMerchantName":',2),'"',2) ;;
+  }
+
+  dimension: approvalNo {
+    type: string
+    sql: split_part(split_part(${data},'approvalNo":',2),'"',2) ;;
+  }
+
   dimension: months {
     type: string
     sql: to_char(${TABLE}.created_at,'yyyy-mm-01') ;;
@@ -217,6 +227,8 @@ view: table_payment {
       created_at_time,
       updated_at_time,
       merchant_id,
+      cardMerchantName,
+      approvalNo,
       user_id,
       type,
       discount_amount,
