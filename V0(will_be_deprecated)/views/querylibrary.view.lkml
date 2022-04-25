@@ -41,45 +41,32 @@ view: querylibrary {
       left join chai_card_chai_prod_public.boost b on b.payment_id = p.id
       left join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
       left join chai_card_chai_prod_public.brand b2 on b2.id = bpp.brand_id
-      left join chai_card_chai_prod_public.delayed_cashback_history ch on ch.payment_id = p.id
-      left join
-      (select distinct
-      b.payment_id,
-      ad.type,
-      ad.unit_price,
-      ad.ratio
-      from chai_card_chai_prod_public.boost b
-      inner join chai_card_chai_prod_public.payment p on p.id = b.payment_id
-      inner join
-        (select distinct
-          t.boost_campaign_id,
-          case when ttype = 2 then null
-          else t.start_at end as start_at,
-          case when ttype = 2 then null
-          else t.end_at end as end_at,
-          t.type,
-          t.unit_price,
-          t.ratio,
-          t.year,
-          t.ttype
+      left join (select distinct year, month, created_at, payment_id, sum(cashback_delta) as cashback_delta
         from
-          (select *,
-            case when count >= 2 and avg(unit_price)over(partition by boost_campaign_id) <> unit_price then 1
-            else 2
-            end as ttype
-          from
-            (select
-              *,
-              count(ad.unit_price)over(partition by boost_campaign_id)
-            from chai_card_chai_prod_public.boost_campaign_ad_spend ad
-            group by 1,2,3,4,5,6,7,8,9,10,11,12,13
-            )x
-          )t
-        )ad on ad.boost_campaign_id = b.boost_campaign_id
-            and
-              ((case when ad.ttype = 1 then b.created_at between start_at and isnull(end_at, start_at +100) end)
-            or (case when ad.ttype = 2 then b.created_at is not null end))
-        )ad on ad.payment_id = p.id
+        (select
+          *, count(action_type)over(partition by payment_id)
+        from chai_card_chai_prod_public.delayed_cashback_history dc
+        group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
+        )x
+        where x.count = 1
+        group by 1,2,3,4) ch on ch.payment_id = p.id
+      left join
+      (select
+        b.payment_id,
+        ad.type,
+        unit_price,
+        ratio,
+        b.year,
+        b.month
+      from chai_card_chai_prod_public.boost b
+      inner join chai_card_chai_prod_public.boost_campaign_ad_spend ad
+      on
+      (ad.boost_campaign_id = b.boost_campaign_id
+      and
+      case when ad.end_at is not null then b.created_at between ad.start_at and ad.end_at
+           when ad.end_at is null then b.created_at >= ad.start_at end)
+      where b.year = '2022'
+      )ad on ad.payment_id = p.id
       where p.status = 'confirmed'
       and p.year in (2021,2022)
        ;;
