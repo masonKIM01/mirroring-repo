@@ -1,8 +1,8 @@
-view: card_accident {
+view: chai_card_accident_receipt_history {
   sql_table_name: chai_card_chai_card_prod_public.card_accident_receipt_history ;;
   drill_fields: [card_seq]
 
-  measure: count {
+  measure: cards {
     type: count_distinct
     sql: ${TABLE}.card_seq ;;
   }

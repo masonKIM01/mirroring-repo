@@ -1,8 +1,8 @@
-view: card_info {
+view: chai_card_info {
   sql_table_name: chai_card_chai_card_prod_public.card_info ;;
   drill_fields: [card_seq]
 
-  measure: count {
+  measure: cards {
     type: count_distinct
     sql: ${card_seq} ;;
   }
