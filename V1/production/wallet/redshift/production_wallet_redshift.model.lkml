@@ -3,9 +3,10 @@ include: "/V1/production/wallet/redshift/views/**/*.view.lkml"
 # include V0 views that will be deprecated
 include: "/V0(will_be_deprecated)/**/*.view.lkml"
 
+# https://docs.looker.com/reference/view-params/sql_trigger_value#examples
 datagroup: daily_datagroup {
-  sql_trigger: "SELECT EXTRACT(DAY FROM NOW())" ;;
-  description: "trigger query daily"
+  sql_trigger: "SELECT FLOOR((EXTRACT(epoch from GETDATE()) - 60*60*19)/(60*60*24))" ;;
+  description: "Trigger query daily at 7PM UTC. Replace the “19” with the hour of day you would like the regeneration to occur"
 }
 
 explore: chai_boost {}
