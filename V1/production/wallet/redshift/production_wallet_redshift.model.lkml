@@ -10,6 +10,8 @@ datagroup: daily_datagroup {
 
 explore: chai_boost {}
 explore: chai_user {}
+explore: card_info {}
+explore: card_accident {}
 explore: chai_bolt_history {}
 explore: chai_boost_up {}
 explore: chai_merchant {}
