@@ -212,4 +212,5 @@ view: chai_payment {
     type: sum
     sql: coalesce(${charging_amount},0) ;;
   }
+
 }

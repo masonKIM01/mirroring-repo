@@ -68,7 +68,8 @@ view: table_adspend_owner {
       select '삼삼해물' as merchant_name, 'MJ' as owner union all
       select '필리' as merchant_name, 'MJ' as owner union all
       select '밀리의서재' as merchant_name, 'MJ' as owner union all
-      select '비포락토' as merchant_name, 'Groot' as owner
+      select '비포락토' as merchant_name, 'Groot' as owner union all
+      select '롯데스위트몰' as merchant_name, 'MJ' as owner
        ;;
   }
 
