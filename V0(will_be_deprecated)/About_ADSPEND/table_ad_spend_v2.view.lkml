@@ -3,7 +3,8 @@ view: table_ad_spend_v2 {
     sql: select distinct
       b.payment_id,
       case when ad.type = 'cps' then ad.unit_price
-      when ad.type = 'ratio' then ad.ratio * 0.01 * p.cashback_amount
+      when ad.type = 'ratio' and ad.ratio > 1 then ad.ratio * 0.01 * p.cashback_amount
+      when ad.type = 'ratio' and ad.ratio < 1 then ad.ratio * p.cashback_amount
       when ad.type = 'cpa' then ad.unit_price * 0.5
       end as ad_spend
       from chai_card_chai_prod_public.boost b
