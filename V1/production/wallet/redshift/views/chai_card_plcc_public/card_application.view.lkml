@@ -64,4 +64,10 @@ view: plcc_card_application {
   measure: count {
     type: count
   }
+
+  measure: users {
+    type: count_distinct
+    sql: ${TABLE}.user_id ;;
+  }
+
 }
