@@ -17,6 +17,7 @@ view: prejoined_payment_pdt {
       column: payment_created_date { field: prejoined_payment.created_date }
       column: payment_created { field: prejoined_payment.created_raw }
       column: payment_data { field: prejoined_payment.data }
+      column: payment_status { field: prejoined_payment.status }
       column: payment_discount_amount { field: prejoined_payment.discount_amount }
       column: merchant_cashback_amount {}
       column: merchant_discount_amount {}
