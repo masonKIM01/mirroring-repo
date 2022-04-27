@@ -78,6 +78,7 @@ view: prejoined_payment_pdt {
     ]
   }
   dimension: payment_data {}
+  dimension: payment_status {}
   dimension: payment_discount_amount {
     type: number
   }
