@@ -157,6 +157,7 @@ view: prejoined_payment_pdt {
 
   measure: count {
     type: count
+    drill_fields: [payment_id]
   }
 
   measure: payment_users {
