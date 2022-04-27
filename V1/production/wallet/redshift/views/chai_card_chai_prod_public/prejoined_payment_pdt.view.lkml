@@ -27,6 +27,7 @@ view: prejoined_payment_pdt {
       column: merchant_name { field: chai_merchant.name }
       column: merchant_status { field: chai_merchant.status }
       column: merchant_type { field: chai_merchant.type }
+      column: brand_id { field: chai_brand.id }
       column: brand_name { field: chai_brand.name }
       column: boost_promotion_policy_description { field: chai_boost_promotion_policy.description }
       column: boost_promotion_policy_usable_from { field: chai_boost_promotion_policy.usable_from_raw }
@@ -37,8 +38,11 @@ view: prejoined_payment_pdt {
       column: boost_promotion_policy_count_cap_per_user { field: chai_boost_promotion_policy.count_cap_per_user }
       column: boost_promotion_policy_brand_id { field: chai_boost_promotion_policy.brand_id }
       column: boost_promotion_policy_promotion_id { field: chai_boost_promotion_policy.promotion_id }
+      column: boost_promotion_policy_promotion_type { field: chai_boost_promotion_policy.promotion_type }
       column: boost_promotion_policy_title { field: chai_boost_promotion_policy.title }
+      column: boost_promotion_policy_sub_title { field: chai_boost_promotion_policy.sub_title }
       column: boost_id { field: chai_boost.id }
+      column: boost_created { field: chai_boost.created_raw }
       column: boost_campagin_id { field: chai_boost.boost_campaign_id }
       column: boost_promotion_id { field: chai_boost.boost_promotion_id }
       column: boost_usable_from { field: chai_boost.usable_from_raw }
@@ -74,9 +78,11 @@ view: prejoined_payment_pdt {
     type: time
     timeframes: [
       raw,
+      hour,
       time,
       week,
-      month
+      month,
+      hour_of_day
     ]
   }
   dimension: payment_data {}
@@ -96,27 +102,14 @@ view: prejoined_payment_pdt {
   dimension: merchant_name {}
   dimension: merchant_status {}
   dimension: merchant_type {}
+  dimension: brand_id {}
   dimension: brand_name {}
   dimension: boost_promotion_policy_description {}
   dimension_group: boost_promotion_policy_usable_from {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month
-    ]
   }
   dimension_group: boost_promotion_policy_usable_to {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month
-    ]
   }
   dimension: boost_promotion_policy_type {}
   dimension: boost_promotion_policy_status {}
@@ -127,9 +120,14 @@ view: prejoined_payment_pdt {
     type: number
   }
   dimension: boost_promotion_policy_promotion_id {}
+  dimension: boost_promotion_policy_promotion_type {}
   dimension: boost_promotion_policy_title {}
+  dimension: boost_promotion_policy_sub_title {}
   dimension: boost_id {
     type: number
+  }
+  dimension_group: boost_created {
+    type: time
   }
   dimension: boost_campaign_id {
     type: number
@@ -139,29 +137,15 @@ view: prejoined_payment_pdt {
   }
   dimension_group: boost_usable_from {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month
-    ]
   }
   dimension_group: boost_usable_to {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month
-    ]
   }
   dimension: boost_status {}
 
   measure: count {
-    type: count
-    drill_fields: [payment_id]
+    type: count_distinct
+    sql: ${TABLE}.id ;;
   }
 
   measure: payment_users {
