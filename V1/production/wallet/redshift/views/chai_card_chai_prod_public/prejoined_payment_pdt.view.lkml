@@ -19,6 +19,8 @@ view: prejoined_payment_pdt {
       column: payment_data { field: prejoined_payment.data }
       column: payment_status { field: prejoined_payment.status }
       column: payment_discount_amount { field: prejoined_payment.discount_amount }
+      column: payment_year { field: prejoined_payment.year }
+      column: payment_month { field: prejoined_payment.month }
       column: merchant_cashback_amount {}
       column: merchant_discount_amount {}
       column: merchant_data { field: chai_merchant.data }
@@ -82,6 +84,8 @@ view: prejoined_payment_pdt {
   dimension: payment_discount_amount {
     type: number
   }
+  dimension: payment_year {}
+  dimension: payment_month {}
   dimension: merchant_cashback_amount {
     type: number
   }
