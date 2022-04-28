@@ -102,7 +102,7 @@ view: chai_user {
     drill_fields: [detail*]
   }
 
-  measure: count_user {
+  measure: users {
     type: count_distinct
     sql: ${TABLE}.id ;;
   }

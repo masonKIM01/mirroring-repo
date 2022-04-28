@@ -19,7 +19,7 @@ explore: chai_merchant {}
 explore: chai_card {}
 explore: amplitude_raw_events {}
 explore: prejoined_boost {
-  from: table_boost
+  from: chai_boost
   join: chai_payment {
     type: left_outer
     sql_on: ${prejoined_boost.payment_id}= ${chai_payment.id} ;;
@@ -74,9 +74,9 @@ explore: prejoined_plcc_card_application {
 
 explore: prejoined_payment_pdt_with_ad_spend {
   from: prejoined_payment_pdt
-  join: table_user {
+  join: chai_user {
     type: left_outer
-    sql_on: ${table_user.id} = ${prejoined_payment_pdt_with_ad_spend.payment_user_id} ;;
+    sql_on: ${chai_user.id} = ${prejoined_payment_pdt_with_ad_spend.payment_user_id} ;;
     relationship: many_to_one
   }
 
@@ -86,9 +86,9 @@ explore: prejoined_payment_pdt_with_ad_spend {
     relationship: many_to_one
   }
 
-  join: table_boost_campaign_target_type {
+  join: chai_boost_campaign_target_type {
     type: left_outer
-    sql_on: ${table_boost_campaign_target_type.boost_campaign_id} = ${prejoined_payment_pdt_with_ad_spend.boost_campaign_id} ;;
+    sql_on: ${chai_boost_campaign_target_type.boost_campaign_id} = ${prejoined_payment_pdt_with_ad_spend.boost_campaign_id} ;;
     relationship: one_to_one
   }
 
