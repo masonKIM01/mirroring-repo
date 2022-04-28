@@ -18,15 +18,15 @@ explore: chai_boost_up {}
 explore: chai_merchant {}
 explore: chai_card {}
 explore: amplitude_raw_events {}
-explore: prejoined_payment_pdt {}
 explore: prejoined_boost {
-  from: table_boost
+  from: chai_boost
   join: chai_payment {
     type: left_outer
     sql_on: ${prejoined_boost.payment_id}= ${chai_payment.id} ;;
     relationship: many_to_one
   }
 }
+# Todo(@Simon, @Mason): table belows use deprecated views. needs to be updated
 explore: prejoined_plcc_card_application {
   from: plcc_card_application
   join: chai_card_user {
@@ -69,5 +69,58 @@ explore: prejoined_plcc_card_application {
     type: left_outer
     sql_on: ${prejoined_payment_pdt.payment_user_id} = ${table_plcc_user.user_id} ;;
     relationship: one_to_one
+  }
+}
+
+explore: prejoined_payment_pdt_with_ad_spend {
+  from: prejoined_payment_pdt
+  join: chai_user {
+    type: left_outer
+    sql_on: ${chai_user.id} = ${prejoined_payment_pdt_with_ad_spend.payment_user_id} ;;
+    relationship: many_to_one
+  }
+
+  join: chai_card {
+    type: left_outer
+    sql_on: ${prejoined_payment_pdt_with_ad_spend.payment_user_id} = ${chai_card.user_id} ;;
+    relationship: many_to_one
+  }
+
+  join: chai_boost_campaign_target_type {
+    type: left_outer
+    sql_on: ${chai_boost_campaign_target_type.boost_campaign_id} = ${prejoined_payment_pdt_with_ad_spend.boost_campaign_id} ;;
+    relationship: one_to_one
+  }
+
+  join: table_ad_spend_v2{
+    type: left_outer
+    sql_on: ${table_ad_spend_v2.payment_id} = ${prejoined_payment_pdt_with_ad_spend.payment_id} ;;
+    relationship: one_to_one
+  }
+
+  join: table_adspend_owner {
+    type: left_outer
+    sql_on: ${prejoined_payment_pdt_with_ad_spend.brand_name} = ${table_adspend_owner.merchant_name} ;;
+    relationship: many_to_one
+  }
+
+  join: table_delayed_cashback {
+    type: left_outer
+    sql_on: ${prejoined_payment_pdt_with_ad_spend.payment_id} = ${table_delayed_cashback.payment_id} ;;
+    relationship: one_to_one
+  }
+
+  join: table_plcc_user {
+    type: left_outer
+    sql_on: ${prejoined_payment_pdt_with_ad_spend.payment_user_id} = ${table_plcc_user.user_id} ;;
+    relationship: many_to_one
+  }
+
+  join: table_merchant_adspend {
+    type: left_outer
+    sql_on: ${prejoined_payment_pdt_with_ad_spend.brand_name} = ${table_merchant_adspend.merchant_name}
+      and ${prejoined_payment_pdt_with_ad_spend.boost_promotion_policy_title} = ${table_merchant_adspend.title}
+      ;;
+    relationship: many_to_one
   }
 }
