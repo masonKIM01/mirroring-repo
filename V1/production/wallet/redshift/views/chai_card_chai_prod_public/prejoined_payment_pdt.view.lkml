@@ -145,7 +145,7 @@ view: prejoined_payment_pdt {
 
   measure: count {
     type: count_distinct
-    sql: ${TABLE}.id ;;
+    sql: ${payment_id} ;;
   }
 
   measure: payment_users {
