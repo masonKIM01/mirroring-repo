@@ -107,22 +107,8 @@ view: amplitude_raw_events {
     sql: ${TABLE}.event_properties ;;
   }
 
-  dimension: event_time {
-    type: string
-    sql: ${TABLE}.event_time ;;
-  }
-
   dimension_group: event_time {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
     sql: ${TABLE}.event_time ;;
   }
 
