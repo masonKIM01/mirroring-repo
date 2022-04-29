@@ -5,7 +5,7 @@ include: "/V0(will_be_deprecated)/**/*.view.lkml"
 
 # https://docs.looker.com/reference/view-params/sql_trigger_value#examples
 datagroup: daily_datagroup {
-  sql_trigger: "SELECT HOUR(CURTIME())" ;;
+  sql_trigger: "SELECT DATE_PART('hour', GETDATE())" ;;
   description: "Run query every hour"
 }
 
