@@ -29,6 +29,7 @@ view: prejoined_payment_pdt {
       column: merchant_type { field: chai_merchant.type }
       column: brand_id { field: chai_brand.id }
       column: brand_name { field: chai_brand.name }
+      column: boost_payment_id { field: chai_boost.payment_id }
       column: boost_promotion_policy_description { field: chai_boost_promotion_policy.description }
       column: boost_promotion_policy_usable_from { field: chai_boost_promotion_policy.usable_from_raw }
       column: boost_promotion_policy_usable_to { field: chai_boost_promotion_policy.usable_to_raw }
@@ -51,7 +52,7 @@ view: prejoined_payment_pdt {
     }
   }
   dimension: payment_id {
-    type: number
+    type: string
   }
   dimension: payment_user_id {
     type: string
@@ -104,6 +105,7 @@ view: prejoined_payment_pdt {
   dimension: merchant_type {}
   dimension: brand_id {}
   dimension: brand_name {}
+  dimension: boost_payment_id {}
   dimension: boost_promotion_policy_description {}
   dimension_group: boost_promotion_policy_usable_from {
     type: time
@@ -143,14 +145,28 @@ view: prejoined_payment_pdt {
   }
   dimension: boost_status {}
 
-  measure: count {
+  measure: payment_count {
+    description: "# of transactions"
     type: count_distinct
     sql: ${payment_id} ;;
   }
 
   measure: payment_users {
+    description: "# of payment user"
     type: count_distinct
     sql: ${payment_user_id} ;;
+  }
+
+  measure: boost_payments_count {
+    description: "# of payments that use boost"
+    type: count_distinct
+    sql: ${boost_payment_id};;
+  }
+
+  measure: payments_total_boost_checkout_amount {
+    description: "sum of boost payments checkout amount"
+    type: sum
+    sql: case when ${boost_payment_id} is not null then ${payment_checkout_amount} end ;;
   }
 
   measure: payment_total_checkout_amount {
