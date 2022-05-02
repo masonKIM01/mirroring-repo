@@ -29,6 +29,7 @@ view: prejoined_payment_pdt {
       column: merchant_type { field: chai_merchant.type }
       column: brand_id { field: chai_brand.id }
       column: brand_name { field: chai_brand.name }
+      column: boost_payment_id { field: chai_boost.payment_id}
       column: boost_promotion_policy_description { field: chai_boost_promotion_policy.description }
       column: boost_promotion_policy_usable_from { field: chai_boost_promotion_policy.usable_from_raw }
       column: boost_promotion_policy_usable_to { field: chai_boost_promotion_policy.usable_to_raw }
@@ -104,6 +105,7 @@ view: prejoined_payment_pdt {
   dimension: merchant_type {}
   dimension: brand_id {}
   dimension: brand_name {}
+  dimension: boost_payment_id {}
   dimension: boost_promotion_policy_description {}
   dimension_group: boost_promotion_policy_usable_from {
     type: time
@@ -151,6 +153,16 @@ view: prejoined_payment_pdt {
   measure: payment_users {
     type: count_distinct
     sql: ${payment_user_id} ;;
+  }
+
+  measure: count_boost {
+    type: count_distinct
+    sql: ${boost_payment_id};;
+  }
+
+  measure: sum_boost {
+    type: sum
+    sql: case when ${boost_payment_id} is not null then ${payment_checkout_amount} end ;;
   }
 
   measure: payment_total_checkout_amount {
