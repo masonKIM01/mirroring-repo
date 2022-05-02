@@ -43,7 +43,7 @@ view: prejoined_payment_pdt {
       column: boost_promotion_policy_sub_title { field: chai_boost_promotion_policy.sub_title }
       column: boost_id { field: chai_boost.id }
       column: boost_created { field: chai_boost.created_raw }
-      column: boost_campagin_id { field: chai_boost.boost_campaign_id }
+      column: boost_campaign_id { field: chai_boost.boost_campaign_id }
       column: boost_promotion_id { field: chai_boost.boost_promotion_id }
       column: boost_usable_from { field: chai_boost.usable_from_raw }
       column: boost_usable_to { field: chai_boost.usable_to_raw }
