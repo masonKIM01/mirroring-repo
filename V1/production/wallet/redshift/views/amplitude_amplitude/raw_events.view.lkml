@@ -109,7 +109,7 @@ view: amplitude_raw_events {
 
   dimension_group: event_time {
     type: time
-    sql: cast(${TABLE}.event_time) ;;
+    sql: cast(${TABLE}.event_time as timestamp) ;;
 
   }
 
