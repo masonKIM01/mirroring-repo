@@ -105,6 +105,7 @@ view: plcc_hana_card {
 
   measure: issued_count {
     type: count
+    description: "# of card issuances except(return, terminate)"
     filters: [is_success_issuance: "yes"]
   }
 }
