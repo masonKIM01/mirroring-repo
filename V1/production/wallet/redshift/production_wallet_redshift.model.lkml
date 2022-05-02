@@ -22,6 +22,20 @@ explore: plcc_hana_card {
   description: "Information of hana credit card issurance"
 }
 explore: amplitude_raw_events {}
+explore: boost_with_admerchant {
+  from: chai_boost
+
+  join: chai_boost_promotion_policy {
+    type:  inner
+    sql_on: ${boost_with_admerchant.boost_promotion_id} = ${chai_boost_promotion_policy.id} ;;
+    relationship: one_to_many
+  }
+  join: chai_boost_campaign_ad_spend {
+    type: inner
+    sql_on: ${boost_with_admerchant.boost_campaign_id} = ${chai_boost_campaign_ad_spend.id} ;;
+    relationship: one_to_many
+  }
+}
 explore: prejoined_boost {
   from: chai_boost
   join: chai_payment {
