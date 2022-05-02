@@ -112,7 +112,8 @@ view: chai_boost {
     sql: ${TABLE}.year ;;
   }
 
-  measure: count {
+  measure: boost_count {
     type: count
+    description: "# of buy boost"
   }
 }
