@@ -144,9 +144,6 @@ view: prejoined_payment_pdt {
     type: time
   }
   dimension: boost_status {}
-  dimension: cashback_delta {
-    type: number
-  }
 
   measure: count {
     type: count_distinct
