@@ -114,5 +114,6 @@ view: chai_boost {
 
   measure: boost_count {
     type: count
+    description: "# of buy boost"
   }
 }
