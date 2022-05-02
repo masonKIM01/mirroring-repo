@@ -157,13 +157,13 @@ view: prejoined_payment_pdt {
     sql: ${payment_user_id} ;;
   }
 
-  measure: count_boost_payments {
+  measure: boost_payments_count {
     description: "# of payments that use boost"
     type: count_distinct
     sql: ${boost_payment_id};;
   }
 
-  measure: sum_boost_payments_checkout_amount {
+  measure: payments_total_boost_checkout_amount {
     description: "sum of boost payments checkout amount"
     type: sum
     sql: case when ${boost_payment_id} is not null then ${payment_checkout_amount} end ;;
