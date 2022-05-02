@@ -109,7 +109,8 @@ view: amplitude_raw_events {
 
   dimension_group: event_time {
     type: time
-    sql: ${TABLE}.event_time ;;
+    sql: cast(${TABLE}.event_time) ;;
+
   }
 
   dimension: event_type {
@@ -272,7 +273,7 @@ view: amplitude_raw_events {
     drill_fields: [os_name, version_name]
   }
 
-  measure: users {
+  measure: unique_user_count {
     type: count_distinct
     sql: ${TABLE}.amplitude_id ;;
   }
