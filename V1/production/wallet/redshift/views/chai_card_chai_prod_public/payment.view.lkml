@@ -198,6 +198,7 @@ view: chai_payment {
 
   measure: unique_user_count {
     type: count_distinct
+    description: "# of unique paying user. it means distinct function is used."
     sql: ${TABLE}.user_id ;;
   }
 
