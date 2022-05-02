@@ -29,7 +29,7 @@ view: prejoined_payment_pdt {
       column: merchant_type { field: chai_merchant.type }
       column: brand_id { field: chai_brand.id }
       column: brand_name { field: chai_brand.name }
-      column: boost_payment_id { field: chai_boost.payment_id}
+      column: boost_payment_id { field: chai_boost.payment_id }
       column: boost_promotion_policy_description { field: chai_boost_promotion_policy.description }
       column: boost_promotion_policy_usable_from { field: chai_boost_promotion_policy.usable_from_raw }
       column: boost_promotion_policy_usable_to { field: chai_boost_promotion_policy.usable_to_raw }
