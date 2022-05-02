@@ -24,6 +24,7 @@ explore: plcc_hana_card {
 explore: amplitude_raw_events {}
 explore: boost_with_admerchant {
   from: chai_boost
+  description: "Explore for analyzing boost with admerchant campaign and promotion"
 
   join: chai_boost_promotion_policy {
     type:  inner
