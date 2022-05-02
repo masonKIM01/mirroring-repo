@@ -96,6 +96,7 @@ view: plcc_hana_card {
 
   dimension: is_success_issuance{
     type: yesno
+    description: "Is the card issued successfully"
     sql: ${status} not in ('terminate', 'return');;
   }
 
