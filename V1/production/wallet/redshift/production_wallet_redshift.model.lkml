@@ -17,6 +17,10 @@ explore: chai_bolt_history {}
 explore: chai_boost_up {}
 explore: chai_merchant {}
 explore: chai_card {}
+explore: plcc_hana_card {
+  label: "PLCC - Hana credit card"
+  description: "Information of hana credit card issurance"
+}
 explore: amplitude_raw_events {}
 explore: prejoined_boost {
   from: chai_boost
