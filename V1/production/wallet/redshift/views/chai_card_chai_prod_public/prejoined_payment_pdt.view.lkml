@@ -49,6 +49,7 @@ view: prejoined_payment_pdt {
       column: boost_usable_from { field: chai_boost.usable_from_raw }
       column: boost_usable_to { field: chai_boost.usable_to_raw }
       column: boost_status { field: chai_boost.status }
+      column: delayed_cashback { field: chai_delayed_cashback_history.cashback_delta}
     }
   }
   dimension: payment_id {
@@ -144,6 +145,9 @@ view: prejoined_payment_pdt {
     type: time
   }
   dimension: boost_status {}
+  dimension: cashback_delta {
+    type: number
+  }
 
   measure: count {
     type: count_distinct
@@ -173,6 +177,11 @@ view: prejoined_payment_pdt {
   measure: payment_total_cashback_amount {
     type: sum
     sql: coalesce(${payment_cashback_amount},0) ;;
+  }
+
+  measure: credit_cashback_amount {
+    type: sum
+    sql: coalesce(${cashback_delta},0) ;;
   }
 
   measure: payment_total_billing_amount {
