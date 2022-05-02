@@ -52,7 +52,7 @@ view: prejoined_payment_pdt {
     }
   }
   dimension: payment_id {
-    type: number
+    type: string
   }
   dimension: payment_user_id {
     type: string
@@ -157,14 +157,14 @@ view: prejoined_payment_pdt {
     sql: ${payment_user_id} ;;
   }
 
-  measure: count_boost {
-    description: "# of boost transactions"
+  measure: count_boost_payments {
+    description: "# of payments that use boost"
     type: count_distinct
     sql: ${boost_payment_id};;
   }
 
-  measure: sum_boost {
-    description: "boost transaction volume"
+  measure: sum_boost_payments_checkout_amount {
+    description: "sum of boost payments checkout amount"
     type: sum
     sql: case when ${boost_payment_id} is not null then ${payment_checkout_amount} end ;;
   }
