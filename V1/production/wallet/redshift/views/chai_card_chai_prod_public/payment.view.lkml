@@ -184,12 +184,21 @@ view: chai_payment {
     sql: ${TABLE}.year ;;
   }
 
+  dimension: payment_method {
+    description: "method of payment (PLCC, Debit, E-wallet)"
+    sql: case
+            when ${TABLE}.merchant_id='0385e3db-4a50-4035-9285-1ced4a3e0209' then '차이 체크카드'
+            when ${TABLE}.merchant_id='8d9a7bd7-c6e1-408e-972a-b59369cb6bb1' then '차이 신용카드'
+        else '간편결제' end ;;
+  }
+
   measure: count {
     type: count
   }
 
-  measure: count_user {
+  measure: unique_user_count {
     type: count_distinct
+    description: "# of unique paying user. it means distinct function is used."
     sql: ${TABLE}.user_id ;;
   }
 
