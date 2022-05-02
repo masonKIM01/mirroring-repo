@@ -188,4 +188,10 @@ view: prejoined_payment_pdt {
     type: sum
     sql: coalesce(${payment_charging_amount},0) ;;
   }
+
+  measure: unique_brand_count {
+    type: count_distinct
+    description: "# of unique brand (it means distinct funtion is used)"
+    sql: coalesce(${brand_id}, 0) ;;
+  }
 }

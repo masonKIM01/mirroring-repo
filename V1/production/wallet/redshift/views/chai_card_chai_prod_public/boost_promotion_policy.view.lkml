@@ -300,4 +300,10 @@ view: chai_boost_promotion_policy {
   measure: count {
     type: count
   }
+
+  measure: unique_brand_count {
+    type: count_distinct
+    description: "# of unique brand (it means distinct funtion is used)"
+    sql: ${brand_id} ;;
+  }
 }
