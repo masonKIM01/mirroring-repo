@@ -188,7 +188,7 @@ view: chai_payment {
     type: count
   }
 
-  measure: count_user {
+  measure: unique_user_count {
     type: count_distinct
     sql: ${TABLE}.user_id ;;
   }
