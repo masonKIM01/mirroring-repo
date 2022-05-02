@@ -94,7 +94,19 @@ view: plcc_hana_card {
     sql: ${TABLE}.year ;;
   }
 
+  dimension: is_success_issuance{
+    type: yesno
+    description: "Is the card issued successfully"
+    sql: ${status} not in ('terminate', 'return');;
+  }
+
   measure: count {
     type: count
+  }
+
+  measure: issued_count {
+    type: count
+    description: "# of card issuances except(return, terminate)"
+    filters: [is_success_issuance: "yes"]
   }
 }
