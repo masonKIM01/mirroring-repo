@@ -145,14 +145,14 @@ view: prejoined_payment_pdt {
   }
   dimension: boost_status {}
 
-  measure: count {
+  measure: payment_count {
     description: "# of transactions"
     type: count_distinct
     sql: ${payment_id} ;;
   }
 
   measure: payment_users {
-    description: "# of users"
+    description: "# of payment user"
     type: count_distinct
     sql: ${payment_user_id} ;;
   }
