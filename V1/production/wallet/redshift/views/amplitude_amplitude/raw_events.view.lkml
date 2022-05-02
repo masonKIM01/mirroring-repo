@@ -275,6 +275,7 @@ view: amplitude_raw_events {
 
   measure: unique_user_count {
     type: count_distinct
+    description: "# of unique user. it means distinct function is used."
     sql: ${TABLE}.amplitude_id ;;
   }
 }
