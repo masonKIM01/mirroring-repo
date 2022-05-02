@@ -39,10 +39,4 @@ explore: prejoined_payment {
     sql_on: ${chai_boost_promotion_policy.brand_id} = ${chai_brand.id} ;;
     relationship: one_to_one
   }
-
-  join: chai_delayed_cashback_history {
-    type: left_outer
-    sql_on: ${chai_delayed_cashback_history.payment_id} = ${prejoined_payment.id} ;;
-    relationship: one_to_one
-  }
 }
