@@ -146,21 +146,25 @@ view: prejoined_payment_pdt {
   dimension: boost_status {}
 
   measure: count {
+    description: "# of transactions"
     type: count_distinct
     sql: ${payment_id} ;;
   }
 
   measure: payment_users {
+    description: "# of users"
     type: count_distinct
     sql: ${payment_user_id} ;;
   }
 
   measure: count_boost {
+    description: "# of boost transactions"
     type: count_distinct
     sql: ${boost_payment_id};;
   }
 
   measure: sum_boost {
+    description: "boost transaction volume"
     type: sum
     sql: case when ${boost_payment_id} is not null then ${payment_checkout_amount} end ;;
   }
