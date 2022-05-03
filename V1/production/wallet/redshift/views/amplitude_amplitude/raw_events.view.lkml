@@ -273,9 +273,9 @@ view: amplitude_raw_events {
     drill_fields: [os_name, version_name]
   }
 
-  measure: unique_user_count {
+  measure: active_users {
     type: count_distinct
-    description: "# of unique user. it means distinct function is used."
-    sql: ${TABLE}.amplitude_id ;;
+    description: "# of active users. it means distinct function is used."
+    sql: ${TABLE}.user_id ;;
   }
 }
