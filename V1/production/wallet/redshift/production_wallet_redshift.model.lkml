@@ -38,7 +38,7 @@ explore: plcc_hana_card {
   description: "Information of hana credit card issurance"
 }
 explore: amplitude_raw_events {
-  description: "amplitude 정보"
+  description: "amplitude infos"
 }
 explore: prejoined_boost {
   description: "table that can check all infos related to boost"
