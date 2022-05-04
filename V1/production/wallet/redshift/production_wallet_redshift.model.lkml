@@ -9,20 +9,39 @@ datagroup: daily_datagroup {
   description: "Run query every hour"
 }
 
-explore: chai_boost {}
-explore: chai_user {}
-explore: card_card_info {}
-explore: card_card_accident_receipt_history {}
-explore: chai_bolt_history {}
-explore: chai_boost_up {}
-explore: chai_merchant {}
-explore: chai_card {}
+explore: chai_boost {
+  description: "boost infos"
+}
+explore: chai_user {
+  description: "user infos"
+}
+explore: card_card_info {
+  description: "card detail infos"
+}
+explore: card_card_accident_receipt_history {
+  description: "card shipping infos"
+}
+explore: chai_bolt_history {
+  description: "bolt usage history infos"
+}
+explore: chai_boost_up {
+  description: "강화(boost up) infos"
+}
+explore: chai_merchant {
+  description: "merhant infos"
+}
+explore: chai_card {
+  description: "debit card infos"
+}
 explore: plcc_hana_card {
   label: "PLCC - Hana credit card"
   description: "Information of hana credit card issurance"
 }
-explore: amplitude_raw_events {}
+explore: amplitude_raw_events {
+  description: "amplitude 정보"
+}
 explore: prejoined_boost {
+  description: "table that can check all infos related to boost"
   from: chai_boost
   join: chai_payment {
     type: left_outer
@@ -32,6 +51,7 @@ explore: prejoined_boost {
 }
 # Todo(@Simon, @Mason): table belows use deprecated views. needs to be updated
 explore: prejoined_plcc_card_application {
+  description: "table that can check all infos related to plcc"
   from: plcc_card_application
   join: chai_card_user {
     type: left_outer
@@ -77,6 +97,7 @@ explore: prejoined_plcc_card_application {
 }
 
 explore: prejoined_payment_pdt_with_ad_spend {
+  description: "table that can check all infos related to plcc"
   from: prejoined_payment_pdt
   join: chai_user {
     type: left_outer
