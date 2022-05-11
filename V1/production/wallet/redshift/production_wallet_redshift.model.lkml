@@ -53,7 +53,7 @@ explore: prejoined_boost {
   join: chai_boost_up {
     type: left_outer
     sql_on: ${chai_boost_up.boost_id} = ${prejoined_boost.id} ;;
-    relationship: many_to_one
+    relationship: one_to_one
   }
 }
 # Todo(@Simon, @Mason): table belows use deprecated views. needs to be updated
