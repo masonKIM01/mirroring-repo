@@ -1,9 +1,9 @@
 view: chai_boost_up {
   sql_table_name: chai_card_chai_prod_public.boost_up;;
 
-  measure: count {
+  measure: count_boost_up {
     type: count
-    drill_fields: [detail*]
+    description: "# of up boost"
   }
 
   measure: total_cashback_amount {
