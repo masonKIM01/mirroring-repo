@@ -3,7 +3,12 @@ view: chai_boost_up {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
+  }
+
+  measure: count_boost_up_unique {
+    type: count_distinct
+    sql: ${TABLE}.id ;;
+    description: "# of up boost"
   }
 
   measure: total_cashback_amount {

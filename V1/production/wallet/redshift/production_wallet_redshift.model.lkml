@@ -11,6 +11,9 @@ datagroup: daily_datagroup {
   description: "Run query every hour"
 }
 
+explore: chai_mission_reward_boost_campaign {
+  description: "mission boost infos"
+}
 explore: chai_boost {
   description: "boost infos"
 }
