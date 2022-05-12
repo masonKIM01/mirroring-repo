@@ -11,6 +11,9 @@ datagroup: daily_datagroup {
   description: "Run query every hour"
 }
 
+explore: chai_mission_reward_boost_campaign {
+  description: "mission boost infos"
+}
 explore: chai_boost {
   description: "boost infos"
 }
@@ -53,7 +56,7 @@ explore: prejoined_boost {
   join: chai_boost_up {
     type: left_outer
     sql_on: ${chai_boost_up.boost_id} = ${prejoined_boost.id} ;;
-    relationship: many_to_one
+    relationship: one_to_one
   }
 }
 # Todo(@Simon, @Mason): table belows use deprecated views. needs to be updated

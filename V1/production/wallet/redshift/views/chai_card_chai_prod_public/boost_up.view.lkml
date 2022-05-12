@@ -1,8 +1,9 @@
 view: chai_boost_up {
   sql_table_name: chai_card_chai_prod_public.boost_up;;
 
-  measure: count_boost_up {
-    type: count
+  measure: count {
+    type: count_distinct
+    sql: ${TABLE}.id ;;
     description: "# of up boost"
   }
 
