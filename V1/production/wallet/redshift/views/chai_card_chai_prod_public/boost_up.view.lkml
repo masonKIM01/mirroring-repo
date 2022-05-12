@@ -5,7 +5,7 @@ view: chai_boost_up {
     type: count
   }
 
-  measure: count_up {
+  measure: count_boost_up_unique {
     type: count_distinct
     sql: ${TABLE}.id ;;
     description: "# of up boost"
