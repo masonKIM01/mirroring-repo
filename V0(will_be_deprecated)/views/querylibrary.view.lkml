@@ -32,7 +32,8 @@ view: querylibrary {
       p.cashback_amount + coalesce(ch.cashback_delta,0) as cashback_amount,
       p.cashback_amount + coalesce(ch.cashback_delta,0) -
       coalesce(case when ad.type = 'cps' then ad.unit_price
-            when ad.type = 'ratio' then ad.ratio * 0.01 * p.cashback_amount
+            when ad.type = 'ratio' and ad.ratio > 1 then ad.ratio * 0.01 * p.cashback_amount
+            when ad.type = 'ratio' and ad.ratio < 1 then ad.ratio * p.cashback_amount
             when ad.type = 'cpa' then ad.unit_price * 0.5
             end,0) as chaiCredit,
       p.checkout_amount as checkout_amount,
