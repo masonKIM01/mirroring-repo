@@ -112,8 +112,59 @@ view: chai_boost {
     sql: ${TABLE}.year ;;
   }
 
+  measure: users {
+    type: count_distinct
+    description: "# of users who buy boost"
+    sql: ${TABLE}.user_id ;;
+  }
+
   measure: boost_count {
     type: count
     description: "# of buy boost"
+  }
+
+  measure: unused_boost_count {
+    type: count
+    description: "# of unused boosts. it means, users bought boost but did not use and expired"
+    filters: [status: "activated", usable_to_time: "before 9 hours from now"]
+  }
+
+  measure: boost_to_payment_mins_avg {
+    type: average_distinct
+    description: "average time to take from boost purchase to usage"
+    sql:
+      CASE WHEN
+        ${status} = 'terminated'
+        AND ${usage_id} IS NOT NULL
+        AND ${updated_time} > ${created_time}
+      THEN DATEDIFF(minute, ${created_raw}, ${updated_raw})
+      ELSE NULL
+      END ;;
+  }
+
+  measure: boost_to_payment_mins_max {
+    type: average_distinct
+    description: "maximum time to take from boost purchase to usage"
+    sql:
+      CASE WHEN
+        ${status} = 'terminated'
+        AND ${usage_id} IS NOT NULL
+        AND ${updated_time} > ${created_time}
+      THEN DATEDIFF(minute, ${created_raw}, ${updated_raw})
+      ELSE NULL
+      END ;;
+  }
+
+  measure: boost_to_payment_mins_min {
+    type: average_distinct
+    description: "minimum time to take from boost purchase to usage"
+    sql:
+      CASE WHEN
+        ${status} = 'terminated'
+        AND ${usage_id} IS NOT NULL
+        AND ${updated_time} > ${created_time}
+      THEN DATEDIFF(minute, ${created_raw}, ${updated_raw})
+      ELSE NULL
+      END ;;
   }
 }
