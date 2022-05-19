@@ -130,7 +130,7 @@ view: chai_boost {
   }
 
   measure: boost_to_payment_mins_avg {
-    type: average_distinct
+    type: average
     description: "average time to take from boost purchase to usage"
     sql:
       CASE WHEN
@@ -143,7 +143,7 @@ view: chai_boost {
   }
 
   measure: boost_to_payment_mins_max {
-    type: average_distinct
+    type: max
     description: "maximum time to take from boost purchase to usage"
     sql:
       CASE WHEN
@@ -156,7 +156,7 @@ view: chai_boost {
   }
 
   measure: boost_to_payment_mins_min {
-    type: average_distinct
+    type: min
     description: "minimum time to take from boost purchase to usage"
     sql:
       CASE WHEN
