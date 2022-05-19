@@ -12,11 +12,19 @@ view: chai_boost {
     type: number
     # hidden: yes
     sql: ${TABLE}.boost_campaign_id ;;
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 
   dimension: boost_promotion_id {
     type: number
     sql: ${TABLE}.boost_promotion_id ;;
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 
   dimension_group: created {
@@ -36,17 +44,29 @@ view: chai_boost {
   dimension: month {
     type: number
     sql: ${TABLE}.month ;;
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 
   dimension: payment_id {
     type: string
     # hidden: yes
     sql: ${TABLE}.payment_id ;;
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 
   dimension_group: updated {
@@ -94,26 +114,46 @@ view: chai_boost {
   dimension: usage_id {
     type: string
     sql: ${TABLE}.usage_id ;;
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 
   dimension: usage_type {
     type: string
     sql: ${TABLE}.usage_type ;;
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 
   dimension: user_id {
     type: string
     # hidden: yes
     sql: ${TABLE}.user_id ;;
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 
   dimension: year {
     type: number
     sql: ${TABLE}.year ;;
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 
   measure: boost_count {
     type: count
     description: "# of buy boost"
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 }
