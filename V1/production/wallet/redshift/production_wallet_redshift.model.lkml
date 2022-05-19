@@ -14,6 +14,9 @@ datagroup: daily_datagroup {
 explore: chai_mission_reward_boost_campaign {
   description: "mission boost infos"
 }
+explore: chai_payment {
+  description: "payment infos"
+}
 explore: chai_boost {
   description: "boost infos"
 }
