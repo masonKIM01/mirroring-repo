@@ -167,6 +167,10 @@ view: chai_boost {
     type: count
     description: "# of unused boosts. it means, users bought boost but did not use and expired"
     filters: [status: "activated", usable_to_time: "before 9 hours from now"]
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 
   measure: boost_to_payment_mins_avg {
@@ -180,6 +184,10 @@ view: chai_boost {
       THEN DATEDIFF(minute, ${created_raw}, ${updated_raw})
       ELSE NULL
       END ;;
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 
   measure: boost_to_payment_mins_max {
@@ -193,6 +201,10 @@ view: chai_boost {
       THEN DATEDIFF(minute, ${created_raw}, ${updated_raw})
       ELSE NULL
       END ;;
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
 
   measure: boost_to_payment_mins_min {
@@ -206,5 +218,10 @@ view: chai_boost {
       THEN DATEDIFF(minute, ${created_raw}, ${updated_raw})
       ELSE NULL
       END ;;
+    link: {
+      label: "find out meaning of this field"
+      url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
+    }
   }
+
 }
