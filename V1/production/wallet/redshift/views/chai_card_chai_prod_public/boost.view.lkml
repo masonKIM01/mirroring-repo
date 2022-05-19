@@ -148,12 +148,63 @@ view: chai_boost {
     }
   }
 
+  measure: users {
+    type: count_distinct
+    description: "# of users who buy boost"
+    sql: ${TABLE}.user_id ;;
+  }
+
   measure: boost_count {
     type: count
-    description: "# of buy boost"
+    description: "# of boost that activated at least once regardless of current status"
     link: {
       label: "find out meaning of this field"
       url: "https://chai.acryl.io/dataset/urn:li:dataset:(urn:li:dataPlatform:looker,production_wallet_redshift.explore.chai_boost,PROD)/Schema?is_lineage_mode=false"
     }
+  }
+
+  measure: unused_boost_count {
+    type: count
+    description: "# of unused boosts. it means, users bought boost but did not use and expired"
+    filters: [status: "activated", usable_to_time: "before 9 hours from now"]
+  }
+
+  measure: boost_to_payment_mins_avg {
+    type: average
+    description: "average time to take from boost purchase to usage"
+    sql:
+      CASE WHEN
+        ${status} = 'terminated'
+        AND ${usage_id} IS NOT NULL
+        AND ${updated_time} > ${created_time}
+      THEN DATEDIFF(minute, ${created_raw}, ${updated_raw})
+      ELSE NULL
+      END ;;
+  }
+
+  measure: boost_to_payment_mins_max {
+    type: max
+    description: "maximum time to take from boost purchase to usage"
+    sql:
+      CASE WHEN
+        ${status} = 'terminated'
+        AND ${usage_id} IS NOT NULL
+        AND ${updated_time} > ${created_time}
+      THEN DATEDIFF(minute, ${created_raw}, ${updated_raw})
+      ELSE NULL
+      END ;;
+  }
+
+  measure: boost_to_payment_mins_min {
+    type: min
+    description: "minimum time to take from boost purchase to usage"
+    sql:
+      CASE WHEN
+        ${status} = 'terminated'
+        AND ${usage_id} IS NOT NULL
+        AND ${updated_time} > ${created_time}
+      THEN DATEDIFF(minute, ${created_raw}, ${updated_raw})
+      ELSE NULL
+      END ;;
   }
 }

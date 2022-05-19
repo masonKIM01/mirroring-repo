@@ -48,6 +48,16 @@ explore: amplitude_raw_events {
 explore: prejoined_boost {
   description: "table that can check all infos related to boost"
   from: chai_boost
+  join: chai_boost_promotion_policy {
+    type: left_outer
+    sql_on: ${prejoined_boost.boost_promotion_id} = ${chai_boost_promotion_policy.id} ;;
+    relationship: one_to_one
+  }
+  join: chai_brand {
+    type: left_outer
+    sql_on: ${chai_boost_promotion_policy.brand_id} = ${chai_brand.id} ;;
+    relationship: one_to_one
+  }
   join: chai_payment {
     type: left_outer
     sql_on: ${prejoined_boost.payment_id}= ${chai_payment.id} ;;
