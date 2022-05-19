@@ -120,7 +120,7 @@ view: chai_boost {
 
   measure: boost_count {
     type: count
-    description: "# of buy boost"
+    description: "# of boost that activated at least once regardless of current status"
   }
 
   measure: unused_boost_count {
