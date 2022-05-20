@@ -1,6 +1,3 @@
----
-navigation: true
----
 
 # Chai Finance Looker🚀
 
