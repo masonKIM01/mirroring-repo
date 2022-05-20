@@ -41,6 +41,10 @@ explore: chai_merchant {
 explore: chai_card {
   description: "debit card infos"
 }
+explore: chai_topup  {
+  description: "topup (charge, withraw)"
+}
+
 explore: plcc_hana_card {
   label: "PLCC - Hana credit card"
   description: "Information of hana credit card issurance"
@@ -51,6 +55,7 @@ explore: amplitude_raw_events {
 explore: prejoined_plcc_pdt {
   description: "table that can check all infos related to plcc"
 }
+
 explore: prejoined_boost {
   description: "table that can check all infos related to boost"
   from: chai_boost
