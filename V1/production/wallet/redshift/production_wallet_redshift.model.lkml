@@ -48,6 +48,9 @@ explore: plcc_hana_card {
 explore: amplitude_raw_events {
   description: "amplitude infos"
 }
+explore: prejoined_plcc_pdt {
+  description: "table that can check all infos related to plcc"
+}
 explore: prejoined_boost {
   description: "table that can check all infos related to boost"
   from: chai_boost
