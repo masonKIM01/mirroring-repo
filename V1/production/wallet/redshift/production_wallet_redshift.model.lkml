@@ -14,6 +14,9 @@ datagroup: daily_datagroup {
 explore: chai_mission_reward_boost_campaign {
   description: "mission boost infos"
 }
+explore: chai_payment {
+  description: "payment infos"
+}
 explore: chai_boost {
   description: "boost infos"
 }
@@ -45,9 +48,22 @@ explore: plcc_hana_card {
 explore: amplitude_raw_events {
   description: "amplitude infos"
 }
+explore: prejoined_plcc_pdt {
+  description: "table that can check all infos related to plcc"
+}
 explore: prejoined_boost {
   description: "table that can check all infos related to boost"
   from: chai_boost
+  join: chai_boost_promotion_policy {
+    type: left_outer
+    sql_on: ${prejoined_boost.boost_promotion_id} = ${chai_boost_promotion_policy.id} ;;
+    relationship: one_to_one
+  }
+  join: chai_brand {
+    type: left_outer
+    sql_on: ${chai_boost_promotion_policy.brand_id} = ${chai_brand.id} ;;
+    relationship: one_to_one
+  }
   join: chai_payment {
     type: left_outer
     sql_on: ${prejoined_boost.payment_id}= ${chai_payment.id} ;;
