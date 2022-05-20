@@ -8,7 +8,8 @@ view: chai_churn_user {
             when sum(distinct method) = 10 then 'ewallet'
             end as type,
             last_created_at,
-            churn_date
+            churn_date,
+            transactions
           from
             (select
               p.user_id,
@@ -16,13 +17,14 @@ view: chai_churn_user {
               when m.name = '차이 체크카드' then 2
               else 10 end as method,
               max(p.created_at) as last_created_at,
-              max(p.created_at) + 30 as churn_date
+              max(p.created_at) + 30 as churn_date,
+              count(case when p.created_at between current_date -30 and current_date then p.id end) as transactions
             from chai_card_chai_prod_public.payment p
             inner join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
             where p.status = 'confirmed'
             group by 1,2
             order by 1)x
-        group by 1,3,4
+        group by 1,3,4,5
        ;;
   }
 
