@@ -1,4 +1,4 @@
-view: churn_user {
+view: chai_churn_user {
   derived_table: {
     sql: select
       user_id,

@@ -44,6 +44,9 @@ explore: chai_card {
 explore: chai_topup  {
   description: "topup (charge, withraw)"
 }
+explore: chai_churn_user {
+  description: "churn user infos"
+}
 
 explore: plcc_hana_card {
   label: "PLCC - Hana credit card"
