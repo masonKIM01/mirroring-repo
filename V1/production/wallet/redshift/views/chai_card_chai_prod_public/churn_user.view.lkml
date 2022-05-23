@@ -7,9 +7,9 @@ view: chai_churn_user {
             when sum(distinct method) in (3,13) then 'all'
             when sum(distinct method) = 10 then 'ewallet'
             end as type,
-            last_created_at,
-            churn_date,
-            transactions
+            max(last_created_at) last_created_at,
+            max(churn_date) churn_date,
+            sum(transactions) transactions
           from
             (select
               p.user_id,
@@ -24,7 +24,7 @@ view: chai_churn_user {
             where p.status = 'confirmed'
             group by 1,2
             order by 1)x
-        group by 1,3,4,5
+        group by 1
        ;;
   }
 
@@ -46,6 +46,11 @@ view: chai_churn_user {
   dimension: type {
     type: string
     sql: ${TABLE}.type ;;
+  }
+
+  dimension: transactions {
+    type: number
+    sql: ${TABLE}.transactions ;;
   }
 
   dimension_group: last_created_at {
