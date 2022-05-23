@@ -1,4 +1,4 @@
-view: chai_churn_user {
+view: chai_user_out_for_30days{
   derived_table: {
     sql: select
             user_id,
