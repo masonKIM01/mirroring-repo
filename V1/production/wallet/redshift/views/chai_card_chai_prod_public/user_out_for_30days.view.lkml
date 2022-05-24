@@ -1,30 +1,49 @@
 view: chai_user_out_for_30days{
   derived_table: {
-    sql: select
-            user_id,
-            case when sum(distinct method) in (1,11) then 'credit'
-            when sum(distinct method) in (2,12) then 'check'
-            when sum(distinct method) in (3,13) then 'all'
-            when sum(distinct method) = 10 then 'ewallet'
-            end as type,
-            max(last_created_at) last_created_at,
-            max(churn_date) churn_date,
-            sum(transactions) transactions
-          from
-            (select
-              p.user_id,
-              case when m.name = '차이 신용카드' then 1
-              when m.name = '차이 체크카드' then 2
-              else 10 end as method,
-              max(p.created_at) as last_created_at,
-              max(p.created_at) + 30 as churn_date,
-              count(case when p.created_at between current_date -30 and current_date then p.id end) as transactions
-            from chai_card_chai_prod_public.payment p
-            inner join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
-            where p.status = 'confirmed'
-            group by 1,2
-            order by 1)x
-        group by 1
+    sql:
+    SELECT
+  user_id,
+  CASE WHEN sum(DISTINCT method)
+  in(1, 11) THEN
+    'credit'
+  WHEN sum(DISTINCT method)
+  in(2, 12) THEN
+    'check'
+  WHEN sum(DISTINCT method)
+  in(3, 13) THEN
+    'all'
+  WHEN sum(DISTINCT method) = 10 THEN
+    'ewallet'
+  END AS TYPE,
+  last_created_at,
+  churn_date
+FROM (
+  SELECT
+    p.user_id,
+    CASE WHEN m.name = '차이 신용카드' THEN
+      1
+    WHEN m.name = '차이 체크카드' THEN
+      2
+    ELSE
+      10
+    END AS method,
+    max(p.created_at) AS last_created_at,
+    max(p.created_at) + 30 AS churn_date
+  FROM
+    chai_card_chai_prod_public.payment p
+    INNER JOIN chai_card_chai_prod_public.merchant m ON m.id = p.merchant_id
+  WHERE
+    p.status = 'confirmed'
+  GROUP BY
+    1,
+    2
+  ORDER BY
+    1
+) x
+GROUP BY
+  1,
+  3,
+  4
        ;;
   }
 
