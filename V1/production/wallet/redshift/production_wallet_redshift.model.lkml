@@ -45,6 +45,7 @@ explore: chai_topup  {
   description: "topup (charge, withraw)"
 }
 explore: chai_user_out_for_30days {
+  group_label: "will be deprecated"
   description: "user who have not made a purchase for 30 days"
 }
 
