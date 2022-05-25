@@ -1,22 +1,22 @@
 view: chai_user_out_for_30days{
   derived_table: {
     sql:
-    SELECT
+SELECT
   user_id,
-  CASE WHEN sum(DISTINCT method)
-  in(1, 11) THEN
+  CASE WHEN SUM(DISTINCT method)
+  IN(1, 11) THEN
     'credit'
-  WHEN sum(DISTINCT method)
-  in(2, 12) THEN
+  WHEN SUM(DISTINCT method)
+  IN(2, 12) THEN
     'check'
-  WHEN sum(DISTINCT method)
-  in(3, 13) THEN
+  WHEN SUM(DISTINCT method)
+  IN(3, 13) THEN
     'all'
-  WHEN sum(DISTINCT method) = 10 THEN
+  WHEN SUM(DISTINCT method) = 10 THEN
     'ewallet'
   END AS TYPE,
-  last_created_at,
-  churn_date
+  MAX(last_created_at) AS last_created_at,
+  MAX(churn_date) AS churn_date
 FROM (
   SELECT
     p.user_id,
@@ -27,8 +27,8 @@ FROM (
     ELSE
       10
     END AS method,
-    max(p.created_at) AS last_created_at,
-    max(p.created_at) + 30 AS churn_date
+    MAX(p.created_at) AS last_created_at,
+    MAX(p.created_at) + 30 AS churn_date
   FROM
     chai_card_chai_prod_public.payment p
     INNER JOIN chai_card_chai_prod_public.merchant m ON m.id = p.merchant_id
@@ -39,11 +39,9 @@ FROM (
     2
   ORDER BY
     1
-) x
+  ) x
 GROUP BY
-  1,
-  3,
-  4
+  1
        ;;
   }
 
