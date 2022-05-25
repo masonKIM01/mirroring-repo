@@ -44,8 +44,8 @@ explore: chai_card {
 explore: chai_topup  {
   description: "topup (charge, withraw)"
 }
-explore: chai_churn_user {
-  description: "churn user infos"
+explore: chai_user_out_for_30days {
+  description: "user who have not made a purchase for 30 days"
 }
 
 explore: plcc_hana_card {
