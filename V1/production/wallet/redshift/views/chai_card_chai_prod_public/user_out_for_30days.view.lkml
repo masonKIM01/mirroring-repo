@@ -39,7 +39,7 @@ FROM (
     2
   ORDER BY
     1
-  ) x
+  ) method
 GROUP BY
   1
        ;;
