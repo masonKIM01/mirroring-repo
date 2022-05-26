@@ -1,6 +1,7 @@
 view: querylibrary {
   derived_table: {
-    sql: select
+    sql:
+      select
       case when m.name = '차이 신용카드' then 'credit_card'
       when m.name = '차이 체크카드' then 'check_card'
       else 'ewallet' end as payment_type ,
@@ -25,17 +26,17 @@ view: querylibrary {
       p.idempotency_key,
       split_part(split_part(p.data,'approvalNo":',2),'"',2) as cardApporovalNo,
       coalesce(case when ad.type = 'cps' then ad.unit_price
-            when ad.type = 'ratio' and ad.ratio > 1 then ad.ratio * 0.01 * p.cashback_amount
-            when ad.type = 'ratio' and ad.ratio < 1 then ad.ratio * p.cashback_amount
-            when ad.type = 'cpa' then ad.unit_price * 0.5
-            end,0) as adSpend,
+      when ad.type = 'ratio' and ad.ratio > 1 then ad.ratio * 0.01 * (p.cashback_amount+coalesce(ch.cashback_delta,0)-coalesce(up.cashback_up,0))
+      when ad.type = 'ratio' and ad.ratio < 1 then ad.ratio * (p.cashback_amount+coalesce(ch.cashback_delta,0)-coalesce(up.cashback_up,0))
+      when ad.type = 'cpa' then ad.unit_price * 0.5
+      end,0) as adSpend,
       p.cashback_amount + coalesce(ch.cashback_delta,0) as cashback_amount,
       p.cashback_amount + coalesce(ch.cashback_delta,0) -
       coalesce(case when ad.type = 'cps' then ad.unit_price
-            when ad.type = 'ratio' and ad.ratio > 1 then ad.ratio * 0.01 * p.cashback_amount
-            when ad.type = 'ratio' and ad.ratio < 1 then ad.ratio * p.cashback_amount
-            when ad.type = 'cpa' then ad.unit_price * 0.5
-            end,0) as chaiCredit,
+      when ad.type = 'ratio' and ad.ratio > 1 then ad.ratio * 0.01 * (p.cashback_amount+coalesce(ch.cashback_delta,0)-coalesce(up.cashback_up,0))
+      when ad.type = 'ratio' and ad.ratio < 1 then ad.ratio * (p.cashback_amount+coalesce(ch.cashback_delta,0)-coalesce(up.cashback_up,0))
+      when ad.type = 'cpa' then ad.unit_price * 0.5
+      end,0) as chaiCredit,
       p.checkout_amount as checkout_amount,
       coalesce(case when b.payment_id is not null then p.checkout_amount end,0) as boostCheckout_amount
       from chai_card_chai_prod_public.payment p
@@ -69,6 +70,11 @@ view: querylibrary {
            when ad.end_at is null then b.created_at >= ad.start_at end)
       where b.year = '2022'
       )ad on ad.payment_id = p.id
+      left join
+      (select up.boost_id, sum(up.cashback_amount) as cashback_up
+      from chai_card_chai_prod_public.boost_up up
+        group by 1
+      )up on up.boost_id = b.id
       where p.status = 'confirmed'
       and p.year in (2021,2022)
        ;;
