@@ -77,12 +77,17 @@ view: chai_user_out_for_30days{
     sql: ${TABLE}.last_created_at ;;
   }
 
+  dimension_group: first_created_at {
+    type: time
+    sql: ${TABLE}.first_created_at ;;
+  }
+
   dimension_group: churn_date {
     type: time
     sql: ${TABLE}.churn_date ;;
   }
 
   set: detail {
-    fields: [user_id, type, last_created_at_time, churn_date_time]
+    fields: [user_id, type, last_created_at_time, first_created_at_time, churn_date_time]
   }
 }
