@@ -16,7 +16,8 @@ view: chai_user_out_for_30days{
           'ewallet'
         END AS TYPE,
         MAX(last_created_at) AS last_created_at,
-        MAX(churn_date) AS churn_date
+        MAX(churn_date) AS churn_date,
+        MIN(first_created_at) AS first_created_at
       FROM (
         SELECT
           p.user_id,
@@ -28,7 +29,8 @@ view: chai_user_out_for_30days{
             10
           END AS method,
           MAX(p.created_at) AS last_created_at,
-          MAX(p.created_at) + 30 AS churn_date
+          MAX(p.created_at) + 30 AS churn_date,
+          MIN(p.created_at) AS first_created_at
         FROM
           chai_card_chai_prod_public.payment p
         INNER JOIN chai_card_chai_prod_public.merchant m ON m.id = p.merchant_id
