@@ -16,7 +16,7 @@ view: chai_boost_up_aggregated_by_boost_id {
   }
 
   measure: cashback_up_total {
-    description: "cashback_amount from boost_up"
+    description: "total cashback_amount from boost_up"
     type: sum
     sql: ${TABLE}.cashback_up ;;
   }
