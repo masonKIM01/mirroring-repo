@@ -15,7 +15,7 @@ explore: chai_mission_reward_boost_campaign {
   description: "mission boost infos"
 }
 explore: chai_payment {
-  description: "payment infos"
+  description: "payment infos. please use this explore when you need to analyze over 6 months. in other cases, you can use prejoined_payment_pdt_with_ad_spend."
 }
 explore: chai_boost {
   description: "boost infos"
