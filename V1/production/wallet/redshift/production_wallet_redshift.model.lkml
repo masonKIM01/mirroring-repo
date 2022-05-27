@@ -184,9 +184,9 @@ explore: prejoined_payment_pdt_with_ad_spend {
     relationship: many_to_one
   }
 
-  join: chai_boost_up_v2 {
+  join: chai_boost_up_aggregate_by_boost_id {
     type: left_outer
-    sql_on: ${prejoined_payment_pdt_with_ad_spend.boost_id} = ${chai_boost_up_v2.boost_id} ;;
+    sql_on: ${prejoined_payment_pdt_with_ad_spend.boost_id} = ${chai_boost_up_aggregate_by_boost_id.boost_id} ;;
     relationship: many_to_one
   }
 }
