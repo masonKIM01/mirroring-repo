@@ -1,12 +1,12 @@
 view: chai_boost_up_aggregated_by_boost_id {
   derived_table: {
     sql:
-      select
+      SELECT
         boost_id,
-        sum(bolt_price) as bolt_price,
-        sum(cashback_amount) as cashback_up
-      from chai_card_chai_prod_public.boost_up
-      group by 1
+        SUM(bolt_price) AS bolt_price,
+        SUM(cashback_amount) AS cashback_up
+      FROM chai_card_chai_prod_public.boost_up
+      GROUP BY 1
       ;;
   }
 
