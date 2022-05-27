@@ -49,6 +49,7 @@ view: chai_user_out_for_30days{
 
   dimension: user_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.user_id ;;
   }
 
