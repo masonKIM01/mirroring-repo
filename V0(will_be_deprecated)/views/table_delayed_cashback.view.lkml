@@ -1,43 +1,41 @@
 view: table_delayed_cashback {
   derived_table: {
     sql:
-    SELECT
-      DISTINCT
-        YEAR,
-      MONTH,
-      created_at,
-      payment_id,
-      SUM(cashback_delta) AS cashback_delta
-    FROM
-      (
       SELECT
-        id,
-        YEAR,
+        DISTINCT YEAR,
         MONTH,
         created_at,
-        cashback_delta,
         payment_id,
-        action_type,
-        COUNT(action_type)
-                     OVER (
-                       PARTITION BY payment_id) AS cnt
+        SUM(cashback_delta) AS cashback_delta
       FROM
-        chai_card_chai_prod_public.delayed_cashback_history
+        (
+          SELECT
+            id,
+            YEAR,
+            MONTH,
+            created_at,
+            cashback_delta,
+            payment_id,
+            action_type,
+            COUNT(action_type) OVER (PARTITION BY payment_id) AS cnt
+          FROM
+            chai_card_chai_prod_public.delayed_cashback_history
+          GROUP BY
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ) AS delayed_cashback_history
+      WHERE
+        delayed_cashback_history.cnt = 1
       GROUP BY
         1,
         2,
         3,
-        4,
-        5,
-        6,
-        7) AS delayed_cashback_history
-    WHERE
-      delayed_cashback_history.cnt = 1
-    GROUP BY
-      1,
-      2,
-      3,
-      4
+        4
               ;;
   }
 
