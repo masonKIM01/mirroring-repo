@@ -1,4 +1,4 @@
-include: "../../explore_for_pdt/**.**.lkml"
+include: "../../explore_for_pdt/prejoined_payment.explore.lkml"
 
 view: prejoined_payment_pdt {
   derived_table: {
