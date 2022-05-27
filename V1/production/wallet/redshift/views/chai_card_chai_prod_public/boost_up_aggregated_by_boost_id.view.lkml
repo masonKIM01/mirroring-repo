@@ -1,4 +1,4 @@
-view: chai_boost_up_aggregate_by_boost_id {
+view: chai_boost_up_aggregated_by_boost_id {
   derived_table: {
     sql:
       select
