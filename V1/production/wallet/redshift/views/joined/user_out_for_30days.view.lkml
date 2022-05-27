@@ -29,7 +29,7 @@ view: chai_user_out_for_30days{
         2
       ORDER BY
         1
-    ) x
+    )
     GROUP BY
       1,
       3,
