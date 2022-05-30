@@ -78,15 +78,10 @@ explore: prejoined_boost {
     sql_on: ${prejoined_boost.payment_id}= ${chai_payment.id} ;;
     relationship: many_to_one
   }
-  join: chai_boost_up {
-    type: left_outer
-    sql_on: ${chai_boost_up.boost_id} = ${prejoined_boost.id} ;;
-    relationship: one_to_one
-  }
 
   join: chai_boost_up_aggregated_by_boost_id {
     type: left_outer
-    sql_on: ${chai_boost_up.boost_id} = ${prejoined_boost.id} ;;
+    sql_on: ${chai_boost_up_aggregated_by_boost_id.boost_id} = ${prejoined_boost.id} ;;
     relationship: one_to_one
   }
 }
