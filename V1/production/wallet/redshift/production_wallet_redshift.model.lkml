@@ -45,6 +45,7 @@ explore: chai_topup  {
   description: "topup (charge, withraw)"
 }
 explore: chai_user_out_for_30days {
+  group_label: "will be deprecated"
   description: "user who have not made a purchase for 30 days"
 }
 
@@ -77,9 +78,10 @@ explore: prejoined_boost {
     sql_on: ${prejoined_boost.payment_id}= ${chai_payment.id} ;;
     relationship: many_to_one
   }
-  join: chai_boost_up {
+
+  join: chai_boost_up_aggregated_by_boost_id {
     type: left_outer
-    sql_on: ${chai_boost_up.boost_id} = ${prejoined_boost.id} ;;
+    sql_on: ${chai_boost_up_aggregated_by_boost_id.boost_id} = ${prejoined_boost.id} ;;
     relationship: one_to_one
   }
 }
@@ -180,6 +182,12 @@ explore: prejoined_payment_pdt_with_ad_spend {
     sql_on: ${prejoined_payment_pdt_with_ad_spend.brand_name} = ${table_merchant_adspend.merchant_name}
       and ${prejoined_payment_pdt_with_ad_spend.boost_promotion_policy_title} = ${table_merchant_adspend.title}
       ;;
+    relationship: many_to_one
+  }
+
+  join: chai_boost_up_aggregated_by_boost_id {
+    type: left_outer
+    sql_on: ${prejoined_payment_pdt_with_ad_spend.boost_id} = ${chai_boost_up_aggregated_by_boost_id.boost_id} ;;
     relationship: many_to_one
   }
 }
