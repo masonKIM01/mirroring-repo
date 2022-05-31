@@ -57,7 +57,7 @@ view: payments {
     label: "Revenue Amount in KRW"
   }
 
-  dimension: amount_in_krw {
+   dimension: amount_in_krw {
     type: number
     sql: ${TABLE}.amount_in_krw ;;
   }
