@@ -1,21 +1,32 @@
 view: derived_monthly_agg {
   derived_table: {
-    sql: SELECT *, DENSE_RANK()OVER(PARTITION BY a.yearmonth ORDER BY a.total_amount DESC) AS "rank"
+    sql: 
+    SELECT
+            *,
+            DENSE_RANK() OVER (PARTITION BY a.yearmonth ORDER BY a.total_amount DESC) AS "rank"
     FROM (
-      SELECT
-         CASE WHEN m.business_number IS NULL THEN p.user_id ELSE m.business_number END  AS "business_number",
-          p.yearmonth  AS "yearmonth",
-          COALESCE(SUM(p.amount_in_krw ), 0) AS "total_amount",
-          COALESCE(SUM(CASE WHEN p.status='paid' THEN p.amount_in_krw END), 0) AS "net_amount"
-      FROM hmscatalog.importdb.payments p
-      LEFT JOIN hmscatalog.importdb.merchant_details m ON p.user_id=m.user_id
-      WHERE p.sandbox  = 0
-        AND p.status IN ('cancelled', 'paid')
-      GROUP BY
-          1,
-          2
-      )a
-       ;;
+            SELECT
+                    CASE WHEN m.business_number IS NULL THEN
+                          p.user_id
+                    ELSE
+                          m.business_number
+                    END AS "business_number",
+                    p.yearmonth AS "yearmonth",
+                    COALESCE(SUM(p.amount_in_krw), 0) AS "total_amount",
+                    COALESCE(SUM(
+                                   CASE WHEN p.status = 'paid' THEN
+                                        p.amount_in_krw
+                                   END), 0) AS "net_amount"
+            FROM
+                  hmscatalog.importdb.payments p
+            LEFT JOIN hmscatalog.importdb.merchant_details m ON p.user_id = m.user_id
+            WHERE
+                    p.sandbox = 0
+                    AND p.status IN ('cancelled', 'paid')
+            GROUP BY
+                      1,
+                      2 ) a;;
+
   }
 
   suggestions: no
