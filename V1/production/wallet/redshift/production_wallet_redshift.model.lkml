@@ -11,6 +11,16 @@ datagroup: daily_datagroup {
   description: "Run query every hour"
 }
 
+explore: chai_settlement {
+  description: "settlement_infos"
+  from: chai_settlement
+  join: chai_merchant {
+    type: inner
+    sql_on: ${chai_settlement.merchant_id} = ${chai_merchant.id};;
+    relationship: one_to_one
+  }
+}
+
 explore: chai_mission_reward_boost_campaign {
   description: "mission boost infos"
 }
