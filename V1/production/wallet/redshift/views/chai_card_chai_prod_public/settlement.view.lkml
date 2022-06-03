@@ -29,7 +29,7 @@ view: chai_settlement {
 
   measure: fee_tax_amount_total {
     type: sum
-    sql: ${TABLE}.fee_tax_amount_total ;;
+    sql: ${TABLE}.fee_tax_amount ;;
   }
 
   dimension_group: created_at {
