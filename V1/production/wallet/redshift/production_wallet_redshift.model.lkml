@@ -198,6 +198,6 @@ explore: prejoined_payment_pdt_with_ad_spend {
   join: chai_boost_up_aggregated_by_boost_id {
     type: left_outer
     sql_on: ${prejoined_payment_pdt_with_ad_spend.boost_id} = ${chai_boost_up_aggregated_by_boost_id.boost_id} ;;
-    relationship: many_to_one
+    relationship: one_to_many
   }
 }
