@@ -52,6 +52,7 @@ view: prejoined_payment_pdt {
     }
   }
   dimension: payment_id {
+    primary_key: yes
     type: string
   }
   dimension: payment_user_id {
