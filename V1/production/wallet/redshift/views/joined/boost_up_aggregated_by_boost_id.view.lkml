@@ -29,6 +29,7 @@ view: chai_boost_up_aggregated_by_boost_id {
 
   dimension: boost_id {
     type: number
+    primary_key: yes
     sql: ${TABLE}.boost_id ;;
   }
 
