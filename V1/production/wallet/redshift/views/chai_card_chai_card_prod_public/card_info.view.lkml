@@ -64,6 +64,11 @@ view: card_card_info {
     sql: ${TABLE}.before_card_seq ;;
   }
 
+  dimension: reissue_yn {
+    type: string
+    sql: case when ${before_card_no} is null then 'new' else 'reissue' end ;;
+  }
+
   dimension: card_product_code {
     type: string
     sql: ${TABLE}.card_product_code ;;
