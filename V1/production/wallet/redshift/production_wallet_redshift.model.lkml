@@ -94,11 +94,6 @@ explore: prejoined_boost {
     sql_on: ${chai_boost_up_aggregated_by_boost_id.boost_id} = ${prejoined_boost.id} ;;
     relationship: one_to_one
   }
-  join: chai_boost_campaign_target_type {
-    type: left_outer
-    sql_on: ${chai_boost_campaign_target_type.boost_campaign_id} = ${prejoined_boost.boost_campaign_id} ;;
-    relationship: one_to_one
-  }
 }
 # Todo(@Simon, @Mason): table belows use deprecated views. needs to be updated
 explore: prejoined_plcc_card_application {
