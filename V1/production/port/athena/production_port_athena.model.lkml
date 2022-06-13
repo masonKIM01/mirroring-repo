@@ -82,3 +82,12 @@ explore: transformed_payments {
   }
 
 }
+
+
+explore: derived_monthly_agg {
+  join: merchant_details {
+    type: left_outer
+    sql_on: ${derived_monthly_agg.business_number}=${merchant_details.business_number};;
+    relationship: one_to_one
+  }
+}
