@@ -25,7 +25,7 @@ view: bolt_usage_monthly_retention {
           ON bhu.user_id = fbum.user_id
       )
       SELECT
-        event_month AS event_month_time,
+        event_month AS event_month,
         m1_users / m0_users AS m1_retention,
         m2_users / m0_users AS m2_retention,
         m3_users / m0_users AS m3_retention,
@@ -64,8 +64,8 @@ view: bolt_usage_monthly_retention {
     type: count
     drill_fields: [detail*]
   }
-  dimension: event_month_time {
-    type: date_month
+  dimension_group: event_month {
+    type: time
     sql: ${TABLE}.event_month ;;
   }
 
