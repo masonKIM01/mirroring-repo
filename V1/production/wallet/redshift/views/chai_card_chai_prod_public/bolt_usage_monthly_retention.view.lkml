@@ -1,62 +1,72 @@
 view: bolt_usage_monthly_retention {
   derived_table: {
     sql: WITH bolt_history_users AS (
+        SELECT
+          DISTINCT DATE(created_at) as event_date,
+          user_id
+        FROM chai_card_chai_prod_public.bolt_history
+        WHERE action = 'deduction'
+      ),
+      first_bolt_usage_month AS (
+        SELECT
+          user_id,
+          MIN(event_date) AS first_usage_date
+        FROM bolt_history_users
+        GROUP BY 1
+      ),
+      joined_data AS (
+        SELECT
+          bhu.user_id,
+          MONTHS_BETWEEN(LAST_DAY(bhu.event_date), LAST_DAY(fbum.first_usage_date)) AS months_interval,
+          bhu.event_date,
+          fbum.first_usage_date
+        FROM bolt_history_users bhu
+        INNER JOIN first_bolt_usage_month fbum
+          ON bhu.user_id = fbum.user_id
+      )
       SELECT
-        DISTINCT DATE(created_at) as event_date,
-        user_id
-      FROM chai_card_chai_prod_public.bolt_history
-      WHERE action = 'deduction'
-    ),
-    first_bolt_usage_month AS (
-      SELECT
-        user_id,
-        MIN(event_date) AS first_usage_date
-      FROM bolt_history_users
-      GROUP BY 1
-    ),
-    joined_data AS (
-      SELECT
-        bhu.user_id,
-        MONTHS_BETWEEN(LAST_DAY(bhu.event_date), LAST_DAY(fbum.first_usage_date)) AS months_interval,
-        bhu.event_date,
-        fbum.first_usage_date
-      FROM bolt_history_users bhu
-      INNER JOIN first_bolt_usage_month fbum
-        ON bhu.user_id = fbum.user_id
-    )
-    SELECT
-       (TO_CHAR(DATE_TRUNC('month', first_usage_date), 'YYYY-MM')) AS event_month,
-       COUNT(DISTINCT(CASE WHEN months_interval = 0 THEN user_id ELSE NULL END)) AS m0_retention,
-       COUNT(DISTINCT(CASE WHEN months_interval = 1 THEN user_id ELSE NULL END)) AS m1_retention,
-       COUNT(DISTINCT(CASE WHEN months_interval = 2 THEN user_id ELSE NULL END)) AS m2_retention,
-       COUNT(DISTINCT(CASE WHEN months_interval = 3 THEN user_id ELSE NULL END)) AS m3_retention,
-       COUNT(DISTINCT(CASE WHEN months_interval = 4 THEN user_id ELSE NULL END)) AS m4_retention,
-       COUNT(DISTINCT(CASE WHEN months_interval = 5 THEN user_id ELSE NULL END)) AS m5_retention,
-       COUNT(DISTINCT(CASE WHEN months_interval = 6 THEN user_id ELSE NULL END)) AS m6_retention,
-       COUNT(DISTINCT(CASE WHEN months_interval = 7 THEN user_id ELSE NULL END)) AS m7_retention,
-       COUNT(DISTINCT(CASE WHEN months_interval = 8 THEN user_id ELSE NULL END)) AS m8_retention,
-       COUNT(DISTINCT(CASE WHEN months_interval = 9 THEN user_id ELSE NULL END)) AS m9_retention,
-       COUNT(DISTINCT(CASE WHEN months_interval = 10 THEN user_id ELSE NULL END)) AS m10_retention,
-       COUNT(DISTINCT(CASE WHEN months_interval = 11 THEN user_id ELSE NULL END)) AS m11_retention,
-       COUNT(DISTINCT(CASE WHEN months_interval = 12 THEN user_id ELSE NULL END)) AS m12_retention
-    FROM joined_data
-    GROUP BY 1
-     ;;
+        event_month AS event_month_time,
+        m1_users / m0_users AS m1_retention,
+        m2_users / m0_users AS m2_retention,
+        m3_users / m0_users AS m3_retention,
+        m4_users / m0_users AS m4_retention,
+        m5_users / m0_users AS m5_retention,
+        m6_users / m0_users AS m6_retention,
+        m7_users / m0_users AS m7_retention,
+        m8_users / m0_users AS m8_retention,
+        m9_users / m0_users AS m9_retention,
+        m10_users / m0_users AS m10_retention,
+        m11_users / m0_users AS m11_retention,
+        m12_users / m0_users AS m12_retention
+      FROM (
+        SELECT
+          DATE_TRUNC('month', first_usage_date) AS event_month,
+           COUNT(DISTINCT(CASE WHEN months_interval = 0 THEN user_id ELSE NULL END))::float AS m0_users,
+           COUNT(DISTINCT(CASE WHEN months_interval = 1 THEN user_id ELSE NULL END))::float AS m1_users,
+           COUNT(DISTINCT(CASE WHEN months_interval = 2 THEN user_id ELSE NULL END))::float AS m2_users,
+           COUNT(DISTINCT(CASE WHEN months_interval = 3 THEN user_id ELSE NULL END))::float AS m3_users,
+           COUNT(DISTINCT(CASE WHEN months_interval = 4 THEN user_id ELSE NULL END))::float AS m4_users,
+           COUNT(DISTINCT(CASE WHEN months_interval = 5 THEN user_id ELSE NULL END))::float AS m5_users,
+           COUNT(DISTINCT(CASE WHEN months_interval = 6 THEN user_id ELSE NULL END))::float AS m6_users,
+           COUNT(DISTINCT(CASE WHEN months_interval = 7 THEN user_id ELSE NULL END))::float AS m7_users,
+           COUNT(DISTINCT(CASE WHEN months_interval = 8 THEN user_id ELSE NULL END))::float AS m8_users,
+           COUNT(DISTINCT(CASE WHEN months_interval = 9 THEN user_id ELSE NULL END))::float AS m9_users,
+           COUNT(DISTINCT(CASE WHEN months_interval = 10 THEN user_id ELSE NULL END))::float AS m10_users,
+           COUNT(DISTINCT(CASE WHEN months_interval = 11 THEN user_id ELSE NULL END))::float AS m11_users,
+           COUNT(DISTINCT(CASE WHEN months_interval = 12 THEN user_id ELSE NULL END))::float AS m12_users
+        FROM joined_data
+        GROUP BY 1
+      )
+       ;;
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
   }
-
-  dimension: event_month {
-    type: string
+  dimension: event_month_time {
+    type: date_month
     sql: ${TABLE}.event_month ;;
-  }
-
-  dimension: m0_retention {
-    type: number
-    sql: ${TABLE}.m0_retention ;;
   }
 
   dimension: m1_retention {
@@ -121,8 +131,7 @@ view: bolt_usage_monthly_retention {
 
   set: detail {
     fields: [
-      event_month,
-      m0_retention,
+      event_month_time,
       m1_retention,
       m2_retention,
       m3_retention,
