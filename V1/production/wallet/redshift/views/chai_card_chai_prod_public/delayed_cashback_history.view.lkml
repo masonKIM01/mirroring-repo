@@ -1,5 +1,5 @@
 view: chai_delayed_cashback_history {
-  sql_table_name: chai_card_chai_prod_public.delayed_cashback_history ;;
+  sql_table_name: chai_card_chai_public.delayed_cashback_history ;;
   drill_fields: [id]
 
   dimension: id {

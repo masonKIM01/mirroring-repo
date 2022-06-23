@@ -1,5 +1,5 @@
 view: chai_mission_reward_boost_campaign {
-  sql_table_name: chai_card_chai_prod_public.mission_reward_boost_campaign ;;
+  sql_table_name: chai_card_chai_public.mission_reward_boost_campaign ;;
   drill_fields: [id]
 
 

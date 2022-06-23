@@ -1,5 +1,5 @@
 view: chai_card {
-  sql_table_name: chai_card_chai_prod_public.card ;;
+  sql_table_name: chai_card_chai_public.card ;;
   drill_fields: [id]
 
   dimension: id {

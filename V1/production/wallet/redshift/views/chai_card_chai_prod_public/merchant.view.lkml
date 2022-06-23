@@ -6,7 +6,7 @@ view: chai_merchant {
       CASE WHEN name = '차이 체크카드' then 'check_card'
       WHEN name = '차이 신용카드' then 'credit_card'
       ELSE 'ewallet' END AS TYPE
-      FROM chai_card_chai_prod_public.merchant ;;
+      FROM chai_card_chai_public.merchant ;;
   }
 
   measure: count {

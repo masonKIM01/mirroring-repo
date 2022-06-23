@@ -32,8 +32,8 @@ view: chai_user_out_for_30days{
           MAX(p.created_at) + 30 AS churn_date,
           MIN(p.created_at) AS first_created_at
         FROM
-          chai_card_chai_prod_public.payment p
-        INNER JOIN chai_card_chai_prod_public.merchant m ON m.id = p.merchant_id
+          chai_card_chai_public.payment p
+        INNER JOIN chai_card_chai_public.merchant m ON m.id = p.merchant_id
         WHERE
           p.status = 'confirmed'
         GROUP BY

@@ -1,5 +1,5 @@
 view: chai_boost_campaign_ad_spend {
-  sql_table_name: chai_card_chai_prod_public.boost_campaign_ad_spend ;;
+  sql_table_name: chai_card_chai_public.boost_campaign_ad_spend ;;
   drill_fields: [id]
 
   dimension: id {
