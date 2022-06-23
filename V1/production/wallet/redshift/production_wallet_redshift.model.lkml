@@ -11,6 +11,18 @@ datagroup: daily_datagroup {
   description: "Run query every hour"
 }
 
+explore: chai_settlement {
+  description: "settlement_infos"
+  from: chai_settlement
+  join: chai_merchant {
+    type: inner
+    sql_on: ${chai_settlement.merchant_id} = ${chai_merchant.id};;
+    relationship: one_to_one
+  }
+}
+explore: bolt_usage_monthly_retention {
+  description: "new bolt usage users monthly retention"
+}
 explore: chai_mission_reward_boost_campaign {
   description: "mission boost infos"
 }
@@ -188,6 +200,6 @@ explore: prejoined_payment_pdt_with_ad_spend {
   join: chai_boost_up_aggregated_by_boost_id {
     type: left_outer
     sql_on: ${prejoined_payment_pdt_with_ad_spend.boost_id} = ${chai_boost_up_aggregated_by_boost_id.boost_id} ;;
-    relationship: many_to_one
+    relationship: one_to_many
   }
 }
