@@ -7,7 +7,7 @@ view: plcc_first_time_payment {
       inner join chai_card_chai_public.merchant m on p.merchant_id = m.id
       inner join chai_card_chai_public.korea_spec ks on ks.user_id = p.user_id
       inner join chai_card_chai_public.card_user cu on cu.ci = ks.ci
-      inner join chai_card_chai_public.card_application ca on ca.user_id = cu.id
+      inner join chai_card_plcc_public.card_application ca on ca.user_id = cu.id
       and ca.status = 'confirmed'
       where p.status = 'confirmed'
       and m.name = '차이 신용카드'
