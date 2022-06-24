@@ -36,8 +36,8 @@ view: checkout_selectivity {
           end as type,
           p.id,
           p.checkout_amount as checkout
-        from chai_card_chai_prod_public.payment p
-        inner join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
+        from chai_card_chai_public.payment p
+        inner join chai_card_chai_public.merchant m on m.id = p.merchant_id
         where p.status = 'confirmed'
         group by 1,2,3,4,5,6
       )b

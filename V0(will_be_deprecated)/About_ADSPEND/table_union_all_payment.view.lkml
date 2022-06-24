@@ -7,10 +7,10 @@ view: table_union_all_payment {
               0 as cpa_done, ap.ad_spend, ap.chai_credit, ap.merchant_id, ap.idempotency_key, ap.customer_id as user_id,
               am.name, b.id as boost_id, bpp.sub_title, bpp.title, b2.name as brand_name
               from analytics_deprecated.payment ap
-              left join chai_card_chai_prod_public.merchant am on am.id = ap.merchant_id
-              left join chai_card_chai_prod_public.boost b on b.payment_id = ap.id
-              left join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-              left join chai_card_chai_prod_public.brand b2 on b2.id = bpp.brand_id
+              left join chai_card_chai_public.merchant am on am.id = ap.merchant_id
+              left join chai_card_chai_public.boost b on b.payment_id = ap.id
+              left join chai_card_chai_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
+              left join chai_card_chai_public.brand b2 on b2.id = bpp.brand_id
             where ap.created_at <= '2021-10-14 23:59:59.999'
       union all
             select
@@ -26,11 +26,11 @@ view: table_union_all_payment {
               , p.user_id
               , m.name
               , b.id as boost_id, bpp.sub_title, bpp.title, b2.name as brand_name
-            from chai_card_chai_prod_public.payment p
-            left join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
-            left join chai_card_chai_prod_public.boost b on b.payment_id = p.id
-            left join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-            left join chai_card_chai_prod_public.brand b2 on b2.id = bpp.brand_id
+            from chai_card_chai_public.payment p
+            left join chai_card_chai_public.merchant m on m.id = p.merchant_id
+            left join chai_card_chai_public.boost b on b.payment_id = p.id
+            left join chai_card_chai_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
+            left join chai_card_chai_public.brand b2 on b2.id = bpp.brand_id
             left join
               (select '2021-10-01' as months, '무신사' as merchant_name, '10,000원 캐시백' as title, 'CPA' as type, '0' as merchant_ratio, '0' as contract, '11509000' as CPA_done union all
             select '2021-10-01' as months, '여기어때' as merchant_name, '10,000원 캐시백' as title, 'CPA' as type, '0' as merchant_ratio, '0' as contract, '2205000' as CPA_done union all

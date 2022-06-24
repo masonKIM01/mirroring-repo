@@ -58,11 +58,11 @@ view: querylibrary {
           0
         ) AS boostCheckout_amount
       FROM
-        chai_card_chai_prod_public.payment p
-        LEFT JOIN chai_card_chai_prod_public.merchant m ON m.id = p.merchant_id
-        LEFT JOIN chai_card_chai_prod_public.boost b ON b.payment_id = p.id
-        LEFT JOIN chai_card_chai_prod_public.boost_promotion_policy bpp ON bpp.id = b.boost_promotion_id
-        LEFT JOIN chai_card_chai_prod_public.brand b2 ON b2.id = bpp.brand_id
+        chai_card_chai_public.payment p
+        LEFT JOIN chai_card_chai_public.merchant m ON m.id = p.merchant_id
+        LEFT JOIN chai_card_chai_public.boost b ON b.payment_id = p.id
+        LEFT JOIN chai_card_chai_public.boost_promotion_policy bpp ON bpp.id = b.boost_promotion_id
+        LEFT JOIN chai_card_chai_public.brand b2 ON b2.id = bpp.brand_id
         LEFT JOIN (
           SELECT
             DISTINCT year,
@@ -82,7 +82,7 @@ view: querylibrary {
                 action_type,
                 Count(action_type) OVER (partition BY payment_id) AS cnt
               FROM
-                chai_card_chai_prod_public.delayed_cashback_history
+                chai_card_chai_public.delayed_cashback_history
               GROUP BY
                 1,
                 2,
@@ -109,8 +109,8 @@ view: querylibrary {
             b.year,
             b.month
           FROM
-            chai_card_chai_prod_public.boost b
-            INNER JOIN chai_card_chai_prod_public.boost_campaign_ad_spend ad ON (
+            chai_card_chai_public.boost b
+            INNER JOIN chai_card_chai_public.boost_campaign_ad_spend ad ON (
               ad.boost_campaign_id = b.boost_campaign_id
               AND CASE WHEN ad.end_at IS NOT NULL THEN b.created_at BETWEEN ad.start_at
               AND ad.end_at WHEN ad.end_at IS NULL THEN b.created_at >= ad.start_at END
@@ -123,7 +123,7 @@ view: querylibrary {
             up.boost_id,
             SUM(up.cashback_amount) AS cashback_up
           FROM
-            chai_card_chai_prod_public.boost_up up
+            chai_card_chai_public.boost_up up
           GROUP BY
             1
         ) up ON up.boost_id = b.id

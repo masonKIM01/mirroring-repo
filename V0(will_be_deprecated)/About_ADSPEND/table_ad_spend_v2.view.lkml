@@ -22,8 +22,8 @@ FROM   (SELECT b.payment_id,
                ratio,
                b.year,
                b.month
-        FROM   chai_card_chai_prod_public.boost b
-               INNER JOIN chai_card_chai_prod_public.boost_campaign_ad_spend ad
+        FROM   chai_card_chai_public.boost b
+               INNER JOIN chai_card_chai_public.boost_campaign_ad_spend ad
                        ON ( ad.boost_campaign_id = b.boost_campaign_id
                             AND CASE
                                   WHEN ad.end_at IS NOT NULL THEN
@@ -33,7 +33,7 @@ FROM   (SELECT b.payment_id,
                                   b.created_at >= ad.start_at
                                 END )
         WHERE  b.year = '2022')ad
-       LEFT JOIN chai_card_chai_prod_public.payment p
+       LEFT JOIN chai_card_chai_public.payment p
               ON p.id = ad.payment_id
                  AND p.year = '2022'
        LEFT JOIN (SELECT DISTINCT year,
@@ -46,7 +46,7 @@ FROM   (SELECT b.payment_id,
                                    OVER(
                                      partition BY payment_id)
                           FROM
-                 chai_card_chai_prod_public.delayed_cashback_history dc
+                 chai_card_chai_public.delayed_cashback_history dc
                           GROUP  BY 1,
                                     2,
                                     3,
@@ -71,7 +71,7 @@ FROM   (SELECT b.payment_id,
               ON x.payment_id = ad.payment_id
        LEFT JOIN (SELECT up.boost_id,
                          Sum(up.cashback_amount) AS cashback_up
-                  FROM   chai_card_chai_prod_public.boost_up up
+                  FROM   chai_card_chai_public.boost_up up
                   GROUP  BY 1)up
               ON up.boost_id = ad.boost_id
  ;;

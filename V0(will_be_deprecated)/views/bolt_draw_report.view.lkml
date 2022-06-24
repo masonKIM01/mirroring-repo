@@ -8,8 +8,8 @@ view: bolt_draw_report {
       , trunc(2022-c.birthday::numeric,-1) as age_group
       , c.gender
       , bd.bolt_count
-      from chai_card_chai_prod_public.bolt_draw bd
-      inner join chai_card_chai_prod_public.user c on bd.user_id = c.id
+      from chai_card_chai_public.bolt_draw bd
+      inner join chai_card_chai_public.user c on bd.user_id = c.id
        ;;
   }
 

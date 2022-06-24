@@ -3,22 +3,22 @@ view: ad_spend_view {
     sql:
       WITH table_redshift_payment AS (select
             to_char(created_at,'yyyy-mm-01') as months, *
-            from chai_card_chai_prod_public.payment
+            from chai_card_chai_public.payment
        )
         ,  table_redshift_boost AS (select
             *
-            from chai_card_chai_prod_public.boost b
+            from chai_card_chai_public.boost b
              )
         ,  table_redshift_boost_promotion_policy AS (select *
-            from chai_card_chai_prod_public.boost_promotion_policy bpp
+            from chai_card_chai_public.boost_promotion_policy bpp
              )
         ,  table_redshift_brand AS (select
             *
-            from chai_card_chai_prod_public.brand
+            from chai_card_chai_public.brand
              )
         ,  table_redshift_merchant AS (select
             *
-            from chai_card_chai_prod_public.merchant m
+            from chai_card_chai_public.merchant m
              )
         ,  table_merchant_adspend AS (
             select '2021-10-01' as months, '무신사' as merchant_name, '10,000원 캐시백' as title, 'CPA' as type, '0' as merchant_ratio, '0' as contract, '11509000' as CPA_done union all

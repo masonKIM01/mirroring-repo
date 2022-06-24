@@ -14,19 +14,19 @@ view: join_adspend {
       when m.name = '차이 체크카드' then '카드'
       else '간편결제' end as payment_type,
       sum(x.ad_spend) as ad_spend
-      from chai_card_chai_prod_public.payment p
-      left join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
-      left join chai_card_chai_prod_public.boost b on b.payment_id = p.id
-      left join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-      left join chai_card_chai_prod_public.brand b2 on b2.id = bpp.brand_id
+      from chai_card_chai_public.payment p
+      left join chai_card_chai_public.merchant m on m.id = p.merchant_id
+      left join chai_card_chai_public.boost b on b.payment_id = p.id
+      left join chai_card_chai_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
+      left join chai_card_chai_public.brand b2 on b2.id = bpp.brand_id
       left join (select distinct
             b.payment_id,
             case when ad.type = 'cps' then ad.unit_price
             when ad.type = 'ratio' then ad.ratio * 0.01 * p.cashback_amount
             when ad.type = 'cpa' then ad.unit_price * 0.5
             end as ad_spend
-            from chai_card_chai_prod_public.boost b
-            inner join chai_card_chai_prod_public.payment p on p.id = b.payment_id
+            from chai_card_chai_public.boost b
+            inner join chai_card_chai_public.payment p on p.id = b.payment_id
             inner join
               (select distinct
                 t.boost_campaign_id,
@@ -48,7 +48,7 @@ view: join_adspend {
                   (select
                     *,
                     count(ad.unit_price)over(partition by boost_campaign_id)
-                  from chai_card_chai_prod_public.boost_campaign_ad_spend ad
+                  from chai_card_chai_public.boost_campaign_ad_spend ad
                   group by 1,2,3,4,5,6,7,8,9,10,11,12,13
                   )x
                 )t

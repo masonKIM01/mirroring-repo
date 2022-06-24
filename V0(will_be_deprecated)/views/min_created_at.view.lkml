@@ -2,7 +2,7 @@ view: min_created_at {
   derived_table: {
     sql: select
         p.user_id, min(p.created_at) as min_created_at
-      from chai_card_chai_prod_public.payment p
+      from chai_card_chai_public.payment p
       group by 1
        ;;
   }
