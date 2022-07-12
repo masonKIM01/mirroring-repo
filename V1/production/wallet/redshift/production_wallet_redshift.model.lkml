@@ -21,6 +21,10 @@ explore: chai_settlement {
   }
 }
 
+explore: bolt_card_issued {
+  description: "card_issued_by_bolt"
+}
+
 explore: chai_mission_reward_boost_campaign {
   description: "mission boost infos"
 }
