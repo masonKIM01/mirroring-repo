@@ -20,7 +20,7 @@ explore: user_pricing {
 
 explore: payments {
   always_filter: {
-    filters: [payments.sandbox: "0",payments.status: "paid, cancelled"]
+    filters: [payments.sandbox: "0",payments.status: "paid, cancelled", latest_margin_details.rn: "1"]
   }
   join: payment_extensions {
     type: inner
@@ -46,6 +46,13 @@ explore: payments {
   join: users {
     type:  left_outer
     sql_on:  ${users.id} = ${payments.user_id};;
+    relationship: many_to_one
+  }
+
+  join: latest_margin_details {
+    type:  left_outer
+    sql_on:  ${latest_margin_details.pg_id} = ${payments.pg_id} and ${latest_margin_details.pg_provider}=${payments.formatted_pg_provider}
+      and ${latest_margin_details.pay_method}=${payments.pay_method};;
     relationship: many_to_one
   }
 
@@ -88,6 +95,16 @@ explore: derived_monthly_agg {
   join: merchant_details {
     type: left_outer
     sql_on: ${derived_monthly_agg.business_number}=${merchant_details.business_number};;
+    relationship: one_to_one
+  }
+}
+
+
+
+explore: certifications {
+  join: merchant_details {
+    type: left_outer
+    sql_on: ${merchant_details.user_id}=${certifications.user_id} ;;
     relationship: one_to_one
   }
 }
