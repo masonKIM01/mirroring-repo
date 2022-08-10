@@ -35,7 +35,17 @@ view: merchant_details {
     sql: ${TABLE}.business_number_unknown ;;
   }
 
+  dimension: industry {
+    type: string
+    sql: ${TABLE}.industry ;;
+  }
+
+  dimension: industry_sub {
+    type: string
+    sql: ${TABLE}.industry_sub ;;
+  }
+
   set: detail {
-    fields: [user_id, business_number, company_name, company_name_eng, business_number_unknown]
+    fields: [user_id, business_number, company_name, company_name_eng, business_number_unknown, industry, industry_sub]
   }
 }

@@ -78,7 +78,6 @@ view: payments {
   }
 
   dimension: imp_uid {
-    hidden: yes
     type: string
     sql: ${TABLE}.imp_uid ;;
   }
@@ -89,7 +88,6 @@ view: payments {
   }
 
   dimension: pg_tid {
-    hidden: yes
     type: string
     sql: ${TABLE}.pg_tid ;;
   }
