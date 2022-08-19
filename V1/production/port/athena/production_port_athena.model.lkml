@@ -20,7 +20,7 @@ explore: user_pricing {
 
 explore: payments {
   always_filter: {
-    filters: [payments.sandbox: "0",payments.status: "paid, cancelled", latest_margin_details.rn: "1"]
+    filters: [payments.sandbox: "0",payments.status: "paid, cancelled"]
   }
   join: payment_extensions {
     type: inner
