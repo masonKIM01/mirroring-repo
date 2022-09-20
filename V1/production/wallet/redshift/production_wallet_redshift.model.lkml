@@ -20,9 +20,15 @@ explore: chai_settlement {
     relationship: one_to_one
   }
 }
+
+explore: bolt_card_issued {
+  description: "card_issued_by_bolt"
+}
+
 explore: boost_usage_monthly_retention {
   description: "new bolt usage users monthly retention"
 }
+
 explore: chai_mission_reward_boost_campaign {
   description: "mission boost infos"
 }
