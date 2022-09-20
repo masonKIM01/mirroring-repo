@@ -5,7 +5,7 @@ view: chai_boost_up_aggregated_by_boost_id {
         boost_id,
         SUM(bolt_price) AS bolt_price,
         SUM(cashback_amount) AS cashback_up
-      FROM chai_card_chai_prod_public.boost_up
+      FROM chai_card_chai_public.boost_up
       GROUP BY 1
       ;;
   }

@@ -23,18 +23,18 @@ view: plcc_payment_type {
             count(distinct p.user_id) as "users",
             sum(p.checkout_amount) as "txv",
             sum(p.cashback_amount+coalesce(x.cashback_delta,0)) as "cashback"
-            from chai_card_chai_prod_public.card c
-            left join chai_card_chai_prod_public.payment p on p.user_id = c.user_id
+            from chai_card_chai_public.card c
+            left join chai_card_chai_public.payment p on p.user_id = c.user_id
             left join (select distinct year, month, created_at, payment_id, sum(cashback_delta) as cashback_delta
                     from
                     (select
                       *, count(action_type)over(partition by payment_id)
-                    from chai_card_chai_prod_public.delayed_cashback_history dc
+                    from chai_card_chai_public.delayed_cashback_history dc
                     group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
                     )x
                     where x.count = 1
                     group by 1,2,3,4)x on x.payment_id = p.id
-            left join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
+            left join chai_card_chai_public.merchant m on m.id = p.merchant_id
             where c.card_product_id = 7
             and p.year = '2022'
             and p.status = 'confirmed'

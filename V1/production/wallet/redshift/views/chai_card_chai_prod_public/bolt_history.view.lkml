@@ -1,5 +1,5 @@
 view: chai_bolt_history {
-  sql_table_name: chai_card_chai_prod_public.bolt_history ;;
+  sql_table_name: chai_card_chai_public.bolt_history ;;
   drill_fields: [id]
 
   dimension: id {

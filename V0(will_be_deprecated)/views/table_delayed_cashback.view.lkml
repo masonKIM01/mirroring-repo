@@ -19,7 +19,7 @@ view: table_delayed_cashback {
             action_type,
             COUNT(action_type) OVER (PARTITION BY payment_id) AS cnt
           FROM
-            chai_card_chai_prod_public.delayed_cashback_history
+            chai_card_chai_public.delayed_cashback_history
           GROUP BY
             1,
             2,

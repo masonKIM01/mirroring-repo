@@ -1,5 +1,5 @@
 view: chai_boost_promotion_policy {
-  sql_table_name: chai_card_chai_prod_public.boost_promotion_policy ;;
+  sql_table_name: chai_card_chai_public.boost_promotion_policy ;;
   drill_fields: [id]
 
   dimension: id {

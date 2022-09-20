@@ -1,5 +1,5 @@
 view: chai_topup {
-  sql_table_name: chai_card_chai_prod_public.topup ;;
+  sql_table_name: chai_card_chai_public.topup ;;
   drill_fields: [id]
 
   measure: count {

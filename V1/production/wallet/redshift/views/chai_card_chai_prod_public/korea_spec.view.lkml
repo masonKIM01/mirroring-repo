@@ -1,5 +1,5 @@
 view: chai_korea_spec {
-  sql_table_name: chai_card_chai_prod_public.korea_spec ;;
+  sql_table_name: chai_card_chai_public.korea_spec ;;
   drill_fields: [id]
 
   dimension: id {

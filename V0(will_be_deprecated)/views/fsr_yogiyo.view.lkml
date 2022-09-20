@@ -22,12 +22,12 @@ view: fsr_yogiyo {
       p.idempotency_key,
       split_part(split_part(p.data, 'approvalNo":',2),'"',2) as approvalNo,
       split_part(split_part(p.data, 'cardMerchantId":',2),'"',2) as cardMerchantId
-      from chai_card_chai_prod_public.payment p
-      inner join chai_card_chai_prod_public.merchant m on m.id = p.merchant_id
-      inner join chai_card_chai_prod_public.boost b on b.payment_id = p.id
-      inner join chai_card_chai_prod_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
-      inner join chai_card_chai_prod_public.brand b2 on b2.id = bpp.brand_id
-      left join chai_card_chai_prod_public.boost_campaign_ad_spend ad on ad.boost_campaign_id = b.boost_campaign_id
+      from chai_card_chai_public.payment p
+      inner join chai_card_chai_public.merchant m on m.id = p.merchant_id
+      inner join chai_card_chai_public.boost b on b.payment_id = p.id
+      inner join chai_card_chai_public.boost_promotion_policy bpp on bpp.id = b.boost_promotion_id
+      inner join chai_card_chai_public.brand b2 on b2.id = bpp.brand_id
+      left join chai_card_chai_public.boost_campaign_ad_spend ad on ad.boost_campaign_id = b.boost_campaign_id
       where p.year = '2022'
       and b2.name = '요기요'
        ;;
