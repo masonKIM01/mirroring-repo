@@ -118,6 +118,13 @@ view: chai_boost {
     sql: ${TABLE}.user_id ;;
   }
 
+  measure: boost_used_users {
+    type: count_distinct
+    description: "# of users who used boost correctly"
+    sql: ${TABLE}.user_id ;;
+    filters: [status: "terminated", usage_id: "-NULL"]
+  }
+
   measure: boost_count {
     type: count
     description: "# of boost that activated at least once regardless of current status"
@@ -127,6 +134,11 @@ view: chai_boost {
     type: count
     description: "# of unused boosts. it means, users bought boost but did not use and expired"
     filters: [status: "activated", usable_to_time: "before 9 hours from now"]
+  }
+  measure: used_boost_count {
+    type: count
+    description: "# of boosts that is used correctly"
+    filters: [status: "terminated", usage_id: "-NULL"]
   }
 
   measure: boost_to_payment_mins_avg {

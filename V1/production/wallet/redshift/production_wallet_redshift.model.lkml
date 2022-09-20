@@ -25,6 +25,10 @@ explore: bolt_card_issued {
   description: "card_issued_by_bolt"
 }
 
+explore: boost_usage_monthly_retention {
+  description: "new bolt usage users monthly retention"
+}
+
 explore: chai_mission_reward_boost_campaign {
   description: "mission boost infos"
 }
@@ -143,6 +147,11 @@ explore: prejoined_plcc_card_application {
     type: left_outer
     sql_on: ${prejoined_payment_pdt.payment_user_id} = ${table_plcc_user.user_id} ;;
     relationship: one_to_one
+  }
+  join: chai_bolt_history {
+    type: left_outer
+    sql_on: ${chai_user.id} = ${chai_bolt_history.user_id} ;;
+    relationship: one_to_many
   }
 }
 
