@@ -78,7 +78,6 @@ view: payments {
   }
 
   dimension: imp_uid {
-    hidden: yes
     type: string
     sql: ${TABLE}.imp_uid ;;
   }
@@ -89,7 +88,6 @@ view: payments {
   }
 
   dimension: pg_tid {
-    hidden: yes
     type: string
     sql: ${TABLE}.pg_tid ;;
   }
@@ -244,6 +242,27 @@ view: payments {
     type: time
     sql: ${TABLE}.paid_at ;;
   }
+
+  measure: first_paid_at{
+    description: "first TX"
+    type: date
+    sql: min(${TABLE}.paid_at) ;;
+    # value_format_name: usd_0
+    #value_format: "₩#,##0.00" #krw formatting
+  }
+
+  measure: last_paid_at{
+    description: "last TX"
+    type: date
+    sql: max(${TABLE}.paid_at}) ;;
+    # value_format_name: usd_0
+    #value_format: "₩#,##0.00" #krw formatting
+  }
+
+
+
+
+
 
   dimension_group: failed_at {
     type: time
